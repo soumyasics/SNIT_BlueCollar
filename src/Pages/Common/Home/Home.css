@@ -1,0 +1,22 @@
+
+.home-subheading{
+color: #4DA9EC;
+text-align: center;
+font-family: "Noto Sans";
+font-size: 35px;
+font-style: normal;
+font-weight: 700;
+line-height: 200%; /* 70px */
+border-bottom: 1px dotted; /* Adjust color and width as needed */
+display: inline; /* To apply the underline only to the text content */
+padding-bottom: 2px; /* Adjust padding to control space between text and underline */
+}
+.home-para{
+    color: #4DA9EC;
+font-family: "Noto Sans";
+font-size: 26px;
+font-style: normal;
+font-weight: 100;
+line-height: 200%;
+}
+
