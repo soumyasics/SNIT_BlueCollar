@@ -14,6 +14,19 @@ function User_Register() {
         <div className="row justify-content-center">
           <div className="col-md-6 m-5">
             <form>
+            <div className="mb-3">
+                <label
+                  htmlFor="username"
+                  className="form-label user-register-label my-2"
+                >
+                  Usertype
+                </label>
+                <select>
+                  <option>User</option>
+                  <option>Staff</option>
+                  <option>Admin</option>
+                </select>
+              </div>
               <div className="mb-3">
                 <label
                   htmlFor="username"
