@@ -2,9 +2,15 @@
 
 # dependencies
 client/node_modules
+server/node_modules
+
 /.pnp
 .pnp.js
 
+
+
+#upload path
+.SNIT_BlueCollar/server/upload
 # testing
 /coverage
 
