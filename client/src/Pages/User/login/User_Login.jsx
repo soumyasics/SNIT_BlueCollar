@@ -8,8 +8,7 @@ function User_Login() {
   return (
     <>
     <Navbar/>
-    <Hero/>
-    <div className='container-fluid user-register-bg '>
+    <div className='container-fluid user-register-bg bg-pic'>
     <h1 className="user-register-heading text-center m-5">Sign In</h1>
       <div className="container">
         <div className="row justify-content-center">
