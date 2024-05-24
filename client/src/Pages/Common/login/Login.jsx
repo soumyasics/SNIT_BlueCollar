@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
 import './Login.css';
+import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
 function Login() {
+
+  const navigate=useNavigate()
     const [formData, setFormData] = useState({
       userCategory: '',
-      username: '',
+      email: '',
       password: '',
     });
-  
+  console.log(formData);
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +32,7 @@ function Login() {
     const validate = () => {
       let formErrors = {};
       if (!formData.userCategory) formErrors.userCategory = 'User Category is required';
-      if (!formData.username) formErrors.username = 'Username is required';
+      if (!formData.email) formErrors.email = 'email is required';
       if (!formData.password) formErrors.password = 'Password is required';
       return formErrors;
     };
@@ -37,10 +41,39 @@ function Login() {
       e.preventDefault();
       const formErrors = validate();
       if (Object.keys(formErrors).length === 0) {
-        setSubmitted(true);
+        // setSubmitted(true);
         setErrors({});
-        // Handle form submission (e.g., send data to backend)
-      } else {
+        let apiEndpoint;
+        if (formData.userCategory === 'Customer') {
+          apiEndpoint = '/logincust';
+        } else if (formData.userCategory === 'Worker') {
+          apiEndpoint = '/loginworker';
+        } else if (formData.userCategory === 'Employer') {
+          apiEndpoint = '/loginemp';
+        }
+
+        axiosInstance.post(apiEndpoint, { email: formData.email, password: formData.password })
+          .then(response => {
+            console.log(response);
+            if(response.data.status==200){
+              toast.success("Login Successfully")
+              navigate("/")
+            }
+            else{
+              toast.warn(response.data.message)
+            }
+            if (response.data.success) {
+              setSubmitted(true);
+            } else {
+              setErrors({ form: 'Login failed, please try again.' });
+              setSubmitted(false);
+            }
+          })
+          .catch(error => {
+            setErrors({ form: 'An error occurred, please try again later.' });
+            setSubmitted(false);
+          });
+      }      else {
         setErrors(formErrors);
         setSubmitted(false);
       }
@@ -86,17 +119,17 @@ function Login() {
                 <Row>
                   <Col md={12}>
                     <Form.Group className="mb-3">
-                      <Form.Label htmlFor="username" className='text-white'>Username</Form.Label>
+                      <Form.Label htmlFor="email" className='text-white'>Email</Form.Label>
                       <Form.Control
                         type="text"
-                        id="username"
-                        name="username"
-                        value={formData.username}
+                        id="email"
+                        name="email"
+                        value={formData.email}
                         onChange={handleChange}
-                        isInvalid={!!errors.username}
-                        placeholder="Enter Username"
+                        isInvalid={!!errors.email}
+                        placeholder="Enter Email"
                       />
-                      <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                     </Form.Group>
                   </Col>
                 </Row>

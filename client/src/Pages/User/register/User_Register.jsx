@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert, Toast } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
 import Navbar from '../../Common/Navbar/Navbar';
@@ -92,6 +92,8 @@ function User_Register() {
     return formErrors;
   };
 
+  const navigate=useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = validate();
@@ -105,6 +107,7 @@ function User_Register() {
         console.log(res);
         if(res.data.status==200){
           toast.success("Registered Successfully")
+          navigate("/user-register")
         }
         // else{
         //   console.log(res.response.data.msg+"hia");
