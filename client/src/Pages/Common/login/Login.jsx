@@ -157,7 +157,7 @@ function Login() {
                   <Link to="/forgot-password" className='text-white'>Forgot Password?</Link>
                 </div>
                 <div className='d-flex justify-content-center'>
-                  <Button type="submit" className="d-flex align-self-center user-register-button px-5 py-2 ">
+                  <Button type="submit" className="d-flex align-self-center user-register-button px-5 py-2 border-0 rounded-4 ">
                     Sign In
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                       <g clipPath="url(#clip0_3_212)">
