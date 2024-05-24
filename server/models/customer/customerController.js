@@ -19,10 +19,10 @@ const storage = multer.diskStorage({
   const registercust = (req, res) => {
     const customers = new custschema({
       name: req.body.name,
-      housename:req.body.housename,
+      housename:req.body.houseName,
       city:req.body.city,
-      phone: req.body.phone,
-      pincode:req.body.pincode,
+      phone: req.body.contactNumber,
+      pincode:req.body.pinCode,
       email: req.body.email,
       password: req.body.password,
       image: req.file,
@@ -144,10 +144,10 @@ const custforgetpswd=((req,res)=>{
 const updatecustprofile=(req,res)=>{
     custschema.findByIdAndUpdate({_id:req.params.id},{
       name: req.body.name,
-      housename:req.body.housename,
+      housename:req.body.houseName,
       city:req.body.city,
-      phone: req.body.phone,
-      pincode:req.body.pincode,
+      phone: req.body.contactNumber,
+      pincode:req.body.pinCode,
       email: req.body.email,
       password: req.body.password,
       image: req.file,
