@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Alert, Toast } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
@@ -7,6 +7,8 @@ import Navbar from '../../Common/Navbar/Navbar';
 import Footer from '../../Common/Footer/Footer';
 import './User_Register.css';
 import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
+import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
 function User_Register() {
   const [formData, setFormData] = useState({
@@ -18,6 +20,7 @@ function User_Register() {
     email: '',
     password: '',
     confirmPassword: '',
+    image:''
   });
 
   const [errors, setErrors] = useState({});
@@ -26,13 +29,33 @@ function User_Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+
+  //   }));
+  // };
+
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    const { name, value, files } = e.target;
+    
+    if (files) {
+      const file = files[0];
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: file,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  }
+  console.log(formData);
 
   const handleImageUpload = (e) => {
     setProfileImage(URL.createObjectURL(e.target.files[0]));
@@ -42,11 +65,29 @@ function User_Register() {
     let formErrors = {};
     if (!formData.name) formErrors.name = 'Name is required';
     if (!formData.houseName) formErrors.houseName = 'House Name is required';
-    if (!formData.pinCode) formErrors.pinCode = 'Pin Code is required';
+    if (!formData.pinCode)
+       {formErrors.pinCode = 'Pin Code is required';
+       }
+       else if (!/^\d{6}$/.test(formData.pinCode)) {
+        formErrors.pinCode = 'Pin Code must be a 6 digits';
+      }
     if (!formData.city) formErrors.city = 'City is required';
-    if (!formData.contactNumber) formErrors.contactNumber = 'Contact Number is required';
+    if (!formData.contactNumber){
+      formErrors.contactNumber = 'Contact Number is required';
+    }
+    else if (!/^\d{10}$/.test(formData.contactNumber)) {
+      formErrors.contactNumber = 'Contact Number must be a 10 digits';
+    }
     if (!formData.email) formErrors.email = 'Email is required';
     if (!formData.password) formErrors.password = 'Password is required';
+    if (!formData.image) formErrors.image = 'Image is required';
+    if (formData.password && formData.password.length < 8) {
+      formErrors.password = 'Password must be at least 8 characters long';
+    } else if (formData.password && !/\d/.test(formData.password)) {
+      formErrors.password = 'Password must contain at least one digit';
+    } else if (formData.password && !/[a-zA-Z]/.test(formData.password)) {
+      formErrors.password = 'Password must contain at least one letter';
+    }
     if (formData.password !== formData.confirmPassword) formErrors.confirmPassword = 'Passwords do not match';
 
     return formErrors;
@@ -56,10 +97,35 @@ function User_Register() {
     e.preventDefault();
     const formErrors = validate();
     if (Object.keys(formErrors).length === 0) {
-      setSubmitted(true);
-      setErrors({});
+      axiosInstance.post(`registercust`,formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res)=>{
+        console.log(res);
+        if(res.data.status==200){
+          toast.success("Registered Successfully")
+        }
+        // else{
+        //   console.log(res.response.data.msg+"hia");
+
+        // }
+        setSubmitted(true);
+        setErrors({});  
+      })
+      .catch(error => {
+        toast.warn(error.response.data.msg)
+
+        // Handle error response from the server
+        console.error('Error submitting form data:', error);
+        setErrors({ server: 'Error submitting form data. Please try again later.' });
+        setSubmitted(false);
+      });
+  
       // Handle form submission (e.g., send data to backend)
-    } else {
+    }
+     else {
       setErrors(formErrors);
       setSubmitted(false);
     }
@@ -73,6 +139,12 @@ function User_Register() {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+
+  const handleFileChange = (e) => {
+    handleChange(e);
+    handleImageUpload(e);
+  };
+
   return (
     <>
       <Navbar />
@@ -83,6 +155,21 @@ function User_Register() {
               <img src={logo} alt='logo' width={100} />
               <h3 className='text-white text-center align-self-center p-3 '>Customer Registration</h3>
             </div>
+            {/* <div className="user-register-icon justify-content-left">
+              <div className="icon-bg border border-light">
+                {profileImage ? (
+                  <img src={profileImage} alt="profile" className="rounded-circle" width="60" />
+                ) : (
+                  <FaRegUser size={80} color='white' className='p-3'/>
+                )}
+                <label className="upload-icon">
+                  <FiEdit2 />
+                  <input type="file" name='image' onChange={handleFileChange} />
+                </label>
+              </div>
+            </div> */}
+            {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+            <Form onSubmit={handleSubmit}>
             <div className="user-register-icon justify-content-left">
               <div className="icon-bg border border-light">
                 {profileImage ? (
@@ -92,12 +179,17 @@ function User_Register() {
                 )}
                 <label className="upload-icon">
                   <FiEdit2 />
-                  <input type="file" onChange={handleImageUpload} />
+                  <input 
+  type="file" 
+  name='image' 
+  onChange={handleFileChange}                       
+  className={errors.image ? 'is-invalid' : ''}
+/>
+<Form.Control.Feedback type="invalid" style={{paddingBottom:"50px",width:"200px"}}>{errors.image}</Form.Control.Feedback>
                 </label>
               </div>
             </div>
-            {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-            <Form onSubmit={handleSubmit}>
+
               <Row>
                 <Col md={12}>
                   <Form.Group className="mb-3">
