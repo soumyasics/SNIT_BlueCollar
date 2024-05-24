@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
 import Navbar from '../../Common/Navbar/Navbar';
-import Footer from '../../Common/Footer/Footer';
 import './User_Register.css';
 import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
 import axiosInstance from '../../Constants/Baseurl';
@@ -348,7 +347,6 @@ function User_Register() {
           </div>
         </Container>
       </div>
-      <Footer />
     </>
   );
 }
