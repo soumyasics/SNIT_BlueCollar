@@ -1,17 +1,25 @@
-.home-hero{
-    background-image: url('../../../Assets/Firefly\ 20240130134039\ 1.png');
+.home-hero {
+    background-image: url('../../../Assets/Firefly 20240130134039 1.png');
     background-repeat: no-repeat;
     background-size: cover;
     height: 753.6px;
-}
-.home-hero-heading{
-color: #FFF;
-font-family: "Noto Sans";
-font-size: 44px;
-font-style: normal;
-font-weight: 100;
-line-height: normal;
-width: 554.475px;
-height: 211.09px;
-flex-shrink: 0;
-}
+  }
+  
+  .home-hero-heading {
+    color: #FFF;
+    font-family: "Noto Sans";
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    width: 554.475px;
+    height: 211.09px;
+    flex-shrink: 0;
+  }
+  
+ 
+  .custom-placeholder::placeholder {
+    color: #4DA9EC !important; 
+    padding: 5% !important;
+  }
+  

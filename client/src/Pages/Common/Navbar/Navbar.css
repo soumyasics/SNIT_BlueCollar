@@ -1,17 +1,32 @@
-.navbar-b{
-color: #FFF;
-background-color: #4DA9EC;
-font-family: "Elsie Swash Caps";
-font-size: 29.194px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.bg-primary-custom {
+    background-color: #4DA9EC !important;
 }
-.navbar-links{
-color: #FFF;
-font-family: "Noto Sans";
-font-size: 21px;
-font-style: normal;
-font-weight: 100;
-line-height: normal;
+
+.text-light-custom {
+    color: #FFF !important;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.navbar-brand-text {
+    font-family: 'Elsie Swash Caps';
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.navbar-icon {
+    margin-bottom: 5px; 
+    font-size: 24px; 
+}
+
+.navbar-links .nav-link {
+    display: flex;
+    align-items: flex-end;
+}
+
+.navbar-nav {
+    align-items: flex-end;
 }
