@@ -1,22 +1,34 @@
-
-.home-subheading{
-color: #4DA9EC;
-text-align: center;
-font-family: "Noto Sans";
-font-size: 35px;
-font-style: normal;
-font-weight: 700;
-line-height: 200%; /* 70px */
-border-bottom: 1px dotted; /* Adjust color and width as needed */
-display: inline; /* To apply the underline only to the text content */
-padding-bottom: 2px; /* Adjust padding to control space between text and underline */
-}
-.home-para{
+.home-subheading {
     color: #4DA9EC;
-font-family: "Noto Sans";
-font-size: 26px;
-font-style: normal;
-font-weight: 100;
-line-height: 200%;
-}
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 52px; 
+    display: inline; 
+    padding-bottom: 2px; 
+  }
+  
+  .home-bg {
+    background-image: url('../../../Assets/78860289430e2548240d298c80a2262b.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 400px;
+  }
+  .icon-color{
+    color:#4DA9EC !important;
+    ;
+  }
+  .h3-nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: adds ... if the text is too long */
+  }
+  .home-para{
+    font-family:  'Noto Sans';
+    font-weight: 200;
+    font-size: 25px;
+    line-height: 52px;
 
+  }
