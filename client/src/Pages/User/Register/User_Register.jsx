@@ -107,7 +107,7 @@ function User_Register() {
         console.log(res);
         if(res.data.status==200){
           toast.success("Registered Successfully")
-          navigate("/user-register")
+          navigate("/login")
         }
         // else{
         //   console.log(res.response.data.msg+"hia");
