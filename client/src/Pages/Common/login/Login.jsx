@@ -172,7 +172,7 @@ function Login() {
                   </Button>
                 </div>
                 <div className="register-link mt-3 text-center ">
-                  <Link to="/register" className='fw-bolder text-dark text-decoration-none'><span className='text-white'>Don't have an account?</span> Register Now!!!</Link>
+                  <Link to="/user-register" className='fw-bolder text-dark text-decoration-none'><span className='text-white'>Don't have an account?</span> Register Now!!!</Link>
                 </div>
               </Form>
             </div>

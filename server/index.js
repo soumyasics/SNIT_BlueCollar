@@ -12,6 +12,6 @@ app.use(cors())
 const route=require('./routes')
 app.use('/bluecollar_api',route)
 
-app.listen(4030,()=>{
+app.listen(4026,()=>{
     console.log("Server created successfully at 4030");
 })
