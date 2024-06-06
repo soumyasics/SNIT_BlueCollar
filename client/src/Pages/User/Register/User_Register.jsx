@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
 import Navbar from '../../Common/Navbar/Navbar';
 import './User_Register.css';
-import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
+import logo from '../../../Assets/unnamed.png';
 import axiosInstance from '../../Constants/Baseurl';
 import { toast } from 'react-toastify';
 
@@ -154,7 +154,7 @@ function User_Register() {
         <Container>
           <div className="user-register-container">
             <div className="user-register-header d-flex justify-content-center">
-              <img src={logo} alt='logo' width={100} />
+              <img src={logo} alt='logo'  height={40} className='img-fluid' />
               <h3 className='text-white text-center align-self-center p-3 '>Customer Registration</h3>
             </div>
             {/* <div className="user-register-icon justify-content-left">

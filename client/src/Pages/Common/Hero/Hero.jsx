@@ -5,24 +5,24 @@ import './Hero.css';
 function Hero() {
   return (
     <div className='home-hero'>
-      <div className='home-hero-heading mx-5 p-5 mb-5'>
+      <div className='home-hero-heading mx-5 mb-5 p-5 '>
         Get Your Hands Dirty on Your Terms: Find Blue-Collar Jobs Now!
       </div>
-      <Container className="text-center">
-        <Row>
+      <Container className="text-center p-5">
+        <Row className='p-5'>
           <Col className="mx-1">
-            <InputGroup className="mb-3">
+            <InputGroup className="mb-3 h-100">
               <Form.Control
                 type="text"
                 placeholder="Job Name"
                 aria-label="JobName"
                 aria-describedby="basic-input"
-                className="custom-placeholder py-2"
+                className="custom-placeholder py-2 "
               />
             </InputGroup>
           </Col>
           <Col className="mx-1">
-            <InputGroup>
+            <InputGroup className='h-100'>
               <Form.Control
                 type="text"
                 placeholder="Category"
@@ -42,8 +42,8 @@ function Hero() {
             </InputGroup>
           </Col>
           <Col className="mx-1">
-            <div className="d-grid gap-1">
-              <Button variant="warning" className="text-white fs-6 py-2">Search Job</Button>
+            <div className="d-grid gap-1 h-100">
+              <Button variant="warning" className="text-white fs-6 py-2 h-100">Search Job</Button>
             </div>
           </Col>
         </Row>

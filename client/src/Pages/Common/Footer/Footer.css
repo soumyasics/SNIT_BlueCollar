@@ -1,11 +1,5 @@
 .footer-b{
-    color: #FFF;
-    font-family: "Elsie Swash Caps";
-    font-size: 29.194px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    height: 50vh;
+  background-color: inherit !important;
     }
     .footer-links{
     color: #FFF;
