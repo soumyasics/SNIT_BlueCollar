@@ -57,7 +57,9 @@ function Login() {
             console.log(response);
             if(response.data.status==200){
               toast.success("Login Successfully")
+              localStorage.setItem("custid",response.data.id)
               navigate("/")
+
             }
             else{
               toast.warn(response.data.message)

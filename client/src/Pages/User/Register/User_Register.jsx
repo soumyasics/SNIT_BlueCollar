@@ -62,7 +62,10 @@ function User_Register() {
 
   const validate = () => {
     let formErrors = {};
-    if (!formData.name) formErrors.name = 'Name is required';
+    if (!formData.name){ formErrors.name = 'Name is required';
+     } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+        formErrors.name = 'Name must contain only letters and spaces';
+    }
     if (!formData.houseName) formErrors.houseName = 'House Name is required';
     if (!formData.pinCode)
        {formErrors.pinCode = 'Pin Code is required';
@@ -70,15 +73,21 @@ function User_Register() {
        else if (!/^\d{6}$/.test(formData.pinCode)) {
         formErrors.pinCode = 'Pin Code must be a 6 digits';
       }
-    if (!formData.city) formErrors.city = 'City is required';
-    if (!formData.contactNumber){
+      if (!formData.city) {
+        formErrors.city = 'City is required';
+    } else if (!/^[a-zA-Z\s]+$/.test(formData.city)) {
+        formErrors.city = 'City must contain only letters and spaces';
+    }   
+    if (!formData.contactNumber) {
       formErrors.contactNumber = 'Contact Number is required';
-    }
-    else if (!/^\d{10}$/.test(formData.contactNumber)) {
-      formErrors.contactNumber = 'Contact Number must be a 10 digits';
-    }
-    if (!formData.email) formErrors.email = 'Email is required';
-    if (!formData.password) formErrors.password = 'Password is required';
+  } else if (!/^[1-9]\d{9}$/.test(formData.contactNumber)) {
+      formErrors.contactNumber = 'Contact Number must be 10 digits and greater than zero';
+  }
+  if (!formData.email) {
+    formErrors.email = 'Email is required';
+} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    formErrors.email = 'Email is invalid';
+}    if (!formData.password) formErrors.password = 'Password is required';
     if (!formData.image) formErrors.image = 'Image is required';
     if (formData.password && formData.password.length < 8) {
       formErrors.password = 'Password must be at least 8 characters long';
@@ -171,7 +180,7 @@ function User_Register() {
               </div>
             </div> */}
             {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} >
             <div className="user-register-icon justify-content-left">
               <div className="icon-bg border border-light">
                 {profileImage ? (
@@ -285,6 +294,7 @@ function User_Register() {
                       onChange={handleChange}
                       isInvalid={!!errors.email}
                       placeholder="Enter Email Address"
+                      required
                     />
                     <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                   </Form.Group>

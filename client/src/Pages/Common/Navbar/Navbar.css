@@ -30,3 +30,7 @@
 .navbar-nav {
     align-items: flex-end;
 }
+.navbar-imgicon{
+    border-radius: 50%;
+    object-fit: cover;
+}

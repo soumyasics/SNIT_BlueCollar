@@ -11,10 +11,10 @@
   }
   
   .home-bg {
-    background-image: url('../../../Assets/78860289430e2548240d298c80a2262b.png');
+    /* background-image: url('../../../Assets/78860289430e2548240d298c80a2262b.png');
     background-repeat: no-repeat;
     background-size: contain;
-    height: 400px;
+    height: 400px; */
   }
   .icon-color{
     color:#4DA9EC !important;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FaToolbox, FaCar, FaHammer, FaBuilding, FaPaintRoller, FaTruck, FaUtensils, FaUserPlus, FaSearch, FaPaperPlane } from 'react-icons/fa';
 import { FaBoltLightning } from 'react-icons/fa6';
@@ -7,6 +7,8 @@ import mario from '../../../Assets/Ellipse 2.png';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import Hero from '../Hero/Hero';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../Constants/Baseurl';
 
 const iconStyle = { color: 'black' };
 
@@ -22,6 +24,32 @@ const categories = [
 ];
 
 function Home() {
+const custid=localStorage.getItem("custid")
+console.log(custid);
+const navigate=useNavigate()
+const [cust,setCust]=useState({})
+
+  useEffect(()=>{
+    if(custid===null){
+      navigate("/login")
+    }
+    else{
+      axiosInstance.post(`viewcustbyid/${custid}`)
+      .then((res)=>{
+        console.log(res);
+        setCust(res.data.data)
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+
+  },[])
+
+
+
+
+
   return (
     <>
       <Navbar />
@@ -94,71 +122,128 @@ function Home() {
           </Row>
         </Container>
         <div className='container-fluid m-auto'>
-          <Row className="m-auto">
-            {[...Array(6)].map((_, index) => (
-              <Col key={index} className="m-3 border rounded border-secondary-subtle p-3">
-                <Row>
-                  <Col xs={6} className="d-flex align-items-center justify-content-center">
-                    <img src={mario} alt="mario" className="img-fluid" />
-                  </Col>
-                  <Col xs={6} className="d-flex align-items-center justify-content-center fw-bolder">
-                    15kDay
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={6} className="d-flex flex-column align-items-center justify-content-center">
-                    <p className="text-center">
-                      <span className='fs-6 fw-bolder'>Location | Country</span><br />
-                      <span className='fs-4 fw-light'>Job Name:</span><br />
-                      <span className='fs-4 fw-light'>Job type:</span><br />
-                    </p>
-                  </Col>
-                  <Col xs={6}></Col>
-                </Row>
-                <Row>
-                  <Col className="text-center">
-                    <Button variant="primary" className="w-100 py-3">Apply Now</Button>
-                  </Col>
-                </Row>
-              </Col>
-            ))}
-          </Row>
-        </div>
+  <Row className="m-auto">
+    {[...Array(3)].map((_, index,a) => (
+      <Col key={index} className="m-3 border rounded border-secondary-subtle p-3">
+        <Row>
+          <Col xs={6} className="d-flex align-items-center justify-content-center">
+            <img src={mario} alt="mario" className="img-fluid" />
+          </Col>
+          <Col xs={6} className="d-flex align-items-center justify-content-center fw-bolder">
+            15kDay
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} className="d-flex flex-column align-items-center justify-content-center">
+            <p className="text-center">
+              <span className='fs-6 fw-bolder'>Location | Country</span><br />
+              <span className='fs-4 fw-light'>Job Name:{a.name}</span><br />
+              <span className='fs-4 fw-light'>Job type:</span><br />
+            </p>
+          </Col>
+          <Col xs={6}></Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
+            <Button variant="primary" className="w-100 py-3">Apply Now</Button>
+          </Col>
+        </Row>
+      </Col>
+    ))}
+  </Row>
+  <Row className="m-auto">
+    {[...Array(3)].map((_, index) => (
+      <Col key={index + 3} className="m-3 border rounded border-secondary-subtle p-3">
+        <Row>
+          <Col xs={6} className="d-flex align-items-center justify-content-center">
+            <img src={mario} alt="mario" className="img-fluid" />
+          </Col>
+          <Col xs={6} className="d-flex align-items-center justify-content-center fw-bolder">
+            15kDay
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} className="d-flex flex-column align-items-center justify-content-center">
+            <p className="text-center">
+              <span className='fs-6 fw-bolder'>Location | Country</span><br />
+              <span className='fs-4 fw-light'>Job Name:</span><br />
+              <span className='fs-4 fw-light'>Job type:</span><br />
+            </p>
+          </Col>
+          <Col xs={6}></Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
+            <Button variant="primary" className="w-100 py-3">Apply Now</Button>
+          </Col>
+        </Row>
+      </Col>
+    ))}
+  </Row>
+</div>
         <div className='m-5 text-center'>
           <p className='border-info border-3 border-bottom border-dotted home-subheading'>Best Candidate</p>
           <p className='home-para'>Many desktop publishing packages and web page editors</p>
         </div>
         <div className='container-fluid m-auto'>
-          <Row className="m-auto">
-            {[...Array(6)].map((_, index) => (
-              <Col key={index} className="m-3 border rounded border-secondary-subtle p-3">
-                <Row>
-                  <Col xs={6} className="d-flex align-items-center justify-content-center">
-                    <img src={mario} alt="mario" className="img-fluid" />
-                  </Col>
-                  <Col xs={6} className="d-flex align-items-center justify-content-center fw-bolder">
-                    15kDay
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={6} className="d-flex flex-column align-items-center justify-content-center">
-                    <p className="text-center">
-                      <span className='fs-6 fw-bolder'>Location | Country</span><br />
-                      <span className='fs-4 fw-light'>Job Name:</span><br />
-                      <span className='fs-4 fw-light'>Job type:</span><br />
-                    </p>
-                  </Col>
-                  <Col xs={6}></Col>
-                </Row>
-                <Row>
-                  <Col className="text-center">
-                    <Button variant="primary" className="w-100 py-3">Request Now</Button>
-                  </Col>
-                </Row>
-              </Col>
-            ))}
-          </Row>
-          <Row className="m-auto">
+        <Row className="m-auto">
+    {[...Array(3)].map((_, index) => (
+      <Col key={index} className="m-3 border rounded border-secondary-subtle p-3">
+        <Row>
+          <Col xs={6} className="d-flex align-items-center justify-content-center">
+            <img src={mario} alt="mario" className="img-fluid" />
+          </Col>
+          <Col xs={6} className="d-flex align-items-center justify-content-center fw-bolder">
+            15kDay
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} className="d-flex flex-column align-items-center justify-content-center">
+            <p className="text-center">
+              <span className='fs-6 fw-bolder'>Location | Country</span><br />
+              <span className='fs-4 fw-light'>Job Name:</span><br />
+              <span className='fs-4 fw-light'>Job type:</span><br />
+            </p>
+          </Col>
+          <Col xs={6}></Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
+            <Button variant="primary" className="w-100 py-3">Apply Now</Button>
+          </Col>
+        </Row>
+      </Col>
+    ))}
+  </Row>
+  <Row className="m-auto">
+    {[...Array(3)].map((_, index) => (
+      <Col key={index + 3} className="m-3 border rounded border-secondary-subtle p-3">
+        <Row>
+          <Col xs={6} className="d-flex align-items-center justify-content-center">
+            <img src={mario} alt="mario" className="img-fluid" />
+          </Col>
+          <Col xs={6} className="d-flex align-items-center justify-content-center fw-bolder">
+            15kDay
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} className="d-flex flex-column align-items-center justify-content-center">
+            <p className="text-center">
+              <span className='fs-6 fw-bolder'>Location | Country</span><br />
+              <span className='fs-4 fw-light'>Job Name:</span><br />
+              <span className='fs-4 fw-light'>Job type:</span><br />
+            </p>
+          </Col>
+          <Col xs={6}></Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
+            <Button variant="primary" className="w-100 py-3">Apply Now</Button>
+          </Col>
+        </Row>
+      </Col>
+    ))}
+  </Row>          <Row className="m-auto">
             <Col className='m-auto text-center'>
               <Button variant="primary" className='rounded-pill w-25 m-5'>Know More</Button>
             </Col>

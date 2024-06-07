@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="container-fluid mx-0 p-0">
     
-    <BrowserRouter basename='/bluecollar'>
+    <BrowserRouter basename='/blue_collar'>
       <Routes>
         {/* Common Routes */}
         <Route path="/" element={<Home />} />
