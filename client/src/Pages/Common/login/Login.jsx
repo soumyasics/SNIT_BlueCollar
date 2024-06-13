@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
+import logo from '../../../Assets/unnamed.png';
 import './Login.css';
 import axiosInstance from '../../Constants/Baseurl';
 import { toast } from 'react-toastify';
@@ -57,11 +57,16 @@ function Login() {
             console.log(response);
             if(response.data.status==200){
               toast.success("Login Successfully")
-              localStorage.setItem("custid",response.data.id)
-              navigate("/")
-
-            }
-            else{
+              
+              if (formData.userCategory === 'Customer') {
+                localStorage.setItem("custid",response.data.id)
+                navigate("/");
+              } else if (formData.userCategory === 'Worker') {
+                // navigate("/workerhome");
+              } else if (formData.userCategory === 'Employer') {
+                // navigate("/employerhome"); 
+              }
+            }            else{
               toast.warn(response.data.message)
             }
             if (response.data.success) {
@@ -92,8 +97,8 @@ function Login() {
           <Container>
             <div className="user-login-container m-5">
               <div className="user-register-header d-flex">
-                <img src={logo} alt='logo' width={100} />
-                <h3 className='text-white  p-3 '>Login</h3>
+                <img src={logo} alt='logo' height={40} className='img-fluid'/>
+                <h3 className='text-white  p-3'>Login</h3>
               </div>
               {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
               <Form onSubmit={handleSubmit}>

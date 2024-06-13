@@ -10,8 +10,8 @@ app.use(express.static( `${__dirname}/upload`));
 
 app.use(cors())
 const route=require('./routes')
-app.use('/bluecollar_api',route)
+app.use('/blue_collar_api',route)
 
 app.listen(4026,()=>{
-    console.log("Server created successfully at 4030");
+    console.log("Server created successfully at 4026");
 })

@@ -5,7 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
 import Navbar from '../../Common/Navbar/Navbar';
 import './User_Register.css';
-import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
+import logo from '../../../Assets/unnamed.png';
 import axiosInstance from '../../Constants/Baseurl';
 import { toast } from 'react-toastify';
 
@@ -152,10 +152,18 @@ function User_Register() {
 
 
   const handleFileChange = (e) => {
-    handleChange(e);
-    handleImageUpload(e);
+    const file = e.target.files[0];
+    const allowedFormats = ['image/jpeg', 'image/png', 'image/svg+xml']; 
+  
+    if (allowedFormats.includes(file.type)) {
+      setProfileImage(URL.createObjectURL(file));
+      handleChange(e); // Call handleChange to update form data
+    } else {
+      setErrors({ ...errors, image: 'Only JPG, PNG, and SVG formats are allowed.' });
+      e.target.value = null;
+    }
   };
-
+  
   return (
     <>
       <Navbar />
@@ -163,7 +171,7 @@ function User_Register() {
         <Container>
           <div className="user-register-container">
             <div className="user-register-header d-flex justify-content-center">
-              <img src={logo} alt='logo' width={100} />
+              <img src={logo} alt='logo'  height={40} className='img-fluid' />
               <h3 className='text-white text-center align-self-center p-3 '>Customer Registration</h3>
             </div>
             {/* <div className="user-register-icon justify-content-left">
@@ -171,7 +179,7 @@ function User_Register() {
                 {profileImage ? (
                   <img src={profileImage} alt="profile" className="rounded-circle" width="60" />
                 ) : (
-                  <FaRegUser size={80} color='white' className='p-3'/>
+                  <FaRegUser size={80}  ='white' className='p-3'/>
                 )}
                 <label className="upload-icon">
                   <FiEdit2 />
@@ -196,7 +204,7 @@ function User_Register() {
   onChange={handleFileChange}                       
   className={errors.image ? 'is-invalid' : ''}
 />
-<Form.Control.Feedback type="invalid" style={{paddingBottom:"50px",width:"200px"}}>{errors.image}</Form.Control.Feedback>
+<Form.Control.Feedback type="invalid" style={{paddingBottom:"50px",width:"200px",fontWeight:"bold",fontSize:"15px"}}>{errors.image}</Form.Control.Feedback>
                 </label>
               </div>
             </div>
@@ -214,7 +222,7 @@ function User_Register() {
                       isInvalid={!!errors.name}
                       placeholder="Enter Name"
                     />
-                    <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.name}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
@@ -231,7 +239,7 @@ function User_Register() {
                       isInvalid={!!errors.houseName}
                       placeholder="Enter House Name"
                     />
-                    <Form.Control.Feedback type="invalid">{errors.houseName}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.houseName}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
                 <Col md={6}>
@@ -246,7 +254,7 @@ function User_Register() {
                       isInvalid={!!errors.pinCode}
                       placeholder="Enter Pin Code"
                     />
-                    <Form.Control.Feedback type="invalid">{errors.pinCode}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.pinCode}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
@@ -263,7 +271,7 @@ function User_Register() {
                       isInvalid={!!errors.city}
                       placeholder="Enter City"
                     />
-                    <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.city}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
                 <Col md={6}>
@@ -278,7 +286,7 @@ function User_Register() {
                       isInvalid={!!errors.contactNumber}
                       placeholder="Enter Contact Number"
                     />
-                    <Form.Control.Feedback type="invalid">{errors.contactNumber}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.contactNumber}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
@@ -296,7 +304,7 @@ function User_Register() {
                       placeholder="Enter Email Address"
                       required
                     />
-                    <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.email}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
@@ -316,7 +324,7 @@ function User_Register() {
                     <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
                       {showPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
-                    <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.password}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
                 <Col md={6}>
@@ -334,7 +342,7 @@ function User_Register() {
                     <div className="password-toggle-icon" onClick={toggleConfirmPasswordVisibility}>
                       {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
-                    <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}x>{errors.confirmPassword}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
@@ -354,7 +362,7 @@ function User_Register() {
                 </Button>
               </div>
               <div className="login-link mt-3 text-center">
-                <Link to="/login" className='fw-bolder text-dark'><span className='text-white'>Already have an account?</span> Log In!!!</Link>
+                <Link to="/login" className='fw-bolder text-dark'><span className='text-white'>Already have an account?</span> <span className='user_reg_login'>Log In!!!</span></Link>
               </div>
             </Form>
           </div>

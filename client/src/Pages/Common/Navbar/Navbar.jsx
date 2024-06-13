@@ -42,7 +42,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav1">
           <ul className="navbar-nav ms-auto me-5 navbar-links">
             <li className="nav-item m-1">
-              <Link className="nav-link text-light-custom" to="#">Home</Link>
+              <Link className="nav-link text-light-custom" to="/">Home</Link>
             </li>
             <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="#">About Us</Link>
@@ -64,7 +64,7 @@ function Navbar() {
                   <>
                     <li><Link className="dropdown-item" to="/login">Login</Link></li>
                     <li><Link className="dropdown-item" to="/user-register">Customer Registration</Link></li>
-                    <li><Link className="dropdown-item" to="#">Worker Registration</Link></li>
+                    <li><Link className="dropdown-item" to="/worker-register">Worker Registration</Link></li>
                     <li><Link className="dropdown-item" to="#">Employer Registration</Link></li>
                   </>
                 ) : (
