@@ -50,7 +50,7 @@ function ForgotPassword() {
                             <img src={logo} alt='logo' width={120} />
                             <h3 className='text-white p-5'>Forgot Password</h3>
                         </div>
-                        {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+                        {submitted && <Alert variant="success">Please check your mail!</Alert>}
                         <Form onSubmit={handleSubmit}>
                             <Row className='m-5'>
                                 <Col md={12}>
