@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
+import logo from '../../../Assets/unnamed.png';
 import './ForgotPassword.css';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 function ForgotPassword() {
     const [formData, setFormData] = useState({
@@ -12,6 +13,11 @@ function ForgotPassword() {
 
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -45,14 +51,14 @@ function ForgotPassword() {
             <Navbar />
             <div className="user-register-bg">
                 <Container>
-                    <div className="user-forgot-container m-5">
-                        <div className="user-register-header d-flex">
-                            <img src={logo} alt='logo' width={120} />
-                            <h3 className='text-white p-5'>Forgot Password</h3>
-                        </div>
-                        {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
-                        <Form onSubmit={handleSubmit}>
-                            <Row className='m-5'>
+                    <div className="user-forgot-container m-5 mb-0">
+                        <div className="user-register-header d-flex mb-0">
+                            <img src={logo} alt='logo' className='align-self-center me-2' height={'70'}/>
+                            <h3 className='text-white p-5 ps-0'>Forgot Password</h3>
+                        </div> 
+                        {submitted && <Alert variant="success">Please check your mail!</Alert>}
+                        <Form onSubmit={handleSubmit} className='d-flex flex-column '>
+                            <Row className='m-0'>
                                 <Col md={12}>
                                     <Form.Group className="mb-3">
                                         <Form.Label htmlFor="email" className='text-white'>Email</Form.Label>
@@ -69,8 +75,48 @@ function ForgotPassword() {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <div className='d-flex justify-content-center m-5 '>
-                                <Button type="submit" className="d-flex border-0 align-self-center user-register-button px-5 py-2 rounded-4">
+                            <Row className='m-0'>
+                                <Col md={12}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="newPassword" className='text-white'>New Password</Form.Label>
+                                        <Form.Control
+                                            type={showPassword ? "text" : "password"}
+                                            id="newPassword"
+                                            name="newPassword"
+                                            value={formData.newPassword}
+                                            onChange={handleChange}
+                                            isInvalid={!!errors.newPassword}
+                                            placeholder="Enter New Password"
+                                        />
+                                        <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                                        </div>
+                                        <Form.Control.Feedback type="invalid">{errors.newPassword}</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row className='m-0'>
+                                <Col md={12}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="confirmPassword" className='text-white'>Confirm Password</Form.Label>
+                                        <Form.Control
+                                            type={showPassword ? "text" : "password"}
+                                            id="confirmPassword"
+                                            name="confirmPassword"
+                                            value={formData.confirmPassword}
+                                            onChange={handleChange}
+                                            isInvalid={!!errors.confirmPassword}
+                                            placeholder="Confirm New Password"
+                                        />
+                                        <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                                        </div>
+                                        <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <div className='d-flex justify-content-start mx-5 '>
+                                <Button type="submit" className="d-flex border-0 align-self-center user-register-button px-5 py-2 rounded-4 ms-5">
                                     Submit
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                                         <g clipPath="url(#clip0_3_212)">
@@ -84,7 +130,8 @@ function ForgotPassword() {
                                     </svg>
                                 </Button>
                             </div>
-                            <div className="login-link mt-3 text-center">
+                           
+                            <div className="login-link mt-3 align-self-end ">
                                 <Link to="/login" className='fw-bolder text-dark text-decoration-none'><span className='text-white'>Back to Login</span></Link>
                             </div>
                         </Form>

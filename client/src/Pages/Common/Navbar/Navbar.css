@@ -19,7 +19,7 @@
 
 .navbar-icon {
     margin-bottom: 5px; 
-    font-size: 24px; 
+    font-size: 30px; 
 }
 
 .navbar-links .nav-link {
@@ -29,4 +29,8 @@
 
 .navbar-nav {
     align-items: flex-end;
+}
+.navbar-imgicon{
+    border-radius: 50%;
+    object-fit: cover;
 }

@@ -13,5 +13,5 @@ const route=require('./routes')
 app.use('/blue_collar_api',route)
 
 app.listen(4026,()=>{
-    console.log("Server created successfully at 4030");
+    console.log("Server created successfully at 4026");
 })
