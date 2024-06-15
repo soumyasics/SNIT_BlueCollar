@@ -12,6 +12,7 @@ router.post("/updatecustprofile/:id",customer.upload,customer.updatecustprofile)
 router.post("/viewallcust",customer.viewallcust)
 router.post("/viewcustbyid/:id",customer.viewcustbyid)
 router.post("/deletecust/:id",customer.deletecustById)
+router.post("/forgotPWDsentMail",customer.forgotPWDsentMail)
 
 
 router.post("/registerworker",Worker.upload,Worker.registerworker)

@@ -2,6 +2,8 @@ const custschema=require("./customerSchema")
 const multer=require ("multer")
 const jwt = require("jsonwebtoken");
 const secret="secret_key"
+const nodemailer = require('nodemailer');
+
 
 
 
@@ -15,6 +17,36 @@ const storage = multer.diskStorage({
   });
   
   const upload = multer({ storage: storage }).single("image");
+
+
+
+// Create a transporter object using Gmail SMTP
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'supprot.web.application@gmail.com',
+    pass: 'ukyw olqq kuql jnty'
+  }
+});
+
+
+const testMail = (data) => {
+  let email=data.email
+  const mailOptions = {
+    from: 'supprot.web.application@gmail.com',
+    to: email,
+    subject: 'Reset Password From Blue_Collar',
+    text: `Dear ${data.name},${'\n'}please check this link : http://localhost:3001/blue_collar/reset-password/${data._id} to reset your password`
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log('Error:', error);
+    } else {
+      console.log('Email sent:', info.response);
+    }
+  });
+}
 
   const registercust = (req, res) => {
     const customers = new custschema({
@@ -110,6 +142,44 @@ const storage = multer.diskStorage({
   };
   
   //customer login completed
+
+
+//customer login completed
+
+const forgotPWDsentMail=((req,res)=>{
+  custschema.findOne(
+      { email: req.body.email },
+     
+    )
+    .exec()
+    .then((data) => {
+      if (data != null)
+        {
+          let id=data._id.toString()
+          testMail(data)
+        res.json({
+          status: 200,
+          msg: "Updated successfully",
+        });
+      }
+      else
+        res.json({
+          status: 500,
+          msg: "Enter your Registered MailId",
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({
+        status: 500,
+        msg: "Data not Updated",
+        Error: err,
+      });
+    });
+
+})
+
+
 
 const custforgetpswd=((req,res)=>{
     custschema.findOneAndUpdate(
@@ -239,5 +309,6 @@ const updatecustprofile=(req,res)=>{
             updatecustprofile,upload,
             viewallcust,
             viewcustbyid,
-            deletecustById
+            deletecustById,
+            forgotPWDsentMail
   }

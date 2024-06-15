@@ -3,6 +3,9 @@ const bodyParser=require('body-parser')
 const db=require('./dbConnection')
 const app=express()
 const cors=require('cors')
+const basPath='http://localhost:3000/blue_collar'
+// const basPath='
+
 const path=require('path')
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
