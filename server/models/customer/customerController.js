@@ -181,10 +181,8 @@ const forgotPWDsentMail=((req,res)=>{
 
 
 
-const custforgetpswd=((req,res)=>{
-    custschema.findOneAndUpdate(
-        { email: req.body.email },
-        { password: req.body.password }
+const custresetpswd=((req,res)=>{
+    custschema.findByIdAndUpdate({_id:req.params.id},{ password: req.body.password }
       )
       .exec()
       .then((data) => {
@@ -305,7 +303,7 @@ const updatecustprofile=(req,res)=>{
   module.exports={
             registercust,upload,
             custLogin,verifyToken,
-            custforgetpswd,
+            custresetpswd,
             updatecustprofile,upload,
             viewallcust,
             viewcustbyid,
