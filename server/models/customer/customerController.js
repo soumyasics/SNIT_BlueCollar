@@ -3,7 +3,7 @@ const multer=require ("multer")
 const jwt = require("jsonwebtoken");
 const secret="secret_key"
 const nodemailer = require('nodemailer');
-
+const workers=require('../Worker/workerSchema')
 
 
 
@@ -48,7 +48,7 @@ const testMail = (data) => {
   });
 }
 
-  const registercust = (req, res) => {
+  const registercust =async (req, res) => {
     const customers = new custschema({
       name: req.body.name,
       housename:req.body.houseName,
@@ -59,6 +59,16 @@ const testMail = (data) => {
       password: req.body.password,
       image: req.file,
     });
+    let existingCustomer1 = await Police.custschema({email});
+    let existingCustomer2 = await Police.workers({email});
+
+    if(existingCustomer1||existingCustomer2){
+        return res.json ({
+            status : 409,
+            msg : "Email Already Registered With Us !!",
+            data : null
+        })
+    }
     customers
       .save()
       .then((data) => {
@@ -146,20 +156,21 @@ const testMail = (data) => {
 
 //customer login completed
 
-const forgotPWDsentMail=((req,res)=>{
-  custschema.findOne(
-      { email: req.body.email },
-     
-    )
-    .exec()
-    .then((data) => {
+const forgotPWDsentMail=async(req,res)=>{
+let data=null
+try{
+     data = await custschema.findOne({ email:  req.body.email })
+    if(data==null){
+     data = await workers.findOne({ email:  req.body.email })
+    }
+    
       if (data != null)
         {
           let id=data._id.toString()
           testMail(data)
         res.json({
           status: 200,
-          msg: "Updated successfully",
+          msg: "Data Obtained successfully",
         });
       }
       else
@@ -167,17 +178,17 @@ const forgotPWDsentMail=((req,res)=>{
           status: 500,
           msg: "Enter your Registered MailId",
         });
-    })
-    .catch((err) => {
+    }
+    catch(err) {
       console.log(err);
       res.json({
         status: 500,
         msg: "Data not Updated",
         Error: err,
-      });
-    });
+      })
+    }
 
-})
+  }
 
 
 
