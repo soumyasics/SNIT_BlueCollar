@@ -3,7 +3,8 @@ const multer=require ("multer")
 const jwt = require("jsonwebtoken");
 const secret="secret_key"
 const nodemailer = require('nodemailer');
-const workers=require('../Worker/workerSchema')
+const workers=require('../Worker/workerSchema');
+const Configue = require("../../Configue");
 
 
 
@@ -36,7 +37,7 @@ const testMail = (data) => {
     from: 'supprot.web.application@gmail.com',
     to: email,
     subject: 'Reset Password From Blue_Collar',
-    text: `Dear ${data.name},${'\n'}please check this link : http://localhost:3001/blue_collar/reset-password/${data._id} to reset your password`
+    text: `Dear ${data.name},${'\n'}please check this link : ${Configue.serverUrl}${data._id} to reset your password`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -59,8 +60,8 @@ const testMail = (data) => {
       password: req.body.password,
       image: req.file,
     });
-    let existingCustomer1 = await Police.custschema({email});
-    let existingCustomer2 = await Police.workers({email});
+    let existingCustomer1 = await custschema({email:req.body.email});
+    let existingCustomer2 = await workers({email:req.body.email});
 
     if(existingCustomer1||existingCustomer2){
         return res.json ({

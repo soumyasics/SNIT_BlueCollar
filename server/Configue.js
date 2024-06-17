@@ -1,14 +1,12 @@
 
 const config = {
     development: {
-        localUrl: 'http://localhost:3000',
-        serverUrl: 'http://hybrid.srishticampus.in:4026/',
-        // Add other development-specific settings here
+        localUrl: 'http://localhost:3002/blue_collar/reset-password/',
+        serverUrl: 'http://hybrid.srishticampus.in/blue_collar/reset-password/',
     },
     // production: {
     //     localUrl: 'https://your-production-local-url.com',
     //     serverUrl: 'https://your-production-server-url.com',
-    //     // Add other production-specific settings here
     // }
 };
 
