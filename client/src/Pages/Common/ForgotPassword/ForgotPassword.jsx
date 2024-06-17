@@ -132,7 +132,7 @@ function ForgotPassword() {
                             </div>
                            
                             <div className="login-link mt-3 align-self-end ">
-                                <Link to="/login" className='fw-bolder text-dark text-decoration-none'><span className='text-white'>Back to Login</span></Link>
+                                {/* <Link to="/login" className='fw-bolder text-dark text-decoration-none'><span className='text-white'>Back to Login</span></Link> */}
                             </div>
                         </Form>
                     </div>
