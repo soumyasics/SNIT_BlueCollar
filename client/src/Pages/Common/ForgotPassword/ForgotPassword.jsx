@@ -75,7 +75,7 @@ function ForgotPassword() {
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Row className='m-0'>
+                            {/* <Row className='m-0'>
                                 <Col md={12}>
                                     <Form.Group className="mb-3">
                                         <Form.Label htmlFor="newPassword" className='text-white'>New Password</Form.Label>
@@ -94,8 +94,8 @@ function ForgotPassword() {
                                         <Form.Control.Feedback type="invalid">{errors.newPassword}</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
-                            </Row>
-                            <Row className='m-0'>
+                            </Row> */}
+                            {/* <Row className='m-0'>
                                 <Col md={12}>
                                     <Form.Group className="mb-3">
                                         <Form.Label htmlFor="confirmPassword" className='text-white'>Confirm Password</Form.Label>
@@ -114,7 +114,7 @@ function ForgotPassword() {
                                         <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
-                            </Row>
+                            </Row> */}
                             <div className='d-flex justify-content-start mx-5 '>
                                 <Button type="submit" className="d-flex border-0 align-self-center user-register-button px-5 py-2 rounded-4 ms-5">
                                     Submit
