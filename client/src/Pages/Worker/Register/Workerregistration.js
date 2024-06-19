@@ -508,6 +508,7 @@ function Workerregistration() {
                     <div
                       className="password-toggle-icon"
                       onClick={togglePasswordVisibility}
+                      
                     >
                       {showPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
@@ -517,6 +518,7 @@ function Workerregistration() {
                         color: "red",
                         fontWeight: "bold",
                         fontSize: "15px",
+                        
                       }}
                     >
                       {errors.password}
