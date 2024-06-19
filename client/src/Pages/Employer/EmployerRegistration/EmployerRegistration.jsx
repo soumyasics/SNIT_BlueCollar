@@ -11,13 +11,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
 import Navbar from "../../Common/Navbar/Navbar";
-import "./Workerregistration.css";
+import "./EmployerRegistration.css";
 import logo from "../../../Assets/unnamed.png";
 import axiosInstance from "../../Constants/Baseurl";
 import { toast } from "react-toastify";
 
-function Workerregistration() {
+function EmployerRegistration() {
   const [formData, setFormData] = useState({
+    employerId: "",
+    employerName: "",
     name: "",
     workertype: "",
     address: "",
@@ -53,7 +55,6 @@ function Workerregistration() {
       }));
     }
   };
-  console.log(formData);
 
   const handleImageUpload = (e) => {
     setProfileImage(URL.createObjectURL(e.target.files[0]));
@@ -79,12 +80,11 @@ function Workerregistration() {
     } else if (!/^[a-zA-Z\s]+$/.test(formData.state)) {
       formErrors.city = "State must contain only letters and spaces";
     }
-
     if (!formData.contact) {
       formErrors.contact = "Contact Number is required";
     } else if (!/^[1-9]\d{9}$/.test(formData.contact)) {
       formErrors.contact = "Contact Number must be 10 digits";
-    } 
+    }
     if (parseInt(formData.contact, 10) <= 0) {
       formErrors.contact = "Contact Number must be greater than zero";
     }
@@ -105,6 +105,14 @@ function Workerregistration() {
     if (formData.password !== formData.confirmPassword)
       formErrors.confirmPassword = "Passwords do not match";
 
+    // New fields validation
+    if (!formData.employerId) {
+      formErrors.employerId = "Employer ID is required";
+    }
+    if (!formData.employerName) {
+      formErrors.employerName = "Employer Name is required";
+    }
+
     return formErrors;
   };
 
@@ -115,7 +123,7 @@ function Workerregistration() {
     const formErrors = validate();
     if (Object.keys(formErrors).length === 0) {
       axiosInstance
-        .post(`registerworker`, formData, {
+        .post(`registeremployer`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -131,8 +139,6 @@ function Workerregistration() {
         })
         .catch((error) => {
           toast.warn(error.response.data.msg);
-
-          // Handle error response from the server
           console.error("Error submitting form data:", error);
           setErrors({
             server: "Error submitting form data. Please try again later.",
@@ -177,8 +183,8 @@ function Workerregistration() {
           <div className="user-register-container">
             <div className="user-register-header d-flex justify-content-center">
               <img src={logo} alt="logo" height={40} className="img-fluid" />
-              <h3 className="text-white text-center align-self-center p-3 ">
-                Worker Registration
+              <h3 className="text-white text-center align-self-center p-3">
+                Employer Registration
               </h3>
             </div>
             {submitted && (
@@ -224,17 +230,17 @@ function Workerregistration() {
               <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="name" className="text-white">
-                      Name
+                    <Form.Label htmlFor="employerId" className="text-white">
+                      Employer ID
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="employerId"
+                      name="employerId"
+                      value={formData.employerId}
                       onChange={handleChange}
-                      isInvalid={!!errors.name}
-                      placeholder="Enter Name"
+                      isInvalid={!!errors.employerId}
+                      placeholder="Enter Employer ID"
                     />
                     <Form.Control.Feedback
                       type="invalid"
@@ -244,35 +250,24 @@ function Workerregistration() {
                         fontSize: "15px",
                       }}
                     >
-                      {errors.name}
+                      {errors.employerId}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
                 <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="workertype" className="text-white">
-                      Worker Type
+                    <Form.Label htmlFor="employerName" className="text-white">
+                      Employer Name
                     </Form.Label>
                     <Form.Control
-                      as="select"
-                      id="workertype"
-                      name="workertype"
-                      value={formData.workertype}
+                      type="text"
+                      id="employerName"
+                      name="employerName"
+                      value={formData.employerName}
                       onChange={handleChange}
-                      isInvalid={!!errors.workertype}
-                      placeholder="Select Worker Type"
-                    >
-                      <option value="" disabled hidden>
-                        Enter Worker Type
-                      </option>
-                      <option value="plumber">Plumber</option>
-                      <option value="painter">Painter</option>
-                      <option value="graphic Designer">Graphic Designer</option>
-                      <option value="web Designer">Web Designer</option>
-                      <option value="garden Designer">Garden Designer</option>
-                      <option value="masons">Masons</option>
-                      <option value="electrician">Electrician</option>
-                    </Form.Control>
+                      isInvalid={!!errors.employerName}
+                      placeholder="Enter Employer Name"
+                    />
                     <Form.Control.Feedback
                       type="invalid"
                       style={{
@@ -281,20 +276,25 @@ function Workerregistration() {
                         fontSize: "15px",
                       }}
                     >
-                      {errors.workertype}
+                      {errors.employerName}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
+
+              
+
               <Row>
-                <Col md={12}>
+                <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="address" className="text-white">
+                    <Form.Label
+                      htmlFor="address"
+                      className="text-white"
+                    >
                       Address
                     </Form.Label>
                     <Form.Control
-                      as="textarea"
-                      rows={1}
+                      type="text"
                       id="address"
                       name="address"
                       value={formData.address}
@@ -314,11 +314,12 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
-              </Row>
-              <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="location" className="text-white">
+                    <Form.Label
+                      htmlFor="location"
+                      className="text-white"
+                    >
                       Location
                     </Form.Label>
                     <Form.Control
@@ -342,6 +343,9 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
+              </Row>
+
+              <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="city" className="text-white">
@@ -368,8 +372,6 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
-              </Row>
-              <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="state" className="text-white">
@@ -396,13 +398,16 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
+              </Row>
+
+              <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="contact" className="text-white">
                       Contact Number
                     </Form.Label>
                     <Form.Control
-                      type="number"
+                      type="text"
                       id="contact"
                       name="contact"
                       value={formData.contact}
@@ -422,9 +427,7 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
+                <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="email" className="text-white">
                       Email
@@ -451,13 +454,14 @@ function Workerregistration() {
                   </Form.Group>
                 </Col>
               </Row>
+
               <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="password" className="text-white">
                       Password
                     </Form.Label>
-                    <div className="password-input-container">
+                    <div className="input-group">
                       <Form.Control
                         type={showPassword ? "text" : "password"}
                         id="password"
@@ -467,31 +471,35 @@ function Workerregistration() {
                         isInvalid={!!errors.password}
                         placeholder="Enter Password"
                       />
-                      <span
-                        className="password-toggle-icon"
+                      <Button
+                        variant="outline-light"
                         onClick={togglePasswordVisibility}
+                        className="password-toggle-btn"
                       >
-                        {showPassword ? <FiEyeOff /> : <FiEye />}
-                      </span>
+                        {showPassword ? <FiEye /> : <FiEyeOff />}
+                      </Button>
+                      <Form.Control.Feedback
+                        type="invalid"
+                        style={{
+                          color: "red",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        {errors.password}
+                      </Form.Control.Feedback>
                     </div>
-                    <Form.Control.Feedback
-                      type="invalid"
-                      style={{
-                        color: "red",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
-                    >
-                      {errors.password}
-                    </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
                 <Col md={6}>
                   <Form.Group className="mb-3">
-                    <Form.Label htmlFor="confirmPassword" className="text-white">
+                    <Form.Label
+                      htmlFor="confirmPassword"
+                      className="text-white"
+                    >
                       Confirm Password
                     </Form.Label>
-                    <div className="password-input-container">
+                    <div className="input-group">
                       <Form.Control
                         type={showConfirmPassword ? "text" : "password"}
                         id="confirmPassword"
@@ -501,29 +509,29 @@ function Workerregistration() {
                         isInvalid={!!errors.confirmPassword}
                         placeholder="Confirm Password"
                       />
-                      <span
-                        className="password-toggle-icon"
+                      <Button
+                        variant="outline-light"
                         onClick={toggleConfirmPasswordVisibility}
+                        className="password-toggle-btn"
                       >
-                        {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
-                      </span>
+                        {showConfirmPassword ? <FiEye /> : <FiEyeOff />}
+                      </Button>
+                      <Form.Control.Feedback
+                        type="invalid"
+                        style={{
+                          color: "red",
+                          fontWeight: "bold",
+                          fontSize: "15px",
+                        }}
+                      >
+                        {errors.confirmPassword}
+                      </Form.Control.Feedback>
                     </div>
-                    <Form.Control.Feedback
-                      type="invalid"
-                      style={{
-                        color: "red",
-                        fontWeight: "bold",
-                        fontSize: "15px",
-                      }}
-                    >
-                      {errors.confirmPassword}
-                    </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
-              <Row>
-                <Col md={12}>
-                <div className="d-flex justify-content-center">
+
+              <div className="d-flex justify-content-center">
                 <Button
                   type="submit"
                   className="d-flex align-self-center user-register-button px-5 py-2 border-0 rounded-4"
@@ -556,15 +564,18 @@ function Workerregistration() {
                   </svg>
                 </Button>
               </div>
-              <div className="login-link mt-3 text-center">
+            </Form>
+            {errors.server && (
+              <Alert variant="danger" className="mt-3">
+                {errors.server}
+              </Alert>
+            )}
+             <div className="login-link mt-3 text-center">
                 <Link to="/login" className="fw-bolder text-dark">
                   <span className="text-white">Already have an account?</span>{" "}
                   <span className="user_reg_login"> Log In!!!</span>
                 </Link>
               </div>
-                </Col>
-              </Row>
-            </Form>
           </div>
         </Container>
       </div>
@@ -572,4 +583,4 @@ function Workerregistration() {
   );
 }
 
-export default Workerregistration;
+export default EmployerRegistration;

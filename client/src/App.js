@@ -8,6 +8,7 @@ import ForgotPassword from './Pages/Common/ForgotPassword/ForgotPassword';
 import ResetPassword from './Pages/Common/ResetPassword/ResetPassword';
 import User_Register from './Pages/User/Register/User_Register';
 import Workerregistration from "./Pages/Worker/Register/Workerregistration"
+import EmployerRegistration from './Pages/Employer/EmployerRegistration/EmployerRegistration';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
 
+        {/* Employer */}
+        <Route path='/employer-register' element={<EmployerRegistration />}/>
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
