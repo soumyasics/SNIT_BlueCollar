@@ -114,7 +114,7 @@ function User_Register() {
       })
       .then((res)=>{
         console.log(res);
-        if(res.data.status==200){
+        if(res.data.status===200){
           toast.success("Registered Successfully")
           navigate("/login")
         }
