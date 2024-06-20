@@ -5,6 +5,8 @@ import Navbar from '../Navbar/Navbar';
 import logo from '../../../Assets/unnamed.png';
 import './ForgotPassword.css';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
 function ForgotPassword() {
     const [formData, setFormData] = useState({
@@ -37,8 +39,21 @@ function ForgotPassword() {
         e.preventDefault();
         const formErrors = validate();
         if (Object.keys(formErrors).length === 0) {
+            axiosInstance.post(`forgotPWDsentMail`,formData)
+              .then((res)=>{
+                console.log(res);
+                if(res.data.status==200){
+                 toast.success("Password reset email has been sent to your  email.")
+                 window.location.reload()
+                //   navigate("/login")
+                }
+                else if(res.data.status==500){
+                    toast.info("Enter your Registered MailId")
+                }
+        
             setSubmitted(true);
             setErrors({});
+              })
             // Handle form submission (e.g., send data to backend)
         } else {
             setErrors(formErrors);
@@ -56,7 +71,7 @@ function ForgotPassword() {
                             <img src={logo} alt='logo' className='align-self-center me-2' height={'70'}/>
                             <h3 className='text-white p-5 ps-0'>Forgot Password</h3>
                         </div> 
-                        {submitted && <Alert variant="success">Please check your mail!</Alert>}
+                        {/* {submitted && <Alert variant="success">Please check your mail!</Alert>} */}
                         <Form onSubmit={handleSubmit} className='d-flex flex-column '>
                             <Row className='m-0'>
                                 <Col md={12}>
