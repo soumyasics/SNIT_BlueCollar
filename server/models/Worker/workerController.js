@@ -110,10 +110,8 @@ const storage = multer.diskStorage({
   };
   
 
-  const workerforgetpswd=((req,res)=>{
-    workerschema.findOneAndUpdate(
-        { email: req.body.email },
-        { password: req.body.password }
+  const workerresetpswd=((req,res)=>{
+    workerschema.findByIdAndUpdate({_id:req.params.id},{ password: req.body.password }
       )
       .exec()
       .then((data) => {
@@ -142,7 +140,7 @@ const storage = multer.diskStorage({
 module.exports={
     registerworker,upload,
     workerLogin,verifyToken,
-    workerforgetpswd
+    workerresetpswd
 
 
 }

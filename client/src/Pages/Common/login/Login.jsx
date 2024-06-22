@@ -49,7 +49,7 @@ function Login() {
         } else if (formData.userCategory === 'Worker') {
           apiEndpoint = '/loginworker';
         } else if (formData.userCategory === 'Employer') {
-          apiEndpoint = '/loginemp';
+          apiEndpoint = '/emplogin';
         }
 
         axiosInstance.post(apiEndpoint, { email: formData.email, password: formData.password })

@@ -62,11 +62,16 @@ function ResetPassword() {
                     response = await axiosInstance.post(`custresetpswd/${id}`, {
                         ...formData
                     });
-                } else if (formData.userCategory === 'Admin') {
-                    response = await axiosInstance.post('https://example.com/api/adminresetapi', {
+                } else if (formData.userCategory === 'Employer') {
+                    response = await axiosInstance.post(`employerresetpswd/${id}`, {
                         ...formData
                     });
-                }
+                } 
+                else if (formData.userCategory === 'Worker') {
+                    response = await axiosInstance.post(`workerresetpswd/${id}`, {
+                        ...formData
+                    });
+                } 
                 if (response.data.status === 200) {
                     console.log('Password reset successfully:', response.data);
                     setSuccessMessage('Password reset successfully!');
@@ -116,7 +121,8 @@ function ResetPassword() {
                                         >
                                             <option value="" hidden>Select User Category</option>
                                             <option value="Customer">Customer</option>
-                                            <option value="Admin">Admin</option>
+                                            <option value="Employer">Employer</option>
+                                            <option value="Worker">Worker</option>
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">{errors.userCategory}</Form.Control.Feedback>
                                     </Form.Group>
