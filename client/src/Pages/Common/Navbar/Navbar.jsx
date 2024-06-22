@@ -65,7 +65,7 @@ function Navbar() {
                     <li><Link className="dropdown-item" to="/login">Login</Link></li>
                     <li><Link className="dropdown-item" to="/user-register">Customer Registration</Link></li>
                     <li><Link className="dropdown-item" to="/worker-register">Worker Registration</Link></li>
-                    <li><Link className="dropdown-item" to="#">Employer Registration</Link></li>
+                    <li><Link className="dropdown-item" to="/employer-register">Employer Registration</Link></li>
                   </>
                 ) : (
                   <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>

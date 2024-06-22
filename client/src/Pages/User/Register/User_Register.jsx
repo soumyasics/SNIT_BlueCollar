@@ -118,6 +118,9 @@ function User_Register() {
           toast.success("Registered Successfully")
           navigate("/login")
         }
+        else{
+          toast.warn(res.data.msg)
+        }
         // else{
         //   console.log(res.response.data.msg+"hia");
 
@@ -187,7 +190,7 @@ function User_Register() {
                 </label>
               </div>
             </div> */}
-            {submitted && <Alert variant="success">Form submitted successfully!</Alert>}
+            {/* {submitted && <Alert variant="success">Form submitted successfully!</Alert>} */}
             <Form onSubmit={handleSubmit} >
             <div className="user-register-icon justify-content-left">
               <div className="icon-bg border border-light">

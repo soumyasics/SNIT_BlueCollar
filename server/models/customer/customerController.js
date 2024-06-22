@@ -5,6 +5,7 @@ const secret="secret_key"
 const nodemailer = require('nodemailer');
 const workers=require('../Worker/workerSchema');
 const Configue = require("../../Configue");
+const employer=require('../Employer/employerSchema')
 
 
 
@@ -60,10 +61,11 @@ const testMail = (data) => {
       password: req.body.password,
       image: req.file,
     });
-    let existingCustomer1 = await custschema({email:req.body.email});
-    let existingCustomer2 = await workers({email:req.body.email});
+    let existingCustomer1 = await custschema.findOne({email:req.body.email});
+    let existingCustomer2 = await workers.findOne({email:req.body.email});
+    let existingCustomer3 = await employer.findOne({email:req.body.email})
 
-    if(existingCustomer1||existingCustomer2){
+    if(existingCustomer1||existingCustomer2 || existingCustomer3){
         return res.json ({
             status : 409,
             msg : "Email Already Registered With Us !!",
@@ -163,6 +165,9 @@ try{
      data = await custschema.findOne({ email:  req.body.email })
     if(data==null){
      data = await workers.findOne({ email:  req.body.email })
+    }
+    if(data==null){
+      data = await employer.findOne({ email: req.body.email})
     }
     
       if (data != null)
