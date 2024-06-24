@@ -139,8 +139,103 @@ const storage = multer.diskStorage({
   
 })
 
+
+const updateempprofile=(req,res)=>{
+  employerschema.findByIdAndUpdate({_id:req.params.id},{
+    name: req.body.name,
+    empid:req.body.employerId,
+    address:req.body.address,
+    location:req.body.location,
+    contact: req.body.contact,
+    email: req.body.email,
+    password: req.body.password,
+    image: req.file,
+  })
+  .exec()
+  .then((response)=>{
+    res.json({
+      status:200,
+      msg:"updated successfully",
+      data:response
+    })
+  })
+  .catch((err)=>{
+    res.json({
+      status:500,
+      msg:"error",err
+    })
+    console.log(err);
+  })
+
+}
+const viewallemployer=((req,res)=>{
+  employerschema.find()
+  .exec()
+  .then((data)=>{
+      if(data!==null){
+          res.json({
+              status:200,
+              data:data,
+              msg:"Data successfully get"
+          })
+      }
+  })
+  .catch((err)=>{
+      console.log(err);
+      res.json({
+          status: 500,
+          msg: err
+      })
+  })
+})
+
+
+const viewempbyid = (req, res) => {
+  employerschema
+    .findById({ _id: req.params.id })
+    .exec()
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json({ error: "Employer not found" });
+      }
+      res.json({
+        status: 200,
+        data: data,
+      });
+    })
+    .catch((err) => {
+      console.error("Error finding employer by ID:", err);
+      res.status(500).json({ error: "Internal server error" });
+    });
+};
+
+const deleteempById =async (req, res) => {
+  await employerschema.findByIdAndDelete({ _id: req.params.id }).exec()
+      .then((result) => {
+          res.json({
+              status: 200,
+              data: result,
+              msg: 'data deleted'
+          })
+      })
+      .catch(err => {
+          res.json({
+              status: 500,
+              msg: 'Error in API',
+              err: err
+          })
+      })
+
+    }
+
+
+
   module.exports={
     registeremp,upload,
     empLogin,
-    employerresetpswd
+    employerresetpswd,
+    updateempprofile,
+    viewallemployer,
+    viewempbyid,
+    deleteempById
   }
