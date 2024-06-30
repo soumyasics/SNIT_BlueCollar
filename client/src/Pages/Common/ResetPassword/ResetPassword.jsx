@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import logo from '../../../Assets/ed6f33eac5982e763d02af2f311ea5a5.png';
 import './ResetPassword.css';
+import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
 function ResetPassword() {
+
+    const { id } = useParams();
     const [formData, setFormData] = useState({
-        newPassword: '',
+        password: '',
         confirmPassword: '',
+        userCategory: ''
     });
 
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,21 +32,57 @@ function ResetPassword() {
 
     const validate = () => {
         let formErrors = {};
-        if (!formData.newPassword) formErrors.newPassword = 'New Password is required';
+        if (!formData.userCategory) formErrors.userCategory = 'User Category is required';
+        if (formData.password && formData.password.length < 8) {
+            formErrors.password = 'Password must be at least 8 characters long';
+          } else if (formData.password && !/\d/.test(formData.password)) {
+            formErrors.password = 'Password must contain at least one digit';
+          } else if (formData.password && !/[a-zA-Z]/.test(formData.password)) {
+            formErrors.password = 'Password must contain at least one letter';
+          }      
+        if (!formData.password) formErrors.password = 'New Password is required';
         if (!formData.confirmPassword) formErrors.confirmPassword = 'Confirm Password is required';
-        if (formData.newPassword && formData.confirmPassword && formData.newPassword !== formData.confirmPassword) {
+        if (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword) {
             formErrors.confirmPassword = 'Passwords do not match';
         }
         return formErrors;
     };
 
-    const handleSubmit = (e) => {
+    const navigate=useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const formErrors = validate();
         if (Object.keys(formErrors).length === 0) {
             setSubmitted(true);
             setErrors({});
-            // Handle form submission (e.g., send data to backend)
+            try {
+                let response;
+                if (formData.userCategory === 'Customer') {
+                    response = await axiosInstance.post(`custresetpswd/${id}`, {
+                        ...formData
+                    });
+                } else if (formData.userCategory === 'Employer') {
+                    response = await axiosInstance.post(`employerresetpswd/${id}`, {
+                        ...formData
+                    });
+                } 
+                else if (formData.userCategory === 'Worker') {
+                    response = await axiosInstance.post(`workerresetpswd/${id}`, {
+                        ...formData
+                    });
+                } 
+                if (response.data.status === 200) {
+                    console.log('Password reset successfully:', response.data);
+                    setSuccessMessage('Password reset successfully!');
+                    toast.success('Password reset successfully!')
+                    navigate("/login")
+                } else {
+                    console.error('Error resetting password:', response);
+                }
+            } catch (error) {
+                console.error('Error resetting password:', error);
+            }
         } else {
             setErrors(formErrors);
             setSubmitted(false);
@@ -61,29 +103,49 @@ function ResetPassword() {
                             <img src={logo} alt='logo' width={120} />
                             <h3 className='text-white p-5'>Reset Password</h3>
                         </div>
-                        {submitted && <Alert variant="success">Password reset successfully!</Alert>}
+                        {/* {successMessage && <Alert variant="success">{successMessage}</Alert>} */}
                         <Form onSubmit={handleSubmit}>
                             <Row className='m-5'>
-                                <Col md={12}>
+                                <Col msd={12}>
                                     <Form.Group className="mb-3">
-                                        <Form.Label htmlFor="newPassword" className='text-white'>New Password</Form.Label>
+                                        <Form.Label htmlFor="userCategory" className='text-white'>User Category</Form.Label>
                                         <Form.Control
-                                            type={showPassword ? "text" : "password"}
-                                            id="newPassword"
-                                            name="newPassword"
-                                            value={formData.newPassword}
+                                            as="select"
+                                            id="userCategory"
+                                            name="userCategory"
+                                            value={formData.userCategory}
                                             onChange={handleChange}
-                                            isInvalid={!!errors.newPassword}
-                                            placeholder="Enter New Password"
-                                        />
-                                        <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
-                                            {showPassword ? <FiEyeOff /> : <FiEye />}
-                                        </div>
-                                        <Form.Control.Feedback type="invalid">{errors.newPassword}</Form.Control.Feedback>
+                                            isInvalid={!!errors.userCategory}
+                                            placeholder="Select User Category"
+                                            style={{ height: 'calc(1.5em + .75rem + 2px)' }} // Match the height of the password fields
+                                        >
+                                            <option value="" hidden>Select User Category</option>
+                                            <option value="Customer">Customer</option>
+                                            <option value="Employer">Employer</option>
+                                            <option value="Worker">Worker</option>
+                                        </Form.Control>
+                                        <Form.Control.Feedback type="invalid">{errors.userCategory}</Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
-                            </Row>
-                            <Row className='m-5'>
+                                <Col md={12}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label htmlFor="password" className='text-white'>New Password</Form.Label>
+                                        <Form.Control
+                                            type={showPassword ? "text" : "password"}
+                                            id="password"
+                                            name="password"
+                                            value={formData.password}
+                                            onChange={handleChange}
+                                            isInvalid={!!errors.password}
+                                            placeholder="Enter New Password"
+                                        />
+                                        <div className="resetpswd-eyeicon" onClick={togglePasswordVisibility}>
+                                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                                        </div>
+                                        <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                                    </Form.Group>
+                                    
+                                </Col>
                                 <Col md={12}>
                                     <Form.Group className="mb-3">
                                         <Form.Label htmlFor="confirmPassword" className='text-white'>Confirm Password</Form.Label>
@@ -96,7 +158,7 @@ function ResetPassword() {
                                             isInvalid={!!errors.confirmPassword}
                                             placeholder="Confirm New Password"
                                         />
-                                        <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                                        <div className="resetpswd-eyeicon2" onClick={togglePasswordVisibility}>
                                             {showPassword ? <FiEyeOff /> : <FiEye />}
                                         </div>
                                         <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>

@@ -110,10 +110,8 @@ const storage = multer.diskStorage({
   };
   
 
-  const workerforgetpswd=((req,res)=>{
-    workerschema.findOneAndUpdate(
-        { email: req.body.email },
-        { password: req.body.password }
+  const workerresetpswd=((req,res)=>{
+    workerschema.findByIdAndUpdate({_id:req.params.id},{ password: req.body.password }
       )
       .exec()
       .then((data) => {
@@ -139,10 +137,107 @@ const storage = multer.diskStorage({
   
 })
 
+
+
+const updateworkerprofile=(req,res)=>{
+  workerschema.findByIdAndUpdate({_id:req.params.id},{
+    name: req.body.name,
+    workertype:req.body.workertype,
+    address:req.body.address,
+    location:req.body.location,
+    city:req.body.city,
+    state:req.body.state,
+    contact: req.body.contact,
+    email: req.body.email,
+    password: req.body.password,
+    image: req.file,
+  })
+  .exec()
+  .then((response)=>{
+    res.json({
+      status:200,
+      msg:"updated successfully",
+      data:response
+    })
+  })
+  .catch((err)=>{
+    res.json({
+      status:500,
+      msg:"error",err
+    })
+    console.log(err);
+  })
+
+}
+
+const viewallworker=((req,res)=>{
+  workerschema.find()
+  .exec()
+  .then((data)=>{
+      if(data!==null){
+          res.json({
+              status:200,
+              data:data,
+              msg:"Data successfully get"
+          })
+      }
+  })
+  .catch((err)=>{
+      console.log(err);
+      res.json({
+          status: 500,
+          msg: err
+      })
+  })
+})
+
+const viewworkerbyid = (req, res) => {
+  workerschema
+    .findById({ _id: req.params.id })
+    .exec()
+    .then((data) => {
+      if (!data) {
+        return res.status(404).json({ error: "Worker not found" });
+      }
+      res.json({
+        status: 200,
+        data: data,
+      });
+    })
+    .catch((err) => {
+      console.error("Error finding Worker by ID:", err);
+      res.status(500).json({ error: "Internal server error" });
+    });
+};
+
+const deleteworkerById =async (req, res) => {
+  await workerschema.findByIdAndDelete({ _id: req.params.id }).exec()
+      .then((result) => {
+          res.json({
+              status: 200,
+              data: result,
+              msg: 'data deleted'
+          })
+      })
+      .catch(err => {
+          res.json({
+              status: 500,
+              msg: 'Error in API',
+              err: err
+          })
+      })
+
+    }
+
+
+
 module.exports={
     registerworker,upload,
     workerLogin,verifyToken,
-    workerforgetpswd
-
+    workerresetpswd,
+    updateworkerprofile,
+    viewallworker,
+    viewworkerbyid,
+    deleteworkerById
 
 }

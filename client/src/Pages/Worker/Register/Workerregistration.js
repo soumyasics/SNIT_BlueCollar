@@ -6,13 +6,12 @@ import {
   Row,
   Col,
   Alert,
-  Toast,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { FiEdit2, FiEye, FiEyeOff } from "react-icons/fi";
 import Navbar from "../../Common/Navbar/Navbar";
-import "../../User/Register/User_Register.css";
+import "./Workerregistration.css";
 import logo from "../../../Assets/unnamed.png";
 import axiosInstance from "../../Constants/Baseurl";
 import { toast } from "react-toastify";
@@ -37,15 +36,6 @@ function Workerregistration() {
   const [profileImage, setProfileImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: value,
-
-  //   }));
-  // };
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -79,13 +69,6 @@ function Workerregistration() {
     if (!formData.workertype) formErrors.workertype = "Worktype is required";
     if (!formData.address) formErrors.address = "Address is required";
     if (!formData.location) formErrors.location = "Location is required";
-
-    // if (!formData.pinCode)
-    //    {formErrors.pinCode = 'Pin Code is required';
-    //    }
-    //    else if (!/^\d{6}$/.test(formData.pinCode)) {
-    //     formErrors.pinCode = 'Pin Code must be a 6 digits';
-    //   }
     if (!formData.city) {
       formErrors.city = "City is required";
     } else if (!/^[a-zA-Z\s]+$/.test(formData.city)) {
@@ -99,14 +82,13 @@ function Workerregistration() {
 
     if (!formData.contact) {
       formErrors.contact = "Contact Number is required";
-    }
-     else if (!/^[1-9]\d{9}$/.test(formData.contact)) {
+    } else if (!/^[1-9]\d{9}$/.test(formData.contact)) {
       formErrors.contact = "Contact Number must be 10 digits";
     } 
-     if (parseInt(formData.contact, 10) <= 0) {
+    if (parseInt(formData.contact, 10) <= 0) {
       formErrors.contact = "Contact Number must be greater than zero";
     }
-        if (!formData.email) {
+    if (!formData.email) {
       formErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       formErrors.email = "Email is invalid";
@@ -144,10 +126,6 @@ function Workerregistration() {
             toast.success("Registered Successfully");
             navigate("/login");
           }
-          // else{
-          //   console.log(res.response.data.msg+"hia");
-
-          // }
           setSubmitted(true);
           setErrors({});
         })
@@ -161,8 +139,6 @@ function Workerregistration() {
           });
           setSubmitted(false);
         });
-
-      // Handle form submission (e.g., send data to backend)
     } else {
       setErrors(formErrors);
       setSubmitted(false);
@@ -205,19 +181,6 @@ function Workerregistration() {
                 Worker Registration
               </h3>
             </div>
-            {/* <div className="user-register-icon justify-content-left">
-              <div className="icon-bg border border-light">
-                {profileImage ? (
-                  <img src={profileImage} alt="profile" className="rounded-circle" width="60" />
-                ) : (
-                  <FaRegUser size={80}  ='white' className='p-3'/>
-                )}
-                <label className="upload-icon">
-                  <FiEdit2 />
-                  <input type="file" name='image' onChange={handleFileChange} />
-                </label>
-              </div>
-            </div> */}
             {submitted && (
               <Alert variant="success">Form submitted successfully!</Alert>
             )}
@@ -297,7 +260,7 @@ function Workerregistration() {
                       value={formData.workertype}
                       onChange={handleChange}
                       isInvalid={!!errors.workertype}
-                      placeholder="Select Names"
+                      placeholder="Select Worker Type"
                     >
                       <option value="" disabled hidden>
                         Enter Worker Type
@@ -307,10 +270,8 @@ function Workerregistration() {
                       <option value="graphic Designer">Graphic Designer</option>
                       <option value="web Designer">Web Designer</option>
                       <option value="garden Designer">Garden Designer</option>
-                      <option value="masion">Masion</option>
+                      <option value="masons">Masons</option>
                       <option value="electrician">Electrician</option>
-                      <option value="floor Designer">Floor Designer</option>
-                      <option value="photographer">Photographer</option>
                     </Form.Control>
                     <Form.Control.Feedback
                       type="invalid"
@@ -332,7 +293,8 @@ function Workerregistration() {
                       Address
                     </Form.Label>
                     <Form.Control
-                      type="text"
+                      as="textarea"
+                      rows={1}
                       id="address"
                       name="address"
                       value={formData.address}
@@ -420,8 +382,7 @@ function Workerregistration() {
                       value={formData.state}
                       onChange={handleChange}
                       isInvalid={!!errors.state}
-                      placeholder="Enter state"
-                      required
+                      placeholder="Enter State"
                     />
                     <Form.Control.Feedback
                       type="invalid"
@@ -447,8 +408,7 @@ function Workerregistration() {
                       value={formData.contact}
                       onChange={handleChange}
                       isInvalid={!!errors.contact}
-                      placeholder="Enter Contact"
-                      required
+                      placeholder="Enter Contact Number"
                     />
                     <Form.Control.Feedback
                       type="invalid"
@@ -462,6 +422,8 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
+              </Row>
+              <Row>
                 <Col md={12}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="email" className="text-white">
@@ -474,8 +436,7 @@ function Workerregistration() {
                       value={formData.email}
                       onChange={handleChange}
                       isInvalid={!!errors.email}
-                      placeholder="Enter Email Address"
-                      required
+                      placeholder="Enter Email"
                     />
                     <Form.Control.Feedback
                       type="invalid"
@@ -492,24 +453,26 @@ function Workerregistration() {
               </Row>
               <Row>
                 <Col md={6}>
-                  <Form.Group className="mb-3 position-relative">
+                  <Form.Group className="mb-3">
                     <Form.Label htmlFor="password" className="text-white">
                       Password
                     </Form.Label>
-                    <Form.Control
-                      type={showPassword ? "text" : "password"}
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      isInvalid={!!errors.password}
-                      placeholder="Enter Password"
-                    />
-                    <div
-                      className="password-toggle-icon"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {showPassword ? <FiEyeOff /> : <FiEye />}
+                    <div className="password-input-container">
+                      <Form.Control
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        isInvalid={!!errors.password}
+                        placeholder="Enter Password"
+                      />
+                      <span
+                        className="password-toggle-icon"
+                        onClick={togglePasswordVisibility}
+                      >
+                        {showPassword ? <FiEyeOff /> : <FiEye />}
+                      </span>
                     </div>
                     <Form.Control.Feedback
                       type="invalid"
@@ -524,27 +487,26 @@ function Workerregistration() {
                   </Form.Group>
                 </Col>
                 <Col md={6}>
-                  <Form.Group className="mb-3 position-relative">
-                    <Form.Label
-                      htmlFor="confirmPassword"
-                      className="text-white"
-                    >
+                  <Form.Group className="mb-3">
+                    <Form.Label htmlFor="confirmPassword" className="text-white">
                       Confirm Password
                     </Form.Label>
-                    <Form.Control
-                      type={showConfirmPassword ? "text" : "password"}
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      isInvalid={!!errors.confirmPassword}
-                      placeholder="Confirm Password"
-                    />
-                    <div
-                      className="password-toggle-icon"
-                      onClick={toggleConfirmPasswordVisibility}
-                    >
-                      {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                    <div className="password-input-container">
+                      <Form.Control
+                        type={showConfirmPassword ? "text" : "password"}
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        isInvalid={!!errors.confirmPassword}
+                        placeholder="Confirm Password"
+                      />
+                      <span
+                        className="password-toggle-icon"
+                        onClick={toggleConfirmPasswordVisibility}
+                      >
+                        {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                      </span>
                     </div>
                     <Form.Control.Feedback
                       type="invalid"
@@ -553,14 +515,15 @@ function Workerregistration() {
                         fontWeight: "bold",
                         fontSize: "15px",
                       }}
-                      x
                     >
                       {errors.confirmPassword}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>
-              <div className="d-flex justify-content-center">
+              <Row>
+                <Col md={12}>
+                <div className="d-flex justify-content-center">
                 <Button
                   type="submit"
                   className="d-flex align-self-center user-register-button px-5 py-2 border-0 rounded-4"
@@ -599,6 +562,8 @@ function Workerregistration() {
                   <span className="user_reg_login"> Log In!!!</span>
                 </Link>
               </div>
+                </Col>
+              </Row>
             </Form>
           </div>
         </Container>

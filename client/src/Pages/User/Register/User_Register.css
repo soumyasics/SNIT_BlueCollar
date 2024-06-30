@@ -10,10 +10,8 @@
 }
 
 .user-register-container {
-    /* background-color:rgba(255, 255, 255, 0); */
     padding: 40px;
     border-radius: 8px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     width: 100%;
     max-width: 900px;
 }
@@ -33,14 +31,19 @@
 .icon-bg {
     width: 80px;
     height: 80px;
-    background-color: #f0f0f0;
+    background-color: #7BBAEA;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #7BBAEA;
-    ;
+}
+
+.icon-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .upload-icon {
@@ -83,6 +86,8 @@
     cursor: pointer;
     color: #6c757d;
 }
-.user_reg_login{
+
+.user_reg_login {
     color: rgb(247, 165, 12);
 }
+
