@@ -60,13 +60,19 @@ function Login() {
               
               if (formData.userCategory === 'Customer') {
                 localStorage.setItem("custid",response.data.id)
-                navigate("/");
+                navigate("/customer-home");
               } else if (formData.userCategory === 'Worker') {
-                // navigate("/workerhome");
+                localStorage.setItem("workerid",response.data.id)
+                 navigate("/worker-home");
               } else if (formData.userCategory === 'Employer') {
-                // navigate("/employerhome"); 
+                localStorage.setItem("employer",response.data.id)
+                navigate("/employer-home");
               }
-            }            else{
+            }  
+            else if(response.data.status==403){
+              toast.warn(response.data.msg)
+            }  
+            else{
               toast.warn(response.data.message)
             }
             if (response.data.success) {

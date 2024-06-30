@@ -90,7 +90,13 @@ const storage = multer.diskStorage({
       const user = await employerschema.findOne({ email: email });
   
       if (user) {
-       if (user.password === password) {
+        if (user.adminapprove === false) {
+          return res.json({
+            status: 403,
+            msg: "User is not active. Please contact administrator.",
+          });
+        }
+       else if (user.password === password) {
           const token = jwt.sign(
             { email: user.email, password: user.password },
             "secret_key",
@@ -228,6 +234,60 @@ const deleteempById =async (req, res) => {
 
     }
 
+    const viewemployerreq=((req,res)=>{
+      employerschema.find({adminapprove:false})
+      .exec()
+      .then((result)=>{
+        res.json({
+          status:200,
+          data:result
+        })
+      })
+      .catch((err)=>{
+        console.log(err);
+        res.json({
+          status:404,
+          err:err
+        })
+      })
+    })
+    const approveempbyid = async (req, res) => {
+      await employerschema.findByIdAndUpdate({ _id: req.params.id }, { adminapprove: true }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
+    const rejectempbyid = async (req, res) => {
+      await employerschema.findByIdAndDelete({ _id: req.params.id }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
+ 
 
 
   module.exports={
@@ -237,5 +297,8 @@ const deleteempById =async (req, res) => {
     updateempprofile,
     viewallemployer,
     viewempbyid,
-    deleteempById
+    deleteempById,
+    viewemployerreq,
+    approveempbyid,
+    rejectempbyid
   }

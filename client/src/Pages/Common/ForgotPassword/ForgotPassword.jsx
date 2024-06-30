@@ -43,7 +43,7 @@ function ForgotPassword() {
               .then((res)=>{
                 console.log(res);
                 if(res.data.status==200){
-                 toast.success("Password reset email has been sent to your  email.")
+                 alert("Password reset email has been sent to your  email.Please check your mail")
                  window.location.reload()
                 //   navigate("/login")
                 }

@@ -4,6 +4,11 @@ import logo from '../../../Assets/Mask group.png';
 import { Link } from 'react-router-dom';
 import { FaBriefcase } from 'react-icons/fa'; 
 import axiosInstance from '../../Constants/Baseurl';
+import Collapse from "@mui/material/Collapse";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import {  useNavigate } from "react-router-dom";
+
 
 function Navbar() {
   const custid=localStorage.getItem("custid")
@@ -27,6 +32,14 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("custid");
     window.location.reload(); 
+  };
+
+
+  const [openRequests, setOpenRequests] = useState(false);
+  const navigate=useNavigate()
+
+  const handleRequestsClick = () => {
+    setOpenRequests(!openRequests);
   };
 
   return (
@@ -57,7 +70,7 @@ function Navbar() {
               <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
             </li>
             <li className='nav-item dropdown m-1'>
-              <Link className="nav-link dropdown-toggle text-light-custom d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {/* <Link className="nav-link dropdown-toggle text-light-custom d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src={custid && cust.image && cust.image.filename ? `${url}/${cust.image.filename}` : logo} alt='user' className="me-2 navbar-imgicon" width="70px" height="70px" />              </Link>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
               {!custid ? (
@@ -70,7 +83,31 @@ function Navbar() {
                 ) : (
                   <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
                 )}
-              </ul>
+              </ul> */}
+
+<div onClick={handleRequestsClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
+            <img src={custid && cust.image && cust.image.filename ? `${url}/${cust.image.filename}` : logo} alt="Manage Requests" className="navbar-imgicon" width="70px" height="70px"/>
+            {openRequests ? <ArrowDropUpIcon style={{color:"white"}}/> : <ArrowDropDownIcon style={{color:"white"}}/>}
+          </div>
+          <Collapse in={openRequests}>
+            <div className=" navbarli-content dropdown-content ">
+            {!custid ? (
+<>
+                    <li><Link className="dropdown-item" to="/login">Login</Link></li>
+                    <li><Link className="dropdown-item" to="/user-register">Customer Registration</Link></li>
+                    <li><Link className="dropdown-item" to="/worker-register">Worker Registration</Link></li>
+                    <li><Link className="dropdown-item" to="/employer-register">Employer Registration</Link></li>
+              {/* <div className="dropdown-item">Request 3</div> */}
+              </>
+                              ) : (
+                                <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
+                              )}
+              
+            </div>
+          </Collapse>
+
+
+
             </li>
           </ul>
         </div>

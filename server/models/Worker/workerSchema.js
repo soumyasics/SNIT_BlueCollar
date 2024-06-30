@@ -46,5 +46,11 @@ const workerschema = mongoose.Schema({
   image: {
     type: Object,
   },
+
+  adminapprove:{
+    type:Boolean,
+    default:false
+}
+
 });
 module.exports = mongoose.model("workers", workerschema);
