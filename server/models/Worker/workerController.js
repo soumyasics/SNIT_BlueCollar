@@ -87,7 +87,13 @@ const storage = multer.diskStorage({
       const user = await workerschema.findOne({ email: email });
   
       if (user) {
-       if (user.password === password) {
+        if (user.adminapprove === false) {
+          return res.json({
+            status: 403,
+            msg: "User is not active. Please contact administrator.",
+          });
+        }
+       else if (user.password === password) {
           const token = jwt.sign(
             { email: user.email, password: user.password },
             "secret_key",
@@ -229,6 +235,60 @@ const deleteworkerById =async (req, res) => {
 
     }
 
+    const viewworkerreq=((req,res)=>{
+      workerschema.find({adminapprove:false})
+      .exec()
+      .then((result)=>{
+        res.json({
+          status:200,
+          data:result
+        })
+      })
+      .catch((err)=>{
+        console.log(err);
+        res.json({
+          status:404,
+          err:err
+        })
+      })
+    })
+    const approveworkerid = async (req, res) => {
+      await workerschema.findByIdAndUpdate({ _id: req.params.id }, { adminapprove: true }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
+    const rejectworkerbyid = async (req, res) => {
+      await workerschema.findByIdAndDelete({ _id: req.params.id }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
+
 
 
 module.exports={
@@ -238,6 +298,9 @@ module.exports={
     updateworkerprofile,
     viewallworker,
     viewworkerbyid,
-    deleteworkerById
+    deleteworkerById,
+    viewworkerreq,
+    approveworkerid,
+    rejectworkerbyid
 
 }

@@ -34,3 +34,8 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.navbarli-content{
+    color: white;
+    background-color: rgb(53, 145, 192);
+    font-weight: 800;
+}
