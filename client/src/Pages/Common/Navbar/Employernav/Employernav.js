@@ -8,16 +8,26 @@ import Collapse from "@mui/material/Collapse";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {  useNavigate } from "react-router-dom";
+import { Dropdown, Modal } from 'react-bootstrap';
+import Empviewprofile from '../../../Employer/Profile/Empviewprofile';
 
 
 function Employernav() {
     const employer=localStorage.getItem("employer")
     const[cust,setCuts]=useState({})
     const url = axiosInstance.defaults.url;
-  
+    const [show, setShow] = useState(false);
+    const [openRequests, setOpenRequests] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const navigate=useNavigate()
+
   
     useEffect(() => {
-          if (employer) {
+      if(employer===null){
+        navigate("/")
+      }
+      if (employer) {
         axiosInstance.post(`viewempbyid/${employer}`)
           .then((res) => {
             console.log(res);
@@ -34,12 +44,6 @@ function Employernav() {
       window.location.reload(); 
     };
   
-    const [openRequests, setOpenRequests] = useState(false);
-    const navigate=useNavigate()
-  
-    const handleRequestsClick = () => {
-      setOpenRequests(!openRequests);
-    };
   
   return (
     <div className='container-fluid mx-0 p-0'>
@@ -54,7 +58,7 @@ function Employernav() {
       <div className="collapse navbar-collapse" id="navbarNav1">
         <ul className="navbar-nav ms-auto me-5 navbar-links">
           <li className="nav-item m-1">
-            <Link className="nav-link text-light-custom" to="/">Home</Link>
+            <Link className="nav-link text-light-custom" to="/employer-home">Home</Link>
           </li>
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">About Us</Link>
@@ -69,46 +73,33 @@ function Employernav() {
             <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
           </li>
           <li className='nav-item dropdown m-1'>
-            {/* <Link className="nav-link dropdown-toggle text-light-custom d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src={employer && cust.image && cust.image.filename ? `${url}/${cust.image.filename}` : logo} alt='user' className="me-2 navbar-imgicon" width="70px" height="70px" />              </Link>
-            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            {!employer ? (
-                <>
-                  <li><Link className="dropdown-item" to="/login">Login</Link></li>
-                  <li><Link className="dropdown-item" to="/user-register">Customer Registration</Link></li>
-                  <li><Link className="dropdown-item" to="/worker-register">Worker Registration</Link></li>
-                  <li><Link className="dropdown-item" to="/employer-register">Employer Registration</Link></li>
-                </>
-              ) : (
-                <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
-              )}
-            </ul> */}
+          <Dropdown align="end">
+                                <Dropdown.Toggle variant="link" id="dropdown-basic">
+                                    <img 
+                                    src={`${url}/${cust?.image?.filename}`}
+                                    alt="Manage Requests" className="navbar-imgicon" width="70px" height="70px" />
+                                </Dropdown.Toggle>
 
-<div onClick={handleRequestsClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
-            <img src={employer && cust.image && cust.image.filename ? `${url}/${cust.image.filename}` : logo} alt="Manage Requests" className="navbar-imgicon" width="70px" height="70px"/>
-            {openRequests ? <ArrowDropUpIcon style={{color:"white"}}/> : <ArrowDropDownIcon style={{color:"white"}}/>}
-          </div>
-          <Collapse in={openRequests}>
-            <div className=" navbarli-content dropdown-content ">
-            {!employer ? (
-<>
-                    <li><Link className="dropdown-item" to="/login">Login</Link></li>
-                    <li><Link className="dropdown-item" to="/user-register">Customer Registration</Link></li>
-                    <li><Link className="dropdown-item" to="/worker-register">Worker Registration</Link></li>
-                    <li><Link className="dropdown-item" to="/employer-register">Employer Registration</Link></li>
-              {/* <div className="dropdown-item">Request 3</div> */}
-              </>
-                              ) : (
-                                <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
-                              )}
-              
-            </div>
-          </Collapse>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={handleLogout}>
+                                        Logout
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={handleShow}>Profile </Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+
 
           </li>
         </ul>
       </div>
     </nav>
+    <Modal show={show} onHide={handleClose} centered>
+                <div className=''>
+                    <Empviewprofile close={handleClose} />
+                </div>
+            </Modal>
+
   </div>
 
   )

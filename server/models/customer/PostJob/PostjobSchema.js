@@ -21,8 +21,17 @@ const schema=mongoose.Schema({
     jobreqstatus:{
         type:String,
         default:"pending"
-    }
- 
+    },
+    workdate:{
+        type:String,
+        default:null
+    },
+    workerid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "workers",
+        default:null
+    },
+
 });
 module.exports = mongoose.model('jobrequests', schema);
 

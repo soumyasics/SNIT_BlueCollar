@@ -177,7 +177,7 @@ const updateworkerprofile=(req,res)=>{
 }
 
 const viewallworker=((req,res)=>{
-  workerschema.find()
+  workerschema.find({adminapprove:true})
   .exec()
   .then((data)=>{
       if(data!==null){
@@ -196,6 +196,28 @@ const viewallworker=((req,res)=>{
       })
   })
 })
+
+const viewworkerpendingreq=((req,res)=>{
+  workerschema.find({adminapprove:false})
+  .exec()
+  .then((data)=>{
+      if(data!==null){
+          res.json({
+              status:200,
+              data:data,
+              msg:"Data successfully get"
+          })
+      }
+  })
+  .catch((err)=>{
+      console.log(err);
+      res.json({
+          status: 500,
+          msg: err
+      })
+  })
+})
+
 
 const viewworkerbyid = (req, res) => {
   workerschema
@@ -301,6 +323,7 @@ module.exports={
     deleteworkerById,
     viewworkerreq,
     approveworkerid,
-    rejectworkerbyid
+    rejectworkerbyid,
+    viewworkerpendingreq
 
 }
