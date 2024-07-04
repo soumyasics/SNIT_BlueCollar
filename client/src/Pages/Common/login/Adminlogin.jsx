@@ -37,7 +37,7 @@ const navigate=useNavigate()
         if (correctEmail === data.username) {
             if (correctPassword === data.password) {
                 toast.success("Login Successfully");
-                navigate("/admin-workerreq")
+                navigate("/admin-dashboard")
                 localStorage.setItem("adminid",1)
             } else {
                 toast.error("Password Error");

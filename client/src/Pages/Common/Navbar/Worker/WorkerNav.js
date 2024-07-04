@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown, NavDropdown } from 'react-bootstrap';
+import { Dropdown, Modal, NavDropdown } from 'react-bootstrap';
 import "../Customer/Customerhomenav.css";
 import { Link } from 'react-router-dom';
 import { FaBriefcase } from 'react-icons/fa'; 
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../../../Constants/Baseurl';
+import Workerviewprofile from '../../../Worker/Profile/Workerviewprofile';
 
 function WorkerNav() {
     const [show, setShow] = useState(false);
@@ -46,13 +47,17 @@ function WorkerNav() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav1">
                     <ul className="navbar-nav ms-auto me-5 navbar-links">
+                    <li className="nav-item m-1">
+                            <Link className="nav-link text-light-custom" to="/worker-home">Home</Link>
+                        </li>
+
                         <li className="nav-item m-1">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Requests
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="#">Job Requests</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="/worker-jobreq">Job Requests</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
@@ -77,15 +82,22 @@ function WorkerNav() {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item onClick={() => { localStorage.removeItem("custid"); navigate('/login'); }}>
+                                    <Dropdown.Item onClick={() => { localStorage.removeItem("workerid"); navigate('/'); }}>
                                         Logout
                                     </Dropdown.Item>
+                                    <Dropdown.Item onClick={handleShow}>Profile </Dropdown.Item>
+
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
                     </ul>
                 </div>
             </nav>
+            <Modal show={show} onHide={handleClose} centered>
+                <div className=''>
+                    <Workerviewprofile close={handleClose} />
+                </div>
+            </Modal>
         </div>
     );
 }

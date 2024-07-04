@@ -25,6 +25,7 @@ router.post("/loginworker",Worker.workerLogin)
 router.post("/workerresetpswd/:id",Worker.workerresetpswd)
 router.post("/updateworkerprofile/:id",Worker.upload,Worker.updateworkerprofile)
 router.post("/viewallworker",Worker.viewallworker)
+router.post("/viewworkerpendingreq",Worker.viewworkerpendingreq)
 router.post("/viewworkerbyid/:id",Worker.viewworkerbyid)
 router.post("/deleteworkerById/:id",Worker.deleteworkerById)
 router.post("/viewworkerreq",Worker.viewworkerreq)
@@ -41,6 +42,7 @@ router.post("/emplogin",employer.empLogin)
 router.post("/employerresetpswd/:id",employer.employerresetpswd)
 router.post("/updateempprofile/:id",employer.upload,employer.updateempprofile)
 router.post("/viewallemployer",employer.viewallemployer)
+router.post("/viewemployerpendingreq",employer.viewemployerpendingreq)
 router.post("/viewempbyid/:id",employer.viewempbyid)
 router.post("/deleteempById/:id",employer.deleteempById)
 router.post("/viewemployerreq",employer.viewemployerreq)
@@ -50,7 +52,10 @@ router.post("/rejectempbyid/:id",employer.rejectempbyid)
 
 //Job Requests
 router.post("/registerjobreq",jobreq.registerjobreq)
-
+router.post("/viewjobreqs",jobreq.viewjobreqs)
+router.post("/viewjobreqsbyid/:id",jobreq.viewjobreqsbyid)
+router.post("/workeracceptjob/:id",jobreq.workeracceptjob)
+router.post("/viewjobreqsbyuserid/:id",jobreq.viewjobreqsbyuserid)
 
 
 module.exports=router

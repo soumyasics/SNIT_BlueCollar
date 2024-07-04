@@ -15,10 +15,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 function AdminSidebar() {
   const [openRequests, setOpenRequests] = useState(false);
+  const [openUsers,setOpenusers]=useState(false)
   const navigate=useNavigate()
 
   const handleRequestsClick = () => {
     setOpenRequests(!openRequests);
+  };
+  const handleusersClick = () => {
+    setOpenusers(!openUsers);
   };
 
   const confirmLogout = () => {
@@ -30,10 +34,11 @@ function AdminSidebar() {
   return (
     <div className="col-3">
       <div className="admindash-sidebarmain">
+        <Link to="/admin-dashboard" style={{textDecoration:"none"}}>
         <div className="admindash-buttonshape">
           <img src={dashlogo} alt="Dashboard" />
           <span>Dashboard</span>
-        </div>
+        </div></Link>
         <div className="admindash-icons">
           <div>
             <img src={homelogo} alt="Home" />
@@ -45,10 +50,21 @@ function AdminSidebar() {
             <span>Notification</span>
           </div>
           <br />
-          <div>
+          <div onClick={handleusersClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }} >
             <img src={user} alt="Manage Users" />
             <span>Manage Users</span>
+            {openUsers ? <ArrowDropUpIcon style={{color:"white"}}/> : <ArrowDropDownIcon style={{color:"white"}}/>}
           </div>
+          <Collapse in={openUsers}>
+            <div className="dropdown-content">
+             <Link to="/admin-viewallcust" style={{textDecoration:"none"}}> <div className="dropdown-item ri-checkbox-blank-line"> View Customers</div></Link>
+             <Link to="/admin-viewallemp" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> View Employer</div></Link>
+             <Link to="/admin-viewallworker" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> View Worker</div></Link>
+
+              {/* <div className="dropdown-item">Request 3</div> */}
+            </div>
+          </Collapse>
+
           <br />
           <div onClick={handleRequestsClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
             <img src={req} alt="Manage Requests" />
