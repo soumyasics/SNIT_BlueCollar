@@ -24,6 +24,11 @@ import CustomerHomenav from './Pages/Common/Navbar/Customer/CustomerHomenav';
 import PostJob from './Pages/User/PostJob';
 import WorkerNav from './Pages/Common/Navbar/Worker/WorkerNav';
 import Jobreq from './Pages/Worker/Jobreq';
+import UserViewprofile from './Pages/User/UserProfile/UserViewprofile';
+import Workerviewprofile from './Pages/Worker/Profile/Workerviewprofile';
+import Empviewprofile from './Pages/Employer/Profile/Empviewprofile';
+import Jobreqsingle from './Pages/Worker/Jobreqsingle';
+import Viewjobstatus from './Pages/User/Jobs/Viewjobstatus';
 
 function App() {
   return (
@@ -34,14 +39,13 @@ function App() {
         {/* Common Routes */}
         <Route path="/" element={<Home />} />
         <Route path='/login' element={<Login />} />
-       
         <Route path='/forgot-password' element={<ForgotPassword/>} />
         <Route path='/reset-password/:id' element={<ResetPassword/>} />
 
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
         <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
-        <Route path='/user-postjob' element={<PostJob />} />
+        <Route path='/user-viewjobstatus' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
 
 
         {/* Employer */}
@@ -49,16 +53,21 @@ function App() {
         <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
 
+
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
         <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
-        <Route path='/worker-jobreq' element={<Jobreq/>}/>
+        <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
 
 
         {/* Admin */}
         <Route path='/admin-login' element={<Adminlogin />} />
+        <Route path='/admin-dashboard' element={[<Adminloginnav/>,<Adminmain data="admin-dashboard"/>]}/>
         <Route path='/admin-workerreq' element={[<Adminloginnav/>,<Adminmain data="admin-workerreq"/>]}/>
         <Route path='/admin-employerreq' element={[<Adminloginnav/>,<Adminmain data="admin-employerreq"/>]}/>
+        <Route path='/admin-viewallcust' element={[<Adminloginnav/>,<Adminmain data="admin-viewallcust"/>]}/>
+        <Route path='/admin-viewallemp' element={[<Adminloginnav/>,<Adminmain data="admin-viewallemp"/>]}/>
+        <Route path='/admin-viewallworker' element={[<Adminloginnav/>,<Adminmain data="admin-viewallworker"/>]}/>
 
       </Routes>
     </BrowserRouter>

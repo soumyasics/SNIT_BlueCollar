@@ -149,7 +149,7 @@ const storage = multer.diskStorage({
 const updateempprofile=(req,res)=>{
   employerschema.findByIdAndUpdate({_id:req.params.id},{
     name: req.body.name,
-    empid:req.body.employerId,
+    empid:req.body.empid,
     address:req.body.address,
     location:req.body.location,
     contact: req.body.contact,
@@ -175,7 +175,28 @@ const updateempprofile=(req,res)=>{
 
 }
 const viewallemployer=((req,res)=>{
-  employerschema.find()
+  employerschema.find({adminapprove:true})
+  .exec()
+  .then((data)=>{
+      if(data!==null){
+          res.json({
+              status:200,
+              data:data,
+              msg:"Data successfully get"
+          })
+      }
+  })
+  .catch((err)=>{
+      console.log(err);
+      res.json({
+          status: 500,
+          msg: err
+      })
+  })
+})
+
+const viewemployerpendingreq=((req,res)=>{
+  employerschema.find({adminapprove:false})
   .exec()
   .then((data)=>{
       if(data!==null){
@@ -300,5 +321,6 @@ const deleteempById =async (req, res) => {
     deleteempById,
     viewemployerreq,
     approveempbyid,
-    rejectempbyid
+    rejectempbyid,
+    viewemployerpendingreq
   }

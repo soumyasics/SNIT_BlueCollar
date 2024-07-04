@@ -8,6 +8,7 @@ import Collapse from "@mui/material/Collapse";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {  useNavigate } from "react-router-dom";
+import { Dropdown } from 'react-bootstrap';
 
 
 function Navbar() {
@@ -41,6 +42,19 @@ function Navbar() {
   const handleRequestsClick = () => {
     setOpenRequests(!openRequests);
   };
+
+  const loginnav=(()=>{
+    navigate("/login")
+  })
+  const regcust=(()=>{
+    navigate("/user-register")
+  })
+  const regworker=(()=>{
+    navigate("/worker-register")
+  })
+  const regemp=(()=>{
+    navigate("/employer-register")
+  })
 
   return (
     <div className='container-fluid mx-0 p-0'>
@@ -85,27 +99,19 @@ function Navbar() {
                 )}
               </ul> */}
 
-<div onClick={handleRequestsClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
-            <img src={custid && cust.image && cust.image.filename ? `${url}/${cust.image.filename}` : logo} alt="Manage Requests" className="navbar-imgicon" width="70px" height="70px"/>
-            {openRequests ? <ArrowDropUpIcon style={{color:"white"}}/> : <ArrowDropDownIcon style={{color:"white"}}/>}
-          </div>
-          <Collapse in={openRequests}>
-            <div className=" navbarli-content dropdown-content ">
-            {!custid ? (
-<>
-                    <li><Link className="dropdown-item" to="/login">Login</Link></li>
-                    <li><Link className="dropdown-item" to="/user-register">Customer Registration</Link></li>
-                    <li><Link className="dropdown-item" to="/worker-register">Worker Registration</Link></li>
-                    <li><Link className="dropdown-item" to="/employer-register">Employer Registration</Link></li>
-              {/* <div className="dropdown-item">Request 3</div> */}
-              </>
-                              ) : (
-                                <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
-                              )}
-              
-            </div>
-          </Collapse>
+                            <Dropdown align="end">
+                                <Dropdown.Toggle variant="link" id="dropdown-basic">
+                                    <img src={logo} alt="Manage Requests" className="navbar-imgicon" width="70px" height="70px" />
+                                </Dropdown.Toggle>
 
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={loginnav}>Login</Dropdown.Item>
+                                    <Dropdown.Item onClick={regcust}>Customer Registration</Dropdown.Item>
+                                    <Dropdown.Item onClick={regworker}>Worker Registration</Dropdown.Item>
+                                    <Dropdown.Item onClick={regemp}>Employer Registration</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
 
 
             </li>
