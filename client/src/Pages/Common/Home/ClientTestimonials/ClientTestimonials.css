@@ -1,0 +1,73 @@
+.clienttest_mainheading {
+    color: #4DA9EC;
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 24.55px;
+    text-align: center;
+  
+  }
+
+  .card {
+    width: 250px;
+    min-height: 300px;
+    background: white;
+    padding: .4em;
+    border-radius: 6px;
+  }
+  
+  .card-image {
+    background-color: rgb(236, 236, 236);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: -60px;
+  }
+  
+  .card-image:hover {
+    transform: scale(0.98);
+  }
+
+  .clienttest_img{
+    width:100px
+  }
+  
+  .name {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: rgb(63, 121, 230);
+    padding-left: 110px;
+    margin-top: -40px;
+
+  }
+  
+  .category:hover {
+    cursor: pointer;
+  }
+  
+  .heading {
+    font-weight: 600;
+    color: rgb(88, 87, 87);
+    padding: 7px;
+    text-align: center;
+  }
+  
+  .heading:hover {
+    cursor: pointer;
+  }
+  
+  .author {
+    color: gray;
+    font-weight: 400;
+    font-size: 11px;
+    padding-top: 20px;
+  }
+  
+  
+  
+  .name:hover {
+    cursor: pointer;
+  }
+
+/* testimonials carousel */
+

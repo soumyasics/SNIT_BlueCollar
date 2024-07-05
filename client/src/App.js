@@ -29,6 +29,10 @@ import Workerviewprofile from './Pages/Worker/Profile/Workerviewprofile';
 import Empviewprofile from './Pages/Employer/Profile/Empviewprofile';
 import Jobreqsingle from './Pages/Worker/Jobreqsingle';
 import Viewjobstatus from './Pages/User/Jobs/Viewjobstatus';
+import WhatWeDo from './Pages/Common/Home/WhatWeDo/WhatWeDo';
+import ClientTestimonials from './Pages/Common/Home/ClientTestimonials/ClientTestimonials';
+import Emp_Terms from './Pages/Common/Home/WhatWeDo/Emp_Terms';
+import Cos_Terms from './Pages/Common/Home/WhatWeDo/Cos_Terms'
 
 function App() {
   return (
@@ -50,13 +54,13 @@ function App() {
 
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
-        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<Footer/>]}/>
+        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
 
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<BestCandidate/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
 
 
