@@ -56,6 +56,8 @@ function Navbar() {
     navigate("/employer-register")
   })
 
+  
+
   return (
     <div className='container-fluid mx-0 p-0'>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary-custom navbar-b px-5">
@@ -72,7 +74,7 @@ function Navbar() {
               <Link className="nav-link text-light-custom" to="/">Home</Link>
             </li>
             <li className="nav-item m-1">
-              <Link className="nav-link text-light-custom" to="#">About Us</Link>
+              <Link className="nav-link text-light-custom" to="/aboutus">About Us</Link>
             </li>
             <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="#">Gallery</Link>
