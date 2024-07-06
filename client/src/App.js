@@ -33,6 +33,7 @@ import WhatWeDo from './Pages/Common/Home/WhatWeDo/WhatWeDo';
 import ClientTestimonials from './Pages/Common/Home/ClientTestimonials/ClientTestimonials';
 import Emp_Terms from './Pages/Common/Home/WhatWeDo/Emp_Terms';
 import Cos_Terms from './Pages/Common/Home/WhatWeDo/Cos_Terms'
+import AboutUs from './Pages/Common/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -42,9 +43,11 @@ function App() {
       <Routes>
         {/* Common Routes */}
         <Route path="/" element={<Home />} />
+        <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forgot-password' element={<ForgotPassword/>} />
         <Route path='/reset-password/:id' element={<ResetPassword/>} />
+
 
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
