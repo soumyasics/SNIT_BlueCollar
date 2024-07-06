@@ -21,7 +21,6 @@ import Adminloginnav from './Pages/Common/Navbar/AdminNav/Adminloginnav';
 import Customerhome from './Pages/Common/Home/Customerhome/Customerhome';
 import BestCandidate from './Pages/Common/Home/BestCandidate';
 import CustomerHomenav from './Pages/Common/Navbar/Customer/CustomerHomenav';
-import PostJob from './Pages/User/PostJob';
 import WorkerNav from './Pages/Common/Navbar/Worker/WorkerNav';
 import Jobreq from './Pages/Worker/Jobreq';
 import UserViewprofile from './Pages/User/UserProfile/UserViewprofile';
@@ -34,6 +33,8 @@ import ClientTestimonials from './Pages/Common/Home/ClientTestimonials/ClientTes
 import Emp_Terms from './Pages/Common/Home/WhatWeDo/Emp_Terms';
 import Cos_Terms from './Pages/Common/Home/WhatWeDo/Cos_Terms'
 import AboutUs from './Pages/Common/AboutUs/AboutUs';
+import PostJob from './Pages/User/PostJob';
+import PostJobList from './Pages/User/CustPostJob/PostJobList'
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
         <Route path='/user-register' element={<User_Register />} />
         <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
         <Route path='/user-viewjobstatus' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
+        <Route path='/user-postjob' element={<PostJobList />} />
+
+
 
 
         {/* Employer */}
