@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import img from "../../../Assets/profilecircle.png";
 import axiosInstance from "../../Constants/Baseurl";
-import "./Viewjobstatus.css"
+import "./Viewjobstatus.css";
 
 function Viewjobstatus() {
   const custid = localStorage.getItem("custid");
   const [data, setData] = useState([]);
-  const url = axiosInstance.defaults.url;
 
   useEffect(() => {
     axiosInstance
@@ -28,48 +26,37 @@ function Viewjobstatus() {
           <div className="row d-flex" style={{ marginTop: "30px" }}>
             {data && data.length ? (
               data.map((a) => (
-                <div className="col-3 worker-job-boxinside" key={a._id}>
-                  <div className="counsellor-dashpic row d-flex">
-                    <div className="col-2">
-                    {a.jobreqstatus === "accepted" ? (
-                      <img
-                        src={`${url}/${a?.workerid?.image?.filename}`}
-                        alt="image icon"
-                        className="avatar"
-                      />
-                    ):("")}
-                    </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <div className="col-8 jobreq-para">
-                      {/* {a.jobreqstatus === "accepted" ? ( */}
-                        <p>
-                          <span className="jobstatus-text">Job Title:</span> {a?.jobname}
-                          <br />
-                          <span className="jobstatus-text"> Worker Name: </span>{a?.workerid?.name}
-                          <br />
-                          <span className="jobstatus-text">Work Date:</span> {a?.workdate}
-                          <br />
-                          <span className="jobstatus-text">Email:</span> {a?.workerid?.email}
-                          <br />
-                          <span className="jobstatus-text">Phone:</span> {a?.workerid?.contact}
-                        </p>
-                      {/* ) : ( */}
-                        <p>                        <span className="jobstatus-text">Job Title:</span>   {a?.jobname}<br/>
-
-                          <p style={{color:"red"}}>The request will be accepted shortly.</p>  </p>
-                      {/* )} */}
-                    </div>
+                <div className="col-3 userview-job-boxinside" key={a._id}>
+                  <div className="row">
+                    <div className="col-5 userview-head">Job Name</div>
+                    <div className="col-7">: {a?.jobname}</div>
+                    <div className="col-5 userview-head">Job Details</div>
+                    <div className="col-7">: {a?.workdetails}</div>
+                    {a.workers && a.workers.length ? (
+                      a.workers.map((e, index) => (
+                        <div key={index} className="userjob-view-worker">
+                          <div className="row">
+                            <div className="col-5 userview-head1">Worker Name</div>
+                            <div className="col-7">: {e?.workerId?.name}</div>
+                            <div className="col-5 userview-head1">Location</div>
+                            <div className="col-7">: {e?.workerId?.location}</div>
+                            <div className="col-5 userview-head1">Work Date</div>
+                            <div className="col-7">: {e?.workDate}</div>
+                            <div className="col-5 viewworkreqacpt">
+                              <button type="submit">Accept</button>
+                            </div>
+                            <div className="col-7 viewworkreqrjt">
+                              <button type="submit">Reject</button>
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="viewcounsellor-lottiereqq">
+                        No workers Accepted Your Request
+                      </div>
+                    )}
                   </div>
-{/* 
-                  <div className="jobreq-viewmore-dashbox">
-                    <button
-                      type="submit"
-                      className="viewmoreadmin-accept"
-                      // onClick={() => handleShow(a._id)}
-                    >
-                      View More
-                    </button> */}
-                  {/* </div> */}
                 </div>
               ))
             ) : (
