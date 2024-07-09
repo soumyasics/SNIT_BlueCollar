@@ -41,7 +41,7 @@ function Viewjobstatus() {
                     </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <div className="col-8 jobreq-para">
-                      {a.jobreqstatus === "accepted" ? (
+                      {/* {a.jobreqstatus === "accepted" ? ( */}
                         <p>
                           <span className="jobstatus-text">Job Title:</span> {a?.jobname}
                           <br />
@@ -53,11 +53,11 @@ function Viewjobstatus() {
                           <br />
                           <span className="jobstatus-text">Phone:</span> {a?.workerid?.contact}
                         </p>
-                      ) : (
+                      {/* ) : ( */}
                         <p>                        <span className="jobstatus-text">Job Title:</span>   {a?.jobname}<br/>
 
                           <p style={{color:"red"}}>The request will be accepted shortly.</p>  </p>
-                      )}
+                      {/* )} */}
                     </div>
                   </div>
 {/* 

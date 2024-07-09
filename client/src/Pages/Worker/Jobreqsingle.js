@@ -10,7 +10,7 @@ function Jobreqsingle({ close, jobId,refreshJobList }) {
   const [data, setData] = useState({});
   const [worker, setWorker] = useState({
     workerid: workerid,
-    workdate:""
+    workDate:""
   });
 
   const fetchEmployerRequests = () => {
@@ -148,8 +148,8 @@ function Jobreqsingle({ close, jobId,refreshJobList }) {
               <Col className="user-info-value" md={7}>
                 <input type="date" 
                 min={new Date().toISOString().split("T")[0]}
-                name="workdate"
-                value={worker.workdate}
+                name="workDate"
+                value={worker.workDate}
                 onChange={changefn}
                 required
                 />
