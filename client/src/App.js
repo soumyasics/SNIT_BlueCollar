@@ -35,6 +35,8 @@ import Cos_Terms from './Pages/Common/Home/WhatWeDo/Cos_Terms'
 import AboutUs from './Pages/Common/AboutUs/AboutUs';
 import PostJob from './Pages/User/PostJob';
 import PostJobList from './Pages/User/CustPostJob/PostJobList'
+import RecentJobOpen from './Pages/Common/Home/RecentJobOpen/RecentJobOpen';
+import WorkerNav2 from './Pages/Common/Navbar/Worker/WorkerNav2';
 
 function App() {
   return (
@@ -67,7 +69,7 @@ function App() {
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<BestCandidate/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<RecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
 
 
