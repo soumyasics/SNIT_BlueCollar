@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Dropdown, Modal, NavDropdown } from 'react-bootstrap';
 import "../Customer/Customerhomenav.css";
 import { Link } from 'react-router-dom';
@@ -6,8 +6,14 @@ import { FaBriefcase } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import ReactSearchBox from "react-search-box";
 import searchicon from '../../../../Assets/searchicon.png'
+import AddComplaints from '../../Complaints/AddComplaints';
+import ViewWorkStatus from '../../../User/WorkStatus/ViewWorkStatus';
 
 function WorkerNav2() {
+    const [showcomplaint, setShowComplaint] = useState(false);
+    const handleCloseComplaint = () => setShowComplaint(false);
+    const handleShowComplaint = () => setShowComplaint(true);
+
   return (
     <>
         <div className='container-fluid mx-0 p-0 mt-1'>
@@ -51,9 +57,7 @@ function WorkerNav2() {
                                 <Dropdown.Menu>
                                     <Dropdown.Item as={Link} to="">Add Reviews</Dropdown.Item>
                                 </Dropdown.Menu>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="">Edit Reviews</Dropdown.Item>
-                                </Dropdown.Menu>
+                                
                             </Dropdown>
                         </li>
                         <li className="nav-item m-1 me-5 pe-2 ">
@@ -62,10 +66,7 @@ function WorkerNav2() {
                                     Complaints
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="">Add Complaint</Dropdown.Item>
-                                </Dropdown.Menu>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="">Edit Complaint</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to=""onClick={handleShowComplaint}>Add Complaint</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
@@ -75,6 +76,11 @@ function WorkerNav2() {
             </nav>
             
         </div>
+        <Modal show={showcomplaint} onHide={handleCloseComplaint} centered>
+                <div className=''>
+                    <AddComplaints close={handleCloseComplaint} />
+                </div>
+        </Modal>
     </>
   )
 }

@@ -37,6 +37,7 @@ import PostJob from './Pages/User/PostJob';
 import PostJobList from './Pages/User/CustPostJob/PostJobList'
 import RecentJobOpen from './Pages/Common/Home/RecentJobOpen/RecentJobOpen';
 import WorkerNav2 from './Pages/Common/Navbar/Worker/WorkerNav2';
+import ViewWorkStatus from './Pages/User/WorkStatus/ViewWorkStatus';
 
 function App() {
   return (
@@ -57,6 +58,9 @@ function App() {
         <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
         <Route path='/user-viewjobstatus' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
         <Route path='/user-postjob' element={<PostJobList />} />
+        <Route path='/user-view-workstatus' element={<ViewWorkStatus />} />
+
+
 
 
 
