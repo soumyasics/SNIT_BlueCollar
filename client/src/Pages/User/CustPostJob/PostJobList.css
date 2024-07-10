@@ -1,4 +1,4 @@
-.card {
+.postjoblist-card {
     width: 420px;
     height: auto;
     background: white;
@@ -8,7 +8,7 @@
 
   }
   
-  .card-image {
+  .postjoblist-card-image {
     background-color: rgb(236, 236, 236);
     width: 130px;
     height: 130px;
@@ -21,11 +21,11 @@
     transform: scale(0.98);
   }
 
-  .clienttest_img{
+  .postjoblist-img{
     width:130px
   }
   
-  .name {
+  .postjoblist-name {
     text-transform: uppercase;
     font-size: 1.5em;
     font-weight: 600;
@@ -35,27 +35,25 @@
 
   }
   
-  .category:hover {
-    cursor: pointer;
-  }
+  
 
-  .content{
+  .postjoblist-content{
     margin-bottom: -30px;
   }
   
-  .heading {
+  .postjoblist-heading {
     font-weight: 600;
     color: rgb(88, 87, 87);
     text-align: justify;
   }
   
   
-  .requestbtndiv{
+  .postjoblist-requestbtndiv{
     text-align: center;
     padding-top: 120px;
 
   }
-  .requestbtn{
+  .postjoblist-requestbtn{
     background: #00B0F0;
     color: #fff;
     width: 130px;
@@ -64,7 +62,7 @@
     border: none;
   }
 
-  .place{
+  .postjoblist-place{
     margin-left: 30px;
   }
   

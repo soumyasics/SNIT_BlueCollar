@@ -7,15 +7,18 @@
   
   }
 
-  .card {
+  .clienttest-card {
     width: 250px;
     min-height: 300px;
     background: white;
     padding: .4em;
     border-radius: 6px;
+    box-shadow: 0px 4px 6.9px 0px #00000040;
+
   }
+
   
-  .card-image {
+  .clienttest-card-image {
     background-color: rgb(236, 236, 236);
     width: 100px;
     height: 100px;
@@ -23,7 +26,7 @@
     margin-top: -60px;
   }
   
-  .card-image:hover {
+  .clienttest-card-image:hover {
     transform: scale(0.98);
   }
 
@@ -31,7 +34,7 @@
     width:100px
   }
   
-  .name {
+  .clienttest-name {
     text-transform: uppercase;
     font-size: 0.8em;
     font-weight: 600;
@@ -41,22 +44,18 @@
 
   }
   
-  .category:hover {
-    cursor: pointer;
-  }
   
-  .heading {
+  
+  .clienttest-heading {
     font-weight: 600;
     color: rgb(88, 87, 87);
     padding: 7px;
     text-align: center;
   }
   
-  .heading:hover {
-    cursor: pointer;
-  }
   
-  .author {
+  
+  .clienttest-author {
     color: gray;
     font-weight: 400;
     font-size: 11px;
@@ -65,9 +64,7 @@
   
   
   
-  .name:hover {
-    cursor: pointer;
-  }
+  
 
 /* testimonials carousel */
 

@@ -15,137 +15,141 @@ function PostJobList() {
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
               <div class="col">
-                <div class="card mt-5">
-                  <div class="card-image mx-3">
-                    <img className='clienttest_img' src={Maskgroup}/>
+                <div class="postjoblist-card mt-5 px-3">
+                  <div class="postjoblist-card-image mx-3">
+                    <img className='postjoblist-img' src={Maskgroup}/>
                   </div>
-                  <div class="name mb-5"> Simoe </div>
-                    <div class="row content mx-4">
+                  <div class="postjoblist-name mb-5"> Simoe1 </div>
+                    <div class="row postjoblist-content mx-4">
                       <div className=' col'><h4>Plumber</h4></div>
-                      <div className='col place'><p className='mx-4 '>Kochi | India</p></div>
+                      <div className='col postjoblist-place'><p className='mx-4 '>Kochi | India</p></div>
                     </div>
                     <div className='row'>
                       <div className='col'>
-                        <p className='mt-4 heading'>"This is an excellent app to find
+                        <p className='mt-4 postjoblist-heading'>"This is an excellent app to find
                                     jobs. Recommended for those 
                                     looking for blue collar jobs."</p>
                       </div>
-                      <div class="col requestbtndiv"> 
-                        <button className='requestbtn'>Request Now</button>
+                      <div class="col postjoblist-requestbtndiv"> 
+                        <button className='postjoblist-requestbtn'>Request Now</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col">
-                <div class="card mt-5">
-                  <div class="card-image mx-3">
-                    <img className='clienttest_img' src={Maskgroup}/>
+                <div class="postjoblist-card mt-5 px-3">
+                  <div class="postjoblist-card-image mx-3">
+                    <img className='postjoblist-img' src={Maskgroup}/>
                   </div>
-                  <div class="name mb-5"> Simoe </div>
-                    <div class="row content mx-4">
+                  <div class="postjoblist-name mb-5"> Simoe1 </div>
+                    <div class="row postjoblist-content mx-4">
                       <div className=' col'><h4>Plumber</h4></div>
-                      <div className='col place'><p className='mx-4 '>Kochi | India</p></div>
+                      <div className='col postjoblist-place'><p className='mx-4 '>Kochi | India</p></div>
                     </div>
                     <div className='row'>
                       <div className='col'>
-                        <p className='mt-4 heading'>"This is an excellent app to find
+                        <p className='mt-4 postjoblist-heading'>"This is an excellent app to find
                                     jobs. Recommended for those 
                                     looking for blue collar jobs."</p>
                       </div>
-                      <div class="col requestbtndiv"> 
-                        <button className='requestbtn'>Request Now</button>
+                      <div class="col postjoblist-requestbtndiv"> 
+                        <button className='postjoblist-requestbtn'>Request Now</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col">
-                <div class="card mt-5">
-                  <div class="card-image mx-3">
-                    <img className='clienttest_img' src={Maskgroup}/>
+                <div class="postjoblist-card mt-5 px-3">
+                  <div class="postjoblist-card-image mx-3">
+                    <img className='postjoblist-img' src={Maskgroup}/>
                   </div>
-                  <div class="name mb-5"> Simoe </div>
-                    <div class="row content mx-4">
+                  <div class="postjoblist-name mb-5"> Simoe1 </div>
+                    <div class="row postjoblist-content mx-4">
                       <div className=' col'><h4>Plumber</h4></div>
-                      <div className='col place'><p className='mx-4 '>Kochi | India</p></div>
+                      <div className='col postjoblist-place'><p className='mx-4 '>Kochi | India</p></div>
                     </div>
                     <div className='row'>
                       <div className='col'>
-                        <p className='mt-4 heading'>"This is an excellent app to find
+                        <p className='mt-4 postjoblist-heading'>"This is an excellent app to find
                                     jobs. Recommended for those 
                                     looking for blue collar jobs."</p>
                       </div>
-                      <div class="col requestbtndiv"> 
-                        <button className='requestbtn'>Request Now</button>
+                      <div class="col postjoblist-requestbtndiv"> 
+                        <button className='postjoblist-requestbtn'>Request Now</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col">
-                <div class="card mt-5">
-                  <div class="card-image mx-3">
-                    <img className='clienttest_img' src={Maskgroup}/>
+                <div class="postjoblist-card mt-5 px-3">
+                  <div class="postjoblist-card-image mx-3">
+                    <img className='postjoblist-img' src={Maskgroup}/>
                   </div>
-                  <div class="name mb-5"> Simoe </div>
-                    <div class="row content mx-4">
+                  <div class="postjoblist-name mb-5"> Simoe1 </div>
+                    <div class="row postjoblist-content mx-4">
                       <div className=' col'><h4>Plumber</h4></div>
-                      <div className='col place'><p className='mx-4 '>Kochi | India</p></div>
+                      <div className='col postjoblist-place'><p className='mx-4 '>Kochi | India</p></div>
                     </div>
                     <div className='row'>
                       <div className='col'>
-                        <p className='mt-4 heading'>"This is an excellent app to find
+                        <p className='mt-4 postjoblist-heading'>"This is an excellent app to find
                                     jobs. Recommended for those 
                                     looking for blue collar jobs."</p>
                       </div>
-                      <div class="col requestbtndiv"> 
-                        <button className='requestbtn'>Request Now</button>
+                      <div class="col postjoblist-requestbtndiv"> 
+                        <button className='postjoblist-requestbtn'>Request Now</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col">
-                <div class="card mt-5">
-                  <div class="card-image mx-3">
-                    <img className='clienttest_img' src={Maskgroup}/>
+                <div class="postjoblist-card mt-5 px-3">
+                  <div class="postjoblist-card-image mx-3">
+                    <img className='postjoblist-img' src={Maskgroup}/>
                   </div>
-                  <div class="name mb-5"> Simoe </div>
-                    <div class="row content mx-4">
+                  <div class="postjoblist-name mb-5"> Simoe1 </div>
+                    <div class="row postjoblist-content mx-4">
                       <div className=' col'><h4>Plumber</h4></div>
-                      <div className='col place'><p className='mx-4 '>Kochi | India</p></div>
+                      <div className='col postjoblist-place'><p className='mx-4 '>Kochi | India</p></div>
                     </div>
                     <div className='row'>
                       <div className='col'>
-                        <p className='mt-4 heading'>"This is an excellent app to find
+                        <p className='mt-4 postjoblist-heading'>"This is an excellent app to find
                                     jobs. Recommended for those 
                                     looking for blue collar jobs."</p>
                       </div>
-                      <div class="col requestbtndiv"> 
-                        <button className='requestbtn'>Request Now</button>
+                      <div class="col postjoblist-requestbtndiv"> 
+                        <button className='postjoblist-requestbtn'>Request Now</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col">
-                <div class="card mt-5">
-                  <div class="card-image mx-3">
-                    <img className='clienttest_img' src={Maskgroup}/>
+                <div class="postjoblist-card mt-5 px-3">
+                  <div class="postjoblist-card-image mx-3">
+                    <img className='postjoblist-img' src={Maskgroup}/>
                   </div>
-                  <div class="name mb-5"> Simoe </div>
-                    <div class="row content mx-4">
+                  <div class="postjoblist-name mb-5"> Simoe1 </div>
+                    <div class="row postjoblist-content mx-4">
                       <div className=' col'><h4>Plumber</h4></div>
-                      <div className='col place'><p className='mx-4 '>Kochi | India</p></div>
+                      <div className='col postjoblist-place'><p className='mx-4 '>Kochi | India</p></div>
                     </div>
                     <div className='row'>
                       <div className='col'>
-                        <p className='mt-4 heading'>"This is an excellent app to find
+                        <p className='mt-4 postjoblist-heading'>"This is an excellent app to find
                                     jobs. Recommended for those 
                                     looking for blue collar jobs."</p>
                       </div>
-                      <div class="col requestbtndiv"> 
-                        <button className='requestbtn'>Request Now</button>
+                      <div class="col postjoblist-requestbtndiv"> 
+                        <button className='postjoblist-requestbtn'>Request Now</button>
                       </div>
                     </div>
                   </div>
                 </div>
+                
+                
+                
+               
                 
               </div>
         </section>

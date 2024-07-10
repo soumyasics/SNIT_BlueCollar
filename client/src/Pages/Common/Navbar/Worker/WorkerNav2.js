@@ -8,11 +8,18 @@ import ReactSearchBox from "react-search-box";
 import searchicon from '../../../../Assets/searchicon.png'
 import AddComplaints from '../../Complaints/AddComplaints';
 import ViewWorkStatus from '../../../User/WorkStatus/ViewWorkStatus';
+import EditWorkStatus from '../../../User/WorkStatus/EditWorkStatus';
 
 function WorkerNav2() {
     const [showcomplaint, setShowComplaint] = useState(false);
     const handleCloseComplaint = () => setShowComplaint(false);
     const handleShowComplaint = () => setShowComplaint(true);
+
+    const [showjobstatus, setShowWorkStatus] = useState(false);
+    const handleCloseWorkStatus = () => setShowWorkStatus(false);
+    const handleShowWorkStatus = () => setShowWorkStatus(true);
+
+    
 
   return (
     <>
@@ -44,7 +51,7 @@ function WorkerNav2() {
                             </Dropdown>
                         </li>
                         <li className="nav-item m-1 me-5 pe-3 ">
-                            <Link className="nav-link text-light-custom" to="#">Job History</Link>
+                            <Link className="nav-link text-light-custom" to="#" onClick={handleShowWorkStatus}>Job History</Link>
                         </li>
                         <li className="nav-item m-1 me-5 pe-3 ">
                             <Link className="nav-link text-light-custom" to="#">Payments</Link>
@@ -76,9 +83,14 @@ function WorkerNav2() {
             </nav>
             
         </div>
-        <Modal show={showcomplaint} onHide={handleCloseComplaint} centered>
-                <div className=''>
+        <Modal show={showcomplaint} onHide={handleCloseComplaint} >
+                <div >
                     <AddComplaints close={handleCloseComplaint} />
+                </div>
+        </Modal>
+        <Modal show={showjobstatus} onHide={handleCloseWorkStatus} >
+                <div >
+                    <ViewWorkStatus close={handleCloseWorkStatus} />
                 </div>
         </Modal>
     </>
