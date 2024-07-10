@@ -40,7 +40,12 @@ const schema=mongoose.Schema({
         workDate: {
           type: String,
           required: true,
+        },
+        userapprovestatus: {
+            type: String,
+            default:"pending"
         }
+  
       }],
     });
 module.exports = mongoose.model('jobrequests', schema);
