@@ -51,7 +51,7 @@ const Home = () => (
                 <Card.Body className="d-flex flex-column align-items-center">
                   <div className="fs-1 mb-3">{category.icon}</div>
                   <Button variant="light" className='px-5'>{category.name}</Button>
-                </Card.Body>
+                </Card.Body>    
               </Card>
             </Col>
           ))}
