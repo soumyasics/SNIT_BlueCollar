@@ -5,7 +5,7 @@ const customer=require("./models/customer/customerController")
 const Worker=require("./models/Worker/workerController")
 const employer=require("./models/Employer/employerController")
 const jobreq=require("./models/customer/PostJob/PostjobController")
-
+const emppostjob=require('./models/Employer/EmpPostJob/EmpPostJobController')
 // Customer
 
 router.post("/registercust",customer.upload,customer.registercust)
@@ -48,6 +48,14 @@ router.post("/deleteempById/:id",employer.deleteempById)
 router.post("/viewemployerreq",employer.viewemployerreq)
 router.post("/approveempbyid/:id",employer.approveempbyid)
 router.post("/rejectempbyid/:id",employer.rejectempbyid)
+
+//EmpPostJob
+router.post("/registerjob",emppostjob.registerjob)
+router.post("/viewEmpPostJobByEmpid/:id",emppostjob.viewEmpPostJobByEmpid)
+router.post("/viewEmpPostJobById/:id",emppostjob.viewEmpPostJobById)
+router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
+
+
 
 
 //Job Requests
