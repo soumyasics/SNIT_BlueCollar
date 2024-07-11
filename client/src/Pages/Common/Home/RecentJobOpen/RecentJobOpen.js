@@ -4,11 +4,18 @@ import img from "../../../../Assets/recent_job.png";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axiosInstance from '../../../Constants/Baseurl';
+import { useNavigate } from 'react-router-dom';
+
 function RecentJobOpen() {
+
+  const navigate=useNavigate();
+
     const [recentjobdata,setRecentJobData]=useState("");
 
+    const url = axiosInstance.defaults.url;
+
     useEffect(()=>{
-        axiosInstance.post('/viewjobreqs')
+        axiosInstance.post('/viewAllEmpPostJob')
         .then((res)=>{
             console.log(res,"res");
             if(res.status === 200){
@@ -16,9 +23,14 @@ function RecentJobOpen() {
             }
           })
           .catch((err)=>{
-            alert.error("Failed to fetch user details")
+            alert("Failed to fetch user details")
         });
     },[])
+
+    const navigateToViewRecentJobs=()=>{
+      navigate('/worker-viewrecentjob')
+    }
+
   return (
     <>
        <div className="container">
@@ -29,32 +41,32 @@ function RecentJobOpen() {
         
         <div class="row row-cols-1 mx-3 row-cols-md-2 g-4 p-3">
         {
-        (recentjobdata.length)>0?((recentjobdata).map((data) => {
+        (recentjobdata.length)>0?((recentjobdata).slice(0,4).map((data) => {
           return(
             <div className="col mb-5 ">
               <div className="row recentjob-userbox ">
                 <div className="col ">
                     <div >
-                        <img src={img} className='recentjob-userboximage ' alt="image"/>
+                        <img src={`${url}/${data.empId.image?.filename}`}  className='recentjob-userboximage ' alt="image"/>
                     </div>
                     <div className="bestcandidate-userboxhead6 mt-4">
-                        <span><h4>{data.jobname}</h4></span>
+                        <span><h4>{data.jobName}</h4></span>
                     </div>
                     <div className="bestcandidate-userboxhead6">
-                        <p>INR 15000 / Month</p>
+                        <p>INR {data.jobSalary} {data.jobSalaryType}</p>
                     </div>
                 </div>
                 
                 <div className="col">
                     <div className="col-8 bestcandidate-userboxh5 mt-2">
-                        <h5><span class="badge bg-secondary">Full Time</span></h5>
+                        <h5><span class="badge bg-secondary">{data.jobType}</span></h5>
                     </div>
                     <div>
                         <p>
-                            {data.custid.city},{data.custid.housename}
+                           Posted On  {new Date(data?.date).toLocaleDateString()}
                         </p>
                         <p>
-                        {data.custid.email}
+                        {data.jobDetails}
                         </p>
                     </div>
                     <div className="col-4 recentjob-userbutton">
@@ -70,11 +82,11 @@ function RecentJobOpen() {
             
         </div>
                
-        <div className="bestcandidate-userboxbutton mt-4">
-            <button type="submit">ViewMore</button>
+        <div className="bestcandidate-userboxbutton mt-4 mb-5">
+            <button type="submit" onClick={navigateToViewRecentJobs}>ViewMore</button>
         </div>
       </div>
-      <div className="">
+      {/* <div className="">
         <div className="bestcandidate-userbottommain">
             <p>Want better recommendations ? Turn on your location & We will show Ads nearby.</p>
             <div className="bestcandidate-userbottonbtm">
@@ -82,7 +94,7 @@ function RecentJobOpen() {
         </div>
 
         </div>
-      </div>
+      </div> */}
     </div> 
     </>
   )
