@@ -34,6 +34,10 @@ function Viewallcust() {
       fetchEmployerRequests();
     }, []);
 
+    const navigateToViewCust=(id)=>{
+        navigate(`/admin-viewcust/${id}`)
+    }
+
     const rejectfn = (id) => {
       axiosInstance.post(`removebyadminbycustid/${id}`)
           .then((res) => {
@@ -79,9 +83,9 @@ function Viewallcust() {
                   </div>
 
                   <div className="viewmore-dashbox">
-                    {/* <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
-                      Accept
-                    </button> */}
+                    <button type="submit" className="viewuseradmin-view" onClick={() => navigateToViewCust(a?._id)}>
+                      View
+                    </button>
                     <button type="submit" className="viewmoreadmin-reject" 
                     onClick={() => rejectfn(a?._id)}
                     >

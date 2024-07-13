@@ -309,7 +309,7 @@ const updatecustprofile=(req,res)=>{
       .exec()
       .then((data) => {
         if (!data) {
-          return res.status(404).json({ error: "Shop not found" });
+          return res.status(404).json({ error: "Customer not found" });
         }
         res.json({
           status: 200,
@@ -317,7 +317,7 @@ const updatecustprofile=(req,res)=>{
         });
       })
       .catch((err) => {
-        console.error("Error finding shop by ID:", err);
+        console.error("Error finding Customer by ID:", err);
         res.status(500).json({ error: "Internal server error" });
       });
   };

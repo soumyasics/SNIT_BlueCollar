@@ -41,6 +41,11 @@ import ViewWorkStatus from './Pages/User/WorkStatus/ViewWorkStatus';
 import EditWorkStatus from './Pages/User/WorkStatus/EditWorkStatus';
 import EmpViewJobList from './Pages/Employer/EmpPostJob/EmpViewJobList';
 import ViewRecentJobs from './Pages/Worker/ViewRecentJobs/ViewRecentJobs';
+import ViewSingleCust from './Pages/Admin/Users/ViewSingleUsers/ViewSingleCust';
+import ViewSingleEmp from './Pages/Admin/Users/ViewSingleUsers/ViewSingleEmp';
+import ViewSingleWork from './Pages/Admin/Users/ViewSingleUsers/ViewSingleWork';
+import CustomerNav2 from './Pages/Common/Navbar/Customer/CustomerNav2';
+import WorkerEditWorkStatus from './Pages/Worker/WorkStatus/WorkerEditWorkStatus';
 
 function App() {
   return (
@@ -58,7 +63,7 @@ function App() {
 
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
-        <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
+        <Route path='/customer-home' element={[<CustomerHomenav/>,<CustomerNav2/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
         <Route path='/user-viewjobstatus' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
         <Route path='/user-postjob' element={<PostJobList />} />
         <Route path='/user-view-workstatus' element={<ViewWorkStatus />} />
@@ -84,6 +89,7 @@ function App() {
         <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
         <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
+        <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} />
 
 
 
@@ -95,6 +101,11 @@ function App() {
         <Route path='/admin-viewallcust' element={[<Adminloginnav/>,<Adminmain data="admin-viewallcust"/>]}/>
         <Route path='/admin-viewallemp' element={[<Adminloginnav/>,<Adminmain data="admin-viewallemp"/>]}/>
         <Route path='/admin-viewallworker' element={[<Adminloginnav/>,<Adminmain data="admin-viewallworker"/>]}/>
+        <Route path='/admin-viewcust/:custid' element={[<Adminloginnav/>,<ViewSingleCust/>]}/>
+        <Route path='/admin-viewemp/:empid' element={[<Adminloginnav/>,<ViewSingleEmp/>]}/>
+        <Route path='/admin-viewworker/:workerid' element={[<Adminloginnav/>,<ViewSingleWork/>]}/>
+
+
 
       </Routes>
     </BrowserRouter>

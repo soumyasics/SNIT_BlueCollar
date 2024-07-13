@@ -46,6 +46,10 @@ function Viewallemp() {
           });
   };
 
+  const navigateToViewEmp=(id)=>{
+    navigate(`/admin-viewemp/${id}`)
+}
+
   return (
     <div className="col-9">
     <div className="workerreq-mainbox">
@@ -79,9 +83,9 @@ function Viewallemp() {
                   </div>
 
                   <div className="viewmore-dashbox">
-                    {/* <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
-                      Accept
-                    </button> */}
+                    <button type="submit" className="viewmoreadmin-accept" onClick={() => navigateToViewEmp(a?._id)}>
+                      View
+                    </button>
                     <button type="submit" className="viewmoreadmin-reject" onClick={() => rejectfn(a?._id)}>
                       Remove
                     </button>

@@ -1,17 +1,21 @@
 import React,{useState} from 'react'
-import { Dropdown, Modal, NavDropdown } from 'react-bootstrap';
+import { Dropdown, Modal, NavDropdown,Button } from 'react-bootstrap';
 import "../Customer/Customerhomenav.css";
 import { Link } from 'react-router-dom';
-import { FaBriefcase } from 'react-icons/fa'; 
-import { useNavigate } from "react-router-dom";
-import ReactSearchBox from "react-search-box";
-import searchicon from '../../../../Assets/searchicon.png'
 import AddComplaints from '../../Complaints/AddComplaints';
 import ViewWorkStatus from '../../../User/WorkStatus/ViewWorkStatus';
-import EditWorkStatus from '../../../User/WorkStatus/EditWorkStatus';
-import WorkerViewWorkStatus from '../../../Worker/WorkStatus/WorkerViewWorkStatus';
+import PostJob from '../../../User/PostJob';
 
-function WorkerNav2() {
+function CustomerNav2() {
+    const [show, setShow] = useState(false);
+    const [modalContent, setModalContent] = useState(null);
+
+    const handleClose = () => setShow(false);
+    const handleShow = (content) => {
+        setModalContent(content);
+        setShow(true);
+    };
+
     const [showcomplaint, setShowComplaint] = useState(false);
     const handleCloseComplaint = () => setShowComplaint(false);
     const handleShowComplaint = () => setShowComplaint(true);
@@ -19,8 +23,6 @@ function WorkerNav2() {
     const [showjobstatus, setShowWorkStatus] = useState(false);
     const handleCloseWorkStatus = () => setShowWorkStatus(false);
     const handleShowWorkStatus = () => setShowWorkStatus(true);
-
-    
 
   return (
     <>
@@ -39,9 +41,13 @@ function WorkerNav2() {
 </svg>            </button>
                 
                 <div className="collapse navbar-collapse" id="navbarNav1">
-                    <ul className="navbar-nav ms-auto me-5 pe-5 navbar-links">
-
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                    <ul className="navbar-nav ms-auto me-3 pe-5 navbar-links">
+                        <li className="nav-item me-3 pe-3 m-1">
+                            <Link className="nav-link text-light-custom" onClick={() => handleShow('PostJob')}>
+                                Post Jobs
+                            </Link>
+                        </li>
+                        <li className="nav-item m-1 me-3 pe-3 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Requests
@@ -51,13 +57,15 @@ function WorkerNav2() {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
-                            <Link className="nav-link text-light-custom" to="#" onClick={handleShowWorkStatus}>Job History</Link>
+                        <li className="nav-item m-1 me-3 pe-3 ">
+                            <Link className="nav-link text-light-custom" to="#" 
+                            onClick={handleShowWorkStatus}
+                            >Job History</Link>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                        <li className="nav-item m-1 me-3 pe-3 ">
                             <Link className="nav-link text-light-custom" to="#">Payments</Link>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                        <li className="nav-item m-1 me-3 pe-3 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Reviews
@@ -68,7 +76,7 @@ function WorkerNav2() {
                                 
                             </Dropdown>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-2 ">
+                        <li className="nav-item m-1 me-3 pe-2 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Complaints
@@ -91,11 +99,18 @@ function WorkerNav2() {
         </Modal>
         <Modal show={showjobstatus} onHide={handleCloseWorkStatus} >
                 <div >
-                    <WorkerViewWorkStatus close={handleCloseWorkStatus} />
+                    <ViewWorkStatus close={handleCloseWorkStatus} />
+                </div>
+        </Modal>
+
+        <Modal show={show} onHide={handleClose} centered>
+                <div className=''>
+                    {modalContent === 'PostJob' && <PostJob close={handleClose} />}
+                    {/* {modalContent === 'UserViewprofile' && <UserViewprofile close={handleClose} />} */}
                 </div>
         </Modal>
     </>
   )
 }
 
-export default WorkerNav2
+export default CustomerNav2
