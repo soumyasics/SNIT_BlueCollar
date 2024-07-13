@@ -39,5 +39,9 @@ const customerSchema = mongoose.Schema({
   image: {
     type: Object,
   },
+  isactive:{
+    type:Boolean,
+    default:true
+  }
 });
 module.exports = mongoose.model("customers", customerSchema);

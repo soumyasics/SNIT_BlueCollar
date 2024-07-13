@@ -14,9 +14,12 @@ router.post("/verifytoken",customer.verifyToken)
 router.post("/custresetpswd/:id",customer.custresetpswd)
 router.post("/updatecustprofile/:id",customer.upload,customer.updatecustprofile)
 router.post("/viewallcust",customer.viewallcust)
+router.post("/viewallactivecust",customer.viewallactivecust)
 router.post("/viewcustbyid/:id",customer.viewcustbyid)
 router.post("/deletecust/:id",customer.deletecustById)
 router.post("/forgotPWDsentMail",customer.forgotPWDsentMail)
+router.post("/removebyadminbycustid/:id",customer.removebyadminbycustid)
+
 
 //Worker
 
@@ -31,6 +34,8 @@ router.post("/deleteworkerById/:id",Worker.deleteworkerById)
 router.post("/viewworkerreq",Worker.viewworkerreq)
 router.post("/approveworkerid/:id",Worker.approveworkerid)
 router.post("/rejectworkerbyid/:id",Worker.rejectworkerbyid)
+router.post("/removebyadminbyworkerid/:id",Worker.removebyadminbyworkerid)
+
 
 
 
@@ -48,6 +53,8 @@ router.post("/deleteempById/:id",employer.deleteempById)
 router.post("/viewemployerreq",employer.viewemployerreq)
 router.post("/approveempbyid/:id",employer.approveempbyid)
 router.post("/rejectempbyid/:id",employer.rejectempbyid)
+router.post("/removebyadminbyempid/:id",employer.removebyadminbyempid)
+
 
 //EmpPostJob
 router.post("/registerjob",emppostjob.registerjob)
