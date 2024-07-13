@@ -130,7 +130,7 @@ const testMail = (data) => {
     try {
       const { email, password } = req.body;
       const user = await custschema.findOne({ email: email });
-  
+      if(user.isactive==true){
       if (user) {
        if (user.password === password) {
           const token = jwt.sign(
@@ -149,6 +149,9 @@ const testMail = (data) => {
       } else {
         return res.json({status:404, message: "User does not exist" });
       }
+    }else{
+      return res.json({status:404, message: "User is not active. Please contact administrator." });
+    }
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -275,6 +278,29 @@ const updatecustprofile=(req,res)=>{
         })
     })
   })
+
+  //customer view in admin -- isActive == true
+  const viewallactivecust=((req,res)=>{
+    custschema.find({isactive:true})
+    .exec()
+    .then((data)=>{
+        if(data!==null){
+            res.json({
+                status:200,
+                data:data,
+                msg:"Data successfully get"
+            })
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+        res.json({
+            status: 500,
+            msg: err
+        })
+    })
+  })
+
   //view all cust completed
 
   const viewcustbyid = (req, res) => {
@@ -315,6 +341,27 @@ const updatecustprofile=(req,res)=>{
         })
   
       }
+
+      // False IsActive by Admin 
+
+    const removebyadminbycustid = async (req, res) => {
+      await custschema.findByIdAndUpdate({ _id: req.params.id }, { isactive: false }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
   
   
   module.exports={
@@ -325,5 +372,7 @@ const updatecustprofile=(req,res)=>{
             viewallcust,
             viewcustbyid,
             deletecustById,
-            forgotPWDsentMail
+            forgotPWDsentMail,
+            removebyadminbycustid,
+            viewallactivecust
   }

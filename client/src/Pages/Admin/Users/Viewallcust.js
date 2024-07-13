@@ -20,7 +20,7 @@ function Viewallcust() {
   
     const fetchEmployerRequests = () => {
       axiosInstance
-        .post("viewallcust")
+        .post("viewallactivecust")
         .then((result) => {
           console.log(result);
           setcust(result.data.data);
@@ -33,6 +33,18 @@ function Viewallcust() {
     useEffect(() => {
       fetchEmployerRequests();
     }, []);
+
+    const rejectfn = (id) => {
+      axiosInstance.post(`removebyadminbycustid/${id}`)
+          .then((res) => {
+              console.log('Employer approved:', res);
+              toast.success("Employer Removed")
+              fetchEmployerRequests(); 
+          })
+          .catch((err) => {
+              console.log('Error approving employer:', err);
+          });
+  };
   
   return (
     <div className="col-9">
@@ -66,14 +78,16 @@ function Viewallcust() {
                     </div>
                   </div>
 
-                  {/* <div className="viewmore-dashbox">
-                    <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
+                  <div className="viewmore-dashbox">
+                    {/* <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
                       Accept
+                    </button> */}
+                    <button type="submit" className="viewmoreadmin-reject" 
+                    onClick={() => rejectfn(a?._id)}
+                    >
+                      Remove
                     </button>
-                    <button type="submit" className="viewmoreadmin-reject" onClick={() => rejectfn(a?._id)}>
-                      Reject
-                    </button>
-                  </div> */}
+                  </div>
                 </div>
               );
             })
