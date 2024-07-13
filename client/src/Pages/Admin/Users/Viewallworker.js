@@ -47,6 +47,10 @@ function Viewallworker() {
           });
   };
 
+  const navigateToViewWork=(id)=>{
+    navigate(`/admin-viewworker/${id}`)
+}
+
   return (
     <div className="col-9">
     <div className="workerreq-mainbox">
@@ -81,9 +85,9 @@ function Viewallworker() {
                   </div>
 
                   <div className="viewmore-dashbox">
-                    {/* <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
-                      Accept
-                    </button> */}
+                    <button type="submit" className="viewmoreadmin-accept" onClick={() => navigateToViewWork(a?._id)}>
+                      View
+                    </button>
                     <button type="submit" className="viewmoreadmin1-reject" onClick={() => rejectfn(a?._id)}>
                       Remove
                     </button>
