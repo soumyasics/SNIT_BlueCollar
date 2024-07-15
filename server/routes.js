@@ -5,6 +5,7 @@ const customer=require("./models/customer/customerController")
 const Worker=require("./models/Worker/workerController")
 const employer=require("./models/Employer/employerController")
 const jobreq=require("./models/customer/PostJob/PostjobController")
+const workeracceptreq=require("./models/customer/Jobrequest/JobreqController")
 
 // Customer
 
@@ -54,8 +55,12 @@ router.post("/rejectempbyid/:id",employer.rejectempbyid)
 router.post("/registerjobreq",jobreq.registerjobreq)
 router.post("/viewjobreqs",jobreq.viewjobreqs)
 router.post("/viewjobreqsbyid/:id",jobreq.viewjobreqsbyid)
-router.post("/workeracceptjob/:id",jobreq.workeracceptjob)
+// router.post("/workeracceptjob/:id",jobreq.workeracceptjob)
 router.post("/viewjobreqsbyuserid/:id",jobreq.viewjobreqsbyuserid)
 
+//worker accept job requests
+router.post("/workeracceptjobs/:id",workeracceptreq.workertakejobreq)
+router.post("/viewReqsbyUserid/:id",workeracceptreq.viewReqsbyUserid)
+router.post("/viewReqsbyWorkerid/:id",workeracceptreq.viewReqsbyWorkerid)
 
 module.exports=router

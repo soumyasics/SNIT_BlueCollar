@@ -64,7 +64,7 @@ function WorkerNav() {
                             </Dropdown>
                         </li>
                         <li className="nav-item m-1">
-                            <Link className="nav-link text-light-custom" to="#">Job History</Link>
+                            <Link className="nav-link text-light-custom" to="/worker-jobstatus">Job History</Link>
                         </li>
                         <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="#">Payments</Link>

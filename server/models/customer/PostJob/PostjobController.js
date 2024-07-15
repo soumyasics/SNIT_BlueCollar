@@ -90,46 +90,52 @@ const viewjobreqsbyid=((req,res)=>{
 
 // })
 
-const workeracceptjob = async (req, res) => {
-  try {
-    const jobRequest = await jobreqschema.findById(req.params.id);
+// const workeracceptjob = async (req, res) => {
+//   try {
+//     const jobRequest = await jobreqschema.findById(req.params.id);
 
-    if (!jobRequest) {
-      return res.status(404).json({
-        status: 404,
-        msg: "Job request not found",
-      });
-    }
+//     if (!jobRequest) {
+//       return res.status(404).json({
+//         status: 404,
+//         msg: "Job request not found",
+//       });
+//     }
 
-    const existingWorker = jobRequest.workers.find(
-      (worker) => worker.workerId.toString() === req.body.workerId
-    );
+//     const existingWorker = jobRequest.workers.find(
+//       (worker) => worker.workerId.toString() === req.body.workerId
+//     );
 
-    if (!existingWorker) {
-      jobRequest.workers.push({
-        workerId: req.body.workerid,
-        workDate: req.body.workDate,
-      });
-      jobRequest.jobReqStatus = "workeraccepted"; 
-    }
+//     if (!existingWorker) {
+//       jobRequest.workers.push({
+//         workerId: req.body.workerid,
+//         workDate: req.body.workDate,
+//       });
+//       jobRequest.jobReqStatus = "workeraccepted"; 
+//     }
 
-    const updatedJobRequest = await jobRequest.save();
-    res.status(200).json({
-      status: 200,
-      msg: "Worker applied successfully",
-      data: updatedJobRequest,
-    });
-  } catch (err) {
-    res.status(500).json({
-      status: 500,
-      err: err.message,
-    });
-  }
-};
+//     const updatedJobRequest = await jobRequest.save();
+//     res.status(200).json({
+//       status: 200,
+//       msg: "Worker applied successfully",
+//       data: updatedJobRequest,
+//     });
+//   } catch (err) {
+//     res.status(500).json({
+//       status: 500,
+//       err: err.message,
+//     });
+//   }
+// };
+
+// const workeracceptjob=((req,res)=>{
+//     jobreqschema.save({workerId:req.body.workerid, workDate: req.body.workDate})
+
+
+// })
 
 const viewjobreqsbyuserid=((req,res)=>{
   jobreqschema.find({custid:req.params.id})
-  .populate("workers.workerId")
+  // .populate("workers.workerId")
   .exec()
   .then((data) => {
     res.json({
@@ -152,6 +158,5 @@ module.exports={
     registerjobreq,
     viewjobreqs,
     viewjobreqsbyid,
-    workeracceptjob,
     viewjobreqsbyuserid
 }

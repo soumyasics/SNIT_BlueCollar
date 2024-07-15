@@ -8,7 +8,7 @@ function Viewjobstatus() {
 
   useEffect(() => {
     axiosInstance
-      .post(`viewjobreqsbyuserid/${custid}`)
+      .post(`viewReqsbyUserid/${custid}`)
       .then((result) => {
         console.log(result);
         setData(result.data.data);
@@ -29,10 +29,23 @@ function Viewjobstatus() {
                 <div className="col-3 userview-job-boxinside" key={a._id}>
                   <div className="row">
                     <div className="col-5 userview-head">Job Name</div>
-                    <div className="col-7">: {a?.jobname}</div>
+                    <div className="col-7">: {a?.jobid?.jobname}</div>
                     <div className="col-5 userview-head">Job Details</div>
-                    <div className="col-7">: {a?.workdetails}</div>
-                    {a.workers && a.workers.length ? (
+                    <div className="col-7">: {a?.jobid?.workdetails}</div>
+                    <div className="col-5 userview-head">Worker Name</div>
+                    <div className="col-7">: {a?.workerId?.name}</div>
+                    <div className="col-5 userview-head">Location</div>
+                    <div className="col-7">: {a?.workerId?.location}</div>
+                    <div className="col-5 userview-head">Work Date</div>
+                    <div className="col-7">: {a?.workDate}</div>
+                    <div className="col-5 viewworkreqacpt">
+                              <button type="submit">Accept</button>
+                            </div>
+                            <div className="col-7 viewworkreqrjt">
+                              <button type="submit">Reject</button>
+                            </div>
+
+                    {/* {a.workers && a.workers.length ? (
                       a.workers.map((e, index) => (
                         <div key={index} className="userjob-view-worker">
                           <div className="row">
@@ -55,7 +68,7 @@ function Viewjobstatus() {
                       <div className="viewcounsellor-lottiereqq">
                         No workers Accepted Your Request
                       </div>
-                    )}
+                    )} */}
                   </div>
                 </div>
               ))
