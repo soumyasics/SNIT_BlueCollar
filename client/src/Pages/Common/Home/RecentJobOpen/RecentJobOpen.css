@@ -54,7 +54,7 @@ font-size: 12.763px;
 font-style: normal;
 font-weight: 400;
 display: -webkit-box;
--webkit-line-clamp: 3; /* Number of lines to show */
+-webkit-line-clamp: 3; 
 -webkit-box-orient: vertical;
 overflow: hidden;
 text-overflow: ellipsis;
@@ -102,7 +102,7 @@ font-family: "Noto Sans";
 font-size: 22px;
 font-style: normal;
 font-weight: 600;
-line-height: 200%; /* 44px */
+line-height: 200%; 
 }
 .bestcandidate-userboxbutton{
     display: flex;

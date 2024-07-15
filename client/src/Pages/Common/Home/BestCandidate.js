@@ -144,10 +144,10 @@ function BestCandidate() {
           </div>
         </div>
         <div className="bestcandidate-userboxbutton">
-            <button type="submit">ViewMore</button>
+            <button type="submit" className="mb-5">ViewMore</button>
         </div>
       </div>
-      <div className="">
+      {/* <div className="">
         <div className="bestcandidate-userbottommain">
             <p>Want better recommendations ? Turn on your location & We will show Ads nearby.</p>
             <div className="bestcandidate-userbottonbtm">
@@ -155,7 +155,7 @@ function BestCandidate() {
         </div>
 
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

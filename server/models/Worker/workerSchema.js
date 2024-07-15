@@ -50,6 +50,10 @@ const workerschema = mongoose.Schema({
   adminapprove:{
     type:Boolean,
     default:false
+},
+isactive:{
+  type:Boolean,
+  default:true
 }
 
 });

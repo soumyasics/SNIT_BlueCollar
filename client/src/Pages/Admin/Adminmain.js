@@ -20,6 +20,7 @@ function Adminmain({data}) {
         data==="admin-viewallcust"?(<Viewallcust/>):
         data==="admin-viewallemp"?(<Viewallemp/>):
         data==="admin-viewallworker"?(<Viewallworker/>):
+        
 
         <Adminlogin/>
     }

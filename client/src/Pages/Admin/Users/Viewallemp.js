@@ -34,6 +34,22 @@ function Viewallemp() {
       fetchEmployerRequests();
     }, []);
 
+    const rejectfn = (id) => {
+      axiosInstance.post(`removebyadminbyempid/${id}`)
+          .then((res) => {
+              console.log('Employer approved:', res);
+              toast.success("Employer Removed")
+              fetchEmployerRequests(); 
+          })
+          .catch((err) => {
+              console.log('Error approving employer:', err);
+          });
+  };
+
+  const navigateToViewEmp=(id)=>{
+    navigate(`/admin-viewemp/${id}`)
+}
+
   return (
     <div className="col-9">
     <div className="workerreq-mainbox">
@@ -66,14 +82,14 @@ function Viewallemp() {
                     </div>
                   </div>
 
-                  {/* <div className="viewmore-dashbox">
-                    <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
-                      Accept
+                  <div className="viewmore-dashbox">
+                    <button type="submit" className="viewmoreadmin-accept" onClick={() => navigateToViewEmp(a?._id)}>
+                      View
                     </button>
                     <button type="submit" className="viewmoreadmin-reject" onClick={() => rejectfn(a?._id)}>
-                      Reject
+                      Remove
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               );
             })
