@@ -4,13 +4,14 @@ import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import axiosInstance from "../Constants/Baseurl";
 import { toast } from "react-toastify";
 
-function Jobreqsingle({ close, jobId,refreshJobList }) {
+function Jobreqsingle({ close, jobId, refreshJobList }) {
   const url = axiosInstance.defaults.url;
   const workerid = localStorage.getItem("workerid");
   const [data, setData] = useState({});
   const [worker, setWorker] = useState({
     workerid: workerid,
-    workDate:""
+    workDate: "",
+    customerId: ""
   });
 
   const fetchEmployerRequests = () => {
@@ -19,6 +20,10 @@ function Jobreqsingle({ close, jobId,refreshJobList }) {
       .then((result) => {
         console.log(result);
         setData(result.data.data);
+        setWorker((prevWorker) => ({
+          ...prevWorker,
+          customerId: result.data.data.custid._id
+        }));
       })
       .catch((err) => {
         console.log(err);
@@ -29,32 +34,37 @@ function Jobreqsingle({ close, jobId,refreshJobList }) {
     fetchEmployerRequests();
   }, []);
 
-  const changefn=((a)=>{
+  const changefn = (a) => {
     setWorker({
-        ...worker,[a.target.name]:a.target.value
-    })
-  })
+      ...worker,
+      [a.target.name]: a.target.value
+    });
+  };
+
   console.log(worker);
+
   const submitfn = (e) => {
     e.preventDefault();
-    axiosInstance.post(`workeracceptjob/${jobId}`,worker)
-    .then((res)=>{
+    axiosInstance
+      .post(`workeracceptjobs/${jobId}`, worker)
+      .then((res) => {
         console.log(res);
-        if(res.data.status==200){
-            toast.success("Worke Approved Successfully")
-            refreshJobList();
+        if (res.data.status === 200) {
+          toast.success("Work Approved Successfully");
+          refreshJobList();
         }
-    })
-    .catch((err)=>{
+      })
+      .catch((err) => {
         console.log(err);
-        toast.warn("Something Went Wrong")
-    })
+        toast.warn("Something Went Wrong");
+      });
   };
+
   return (
     <div className="jobreq-singlemain">
       <div className="jobreq-singlebox">
         <Container className="user-info-container">
-          <div className=" ri-arrow-go-back-line" onClick={close} />
+          <div className="ri-arrow-go-back-line" onClick={close} />
           <div className="user-profileviewimage">
             {/* <img src={`${url}/${data.custid?.image?.filename}`} width="100px" height="100px" alt="User" /> */}
           </div>
@@ -146,12 +156,13 @@ function Jobreqsingle({ close, jobId,refreshJobList }) {
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                <input type="date" 
-                min={new Date().toISOString().split("T")[0]}
-                name="workDate"
-                value={worker.workDate}
-                onChange={changefn}
-                required
+                <input
+                  type="date"
+                  min={new Date().toISOString().split("T")[0]}
+                  name="workDate"
+                  value={worker.workDate}
+                  onChange={changefn}
+                  required
                 />
               </Col>
             </Row>
