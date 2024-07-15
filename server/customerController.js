@@ -229,9 +229,9 @@ const custresetpswd=((req,res)=>{
 const updatecustprofile=(req,res)=>{
     custschema.findByIdAndUpdate({_id:req.params.id},{
       name: req.body.name,
-      housename:req.body.houseName,
+      housename:req.body.housename,
       city:req.body.city,
-      phone: req.body.contactNumber,
+      phone: req.body.phone,
       pincode:req.body.pinCode,
       email: req.body.email,
       password: req.body.password,
