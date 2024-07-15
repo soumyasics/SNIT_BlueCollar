@@ -10,6 +10,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {  useNavigate } from "react-router-dom";
 import { Dropdown, Modal } from 'react-bootstrap';
 import Empviewprofile from '../../../Employer/Profile/Empviewprofile';
+import EmpPostJob from '../../../Employer/EmpPostJob/EmpPostJob';
 
 
 function Employernav() {
@@ -17,9 +18,13 @@ function Employernav() {
     const[cust,setCuts]=useState({})
     const url = axiosInstance.defaults.url;
     const [show, setShow] = useState(false);
+    const [modalContent, setModalContent] = useState(null);
     const [openRequests, setOpenRequests] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = (content) =>{
+      setModalContent(content)
+      setShow(true);
+    } 
     const navigate=useNavigate()
 
   
@@ -64,10 +69,13 @@ function Employernav() {
             <Link className="nav-link text-light-custom" to="#">About Us</Link>
           </li>
           <li className="nav-item m-1">
+            <Link className="nav-link text-light-custom" to="#" onClick={()=>handleShow('EmpPostJob')}>Post Jobs</Link>
+          </li>
+          <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">Gallery</Link>
           </li>
           <li className="nav-item m-1">
-            <Link className="nav-link text-light-custom" to="#">Jobs</Link>
+            <Link className="nav-link text-light-custom" to="/employer-view-postjob">Jobs</Link>
           </li>
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
@@ -84,7 +92,7 @@ function Employernav() {
                                     <Dropdown.Item onClick={handleLogout}>
                                         Logout
                                     </Dropdown.Item>
-                                    <Dropdown.Item onClick={handleShow}>Profile </Dropdown.Item>
+                                    <Dropdown.Item onClick={()=>handleShow('EmpViewProfile')}>Profile </Dropdown.Item>
 
                                 </Dropdown.Menu>
                             </Dropdown>
@@ -96,7 +104,9 @@ function Employernav() {
     </nav>
     <Modal show={show} onHide={handleClose} centered>
                 <div className=''>
-                    <Empviewprofile close={handleClose} />
+                    {modalContent === 'EmpViewProfile' &&<Empviewprofile close={handleClose} />}
+                    {modalContent === 'EmpPostJob' && <EmpPostJob close={handleClose} />}
+
                 </div>
             </Modal>
 

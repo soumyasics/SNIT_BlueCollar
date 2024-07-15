@@ -87,7 +87,7 @@ const storage = multer.diskStorage({
       const user = await workerschema.findOne({ email: email });
   
       if (user) {
-        if (user.adminapprove === false) {
+        if (user.adminapprove === false || user.isactive === false) {
           return res.json({
             status: 403,
             msg: "User is not active. Please contact administrator.",
@@ -177,7 +177,7 @@ const updateworkerprofile=(req,res)=>{
 }
 
 const viewallworker=((req,res)=>{
-  workerschema.find({adminapprove:true})
+  workerschema.find({adminapprove:true,isactive:true})
   .exec()
   .then((data)=>{
       if(data!==null){
@@ -311,6 +311,26 @@ const deleteworkerById =async (req, res) => {
     
     }
 
+    // False IsActive by Admin 
+
+    const removebyadminbyworkerid = async (req, res) => {
+      await workerschema.findByIdAndUpdate({ _id: req.params.id }, { isactive: false }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
 
 
 module.exports={
@@ -324,6 +344,7 @@ module.exports={
     viewworkerreq,
     approveworkerid,
     rejectworkerbyid,
-    viewworkerpendingreq
+    viewworkerpendingreq,
+    removebyadminbyworkerid
 
 }

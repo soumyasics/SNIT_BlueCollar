@@ -90,7 +90,7 @@ const storage = multer.diskStorage({
       const user = await employerschema.findOne({ email: email });
   
       if (user) {
-        if (user.adminapprove === false) {
+        if (user.adminapprove === false || user.isactive === false) {
           return res.json({
             status: 403,
             msg: "User is not active. Please contact administrator.",
@@ -174,8 +174,9 @@ const updateempprofile=(req,res)=>{
   })
 
 }
+
 const viewallemployer=((req,res)=>{
-  employerschema.find({adminapprove:true})
+  employerschema.find({adminapprove:true,isactive:true})
   .exec()
   .then((data)=>{
       if(data!==null){
@@ -194,6 +195,8 @@ const viewallemployer=((req,res)=>{
       })
   })
 })
+
+
 
 const viewemployerpendingreq=((req,res)=>{
   employerschema.find({adminapprove:false})
@@ -308,6 +311,27 @@ const deleteempById =async (req, res) => {
           })
     
     }
+
+    // False IsActive by Admin 
+
+    const removebyadminbyempid = async (req, res) => {
+      await employerschema.findByIdAndUpdate({ _id: req.params.id }, { isactive: false }).exec()
+          .then((result) => {
+              res.json({
+                  status: 200,
+                  data: result,
+                  msg: 'Accepted'
+              })
+          })
+          .catch(err => {
+              res.json({
+                  status: 500,
+                  msg: 'Error in API',
+                  err: err
+              })
+          })
+    
+    }
  
 
 
@@ -322,5 +346,6 @@ const deleteempById =async (req, res) => {
     viewemployerreq,
     approveempbyid,
     rejectempbyid,
-    viewemployerpendingreq
+    viewemployerpendingreq,
+    removebyadminbyempid
   }

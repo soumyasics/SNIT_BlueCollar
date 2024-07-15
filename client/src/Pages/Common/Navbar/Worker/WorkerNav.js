@@ -6,9 +6,11 @@ import { FaBriefcase } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../../../Constants/Baseurl';
 import Workerviewprofile from '../../../Worker/Profile/Workerviewprofile';
+import AddComplaints from '../../Complaints/AddComplaints';
 
 function WorkerNav() {
     const [show, setShow] = useState(false);
+
     const [openRequests, setOpenRequests] = useState(false);
     const navigate = useNavigate();
     const [worker,setWorker]=useState({})
@@ -18,7 +20,7 @@ function WorkerNav() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    
     useEffect(() => {
         if(workerid===null){
             navigate('/login');  
@@ -52,27 +54,18 @@ function WorkerNav() {
                         </li>
 
                         <li className="nav-item m-1">
-                            <Dropdown>
-                                <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
-                                    Requests
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="/worker-jobreq">Job Requests</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                            <Link className="nav-link text-light-custom" to="#">AboutUs</Link>
                         </li>
                         <li className="nav-item m-1">
-                            <Link className="nav-link text-light-custom" to="#">Job History</Link>
+                            <Link className="nav-link text-light-custom" to="#">Gallery</Link>
                         </li>
                         <li className="nav-item m-1">
-                            <Link className="nav-link text-light-custom" to="#">Payments</Link>
+                            <Link className="nav-link text-light-custom" to="#">Jobs</Link>
                         </li>
                         <li className="nav-item m-1">
-                            <Link className="nav-link text-light-custom" to="#">Reviews</Link>
+                            <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
                         </li>
-                        <li className="nav-item m-1">
-                            <Link className="nav-link text-light-custom" to="#">Complaints</Link>
-                        </li>
+                        
                         <li className='nav-item dropdown m-1'>
                             <Dropdown align="end">
                                 <Dropdown.Toggle variant="link" id="dropdown-basic">
@@ -98,6 +91,7 @@ function WorkerNav() {
                     <Workerviewprofile close={handleClose} />
                 </div>
             </Modal>
+            
         </div>
     );
 }

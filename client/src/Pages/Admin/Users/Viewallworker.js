@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../Requests/Workerreq.css";
+import './Viewusers.css'
 import img from "../../../Assets/rectangeimage.png";
 import axiosInstance from "../../Constants/Baseurl";
 import { toast } from "react-toastify";
@@ -34,6 +35,22 @@ function Viewallworker() {
       fetchEmployerRequests();
     }, []);
 
+    const rejectfn = (id) => {
+      axiosInstance.post(`removebyadminbyworkerid/${id}`)
+          .then((res) => {
+              console.log('Employer approved:', res);
+              toast.success("Wroker Removed")
+              fetchEmployerRequests();
+          })
+          .catch((err) => {
+              console.log('Error approving employer:', err);
+          });
+  };
+
+  const navigateToViewWork=(id)=>{
+    navigate(`/admin-viewworker/${id}`)
+}
+
   return (
     <div className="col-9">
     <div className="workerreq-mainbox">
@@ -67,14 +84,14 @@ function Viewallworker() {
                     </div>
                   </div>
 
-                  {/* <div className="viewmore-dashbox">
-                    <button type="submit" className="viewmoreadmin-accept" onClick={() => approvefn(a?._id)}>
-                      Accept
+                  <div className="viewmore-dashbox">
+                    <button type="submit" className="viewmoreadmin-accept" onClick={() => navigateToViewWork(a?._id)}>
+                      View
                     </button>
-                    <button type="submit" className="viewmoreadmin-reject" onClick={() => rejectfn(a?._id)}>
-                      Reject
+                    <button type="submit" className="viewmoreadmin1-reject" onClick={() => rejectfn(a?._id)}>
+                      Remove
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               );
             })

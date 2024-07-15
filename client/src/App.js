@@ -21,7 +21,6 @@ import Adminloginnav from './Pages/Common/Navbar/AdminNav/Adminloginnav';
 import Customerhome from './Pages/Common/Home/Customerhome/Customerhome';
 import BestCandidate from './Pages/Common/Home/BestCandidate';
 import CustomerHomenav from './Pages/Common/Navbar/Customer/CustomerHomenav';
-import PostJob from './Pages/User/PostJob';
 import WorkerNav from './Pages/Common/Navbar/Worker/WorkerNav';
 import Jobreq from './Pages/Worker/Jobreq';
 import UserViewprofile from './Pages/User/UserProfile/UserViewprofile';
@@ -29,6 +28,24 @@ import Workerviewprofile from './Pages/Worker/Profile/Workerviewprofile';
 import Empviewprofile from './Pages/Employer/Profile/Empviewprofile';
 import Jobreqsingle from './Pages/Worker/Jobreqsingle';
 import Viewjobstatus from './Pages/User/Jobs/Viewjobstatus';
+import WhatWeDo from './Pages/Common/Home/WhatWeDo/WhatWeDo';
+import ClientTestimonials from './Pages/Common/Home/ClientTestimonials/ClientTestimonials';
+import Emp_Terms from './Pages/Common/Home/WhatWeDo/Emp_Terms';
+import Cos_Terms from './Pages/Common/Home/WhatWeDo/Cos_Terms'
+import AboutUs from './Pages/Common/AboutUs/AboutUs';
+import PostJob from './Pages/User/PostJob';
+import PostJobList from './Pages/User/CustPostJob/PostJobList'
+import RecentJobOpen from './Pages/Common/Home/RecentJobOpen/RecentJobOpen';
+import WorkerNav2 from './Pages/Common/Navbar/Worker/WorkerNav2';
+import ViewWorkStatus from './Pages/User/WorkStatus/ViewWorkStatus';
+import EditWorkStatus from './Pages/User/WorkStatus/EditWorkStatus';
+import EmpViewJobList from './Pages/Employer/EmpPostJob/EmpViewJobList';
+import ViewRecentJobs from './Pages/Worker/ViewRecentJobs/ViewRecentJobs';
+import ViewSingleCust from './Pages/Admin/Users/ViewSingleUsers/ViewSingleCust';
+import ViewSingleEmp from './Pages/Admin/Users/ViewSingleUsers/ViewSingleEmp';
+import ViewSingleWork from './Pages/Admin/Users/ViewSingleUsers/ViewSingleWork';
+import CustomerNav2 from './Pages/Common/Navbar/Customer/CustomerNav2';
+import WorkerEditWorkStatus from './Pages/Worker/WorkStatus/WorkerEditWorkStatus';
 
 function App() {
   return (
@@ -38,26 +55,42 @@ function App() {
       <Routes>
         {/* Common Routes */}
         <Route path="/" element={<Home />} />
+        <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forgot-password' element={<ForgotPassword/>} />
         <Route path='/reset-password/:id' element={<ResetPassword/>} />
 
+
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
-        <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
+        <Route path='/customer-home' element={[<CustomerHomenav/>,<CustomerNav2/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
         <Route path='/user-viewjobstatus' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
+        <Route path='/user-postjob' element={<PostJobList />} />
+        <Route path='/user-view-workstatus' element={<ViewWorkStatus />} />
+        <Route path='/user-edit-workstatus' element={<EditWorkStatus />} />
+
+
+
+
+
 
 
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
-        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<Footer/>]}/>
+        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
+        <Route path='/employer-view-postjob' element={[<Employernav />,<EmpViewJobList/>]}/>
+
 
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<RecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
+        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
+        <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} />
+
 
 
         {/* Admin */}
@@ -68,6 +101,11 @@ function App() {
         <Route path='/admin-viewallcust' element={[<Adminloginnav/>,<Adminmain data="admin-viewallcust"/>]}/>
         <Route path='/admin-viewallemp' element={[<Adminloginnav/>,<Adminmain data="admin-viewallemp"/>]}/>
         <Route path='/admin-viewallworker' element={[<Adminloginnav/>,<Adminmain data="admin-viewallworker"/>]}/>
+        <Route path='/admin-viewcust/:custid' element={[<Adminloginnav/>,<ViewSingleCust/>]}/>
+        <Route path='/admin-viewemp/:empid' element={[<Adminloginnav/>,<ViewSingleEmp/>]}/>
+        <Route path='/admin-viewworker/:workerid' element={[<Adminloginnav/>,<ViewSingleWork/>]}/>
+
+
 
       </Routes>
     </BrowserRouter>
