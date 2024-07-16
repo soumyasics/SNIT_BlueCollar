@@ -5,6 +5,7 @@ const registerjobreq = (req, res) => {
   const work = new jobreqschema({
     custid:req.body.custid,
     date:new Date(),
+    category:req.body.category,
     jobname:req.body.jobname,
     workdetails:req.body.workdetails,
 
@@ -27,7 +28,7 @@ const registerjobreq = (req, res) => {
 };
 
 const viewjobreqs=((req,res)=>{
-  jobreqschema.find({jobacceptstatus:"pending"})
+  jobreqschema.find({jobacceptstatus:"pending",category:req.params.category})
   .populate("custid")
   .exec()
   .then((data) => {

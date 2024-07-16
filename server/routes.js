@@ -6,7 +6,7 @@ const Worker=require("./models/Worker/workerController")
 const employer=require("./models/Employer/employerController")
 const jobreq=require("./models/customer/PostJob/PostjobController")
 const emppostjob=require('./models/Employer/EmpPostJob/EmpPostJobController')
-const workeracceptreq=require("./models/customer/Jobrequest/JobreqController")
+const workeracceptreq=require("./models/customer/Jobrequest/workerJobApprovalControler")
 
 // Customer
 
@@ -69,7 +69,7 @@ router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
 
 //Job Requests
 router.post("/registerjobreq",jobreq.registerjobreq)
-router.post("/viewjobreqs",jobreq.viewjobreqs)
+router.post("/viewjobreqs/:category",jobreq.viewjobreqs)
 router.post("/viewjobreqsbyid/:id",jobreq.viewjobreqsbyid)
 // router.post("/workeracceptjob/:id",jobreq.workeracceptjob)
 router.post("/viewjobreqsbyuserid/:id",jobreq.viewjobreqsbyuserid)
@@ -78,5 +78,9 @@ router.post("/viewjobreqsbyuserid/:id",jobreq.viewjobreqsbyuserid)
 router.post("/workeracceptjobs/:id",workeracceptreq.workertakejobreq)
 router.post("/viewReqsbyUserid/:id",workeracceptreq.viewReqsbyUserid)
 router.post("/viewReqsbyWorkerid/:id",workeracceptreq.viewReqsbyWorkerid)
+router.post("/acceptReqsById/:id",workeracceptreq.acceptReqsById)
+router.post("/viewApprovedReqsbyJobId/:id",workeracceptreq.viewApprovedReqsbyJobId)
+router.post("/viewApprovedReqsbyWorkerid/:id",workeracceptreq.viewApprovedReqsbyWorkerid)
+router.post("/viewApprovedReqsbycustomerId/:id",workeracceptreq.viewApprovedReqsbycustomerId)
 
 module.exports=router
