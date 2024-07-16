@@ -20,9 +20,9 @@ const schema = mongoose.Schema({
     type: String,
     required: true,
   },
-  approvestatus: {
+  approvalstatus: {
     type: String,
     default: "pending",
   },
 });
-module.exports = mongoose.model("workerapprovejob", schema);
+module.exports = mongoose.model("workerjobapprovals", schema);
