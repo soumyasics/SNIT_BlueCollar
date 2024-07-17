@@ -47,7 +47,7 @@ function CustomerNav2() {
                                 Post Jobs
                             </Link>
                         </li>
-                        <li className="nav-item m-1 me-3 pe-3 ">
+                        {/* <li className="nav-item m-1 me-3 pe-3 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Requests
@@ -56,10 +56,10 @@ function CustomerNav2() {
                                     <Dropdown.Item as={Link} to="/worker-jobreq">Job Requests</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                        </li>
+                        </li> */}
                         <li className="nav-item m-1 me-3 pe-3 ">
-                            <Link className="nav-link text-light-custom" to="#" 
-                            onClick={handleShowWorkStatus}
+                            <Link className="nav-link text-light-custom" to="/user-viewjobstatus" 
+                            // onClick={handleShowWorkStatus}
                             >Job History</Link>
                         </li>
                         <li className="nav-item m-1 me-3 pe-3 ">
