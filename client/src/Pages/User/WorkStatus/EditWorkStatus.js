@@ -1,12 +1,15 @@
 import React,{useState} from 'react'
 import edit_profile from '../../../Assets/edit_profile.png'
 import viewstatusprofile from '../../../Assets/viewstatusprofile.png'
-import Navbar from '../../Common/Navbar/Navbar';
 import './EditWorkStatus.css'
 import { FaEdit } from "react-icons/fa";
+import CustomerHomenav from '../../Common/Navbar/Customer/CustomerHomenav';
+import axiosInstance from '../../Constants/Baseurl';
 
 
 function EditWorkStatus() {
+    const workerid = localStorage.getItem("workerid");
+
     const [image, setImage] = useState(null);
     const [errorcover, setErrorCover] = useState(null);
     const [isChecked, setIsChecked] = useState('incomplete');
@@ -67,11 +70,52 @@ console.log(workstatusdata,'workstatusdata');
       console.log(workstatusdata.profile,'pic');
 
 
+      const validateForm = () => {
+        const newErrors = {};
+
+        if (!workstatusdata.jobname) newErrors.jobname = "Job name is required";
+        if (!workstatusdata.workername) newErrors.workername = "Worker Name is required";
+        if (!workstatusdata.workdetails) newErrors.workdetails = "Worker details is required";
+        if (!workstatusdata.workstatus) newErrors.workstatus = "Work Status is required";
+
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!validateForm()) return;
+
+        const updatedData = new FormData();
+        updatedData.append('jobname', workstatusdata.jobname);
+        updatedData.append('workername', workstatusdata.workername);
+        updatedData.append('workdetails', workstatusdata.workdetails);
+        updatedData.append('workstatus', workstatusdata.workstatus);
+        
+
+        axiosInstance.post(`.../${workerid}`, updatedData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then((result) => {
+                console.log(result);
+                if (result.data.status === 200) {
+                    setWorkStatusData(result.data.data);
+                    window.location.reload()
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
     
 
   return (
     <>
-        <Navbar/>
+        <CustomerHomenav/>
         <div class="editworkstatus-modal-container">
 	<article class="">
 		<header class="editworkstatus-modal-container-header">
@@ -81,7 +125,7 @@ console.log(workstatusdata,'workstatusdata');
 			
 		</header>
 		<section class="editworkstatus-modal-container-body ">
-        <form>
+        <form onSubmit={(e)=>{handleSubmit(e);}}>
           <div>
           <div className='col editworkstatus-profileedit'>
                 <div className='editworkstatus-profileeditbtn'>
@@ -121,6 +165,8 @@ console.log(workstatusdata,'workstatusdata');
                         onChange={handleChange}
                         />
                     </div>
+                    <div type="invalid" className='text-danger'>{errors.jobname}</div>
+
                 </div>
                 <div className='col'>
                     <div className='mt-3'>
@@ -135,10 +181,12 @@ console.log(workstatusdata,'workstatusdata');
                         onChange={handleChange}
                         />
                     </div>
+                    <div type="invalid" className='text-danger'>{errors.workername}</div>
+
                 </div>
             </div>
             <div className='row'>
-                <div className='col-3'>
+                <div className='col'>
                     <div className='mt-3'>
                         <label className='editworkstatus-label'>Work Details</label>
                     </div>
@@ -151,6 +199,8 @@ console.log(workstatusdata,'workstatusdata');
                         onChange={handleChange}
                         />
                     </div>
+                    <div type="invalid" className='text-danger'>{errors.workdetails}</div>
+
                 </div>
             </div >
             <label className='editworkstatus-label'>Work Status</label>

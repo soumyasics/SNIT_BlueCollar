@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 import { FaEdit } from "react-icons/fa";
-import Navbar from '../../Common/Navbar/Navbar';
 import WorkerNav2 from '../../Common/Navbar/Worker/WorkerNav2';
 import './WorkerWorkStatus.css'
 import axiosInstance from '../../Constants/Baseurl';
-
+import WorkerNav from '../../Common/Navbar/Worker/WorkerNav';
+import {Form } from 'react-bootstrap'
 function WorkerEditWorkStatus() {
     const workerid = localStorage.getItem("workerid");
 
@@ -107,7 +107,7 @@ console.log(workstatusdata,'workstatusdata');
     
   return (
     <>
-        <Navbar/>
+        <WorkerNav/>
         <WorkerNav2/>
         <div class="editworkstatus-modal-container">
 	<article class="">
@@ -115,10 +115,9 @@ console.log(workstatusdata,'workstatusdata');
 			<span class="editworkstatus-modal-container-title">
 				Update Work Status
 			</span>
-			
 		</header>
 		<section class="editworkstatus-modal-container-body ">
-        <form onClick={(e)=>{handleSubmit(e);}}>
+        <form onSubmit={(e)=>{handleSubmit(e);}}>
           <div>
           <div className='col editworkstatus-profileedit'>
                 <div className='editworkstatus-profileeditbtn'>
@@ -153,15 +152,17 @@ console.log(workstatusdata,'workstatusdata');
                     <input 
                         name='jobname'
                         type='text'
-                        
+                        isInvalid={errors.jobname}
                         className='editworkstatus-inputtext'
                         onChange={handleChange}
                         />
                     </div>
+                    <div type="invalid" className='text-danger'>{errors.jobname}</div>
+
                 </div>
             </div>
             <div className='row'>
-                <div className='col-3'>
+                <div className='col'>
                     <div className='mt-3'>
                         <label className='editworkstatus-label'>Work Details</label>
                     </div>
@@ -174,6 +175,7 @@ console.log(workstatusdata,'workstatusdata');
                         onChange={handleChange}
                         />
                     </div>
+                    <div type="invalid" className='text-danger'>{errors.workdetails}</div>
                 </div>
             </div >
             <label className='editworkstatus-label'>Work Status</label>
@@ -187,7 +189,8 @@ console.log(workstatusdata,'workstatusdata');
             />
             <label className='px-4'  for="check-apple">Completed</label>
             </div>
-            </div>  
+            </div>
+              
           </div>
           <div className='editworkstatus-update-btn-div'>
           <button class="editworkstatus-button is-primary" style={{background:'#3D9AE0'}}>Update</button>
