@@ -47,6 +47,26 @@ const viewjobreqs=((req,res)=>{
 
 })
 
+const viewalljobreqs=((req,res)=>{
+  jobreqschema.find({custid:req.params.id})
+  .populate("custid")
+  .exec()
+  .then((data) => {
+    res.json({
+      status: 200,
+      msg: "Data get Successfully",
+      data: data,
+    });
+  })
+  .catch((err) => {
+      res.json({
+          status:500,
+          err:err
+      })
+  });
+
+})
+
 const viewjobreqsbyid=((req,res)=>{
   jobreqschema.findById({_id:req.params.id})
   .populate("custid")
@@ -159,5 +179,6 @@ module.exports={
     registerjobreq,
     viewjobreqs,
     viewjobreqsbyid,
-    viewjobreqsbyuserid
+    viewjobreqsbyuserid,
+    viewalljobreqs
 }

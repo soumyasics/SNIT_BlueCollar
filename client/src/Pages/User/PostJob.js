@@ -9,6 +9,7 @@ function PostJob({close}) {
     const[data,setData]=useState({
         custid:custid,
         jobname:'',
+        category:'',
         workdetails:'',
         
     })
@@ -53,7 +54,7 @@ function PostJob({close}) {
 
   return (
     <div className='container'>
-        <div className='postjob-maincontainer'>
+        <div className=''>
             <div className='postjob-maincontainermainbox'>
                 <div className='postjob-maincontainermainboxtop'>
                     Post Job
@@ -66,6 +67,23 @@ function PostJob({close}) {
                     </div>
                     <div className='col-12 postjob-maininputsi'>
                         <input type='text' placeholder='Enter Job Name' name='jobname' value={data.jobname} onChange={changefn} required/>
+                    </div>
+                    <div className='col-12 '>
+                        <p>Job Type</p>
+                    </div>
+                    <div className='col-12 postjob-maininputsi'>
+                        <select onChange={changefn} name='category' >
+                            <option placeholder='Enter Worker Type'  value="1" >
+                                Enter Worker Type
+                            </option>
+                            <option value="plumber">Plumber</option>
+                            <option value="painter">Painter</option>
+                            <option value="graphic Designer">Graphic Designer</option>
+                            <option value="web Designer">Web Designer</option>
+                            <option value="garden Designer">Garden Designer</option>
+                            <option value="masons">Masons</option>
+                            <option value="electrician">Electrician</option>
+                        </select>
                     </div>
                     <div className='col-12'>
                         <p>Work Detais</p>

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import axiosInstance from "../../Constants/Baseurl";
 import "./Viewjobstatus.css";
 
@@ -6,9 +8,11 @@ function Viewjobstatus() {
   const custid = localStorage.getItem("custid");
   const [data, setData] = useState([]);
 
+  const {jobid}=useParams();
+
   useEffect(() => {
     axiosInstance
-      .post(`viewReqsbyUserid/${custid}`)
+      .post(`viewReqsbyJobid/${jobid}`)
       .then((result) => {
         console.log(result);
         setData(result.data.data);
@@ -16,34 +20,45 @@ function Viewjobstatus() {
       .catch((err) => {
         console.log(err);
       });
-  }, [custid]);
+  }, [jobid]);
+
+  const acceptworker=(id)=>{
+    axiosInstance.post(`acceptReqsById/${id}`)
+    .then((res)=>{
+      console.log(res);
+      if(res.status===200){
+        toast.success(res.data.msg)
+      }
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
 
   return (
-    <div className="workerview-jonreqmaincontainer">
-      <div className="workerjobreq-mainbox">
+    <div className="workerview-jonreqmaincontainer" style={{minHeight:'80vh'}}>
+      <div className="workerjobreq-mainbox mb-5">
         <div className="workjob-viewalert col-12">
           <div className="admindash-shrink">Job Requests</div>
           <div className="row d-flex" style={{ marginTop: "30px" }}>
             {data && data.length ? (
               data.map((a) => (
-                <div className="col-3 userview-job-boxinside" key={a._id}>
+                <div className="col-3 userview-job-boxinside pt-4" key={a._id}>
                   <div className="row">
-                    <div className="col-5 userview-head">Job Name</div>
-                    <div className="col-7">: {a?.jobid?.jobname}</div>
-                    <div className="col-5 userview-head">Job Details</div>
-                    <div className="col-7">: {a?.jobid?.workdetails}</div>
                     <div className="col-5 userview-head">Worker Name</div>
                     <div className="col-7">: {a?.workerId?.name}</div>
                     <div className="col-5 userview-head">Location</div>
                     <div className="col-7">: {a?.workerId?.location}</div>
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
-                    <div className="col-5 viewworkreqacpt">
-                              <button type="submit">Accept</button>
-                            </div>
-                            <div className="col-7 viewworkreqrjt">
-                              <button type="submit">Reject</button>
-                            </div>
+                    <div className="col-5 userview-head">Email</div>
+                    <div className="col-7">: {a?.workerId?.email}</div>
+                    <div className="col-5 userview-head">Phone No</div>
+                    <div className="col-7">: {a?.workerId?.contact}</div>
+                    <div className=" viewworkreqacpt mb-4 mt-3">
+                              <button type="submit" onClick={()=>acceptworker(a?._id)}>Accept</button>
+                    </div>
+                            
 
                     {/* {a.workers && a.workers.length ? (
                       a.workers.map((e, index) => (

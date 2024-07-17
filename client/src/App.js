@@ -47,6 +47,10 @@ import ViewSingleWork from './Pages/Admin/Users/ViewSingleUsers/ViewSingleWork';
 import CustomerNav2 from './Pages/Common/Navbar/Customer/CustomerNav2';
 import WorkerEditWorkStatus from './Pages/Worker/WorkStatus/WorkerEditWorkStatus';
 import Workerviewjobstatus from './Pages/Worker/Jobs/Workerviewjobstatus';
+import ViewPostJobsList from './Pages/User/ViewPostJobs/ViewPostJobsList';
+import EmployerNav2 from './Pages/Common/Navbar/Employernav/EmployerNav2';
+import ViewAcceptedPostJobs from './Pages/User/ViewAcceptedPostJobs/ViewAcceptedPostJobs';
+import AddReviews from './Pages/User/Reviews/AddReviews';
 
 function App() {
   return (
@@ -65,10 +69,14 @@ function App() {
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
         <Route path='/customer-home' element={[<CustomerHomenav/>,<CustomerNav2/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
-        <Route path='/user-viewjobstatus' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
         <Route path='/user-postjob' element={<PostJobList />} />
+        <Route path='/user-view-postjob' element={[<CustomerHomenav/>,<CustomerNav2/>,<ViewPostJobsList />]} />
+        <Route path='/user-viewjobstatus/:jobid' element={[<CustomerHomenav/>,<CustomerNav2/>,<Viewjobstatus />,<Footer/>]} />
+        <Route path='/user-view-acceptedjobstatus' element={[<CustomerHomenav/>,<CustomerNav2/>,<ViewAcceptedPostJobs />,<Footer/>]} />
         <Route path='/user-view-workstatus' element={<ViewWorkStatus />} />
         <Route path='/user-edit-workstatus' element={<EditWorkStatus />} />
+        <Route path='/user-add-reviews' element={<AddReviews />} />
+
 
 
 
@@ -78,9 +86,9 @@ function App() {
 
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
-        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/employer-home' element={[<Employernav/>,<EmployerNav2/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
-        <Route path='/employer-view-postjob' element={[<Employernav />,<EmpViewJobList/>]}/>
+        <Route path='/employer-view-postjob' element={[<Employernav />,<EmployerNav2/>,<EmpViewJobList/>]}/>
 
 
 
@@ -91,8 +99,7 @@ function App() {
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
         <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
         <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} />
-
-        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<Workerviewjobstatus/>]}/>
+        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<WorkerNav2/>,<Workerviewjobstatus/>]}/>
 
 
         {/* Admin */}

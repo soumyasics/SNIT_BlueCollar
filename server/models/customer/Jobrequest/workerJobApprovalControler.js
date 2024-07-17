@@ -109,7 +109,7 @@ const acceptReqsById=async(req,res)=>{
   .then((data) => {
       res.json({
         status: 200,
-        msg: "Obtained Successfully",
+        msg: "Worker Accepted",
         data: data,
       });
     })

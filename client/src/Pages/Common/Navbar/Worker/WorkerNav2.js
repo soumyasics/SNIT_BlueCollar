@@ -51,13 +51,16 @@ function WorkerNav2() {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                        <li className="nav-item m-1 me-5  ">
                             <Link className="nav-link text-light-custom" to="#" onClick={handleShowWorkStatus}>Job History</Link>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                        <li className="nav-item m-1 me-5  ">
+                            <Link className="nav-link text-light-custom" to="/worker-jobstatus" >Accepted status</Link>
+                        </li>
+                        <li className="nav-item m-1 me-5  ">
                             <Link className="nav-link text-light-custom" to="#">Payments</Link>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                        <li className="nav-item m-1   ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Reviews
@@ -68,7 +71,7 @@ function WorkerNav2() {
                                 
                             </Dropdown>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-2 ">
+                        <li className="nav-item m-1  ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Complaints

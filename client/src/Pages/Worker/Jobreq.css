@@ -47,8 +47,8 @@ text-transform: capitalize;
 padding-left: 20px;
 }
 .worker-job-boxinside {
-    width: 264px;
-    /* height: 123px; */
+    width: 324px;
+    /* max-height: 123px; */
     flex-shrink: 0;
     border-radius: 5px 5px 0px 0px;
     background: #FFF;

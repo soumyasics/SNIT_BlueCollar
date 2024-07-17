@@ -1,13 +1,11 @@
 import React,{useState} from 'react'
 import { Dropdown, Modal, NavDropdown,Button } from 'react-bootstrap';
-import "../Customer/Customerhomenav.css";
+import '../Customer/Customerhomenav.css'
 import { Link } from 'react-router-dom';
-import AddComplaints from '../../Complaints/AddComplaints';
-import ViewWorkStatus from '../../../User/WorkStatus/ViewWorkStatus';
-import PostJob from '../../../User/PostJob';
-import AddReviews from '../../../User/Reviews/AddReviews';
+import EmpPostJob from '../../../Employer/EmpPostJob/EmpPostJob';
 
-function CustomerNav2() {
+
+function EmployerNav2() {
     const [show, setShow] = useState(false);
     const [modalContent, setModalContent] = useState(null);
 
@@ -44,9 +42,9 @@ function CustomerNav2() {
                 <div className="collapse navbar-collapse" id="navbarNav1">
                     <ul className="navbar-nav ms-auto me-3 pe-5 navbar-links">
                         <li className="nav-item me-3 pe-3 m-1">
-                            <Link className="nav-link text-light-custom" onClick={() => handleShow('PostJob')} >
-                                Post Jobs
-                            </Link>
+                        <li className="nav-item m-1">
+                            <Link className="nav-link text-light-custom" to="#" onClick={()=>handleShow('EmpPostJob')}>Post Jobs</Link>
+                        </li>
                         </li>
                         <li className="nav-item me-3 pe-3 m-1">
                             <Link className="nav-link text-light-custom" to='/user-view-postjob'>
@@ -54,8 +52,8 @@ function CustomerNav2() {
                             </Link>
                         </li>
                         <li className="nav-item me-3 pe-3 m-1">
-                            <Link className="nav-link text-light-custom" to='/user-view-acceptedjobstatus'>
-                                Accepted Status
+                            <Link className="nav-link text-light-custom" to='/employer-view-postjob'>
+                                Request
                             </Link>
                         </li>
                         {/* <li className="nav-item m-1 me-3 pe-3 ">
@@ -68,21 +66,18 @@ function CustomerNav2() {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li> */}
-                        <li className="nav-item m-1 me-3 pe-3 ">
-                            <Link className="nav-link text-light-custom" to="#">Payments</Link>
-                        </li>
-                        <li className="nav-item m-1 me-3 pe-3 ">
+                        
+                        {/* <li className="nav-item m-1 me-3 pe-3 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Reviews
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="" onClick={() => handleShow('AddReviews')}>Add Reviews</Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="">View Reviews</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="">Add Reviews</Dropdown.Item>
                                 </Dropdown.Menu>
                                 
                             </Dropdown>
-                        </li>
+                        </li> */}
                         <li className="nav-item m-1 me-3 pe-2 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
@@ -99,7 +94,7 @@ function CustomerNav2() {
             </nav>
             
         </div>
-        <Modal show={showcomplaint} onHide={handleCloseComplaint} >
+        {/* <Modal show={showcomplaint} onHide={handleCloseComplaint} >
                 <div >
                     <AddComplaints close={handleCloseComplaint} />
                 </div>
@@ -108,16 +103,16 @@ function CustomerNav2() {
                 <div >
                     <ViewWorkStatus close={handleCloseWorkStatus} />
                 </div>
-        </Modal>
+        </Modal> */}
 
         <Modal show={show} onHide={handleClose} centered>
                 <div className=''>
-                    {modalContent === 'PostJob' && <PostJob close={handleClose} />}
-                    {modalContent === 'AddReviews' && <AddReviews close={handleClose} />}
+                    {modalContent === 'EmpPostJob' && <EmpPostJob close={handleClose} />}
+                    {/* {modalContent === 'UserViewprofile' && <UserViewprofile close={handleClose} />} */}
                 </div>
         </Modal>
     </>
   )
 }
 
-export default CustomerNav2
+export default EmployerNav2
