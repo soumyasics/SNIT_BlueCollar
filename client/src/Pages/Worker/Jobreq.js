@@ -3,10 +3,29 @@ import "./Jobreq.css"
 import axiosInstance from '../Constants/Baseurl';
 import { Modal } from 'react-bootstrap';
 import Jobreqsingle from './Jobreqsingle';
+import WorkerNav2 from '../Common/Navbar/Worker/WorkerNav2';
 
 function Jobreq() {
+  const workerid=localStorage.getItem('workerid')
+  console.log(workerid);
 
-  const [job, setJob] = useState([]);
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    axiosInstance.post(`viewworkerbyid/${workerid}`)
+        .then((result) => {
+            console.log(result);
+            setUser(result.data.data);
+          })
+        .catch((err) => {
+            console.log(err);
+        });
+}, [workerid]);
+
+  const category=user.workertype
+
+  console.log(category,'category');
+  const [job, setJob] = useState(['']);
   const url = axiosInstance.defaults.url;
   const [show, setShow] = useState(false);
   const [openRequests, setOpenRequests] = useState(false);
@@ -20,7 +39,7 @@ function Jobreq() {
 
   const fetchEmployerRequests = () => {
     axiosInstance
-      .post("viewjobreqs")
+      .post(`/viewjobreqs/${category}`)
       .then((result) => {
         console.log(result);
         setJob(result.data.data);
@@ -32,7 +51,7 @@ function Jobreq() {
 
   useEffect(() => {
     fetchEmployerRequests();
-  }, []);
+  }, [category]);
 
 
   const handleRefresh = () => {
@@ -43,6 +62,8 @@ function Jobreq() {
 
 
   return (
+    <>
+    <WorkerNav2/>
     <div className="workerview-jonreqmaincontainer">
     <div className="workerjobreq-mainbox">
       <div className="workjob-viewalert col-12">
@@ -55,24 +76,71 @@ function Jobreq() {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
-                    <div className="col-2">
-                      <img src={`${url}/${a?.custid?.image?.filename}`} alt="image icon" className="avatar" />
-                    </div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <div className="col-8 jobreq-para">
-                      <p>
-                      {a?.custid?.name} <br/>Date:<span > {new Date(a.date).toLocaleDateString()}</span>
-                      <br />
-                      Job Title: {a?.jobname}
+                    <div className='row mt-3'>
+                      <div className='col'>
+                        <p>
+                        <b>Customer Name:</b>
+                        </p>
+                      </div>
+                      <div className='col-5'>
+                        <p>
+                        <i>{a?.custid?.name}</i>
+                        </p>
+                      </div>
+                     </div> 
+                     <div className='row mt-3'>
+                      <div className='col'>
+                        <p>
+                        <b>Customer Mail:</b>
+                        </p>
+                      </div>
+                      <div className='col'>
+                        <p>
+                        <i>{a?.custid?.email}</i>
+                        </p>
+                      </div>
+                     </div> 
+                     <div className='row mt-3'>
+                      <div className='col'>
+                        <p>
+                        <b>JobTitle:</b>
+                        </p>
+                      </div>
+                      <div className='col'>
+                        <p>
+                        <i>{a?.jobname}</i>
+                        </p>
+                      </div>
+                     </div> 
+                     <div className='row mt-3'>
+                      <div className='col'>
+                        <p>
+                        <b>Posted On:</b>
+                        </p>
+                      </div>
+                      <div className='col'>
+                        <p>
+                        <i>{new Date(a.date).toLocaleDateString()}</i>
+                        </p>
+                      </div>
+                     </div> 
+                    {/* <div className="col-10 jobreq-para">
+                      <p className='pt-3'>
+                      <b>Customer Name:</b>&nbsp; <i>{a?.custid?.name}</i> <br/>
+                      <b>Customer Mail:</b>&nbsp;<i>{a?.custid?.email}</i> <br/>
+                      <b>JobTitle:</b> 
                         <br />
+                      <b></b><span > </span>
+                      <br />
+                      
 
                       </p>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="viewmoreadmin-accept" 
- onClick={() => handleShow(a._id)}                    >
+                      onClick={() => handleShow(a._id)}                    >
                       View More
                     </button>
                   </div>
@@ -91,7 +159,7 @@ function Jobreq() {
             </Modal>
 
   </div>
-
+  </>
   )
 }
 

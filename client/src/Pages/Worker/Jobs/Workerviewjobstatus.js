@@ -19,7 +19,7 @@ function Workerviewjobstatus() {
   
     const fetchEmployerRequests = () => {
       axiosInstance
-        .post(`viewReqsbyWorkerid/${workerid}`)
+        .post(`viewApprovedReqsbyWorkerid/${workerid}`)
         .then((result) => {
           console.log(result);
           setJob(result.data.data);
@@ -63,7 +63,7 @@ function Workerviewjobstatus() {
                         Work Details
                         </div>
                         <div className='col-7'>
-                        : {a?.jobid?.workdetails}
+                        : {a?.jobid?.workdetails.slice(0,15)}...
                         </div>
                         <div className='col-5 viewworkdetails'>
                         Preffered Date

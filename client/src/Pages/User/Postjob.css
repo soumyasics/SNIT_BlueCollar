@@ -6,10 +6,11 @@
 }
 .postjob-maincontainermainbox{
     width: 559px;
-height: 396px;
+height: 496px;
 flex-shrink: 0;
 border-radius: 25px;
 background: #eae6e6;
+margin-left: -30px;
 
 }
 .postjob-maincontainermainboxtop{
@@ -40,6 +41,16 @@ line-height: normal;
 padding-left: 30px;
 }
 .postjob-maininputs input{
+    width: 478px;
+height: 42px;
+flex-shrink: 0;width: 478px;
+height: 42px;
+flex-shrink: 0;border-radius: 12px;
+border: 0.604px solid #C6C6C6;
+background: #FFF;
+}
+
+.postjob-maininputs select{
     width: 478px;
 height: 42px;
 flex-shrink: 0;width: 478px;

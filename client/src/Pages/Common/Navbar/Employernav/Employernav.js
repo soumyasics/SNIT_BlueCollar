@@ -68,14 +68,12 @@ function Employernav() {
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">About Us</Link>
           </li>
-          <li className="nav-item m-1">
-            <Link className="nav-link text-light-custom" to="#" onClick={()=>handleShow('EmpPostJob')}>Post Jobs</Link>
-          </li>
+          
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">Gallery</Link>
           </li>
           <li className="nav-item m-1">
-            <Link className="nav-link text-light-custom" to="/employer-view-postjob">Jobs</Link>
+            <Link className="nav-link text-light-custom" to="">Jobs</Link>
           </li>
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">Contact Us</Link>

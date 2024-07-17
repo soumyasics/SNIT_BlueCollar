@@ -63,6 +63,7 @@ function Login() {
                 navigate("/customer-home");
               } else if (formData.userCategory === 'Worker') {
                 localStorage.setItem("workerid",response.data.id)
+                localStorage.setItem("workertype",response.data.workertype)
                  navigate("/worker-home");
               } else if (formData.userCategory === 'Employer') {
                 localStorage.setItem("employer",response.data.id)

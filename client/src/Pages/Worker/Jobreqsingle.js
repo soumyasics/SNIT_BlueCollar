@@ -9,7 +9,7 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
   const workerid = localStorage.getItem("workerid");
   const [data, setData] = useState({});
   const [worker, setWorker] = useState({
-    workerid: workerid,
+    workerId: workerid,
     workDate: "",
     customerId: ""
   });
@@ -53,6 +53,9 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
           toast.success("Work Approved Successfully");
           refreshJobList();
         }
+        else if(res.data.status === 400){
+          toast.error(res.data.msg)
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -71,24 +74,13 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
           <Form onSubmit={submitfn}>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-                Name
+                Customer Name
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
                 {data?.custid?.name}
-              </Col>
-            </Row>
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-                Date
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-                {new Date(data?.date).toLocaleDateString()}
               </Col>
             </Row>
             <Row className="user-info-row">
@@ -100,6 +92,40 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
               </Col>
               <Col className="user-info-value" md={7}>
                 {data?.custid?.email}
+              </Col>
+            </Row>
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Phone No
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.custid?.phone}
+              </Col>
+            </Row>
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Address
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.custid?.housename},{data?.custid?.city},
+                {data?.custid?.pincode}
+              </Col>
+            </Row>
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Posted On
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {new Date(data?.date).toLocaleDateString()}
               </Col>
             </Row>
             <Row className="user-info-row">
@@ -125,37 +151,16 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
                 {data?.workdetails}
               </Col>
             </Row>
+            
+            
             <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-                Phone
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-                {data?.custid?.phone}
-              </Col>
-            </Row>
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-                Address
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-                {data?.custid?.housename},{data?.custid?.city},
-                {data?.custid?.pincode}
-              </Col>
-            </Row>
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
+              <Col className="user-info-label" md={5}>
                 Select work Date
               </Col>
-              <Col className="user-info-coln" md={1}>
+              <Col className="user-info-coln" md={0}>
                 :
               </Col>
-              <Col className="user-info-value" md={7}>
+              <Col className="user-info-value" md={5}>
                 <input
                   type="date"
                   min={new Date().toISOString().split("T")[0]}
@@ -170,7 +175,7 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
             <Row className="user-profilebottm-button">
               <Col>
                 <Button type="submit" className="user-profilebottm-end">
-                  Save
+                  Apply
                 </Button>
                 <Button
                   type="button"
