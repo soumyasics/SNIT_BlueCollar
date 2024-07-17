@@ -46,6 +46,7 @@ import ViewSingleEmp from './Pages/Admin/Users/ViewSingleUsers/ViewSingleEmp';
 import ViewSingleWork from './Pages/Admin/Users/ViewSingleUsers/ViewSingleWork';
 import CustomerNav2 from './Pages/Common/Navbar/Customer/CustomerNav2';
 import WorkerEditWorkStatus from './Pages/Worker/WorkStatus/WorkerEditWorkStatus';
+import Workerviewjobstatus from './Pages/Worker/Jobs/Workerviewjobstatus';
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function App() {
         <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
         <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} />
 
+        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<Workerviewjobstatus/>]}/>
 
 
         {/* Admin */}

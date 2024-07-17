@@ -10,6 +10,10 @@ const schema=mongoose.Schema({
         type:String,
         required:true
     },
+    category:{
+        type:String,
+        required:true
+    },
     workdetails:{
         type:String,
         required:true
@@ -18,20 +22,13 @@ const schema=mongoose.Schema({
         type: Date,
         required: true
     },
-    jobreqstatus:{
+    
+    jobacceptstatus:{
         type:String,
         default:"pending"
     },
-    workdate:{
-        type:String,
-        default:null
-    },
-    workerid: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "workers",
-        default:null
-    },
 
-});
+   
+    });
 module.exports = mongoose.model('jobrequests', schema);
 
