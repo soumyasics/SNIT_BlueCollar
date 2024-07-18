@@ -2,15 +2,37 @@ import React from 'react'
 import './ViewRecentJobs.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
 import axiosInstance from '../../Constants/Baseurl';
+import Jobreqsingle from '../Jobreqsingle'
 
 function ViewRecentJobs() {
+
+  const workerid=localStorage.getItem('workerid')
+  console.log(workerid);
+
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    axiosInstance.post(`viewworkerbyid/${workerid}`)
+        .then((result) => {
+            console.log(result);
+            setUser(result.data.data);
+          })
+        .catch((err) => {
+            console.log(err);
+        });
+}, [workerid]);
+
+  const category=user.workertype
+
+  console.log(category,'category');
     const [recentjobdata,setRecentJobData]=useState("");
 
     const url = axiosInstance.defaults.url;
 
     useEffect(()=>{
-        axiosInstance.post('/viewAllEmpPostJob')
+        axiosInstance.post(`/viewjobreqs/${category}`)
         .then((res)=>{
             console.log(res,"res");
             if(res.status === 200){
@@ -20,7 +42,23 @@ function ViewRecentJobs() {
           .catch((err)=>{
             alert("Failed to fetch user details")
         });
-    },[])
+    },[category])
+
+  const [job, setJob] = useState(['']);
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  const [selectedJobId, setSelectedJobId] = useState(null);//for passing _id as prop
+
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setSelectedJobId(id);
+    setShow(true);
+  };
+
+  const handleRefresh = () => {
+    setShow(false); // Close the modal after refreshing
+  };
+
 
   return (
     <>
@@ -36,32 +74,37 @@ function ViewRecentJobs() {
           return(
             <div className="col mb-5 ">
               <div className="row recentjob-userbox ">
-                <div className="col ">
-                    <div >
+                <div className="col-7 ">
+                    {/* <div >
                         <img src={`${url}/${data.empId.image?.filename}`}  className='recentjob-userboximage ' alt="image"/>
-                    </div>
+                    </div> */}
                     <div className="bestcandidate-userboxhead6 mt-4">
-                        <span><h4>{data.jobName}</h4></span>
+                        <span><h4>{data.jobname}</h4></span>
                     </div>
                     <div className="bestcandidate-userboxhead6">
-                        <p>INR {data.jobSalary} {data.jobSalaryType}</p>
+                        <p>{data.workdetails.slice(0,175)}...</p>
                     </div>
                 </div>
                 
                 <div className="col">
                     <div className="col-8 bestcandidate-userboxh5 mt-2">
-                        <h5><span class="badge bg-secondary">{data.jobType}</span></h5>
+                        <h5><span class="badge bg-secondary">{data.category}</span></h5>
                     </div>
                     <div>
                         <p>
-                           Posted On  {new Date(data?.date).toLocaleDateString()}
+                           <b>Posted On</b>  <i>{new Date(data?.date).toLocaleDateString()}</i>
                         </p>
+                        
+                    </div>
+                    <div>
                         <p>
-                        {data.jobDetails}
+                           <b>Posted By</b> <i> {data?.custid?.name}</i>
                         </p>
                     </div>
                     <div className="col-4 recentjob-userbutton">
-                        <button type="submit">Apply Now</button>
+                        <button type="submit"
+                        onClick={() => handleShow(data?._id)}
+                        >Apply Now</button>
                     </div>
                 </div>
               </div>
@@ -77,6 +120,9 @@ function ViewRecentJobs() {
       </div>
       
     </div> 
+    <Modal show={show} onHide={handleClose} centered>
+                    <Jobreqsingle close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
+            </Modal>
     </>
   )
 }

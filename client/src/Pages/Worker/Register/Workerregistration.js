@@ -272,6 +272,8 @@ function Workerregistration() {
                       <option value="garden Designer">Garden Designer</option>
                       <option value="masons">Masons</option>
                       <option value="electrician">Electrician</option>
+                      <option value="electrician">Others</option>
+
                     </Form.Control>
                     <Form.Control.Feedback
                       type="invalid"

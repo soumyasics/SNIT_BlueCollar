@@ -1,4 +1,4 @@
-const workerapproveschema = require("./workerJobApprovalSchema.js.js");
+const workerapproveschema = require("./workerJobApprovalSchema.js");
 
 
 const workertakejobreq =async (req, res) => {

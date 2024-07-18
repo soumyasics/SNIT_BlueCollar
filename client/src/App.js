@@ -51,6 +51,8 @@ import ViewPostJobsList from './Pages/User/ViewPostJobs/ViewPostJobsList';
 import EmployerNav2 from './Pages/Common/Navbar/Employernav/EmployerNav2';
 import ViewAcceptedPostJobs from './Pages/User/ViewAcceptedPostJobs/ViewAcceptedPostJobs';
 import AddReviews from './Pages/User/Reviews/AddReviews';
+import WorkRecentJobOpen from './Pages/Worker/Home/WorkRecentJobOpen';
+import PaymentsList from './Pages/Worker/Payments/PaymentsList';
 
 function App() {
   return (
@@ -94,12 +96,14 @@ function App() {
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<RecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
-        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
-        <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} />
+        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<WorkerNav2/>,<ViewRecentJobs/>]}/>
+        {/* <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} /> */}
         <Route path='/worker-jobstatus' element={[<WorkerNav/>,<WorkerNav2/>,<Workerviewjobstatus/>]}/>
+        <Route path='/worker-paymentstatus' element={[<WorkerNav/>,<WorkerNav2/>,<PaymentsList/>]}/>
+
 
 
         {/* Admin */}

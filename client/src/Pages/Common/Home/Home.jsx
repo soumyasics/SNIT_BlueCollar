@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 import Hero from '../Hero/Hero';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Constants/Baseurl';
-
+import RecentJobOpen from './RecentJobOpen/RecentJobOpen';
 const iconStyle = { color: 'black' };
 const iconColor = { color: 'gold' }
 const categories = [
@@ -33,6 +33,8 @@ const jobs = [
   { location: 'Idukki', country: 'India', jobName: 'Food Processing', jobType: 'Full Time', salary: '12k/Month', img: mario },
   { location: 'Tvm', country: 'India', jobName: 'Carpenter', jobType: 'Part Time', salary: '1k/Day', img: mario }
 ];
+
+
 
 const Home = () => (
   <>
@@ -104,44 +106,7 @@ const Home = () => (
           <h2 className='home-subheading'>Recent Job Openings</h2>
           <p className='home-para icon-color'>Welcome to the world of jobs</p>
         </Row>
-        <Row className=''>
-          {jobs.map((job, index) => (
-            <Col xs={12} md={6} lg={3} className="card-margin" key={index} >
-              <Card className="card-position  shadow-element">
-                <Card.Body className='p-4'>
-                  <Row>
-                    <Col className='card-body-custom'>
-                      <img src={job.img} alt="pic" className="card-img-circle" />
-                    </Col>
-                    <Col className='card-price text-end d-flex align-items-center justify-content-end'>
-                      {job.salary}
-                    </Col>
-                  </Row>
-                  <Row className='mt-4'>
-                    <Col className='card-location'>
-                      {job.location} | {job.country}
-                    </Col>
-                  </Row>
-                  <Row className='mt-2'>
-                    <Col className='card-title'>
-                      {job.jobName}
-                    </Col>
-                  </Row>
-                  <Row className='mt-2'>
-                    <Col className='card-text'>
-                      {job.jobType}
-                    </Col>
-                  </Row>
-                  <Row className='mt-3'>
-                    <Col>
-                      <Button className='card-button btn text-white w-100 border-0'>Apply Now</Button>
-                    </Col>
-                  </Row>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <RecentJobOpen/>
       </Container>
       <div className='m-5 text-center'>
         <p className=' home-subheading'>Best Candidate</p>

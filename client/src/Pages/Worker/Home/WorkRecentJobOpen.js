@@ -1,15 +1,33 @@
 import React from 'react'
-import './RecentJobOpen.css'
-import img from "../../../../Assets/recent_job.png";
+import './WorkRecentJobOpen.css'
+import img from "../../../Assets/recent_job.png";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
-import axiosInstance from '../../../Constants/Baseurl';
 import { useNavigate } from 'react-router-dom';
-import Jobreqsingle from '../../../Worker/Jobreqsingle';
+import Jobreqsingle from '../Jobreqsingle';
+import axiosInstance from '../../Constants/Baseurl';
 
+function WorkRecentJobOpen() {
+    const workerid=localStorage.getItem('workerid')
+  console.log(workerid);
 
-function RecentJobOpen() {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    axiosInstance.post(`viewworkerbyid/${workerid}`)
+        .then((result) => {
+            console.log(result);
+            setUser(result.data.data);
+          })
+        .catch((err) => {
+            console.log(err);
+        });
+}, [workerid]);
+
+  const category=user.workertype
+
+  console.log(category,'category');
 
   const navigate=useNavigate();
 
@@ -18,7 +36,7 @@ function RecentJobOpen() {
     const url = axiosInstance.defaults.url;
 
     useEffect(()=>{
-        axiosInstance.post('viewalljobpost')
+        axiosInstance.post(`/viewjobreqs/${category}`)
         .then((res)=>{
             console.log(res,"res");
             if(res.status === 200){
@@ -28,19 +46,36 @@ function RecentJobOpen() {
           .catch((err)=>{
             alert("Failed to fetch user details")
         });
-    },[])
+    },[category])
 
-    const navigateToLogin=()=>{
-      navigate('/login')
+    const navigateToViewRecentJobs=()=>{
+      navigate('/worker-viewrecentjob')
     }
 
-    
+    const [job, setJob] = useState(['']);
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  const [selectedJobId, setSelectedJobId] = useState(null);//for passing _id as prop
+
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setSelectedJobId(id);
+    setShow(true);
+  };
+
+  const handleRefresh = () => {
+    setShow(false); // Close the modal after refreshing
+  };
+
   return (
-    <>
-       <div className="container">
+    <div>
+        <div className="container">
       <div className="bestcandidate-main row">
+        <div className="recentjob-head">
+          <p>Recent Job Openings</p>
+        </div>
         
-        <div class="row row-cols-1 mx-3 row-cols-md-2 g-4 ">
+        <div class="row row-cols-1 mx-3 row-cols-md-2 g-4 p-3">
         {
         (recentjobdata.length)>0?((recentjobdata).slice(0,4).map((data) => {
           return(
@@ -75,7 +110,7 @@ function RecentJobOpen() {
                     </div>
                     <div className="col-4 recentjob-userbutton">
                         <button type="submit"
-                        onClick={navigateToLogin}
+                        onClick={() => handleShow(data?._id)}
                         >Apply Now</button>
                     </div>
                 </div>
@@ -89,7 +124,7 @@ function RecentJobOpen() {
         </div>
                
         <div className="bestcandidate-userboxbutton mt-4 mb-5">
-            <button type="submit" onClick={navigateToLogin}>ViewMore</button>
+            <button type="submit" onClick={navigateToViewRecentJobs}>ViewMore</button>
         </div>
       </div>
       {/* <div className="">
@@ -102,9 +137,11 @@ function RecentJobOpen() {
         </div>
       </div> */}
     </div> 
-            
-    </>
+            <Modal show={show} onHide={handleClose} centered>
+                    <Jobreqsingle close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
+            </Modal>
+    </div>
   )
 }
 
-export default RecentJobOpen
+export default WorkRecentJobOpen
