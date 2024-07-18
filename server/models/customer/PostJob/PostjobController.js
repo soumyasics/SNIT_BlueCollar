@@ -87,6 +87,26 @@ const viewjobreqsbyid=((req,res)=>{
 
 })
 
+const viewalljobpost=((req,res)=>{
+  jobreqschema.find()
+  .populate("custid")
+  .exec()
+  .then((data) => {
+    res.json({
+      status: 200,
+      msg: "Data get Successfully",
+      data: data,
+    });
+  })
+  .catch((err) => {
+      res.json({
+          status:500,
+          err:err
+      })
+  });
+
+})
+
 // const workeracceptjob=((req,res)=>{
 //   jobreqschema.findByIdAndUpdate({_id:req.params.id},{
 //     workerid:req.body.workerid,
@@ -180,5 +200,6 @@ module.exports={
     viewjobreqs,
     viewjobreqsbyid,
     viewjobreqsbyuserid,
-    viewalljobreqs
+    viewalljobreqs,
+    viewalljobpost
 }

@@ -12,7 +12,7 @@ a {
 }
 
 .worker-viewworkstatus-modal-container {
-  height: 430px;
+  height: 400px;
   width: 500px;
   margin-right: auto;
   background-color: #fff;
@@ -193,14 +193,20 @@ a {
 
 .editworkstatus-inputtext{
     border-radius: 20px;
+    /* height: 40px; */
     border: 1px solid #b3b3b3;
     padding-left: 13px;
     outline: none;
+    text-decoration: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .editworkstatus-workdetails{
     width:408px;
-    height: 60px;
+    height: 80px;
     border: 1px solid #b3b3b3;
     padding: 13px;
     border-radius: 40px;
@@ -319,7 +325,7 @@ a {
     position: relative;
     width: 125px;
     height: 25px;
-    margin: 20px;
+    /* margin: 20px; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -374,7 +380,8 @@ a {
   }
 
   .editworkstatus-chechk-div{
-    margin-left: -20px;
+    margin-left: 20px;
+    margin-top: -20px;
   }
 
   .editworkstatus-update-btn-div{

@@ -36,7 +36,6 @@ function WorkerEditWorkStatus() {
             ...prevState,
             workstatus: workstatus
         }));
-        
     };
 
 const handleChange = (event) => {

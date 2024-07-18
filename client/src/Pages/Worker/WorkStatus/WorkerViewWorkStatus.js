@@ -1,21 +1,128 @@
-import React from 'react'
+import React,{  useState,useEffect    } from 'react'
 import './WorkerWorkStatus.css'
-import {useNavigate} from 'react-router-dom'
-import edit_profile from '../../../Assets/edit_profile.png'
+import {useNavigate, useParams} from 'react-router-dom'
 import viewstatusprofile from '../../../Assets/viewstatusprofile.png'
+import axiosInstance from '../../Constants/Baseurl'
+import { Toast } from 'react-bootstrap'
 
 
-function WorkerViewWorkStatus({close}) {
-    const workerid = localStorage.getItem("workerid");
-    
+function WorkerViewWorkStatus({jobId,custId,close}) {
     const navigate =useNavigate();
+    const workerid = localStorage.getItem("workerid");
+    // console.log(id+"idprops");
+    const jobid=jobId // id from props
+    console.log(jobid,'jobid');
+
     
-    const navigateToEditWorkStatus=()=>{
-        navigate('/worker-edit-workstatus')
+    
+    const [isChecked, setIsChecked] = useState('incomplete');
+    console.log(isChecked,'ischeck');
+    
+    const [workstatusdata,setWorkStatusData]=useState({
+        workerId:workerid,
+        customerId:custId,
+        status:"incompleted",
+        payment:"",
+        otp:""
+
+    })
+    // console.log(custId+"cccccc");
+
+    const [errors, setErrors] = useState({
+        workerId:"",
+        customerId:"",
+        status:"",
+        payment:"",
+        otp:""
+    });
+
+    const handleCheckboxChange = (event) => {
+        const workstatus=event.target.checked ? 'completed' : 'incomplete';
+        setIsChecked(workstatus)
+        setWorkStatusData(prevState => ({
+            ...prevState,
+            status: workstatus
+        }));
+        
+    };
+
+        const handleChange = (event) => {
+        const { name, value } = event.target;
+        setWorkStatusData((prevData) => ({
+        ...prevData,
+        [name]: value,
+        }));
+        setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+        }));
+        };
+
+console.log(workstatusdata,'workstatusdata');
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let errors = {};
+
+    let formValid = true;
+
+    if (!workstatusdata.payment.trim()) {
+      formValid = false;
+      errors.payment = "Payment is required";
     }
+    
+    if (!workstatusdata.otp.trim()) {
+      formValid = false;
+      errors.otp = "OTP is required";
+    }
+    
+    setErrors(errors);
+
+    
+    if (
+        workstatusdata.payment &&
+        workstatusdata.otp 
+      
+    ) {
+      formValid = true;
+    }
+
+    if (Object.keys(errors).length === 0 && formValid) {
+      try {
+        
+        var response;
+        if (workstatusdata) {
+          response = await axiosInstance.post(
+            `addworkstatus/${jobid}`,
+            workstatusdata
+          );
+        }
+        console.log("Response:", response); 
+        if(response.status==200){
+          alert(response.data.msg)
+          close()
+        }
+        
+      } catch (error) {
+        console.error("Error:", error);
+        let msg = error?.response?.data?.msg || "Error occurred";
+        alert(msg);
+      }
+    } else {
+      console.log("Form is not valid", formValid);
+      console.log("Data entered", workstatusdata);
+    }
+  };
+
+
+    
   return (
     <>
     <div class="worker-viewworkstatus-modal-container">
+    <form onSubmit={(e)=>{handleSubmit(e);}}>
 	<article class="">
 		<header class="worker-viewworkstatus-modal-container-header">
 			<span class="worker-viewworkstatus-modal-container-title">
@@ -28,73 +135,43 @@ function WorkerViewWorkStatus({close}) {
 			</button>
 		</header>
 		<section class="worker-viewworkstatus-modal-container-body ">
-        <form>
+        
           <div>
-            <div className='row'>
+            <div className='row mt-2'>
                 <div className='col'>
-                    <div className=''>
-                        <button style={{border:'none',background:'#fff'}} 
-                        onClick={navigateToEditWorkStatus}>
-                            <img src={edit_profile} />
-                        </button>
-                        
-                    </div>
-
-                    <div className='mt-3'>
-                        <label className='worker-viewworkstatus-label'>Job Name</label>
-                    </div>
-                    <div className='mt-3'>
-                        <label  className='worker-viewworkstatus-label'>Work Details</label>
-                    </div>
-                    <div className='mt-3'>
-                        <label  className='worker-viewworkstatus-label'>Status</label>
-                    </div>
-                </div>
-                <div className='col mt-4'>
-                    
-                    <div className='mt-3'>
-                        <label>:</label>
-                    </div>
-                    <div className='mt-4 pt-3'>
-                        <label>:</label>
-                    </div>
-                    <div className='mt-3 '>
-                        <label>:</label>
-                    </div>
-                </div>
-                <div className='col mt-4'>
-                    
-                    <div className='mt-3'>
-                        
-                           <label>name</label> 
-                        
-                    </div>
-                    <div className='mt-3'>
-                    
-                           <label>worker details</label> 
-                       
-                    </div>
-                    <div className='mt-3'>
-                        
-                           <label className='worker-viewworkstatus-status'>Completed</label> 
-                        
-                    </div>
+                    <p><b>Payment :</b></p>
                 </div>
                 <div className='col'>
-                <div className=''>
-                        <button style={{border:'none',background:'#fff'}}>
-                            <img src={viewstatusprofile} />
-                        </button>
-                    </div>
+                    <input 
+                    className='editworkstatus-inputtext' 
+                    onChange={handleChange}
+                    name='payment'
+                    type='number' />
+                    {errors &&<p className='text-danger'>{errors.payment}</p>}
+                </div>
+            </div>
+            <div className='row mt-3'>
+                <div className='col'>
+                    <p><b>OTP :</b></p>
+                </div>
+                <div className='col'>
+                    <input 
+                    className='editworkstatus-inputtext' 
+                    type='number'
+                    name='otp'
+                    onChange={handleChange}
+                    />
+                    { errors && <p className='text-danger'>{errors.otp}</p>}
                 </div>
             </div>
           </div>
-        </form>
+        
 		</section>
 		<footer class="worker-viewworkstatus-modal-container-footer mt-5">
-			<button class="worker-viewworkstatus-button is-primary" style={{background:'#3D9AE0'}}>Payment</button>
+			<button class="worker-viewworkstatus-button is-primary" type='submit' style={{background:'#3D9AE0'}}>Payment</button>
 		</footer>
 	</article>
+    </form>
         </div>
     </>
   )

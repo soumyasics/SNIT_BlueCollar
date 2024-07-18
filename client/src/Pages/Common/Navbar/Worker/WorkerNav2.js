@@ -16,9 +16,7 @@ function WorkerNav2() {
     const handleCloseComplaint = () => setShowComplaint(false);
     const handleShowComplaint = () => setShowComplaint(true);
 
-    const [showjobstatus, setShowWorkStatus] = useState(false);
-    const handleCloseWorkStatus = () => setShowWorkStatus(false);
-    const handleShowWorkStatus = () => setShowWorkStatus(true);
+    
 
     
 
@@ -51,14 +49,14 @@ function WorkerNav2() {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
-                        <li className="nav-item m-1 me-5  ">
-                            <Link className="nav-link text-light-custom" to="#" onClick={handleShowWorkStatus}>Job History</Link>
-                        </li>
+                        {/* <li className="nav-item m-1 me-5  ">
+                            <Link className="nav-link text-light-custom" to="#" >Job History</Link>
+                        </li> */}
                         <li className="nav-item m-1 me-5  ">
                             <Link className="nav-link text-light-custom" to="/worker-jobstatus" >Accepted status</Link>
                         </li>
                         <li className="nav-item m-1 me-5  ">
-                            <Link className="nav-link text-light-custom" to="#">Payments</Link>
+                            <Link className="nav-link text-light-custom" to="/worker-paymentstatus">Payments</Link>
                         </li>
                         <li className="nav-item m-1   ">
                             <Dropdown>
@@ -92,11 +90,7 @@ function WorkerNav2() {
                     <AddComplaints close={handleCloseComplaint} />
                 </div>
         </Modal>
-        <Modal show={showjobstatus} onHide={handleCloseWorkStatus} >
-                <div >
-                    <WorkerViewWorkStatus close={handleCloseWorkStatus} />
-                </div>
-        </Modal>
+        
     </>
   )
 }
