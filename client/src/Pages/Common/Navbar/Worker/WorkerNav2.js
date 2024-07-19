@@ -45,7 +45,9 @@ function WorkerNav2() {
                                     Requests
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item as={Link} to="/worker-jobreq">Job Requests</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="/worker-jobreq">Customer Job Requests</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="/worker-empjobreq">Employer Job Requests</Dropdown.Item>
+
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>

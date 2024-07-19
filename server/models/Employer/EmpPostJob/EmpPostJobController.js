@@ -50,6 +50,7 @@ const viewEmpPostJobByEmpid=((req,res)=>{
 
 const viewEmpPostJobById=((req,res)=>{
   emppostjobschema.findById({_id:req.params.id})
+  .populate('empId')
   .exec()
   .then((data) => {
     res.json({

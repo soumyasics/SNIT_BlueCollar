@@ -30,21 +30,21 @@ border-left: 4px solid #4DA9EC;
   
 }
 
-.admindash-shrink{
+.worker-shrink{
     width: 260px;
     height: 39px;
     flex-shrink: 0;
     border-radius: 2px 50px 0px 0px;
     background: #4DA9EC;
     color: #FFF;
-font-family: Poppins;
-font-size: 20px;
-font-style: normal;
-font-weight: 600;
-line-height: 150%; /* 30px */
-letter-spacing: 0.5px;
-text-transform: capitalize;
-padding-left: 20px;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 30px */
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    padding-left: 20px;
 }
 .worker-job-boxinside {
     width: 324px;
@@ -97,8 +97,7 @@ height: 48px;
 flex-shrink: 0;
 border-radius: 48px;
 }
-.jobreq-para p{
-}
+
 .viewmoreadmin-accept{
     width: 100px;
     height: 30px;
