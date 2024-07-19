@@ -69,6 +69,9 @@ router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
 // EmpJob Req
 
 router.post("/empjobreq/:id",empjobreq.empjobrequest)
+router.post("/viewReqsbyempid/:id",empjobreq.viewReqsbyempid)
+router.post("/viewEmpJobReqsbyJobid/:id",empjobreq.viewEmpJobReqsbyJobid)
+
 
 
 
@@ -76,6 +79,7 @@ router.post("/empjobreq/:id",empjobreq.empjobrequest)
 
 
 //Job Requests
+
 router.post("/registerjobreq",jobreq.registerjobreq)
 router.post("/viewjobreqs/:category",jobreq.viewjobreqs)
 router.post("/viewalljobreqs/:id",jobreq.viewalljobreqs)

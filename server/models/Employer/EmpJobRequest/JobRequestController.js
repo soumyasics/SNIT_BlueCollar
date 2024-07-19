@@ -12,8 +12,8 @@ const empjobrequest =async (req,res)=>{
     }
     const work =new empjobreqschema({
         jobid:req.params.id,
-        workerId:req.body.workerId
-
+        workerId:req.body.workerId,
+        empId:req.body.empId,
     });
     await work
     .save()
@@ -32,7 +32,56 @@ const empjobrequest =async (req,res)=>{
     })
 }
 
+// View job req to employee
+
+const viewReqsbyempid=(req,res)=>{
+    empjobreqschema.find({empId:req.params.id},{approvalstatus:'pending'})
+    .populate("jobid")
+    .populate("workerId")
+    .exec()
+    .then((data) => {
+        res.json({
+          status: 200,
+          msg: "Obtained Successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+          res.json({
+              status:500,
+              err:err
+          })
+      });
+  
+}
+
+// View Job req by Job id
+
+const viewEmpJobReqsbyJobid=(req,res)=>{
+    empjobreqschema.find({jobid:req.params.id})
+    .populate("workerId")
+    .populate("jobid")
+    .exec()
+    .then((data) => {
+        res.json({
+          status: 200,
+          msg: "Obtained Successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+          res.json({
+              status:500,
+              err:err
+          })
+      });
+  
+}
+
 
 module.exports={
-    empjobrequest
+    empjobrequest,
+    viewReqsbyempid,
+    viewEmpJobReqsbyJobid
 }

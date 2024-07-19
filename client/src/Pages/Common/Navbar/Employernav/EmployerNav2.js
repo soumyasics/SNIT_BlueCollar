@@ -47,12 +47,12 @@ function EmployerNav2() {
                         </li>
                         </li>
                         <li className="nav-item me-3 pe-3 m-1">
-                            <Link className="nav-link text-light-custom" to='/user-view-postjob'>
+                            <Link className="nav-link text-light-custom" to='/employer-view-postjob'>
                                 View Jobs
                             </Link>
                         </li>
                         <li className="nav-item me-3 pe-3 m-1">
-                            <Link className="nav-link text-light-custom" to='/employer-view-postjob'>
+                            <Link className="nav-link text-light-custom" to='/employer-view-postjobreq'>
                                 Request
                             </Link>
                         </li>

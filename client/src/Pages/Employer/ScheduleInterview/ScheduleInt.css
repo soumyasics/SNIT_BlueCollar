@@ -1,0 +1,100 @@
+.empviewpostjob-maincontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 60px; */
+}
+.empviewpostjob-maincontainermainbox{
+    width: 559px;
+height: auto;
+flex-shrink: 0;
+border-radius: 25px;
+background: #ffffff;
+
+}
+.empviewpostjob-maincontainermainboxtop{
+    width: 559px;
+height: 71px;
+flex-shrink: 0;
+padding-left: 130px;
+border-radius: 25px 25px 0px 0px;
+background: #3D9AE0;
+text-align: center;
+color: #FFF;
+font-family: "Noto Sans";
+font-size: 22px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+padding-top: 20px;
+}
+
+.empviewpostjob-icon-button {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    /* display: flex; */
+    margin-left: 130px;
+    align-items: center;
+    justify-content: center;
+    /* line-height: 1; */
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.15s ease;
+  }
+  
+  .addcomplait-icon-button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+.empviewpostjob-con{
+    padding: 20px;
+    
+}
+
+.empviewpostjob-label{
+    color: #3D9AE0;
+    font-family: "Noto Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding-top: 20px;
+}
+
+.empviewpostjob-input{
+    width: 243px;
+    height: 42px;
+    border-radius: 12px ;
+    border: 0.6px 0px 0px 0px;
+    border: 0.6px solid #C6C6C6;
+    padding: 10px;
+}
+
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder{ 
+    visibility: hidden ;
+}
+
+.empviewpostjob-schedule{
+    width: Fixed (89px)px;
+    height: Fixed (31px)px;
+    padding: 5px 13px 5px 13px;
+    border-radius: 12px ;
+    background: #3D9AE0;
+    color: #FFF;
+    border: none;
+    
+}
+
+.empviewpostjob-schedule-div{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
