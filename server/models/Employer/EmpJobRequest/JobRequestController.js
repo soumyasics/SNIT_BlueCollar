@@ -1,7 +1,7 @@
 const empjobreqschema =require('./JobRequestSchema.js')
 
 const empjobrequest =async (req,res)=>{
-    let datas =await empjobreqschema.findOne({jobid:req.params.id})
+    let datas =await empjobreqschema.findOne({jobid:req.params.id,workerId:req.body.workerId})
 
     if (datas){
         return res.json({
