@@ -54,6 +54,7 @@ import AddReviews from './Pages/User/Reviews/AddReviews';
 import WorkRecentJobOpen from './Pages/Worker/Home/WorkRecentJobOpen';
 import PaymentsList from './Pages/Worker/Payments/PaymentsList';
 import EmpViewJobReq from './Pages/Worker/EmpJobReq/EmpViewJobReq';
+import WorkerReqJob from './Pages/Employer/RequesJob/WorkerReqJob';
 
 function App() {
   return (
@@ -86,6 +87,8 @@ function App() {
         <Route path='/employer-home' element={[<Employernav/>,<EmployerNav2/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
         <Route path='/employer-view-postjob' element={[<Employernav />,<EmployerNav2/>,<EmpViewJobList/>]}/>
+        <Route path='/employer-view-postjobreq/:jobid' element={[<Employernav />,<EmployerNav2/>,<WorkerReqJob/>]}/>
+
 
 
 

@@ -15,7 +15,8 @@ function EmpViewSingleJobReq({ close, jobId, refreshJobList }) {
 
   const [jobapplydata,setJobApplyData]=useState({
     jobid:jobId,
-    workerId:workerid
+    workerId:workerid,
+    empId:''
   });
     
 
@@ -25,10 +26,10 @@ function EmpViewSingleJobReq({ close, jobId, refreshJobList }) {
       .then((result) => {
         console.log(result);
         setData(result.data.data);
-        // setWorker((prevWorker) => ({
-        //   ...prevWorker,
-        //   customerId: result.data.data.custid._id
-        // }));
+        setJobApplyData((prevWorker) => ({
+          ...prevWorker,
+          empId: result.data.data.empId._id
+        }));
       })
       .catch((err) => {
         console.log(err);

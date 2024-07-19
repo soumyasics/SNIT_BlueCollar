@@ -3,13 +3,17 @@ const mongoose=require('mongoose')
 const schema=mongoose.Schema({
     jobid: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "jobrequests",
+        ref: "empjobpost",
         required: true,
       },
       workerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "workers",
         required: true,
+      },
+      empId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "employers",
       },
       approvalstatus: {
         type: String,
