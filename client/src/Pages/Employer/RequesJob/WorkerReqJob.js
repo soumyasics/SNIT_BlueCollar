@@ -1,13 +1,14 @@
 import React,{useState,useEffect} from 'react'
-import './EmpViewJobList.css'
-import axiosInstance from '../../Constants/Baseurl';
+import {useNavigate, useParams} from 'react-router-dom'
+import './RequestJob.css'
 import { Modal } from 'react-bootstrap';
-import circleimg4 from '../../../Assets/circleimg4.png'
-import {useNavigate} from 'react-router-dom'
-import EmpViewPostJob from './EmpViewPostJob';
+import axiosInstance from '../../Constants/Baseurl';
+import ScheduleInterview from '../ScheduleInterview/ScheduleInterview';
 
-function EmpViewJobList() {
-  const navigate =useNavigate();
+
+
+function WorkerReqJob() {
+    const navigate =useNavigate();
 
   const [employerid, setId]= useState(localStorage.getItem("employer"));
 
@@ -18,13 +19,29 @@ function EmpViewJobList() {
   },[navigate]);
 
   const [postjobdata, setPostJobData] = useState([]);
-  
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  const [selectedWorkerId, setSelectedWorkerid] = useState(null);//for passing _id as prop
+
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setSelectedWorkerid(id);
+    setShow(true);
+  };
+
+  const handleRefresh = () => {
+    fetchEmployerRequests();
+    setShow(false); // Close the modal after refreshing
+  };
+
+  const {jobid}=useParams();
+  console.log(jobid,'jobid');
 
   const fetchEmployerRequests = () => {
     axiosInstance
-      .post(`viewReqsbyempid/${employerid}`)
+      .post(`viewEmpJobReqsbyJobid/${jobid}`)
       .then((result) => {
-        console.log(result,'empjobreqdata');
+        console.log(result);
         setPostJobData(result.data.data);
       })
       .catch((err) => {
@@ -36,8 +53,8 @@ function EmpViewJobList() {
     fetchEmployerRequests();
   }, []);
 
-  const navigateToWorkReqJob=(id)=>{
-    navigate(`/employer-view-postjobreq/${id}`)
+  const navigateToWorkReqJob=()=>{
+    
   }
   return (
     <>
@@ -53,41 +70,54 @@ function EmpViewJobList() {
               return (
                 <div className="col-3 empviewpostjob-boxinside">
                   <div className="empviewpostjob-dashpic row ">
-                  <h6 className='mt-2'><span style={{display:'grid',alignItems:'end'}} class="badge bg-secondary">{a?.jobid?.jobType}</span></h6>
-                    <div className='row mt-3'>
+                  <h6 className='mt-2'><span style={{display:'grid',alignItems:'end'}} 
+                  class="badge bg-secondary">{a.jobid?.jobName}</span></h6>
+                  <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Job Name:</b>
+                        <b>Worker Name:</b>
                         </p>
                       </div>
                       <div className='col-5'>
                         <p>
-                        <i>{a?.jobid?.jobName}</i>
+                        <i>{a?.workerId?.name}</i>
+                        </p>
+                      </div>
+                     </div> 
+                     <div className='row mt-3'>
+                      <div className='col-6'>
+                        <p>
+                        <b>Worker Type:</b>
+                        </p>
+                      </div>
+                      <div className='col-6'>
+                        <p>
+                        <i>{a?.workerId?.workertype}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Job Salary:</b>
+                        <b>Worker Email:</b>
                         </p>
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.jobid?.jobSalary}</i>/{a?.jobid?.jobSalaryType}
+                        <i>{a?.workerId?.email}</i>
                         </p>
                       </div>
                      </div> 
                      
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
-                        <b>Posted On:</b>
+                        <b>Worker Address:</b>
                         </p>
                       </div>
-                      <div className='col'>
-                        <p>
-                        <i>{new Date(a.jobid?.date).toLocaleDateString()}</i>
+                      <div className='col-5'>
+                        <p style={{textAlign:'justify'}}>
+                        <i>{a?.workerId?.address},{a?.workerId?.location},{a?.workerId?.state}</i>
                         </p>
                       </div>
                      </div> 
@@ -95,8 +125,8 @@ function EmpViewJobList() {
 
                   <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="empviewpostjob-accept" 
- onClick={()=>navigateToWorkReqJob(a?.jobid?._id)}                    >
-                      View Request
+ onClick={() => handleShow(a?.workerId?._id)}                    >
+                      Schedule Interview
                     </button>
                   </div>
                 </div>
@@ -107,13 +137,14 @@ function EmpViewJobList() {
           )} 
         </div>
       </div>
-
     </div>
-    
+    <Modal show={show} onHide={handleClose} centered>
+                    <ScheduleInterview close={handleClose} workerId={selectedWorkerId} refreshJobList={handleRefresh}/>
+            </Modal>
 
   </div>
     </>
   )
 }
 
-export default EmpViewJobList
+export default WorkerReqJob
