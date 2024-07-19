@@ -55,6 +55,7 @@ import WorkRecentJobOpen from './Pages/Worker/Home/WorkRecentJobOpen';
 import PaymentsList from './Pages/Worker/Payments/PaymentsList';
 import EmpViewJobReq from './Pages/Worker/EmpJobReq/EmpViewJobReq';
 import WorkerReqJob from './Pages/Employer/RequesJob/WorkerReqJob';
+import Navbar from './Pages/Common/Navbar/Navbar';
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/forgot-password' element={<ForgotPassword/>} />
         <Route path='/reset-password/:id' element={<ResetPassword/>} />
+        <Route path='/alljobs' element={[<Navbar/>,<RecentJobOpen/>]} />
 
 
         {/* User Routes */}
