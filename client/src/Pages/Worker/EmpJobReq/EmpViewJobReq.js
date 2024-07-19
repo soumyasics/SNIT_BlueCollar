@@ -1,30 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import "./Jobreq.css"
-import axiosInstance from '../Constants/Baseurl';
 import { Modal } from 'react-bootstrap';
-import Jobreqsingle from './Jobreqsingle';
-import WorkerNav2 from '../Common/Navbar/Worker/WorkerNav2';
+import './EmpJobReq.css'
+import axiosInstance from '../../Constants/Baseurl';
+import EmpViewSingleJobReq from './EmpViewSingleJobReq';
 
-function Jobreq() {
-  const workerid=localStorage.getItem('workerid')
-  console.log(workerid);
 
-  const [user, setUser] = useState("");
+function EmpViewJobReq() {
+    const workerid=localStorage.getItem('workerid')
+    console.log(workerid);
 
-  useEffect(() => {
-    axiosInstance.post(`viewworkerbyid/${workerid}`)
-        .then((result) => {
-            console.log(result);
-            setUser(result.data.data);
-          })
-        .catch((err) => {
-            console.log(err);
-        });
-}, [workerid]);
-
-  const category=user.workertype
-
-  console.log(category,'category');
   const [job, setJob] = useState(['']);
   const url = axiosInstance.defaults.url;
   const [show, setShow] = useState(false);
@@ -39,7 +23,7 @@ function Jobreq() {
 
   const fetchEmployerRequests = () => {
     axiosInstance
-      .post(`/viewjobreqs/${category}`)
+      .post('viewAllEmpPostJob')
       .then((result) => {
         console.log(result);
         setJob(result.data.data);
@@ -51,7 +35,7 @@ function Jobreq() {
 
   useEffect(() => {
     fetchEmployerRequests();
-  }, [category]);
+  }, []);
 
 
   const handleRefresh = () => {
@@ -59,15 +43,13 @@ function Jobreq() {
     setShow(false); // Close the modal after refreshing
   };
 
-
-
   return (
     <>
-    <WorkerNav2/>
+        
     <div className="workerview-jonreqmaincontainer">
     <div className="workerjobreq-mainbox">
       <div className="workjob-viewalert col-12">
-        <div className="admindash-shrink">Customer Job Requests</div>
+        <div className="worker-shrink">Employer Job Requests</div>
         <div className="row d-flex" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 
@@ -76,27 +58,28 @@ function Jobreq() {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
+                    <h6 className='mt-2'><span style={{display:'grid',alignItems:'end'}} class="badge bg-secondary">{a?.jobType}</span></h6>
                     <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Customer Name:</b>
+                        <b>Employer Name:</b>
                         </p>
                       </div>
                       <div className='col-5'>
                         <p>
-                        <i>{a?.custid?.name}</i>
+                        <i>{a?.empId?.name}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Customer Mail:</b>
+                        <b>Employer Mail:</b>
                         </p>
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.custid?.email}</i>
+                        <i>{a?.empId?.email}</i>
                         </p>
                       </div>
                      </div> 
@@ -108,7 +91,7 @@ function Jobreq() {
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.jobname}</i>
+                        <i>{a?.jobName}</i>
                         </p>
                       </div>
                      </div> 
@@ -124,18 +107,6 @@ function Jobreq() {
                         </p>
                       </div>
                      </div> 
-                    {/* <div className="col-10 jobreq-para">
-                      <p className='pt-3'>
-                      <b>Customer Name:</b>&nbsp; <i>{a?.custid?.name}</i> <br/>
-                      <b>Customer Mail:</b>&nbsp;<i>{a?.custid?.email}</i> <br/>
-                      <b>JobTitle:</b> 
-                        <br />
-                      <b></b><span > </span>
-                      <br />
-                      
-
-                      </p>
-                    </div> */}
                   </div>
 
                   <div className="jobreq-viewmore-dashbox">
@@ -155,12 +126,12 @@ function Jobreq() {
 
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <Jobreqsingle close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
+                    <EmpViewSingleJobReq close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
             </Modal>
 
   </div>
-  </>
+    </>
   )
 }
 
-export default Jobreq
+export default EmpViewJobReq

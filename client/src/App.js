@@ -53,6 +53,7 @@ import ViewAcceptedPostJobs from './Pages/User/ViewAcceptedPostJobs/ViewAccepted
 import AddReviews from './Pages/User/Reviews/AddReviews';
 import WorkRecentJobOpen from './Pages/Worker/Home/WorkRecentJobOpen';
 import PaymentsList from './Pages/Worker/Payments/PaymentsList';
+import EmpViewJobReq from './Pages/Worker/EmpJobReq/EmpViewJobReq';
 
 function App() {
   return (
@@ -80,12 +81,6 @@ function App() {
         <Route path='/user-add-reviews' element={<AddReviews />} />
 
 
-
-
-
-
-
-
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
         <Route path='/employer-home' element={[<Employernav/>,<EmployerNav2/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
@@ -99,6 +94,7 @@ function App() {
         <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
+        <Route path='/worker-empjobreq' element={[<WorkerNav/>,<WorkerNav2/>,<EmpViewJobReq/>]}/>
         <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<WorkerNav2/>,<ViewRecentJobs/>]}/>
         {/* <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} /> */}
         <Route path='/worker-jobstatus' element={[<WorkerNav/>,<WorkerNav2/>,<Workerviewjobstatus/>]}/>

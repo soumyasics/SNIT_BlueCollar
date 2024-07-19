@@ -8,6 +8,7 @@ const jobreq=require("./models/customer/PostJob/PostjobController")
 const emppostjob=require('./models/Employer/EmpPostJob/EmpPostJobController')
 const workeracceptreq=require("./models/customer/Jobrequest/workerJobApprovalControler")
 const workstatus=require("./models/Worker/WorkStatus/workStatusController")
+const empjobreq=require("./models/Employer/EmpJobRequest/JobRequestController")
 
 // Customer
 
@@ -64,6 +65,12 @@ router.post("/registerjob",emppostjob.registerjob)
 router.post("/viewEmpPostJobByEmpid/:id",emppostjob.viewEmpPostJobByEmpid)
 router.post("/viewEmpPostJobById/:id",emppostjob.viewEmpPostJobById)
 router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
+
+// EmpJob Req
+
+router.post("/empjobreq/:id",empjobreq.empjobrequest)
+
+
 
 
 
