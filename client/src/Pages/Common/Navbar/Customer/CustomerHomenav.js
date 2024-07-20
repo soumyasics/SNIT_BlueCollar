@@ -68,18 +68,18 @@ function CustomerHomenav() {
                             <Link className="nav-link text-light-custom" to="/customer-home">Home</Link>
                         </li>
                         
-                        <li className="nav-item m-1">
+                        {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="">AboutUs</Link>
-                        </li>
+                        </li> */}
                         {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="">Gallery</Link>
                         </li> */}
-                        <li className="nav-item m-1">
+                        {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="#">Jobs</Link>
-                        </li>
-                        <li className="nav-item m-1">
+                        </li> */}
+                        {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
-                        </li>
+                        </li> */}
                         
                         <li className='nav-item dropdown m-1'>
                             <Dropdown align="end">

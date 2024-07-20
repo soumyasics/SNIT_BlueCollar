@@ -76,11 +76,11 @@ function Navbar() {
             <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="/aboutus">About Us</Link>
             </li>
-            <li className="nav-item m-1">
+            {/* <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="#">Gallery</Link>
-            </li>
+            </li> */}
             <li className="nav-item m-1">
-              <Link className="nav-link text-light-custom" to="#">Jobs</Link>
+              <Link className="nav-link text-light-custom" to="/alljobs">Jobs</Link>
             </li>
             <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
