@@ -20,6 +20,10 @@ const schema = mongoose.Schema({
     type: String,
     required: true,
   },
+  paymentStatus: {
+    type: Boolean,
+    default: false,
+  },
   payment: {
     type: Number,
     required: true,
