@@ -9,6 +9,7 @@ const emppostjob=require('./models/Employer/EmpPostJob/EmpPostJobController')
 const workeracceptreq=require("./models/customer/Jobrequest/workerJobApprovalControler")
 const workstatus=require("./models/Worker/WorkStatus/workStatusController")
 const empjobreq=require("./models/Employer/EmpJobRequest/JobRequestController")
+const interviews=require("./models/Interviews/interviewController")
 
 // Customer
 
@@ -105,6 +106,13 @@ router.post("/OTPVerification",workstatus.OTPVerification)
 router.post("/updatePaymentStatus/:id",workstatus.updatePaymentStatus)
 router.post("/viewWorksamountById/:id",workstatus.viewWorksamountById)
 router.post("/viewCompletedWorksByWorkerId/:id",workstatus.viewCompletedWorksByWorkerId)
+
+//interviews
+
+router.post("/createInterview/:id",interviews.createInterview)
+router.post("/viewInterviewsByWorkerId/:id",interviews.viewInterviewsByWorkerId)
+router.post("/viewInterviewsByEmpId/:id",interviews.viewInterviewsByEmpId)
+router.post("/viewInterviewByJobRequestId/:id",interviews.viewInterviewByJobRequestId)
 
 
 module.exports=router
