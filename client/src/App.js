@@ -83,7 +83,7 @@ function App() {
         <Route path='/user-view-workstatus' element={<ViewWorkStatus />} />
         <Route path='/user-edit-workstatus' element={<EditWorkStatus />} />
         <Route path='/user-add-reviews' element={<AddReviews />} />
-        <Route path='/user-add-paymentdetails' element={<PaymentDetails />} />
+        <Route path='/user-add-paymentdetails/:amount' element={<PaymentDetails />} />
 
 
 

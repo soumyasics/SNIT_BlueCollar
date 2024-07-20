@@ -30,11 +30,11 @@ function ViewAcceptedPostJobs() {
 
   const [show, setShow] = useState(false);
   const [openRequests, setOpenRequests] = useState(false);
-  const [selectedWorkerId, setSelectedWorkerid] = useState(null);//for passing _id as prop
+  const [selectedJobId, setSelectedJobid] = useState(null);//for passing _id as prop
 
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
-    setSelectedWorkerid(id);
+    setSelectedJobid(id);
     setShow(true);
   };
 
@@ -64,7 +64,7 @@ function ViewAcceptedPostJobs() {
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
                     <div className=" viewworkreqacpt  mb-4">
-                        <button type="submit" onClick={()=>handleShow(a._id)}>Go to Payment</button>
+                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id)}>Go to Payment</button>
                     </div>
                            
                   </div>
@@ -78,7 +78,7 @@ function ViewAcceptedPostJobs() {
       </div>
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <PaymentReqAccJob close={handleClose} workerId={selectedWorkerId} refreshJobList={handleRefresh}/>
+                    <PaymentReqAccJob close={handleClose} jobid={selectedJobId} refreshJobList={handleRefresh}/>
             </Modal>
     </div>
   )

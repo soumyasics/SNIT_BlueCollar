@@ -1,5 +1,5 @@
 const workstatusschema = require("./workStatusSchema.js");
-const customerSchema=require('../../customer/customerSchema.js')
+const customerSchema = require('../../customer/customerSchema.js')
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -10,8 +10,8 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const sendMail = (toMail,otp,payment) => {
-  let email=toMail
+const sendMail = (toMail, otp, payment) => {
+  let email = toMail
   const mailOptions = {
     from: 'supprot.web.application@gmail.com',
     to: email,
@@ -45,21 +45,21 @@ Blue Collar Team`
 
 
 
-const addworkstatus = async(req, res) => {
-  let custData=await customerSchema.findById(req.body.customerId)
+const addworkstatus = async (req, res) => {
+  let custData = await customerSchema.findById(req.body.customerId)
   const workstatus = new workstatusschema({
-    jobid:req.params.id,
-    workerId:req.body.workerId,
-    customerId:req.body.customerId,
-    status:'completed',
-    payment:req.body.payment,
-    otp:req.body.otp,
+    jobid: req.params.id,
+    workerId: req.body.workerId,
+    customerId: req.body.customerId,
+    status: 'completed',
+    payment: req.body.payment,
+    otp: req.body.otp,
 
   });
-await  workstatus
+  await workstatus
     .save()
     .then((data) => {
-      sendMail(custData.email,req.body.otp,req.body.payment)
+      sendMail(custData.email, req.body.otp, req.body.payment)
 
       res.json({
         status: 200,
@@ -69,18 +69,53 @@ await  workstatus
     })
     .catch((err) => {
       console.log(err);
-        res.json({
-            status:500,
-            err:err
-        })
+      res.json({
+        status: 500,
+        err: err
+      })
     });
 };
 
 
 
-const OTPVerification=async(req,res)=>{
-  
+const OTPVerification = async (req, res) => {
+   workstatusschema.findOne({ jobid: req.body.jobid, customerId: req.body.customerId }).then(data=>{
+
+console.log("data",data);
+  if (data.otp == req.body.otp) {
+    if (data.payment == req.body.payment) {
+      
+      return  res.json({
+          status: 200,
+          msg: "OTP and Payment is Verified"
+          
+        });
+      
+    }
+   else{
+    res.json({
+      status: 405,
+        msg: "Payment Amount did not Match !!"
+    })
+   }
+  }
+  else{
+    res.json({
+      status: 405,
+        msg: "OTP did not Match !!"
+    })
+   }
+  })
+  .catch((err) => {
+    console.log(err);
+    res.json({
+      status: 500,
+        msg: "Internal Error !!"
+    })
+  })
+
 }
-module.exports={
-    addworkstatus
+module.exports = {
+  addworkstatus,
+  OTPVerification
 }

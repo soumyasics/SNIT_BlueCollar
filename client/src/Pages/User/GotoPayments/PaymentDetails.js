@@ -1,32 +1,33 @@
 import React,{useState,useEffect} from 'react'
 import axiosInstance from '../../Constants/Baseurl';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import icon from '../../../Assets/payment.jpg'
 
-function PaymentDetails({userid}) {
+function PaymentDetails() {
     const navigate=useNavigate();
+    const {amount}=useParams();
 
     const [user,setUser]=useState()
     const [form, setForm] = useState({
-        servicedate: "",
-        name: "",
-        number: "",
-        cdnumber: "",
+        cardholdername:"",
+        cardno: "",
+        cvv: "",
         month: "",
         year: "",
       });
     
-      const [formData, setFormData] = useState({
-        number: "",
-        cdnumber: "",
-        numberError: "",
-        cdnumberError: "",
+      const [errors, setErrors] = useState({
+        cardholdername:"",
+        cardno: "",
+        cvv: "",
+        month: "",
+        year: "",
       });
     
       useEffect(() => {
         axiosInstance
-          .post(`viewcustbyid/${userid}`)
+          .post('')
           .then((res) => {
             console.log(res.data);
             setUser(res.data.data);
@@ -34,12 +35,12 @@ function PaymentDetails({userid}) {
           .catch((err) => {
             console.log("Error fetching user data: ", err);
           });
-      }, [userid]);
+      }, []);
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-          ...formData,
+        setForm({
+          ...form,
           [name]: value,
           numberError: "",
           cdnumberError: "",
@@ -144,7 +145,7 @@ function PaymentDetails({userid}) {
                         }}
                         required
                       />
-                      <p style={{ color: "red" }}>{formData.numberError}</p>
+                      <p style={{ color: "red" }}>{form.numberError}</p>
                       <label htmlFor="cardNo">Card Number</label>
                     </div>
                   </div>
@@ -164,7 +165,7 @@ function PaymentDetails({userid}) {
                           changefn(e);
                         }}
                       />
-                      <p style={{ color: "red" }}>{formData.cdnumberError}</p>
+                      <p style={{ color: "red" }}>{form.cdnumberError}</p>
                       <label htmlFor="cvv">CVV</label>
                     </div>
                   </div>
@@ -239,7 +240,7 @@ function PaymentDetails({userid}) {
 
               <h1 className="mb-4">
                 Total Amount -{" "}
-                {/* <span style={{ color: "#00b074" }}>₹{price?.amount}</span> */}
+                <span style={{ color: "#00b074" }}>₹{amount}</span>
               </h1>
             </div>
           </div>

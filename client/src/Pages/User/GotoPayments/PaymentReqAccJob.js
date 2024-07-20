@@ -3,17 +3,16 @@ import './PaymentReqAccJob.css'
 import {useNavigate, useParams} from 'react-router-dom'
 import axiosInstance from '../../Constants/Baseurl';
 
-function PaymentReqAccJob({close,workerId}) {
+function PaymentReqAccJob({close,jobid}) {
     const navigate =useNavigate();
-    // const workerid = localStorage.getItem("workerid");
+    const customerId = localStorage.getItem("custid");
     // console.log(id+"idprops");
-    // const jobid=jobId // id from props
-    // console.log(jobid,'jobid');
+    // const jobid=jobid // id from props
+    console.log(jobid,'jobid');
 
     const [workstatusdata,setWorkStatusData]=useState({
-        workerId:workerId,
-        customerId:'',
-        status:"incompleted",
+        jobid:jobid,
+        customerId:customerId,
         payment:"",
         otp:""
 
@@ -21,9 +20,6 @@ function PaymentReqAccJob({close,workerId}) {
     // console.log(custId+"cccccc");
 
     const [errors, setErrors] = useState({
-        workerId:"",
-        customerId:"",
-        status:"",
         payment:"",
         otp:""
     });
@@ -75,13 +71,15 @@ const handleSubmit = async (e) => {
         var response;
         if (workstatusdata) {
           response = await axiosInstance.post(
-            // `addworkstatus/${jobid}`,
+            'OTPVerification',
             workstatusdata
           );
         }
         console.log("Response:", response); 
+        const amount=workstatusdata.payment
         if(response.status==200){
           alert(response.data.msg)
+          navigate(`/user-add-paymentdetails/${amount}`)
           close()
         }
         
@@ -146,7 +144,7 @@ const handleSubmit = async (e) => {
         
 		</section>
 		<footer class="worker-viewworkstatus-modal-container-footer mt-5">
-			<button class="worker-viewworkstatus-button is-primary" type='submit' style={{background:'#3D9AE0'}}>Payment</button>
+			<button class="worker-viewworkstatus-button is-primary" type='submit' style={{background:'#3D9AE0'}}>Proceed</button>
 		</footer>
 	</article>
     </form>
