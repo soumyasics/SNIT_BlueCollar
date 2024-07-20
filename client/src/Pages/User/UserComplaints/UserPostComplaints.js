@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React,{useState,useEffect} from 'react'
+import './UserPostComplaints.css'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Constants/Baseurl';
-import './ViewAcceptedPostJobs.css'
 import { Modal } from 'react-bootstrap';
-import PaymentReqAccJob from '../GotoPayments/PaymentReqAccJob';
+import AddComplaints from '../../Common/Complaints/AddComplaints';
 
-
-function ViewAcceptedPostJobs() {
+function UserPostComplaints() {
     const custid = localStorage.getItem("custid");
   const [data, setData] = useState([]);
 
@@ -41,9 +40,9 @@ function ViewAcceptedPostJobs() {
   const handleRefresh = () => {
     setShow(false); // Close the modal after refreshing
   };
-
   return (
     <div>
+        <div>
         <div className="workerview-jonreqmaincontainer" style={{minHeight:'80vh'}}>
       <div className="workerjobreq-mainbox mb-5">
         <div className="workjob-viewalert col-12">
@@ -76,8 +75,8 @@ function ViewAcceptedPostJobs() {
                     <div className="col-7">: {a?.workerId?.contact}</div>
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
-                    <div className=" viewworkreqacpt  mb-4">
-                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id)}>Go to Payment</button>
+                    <div className="user-regcomplaint-btn  mb-4">
+                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id)}>Register Complaint</button>
                     </div>
                            
                   </div>
@@ -91,10 +90,11 @@ function ViewAcceptedPostJobs() {
       </div>
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <PaymentReqAccJob close={handleClose} jobid={selectedJobId} refreshJobList={handleRefresh}/>
+                    <AddComplaints close={handleClose} jobid={selectedJobId} refreshJobList={handleRefresh}/>
             </Modal>
+    </div>
     </div>
   )
 }
 
-export default ViewAcceptedPostJobs
+export default UserPostComplaints

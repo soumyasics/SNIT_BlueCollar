@@ -96,7 +96,7 @@ function CustomerHomenav() {
                             </Link>
                         </li>
                         <li className="nav-item me-3 pe-3 m-1">
-                            <Link className="nav-link text-light-custom" to='/user-view-acceptedjobstatus'>
+                            <Link className="nav-link text-light-custom" to='/user-post-complaints'>
                                 Complaint
                             </Link>
                         </li>

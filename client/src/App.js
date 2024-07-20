@@ -57,6 +57,7 @@ import EmpViewJobReq from './Pages/Worker/EmpJobReq/EmpViewJobReq';
 import WorkerReqJob from './Pages/Employer/RequesJob/WorkerReqJob';
 import Navbar from './Pages/Common/Navbar/Navbar';
 import PaymentDetails from './Pages/User/GotoPayments/PaymentDetails';
+import UserPostComplaints from './Pages/User/UserComplaints/UserPostComplaints';
 
 function App() {
   return (
@@ -84,6 +85,8 @@ function App() {
         <Route path='/user-edit-workstatus' element={<EditWorkStatus />} />
         <Route path='/user-add-reviews' element={<AddReviews />} />
         <Route path='/user-add-paymentdetails/:id' element={<PaymentDetails />} />
+        <Route path='/user-post-complaints' element={[<CustomerHomenav/>,<UserPostComplaints />,<Footer/>]} />
+
 
 
 

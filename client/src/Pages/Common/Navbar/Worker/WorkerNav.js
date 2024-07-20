@@ -52,7 +52,24 @@ function WorkerNav() {
                     <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="/worker-home">Home</Link>
                         </li>
+                        <li className="nav-item m-1 me-5 pe-3 ">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
+                                    Requests
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item as={Link} to="/worker-jobreq">Customer Job Requests</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="/worker-empjobreq">Employer Job Requests</Dropdown.Item>
 
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </li>
+                        <li className="nav-item m-1 me-5  ">
+                            <Link className="nav-link text-light-custom" to="/worker-jobstatus" >Accepted status</Link>
+                        </li>
+                        <li className="nav-item m-1 me-5  ">
+                            <Link className="nav-link text-light-custom" to="/worker-paymentstatus">Payment status</Link>
+                        </li>
                         {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="#">AboutUs</Link>
                         </li> */}
