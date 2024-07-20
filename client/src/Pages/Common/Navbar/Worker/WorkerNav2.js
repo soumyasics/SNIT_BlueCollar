@@ -58,7 +58,7 @@ function WorkerNav2() {
                             <Link className="nav-link text-light-custom" to="/worker-jobstatus" >Accepted status</Link>
                         </li>
                         <li className="nav-item m-1 me-5  ">
-                            <Link className="nav-link text-light-custom" to="/worker-paymentstatus">Payments</Link>
+                            <Link className="nav-link text-light-custom" to="/worker-paymentstatus">Payment status</Link>
                         </li>
                         <li className="nav-item m-1   ">
                             <Dropdown>

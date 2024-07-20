@@ -3,10 +3,37 @@ import axiosInstance from '../../Constants/Baseurl';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import icon from '../../../Assets/payment.jpg'
+import { toast } from 'react-toastify';
+
 
 function PaymentDetails() {
     const navigate=useNavigate();
-    const {amount}=useParams();
+    const {id}=useParams();
+    console.log(id,'id');
+
+    const [amountdata,setAmountdata]=useState({
+      
+    })
+
+    useEffect(()=>{
+      
+        axiosInstance.post(`viewWorksamountById/${id}`)
+        .then((res)=>{
+          if(res.status==200){
+            console.log(res,'data');
+            setAmountdata(res.data.data)
+          }
+          })
+        .catch((err)=>{
+          console.log(err);
+        })
+      
+      
+    },[id])
+
+    console.log(amountdata,'amountdata');
+
+    
 
     const [user,setUser]=useState()
     const [form, setForm] = useState({
@@ -16,6 +43,8 @@ function PaymentDetails() {
         month: "",
         year: "",
       });
+
+      console.log(form,'form');
     
       const [errors, setErrors] = useState({
         cardholdername:"",
@@ -25,17 +54,7 @@ function PaymentDetails() {
         year: "",
       });
     
-      useEffect(() => {
-        axiosInstance
-          .post('')
-          .then((res) => {
-            console.log(res.data);
-            setUser(res.data.data);
-          })
-          .catch((err) => {
-            console.log("Error fetching user data: ", err);
-          });
-      }, []);
+      
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -54,32 +73,32 @@ function PaymentDetails() {
         });
       };
     
-    //   const submitfn = (a) => {
-    //     a.preventDefault();
-    //     if (formData.number.length !== 16) {
-    //       setFormData({ ...formData, numberError: "Card number must be 16 digits." });
-    //       return;
-    //     }
-    //     if (formData.cdnumber.length < 3) {
-    //       setFormData({ ...formData, cdnumberError: "CVV must be at least 3 digits." });
-    //       return;
-    //     }
+      const submitfn = (a) => {
+        a.preventDefault();
+        if (form.cardno.length !== 16) {
+          setForm({ ...form, numberError: "Card number must be 16 digits." });
+          return;
+        }
+        if (form.cvv.length < 3) {
+          setForm({ ...form, cdnumberError: "CVV must be at least 3 digits." });
+          return;
+        }
     
-    //     axiosInstance
-    //       .post(`updateOrderPayment/${id}`, form)
-    //       .then((res) => {
-    //         console.log(res);
-    //         if (res.data.status === 200) {
-    //           toast.success("Payment successfully processed");
-    //           navigate("/user-home")
-    //         } else {
-    //           alert("Error in booking");
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   };
+        axiosInstance
+          .post(`updatePaymentStatus/${id}`, form)
+          .then((res) => {
+            console.log(res);
+            if (res.data.status === 200) {
+              toast.success("Payment successfully processed");
+              navigate('/customer-home')
+            } else {
+              alert("Error in booking");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
   return (
     <>
         <div className="container-xxl py-5">
@@ -91,7 +110,7 @@ function PaymentDetails() {
             <div className="col-lg-6" style={{ marginTop: "7rem" }}>
               <form
                 className="mt-4"
-                // onSubmit={submitfn}
+                onSubmit={submitfn}
                 required
                 title="Please fill the form"
               >
@@ -121,8 +140,8 @@ function PaymentDetails() {
                         className="form-control"
                         id="cardHolderName"
                         placeholder="Your Name"
-                        name="name"
-                        value={form.name}
+                        name="cardholdername"
+                        
                         onChange={changefn}
                         required
                       />
@@ -137,15 +156,15 @@ function PaymentDetails() {
                         className="form-control"
                         id="cardNo"
                         placeholder="Card Number"
-                        name="number"
-                        value={form.number}
+                        name="cardno"
+                        
                         onChange={(e) => {
                           handleInputChange(e);
                           changefn(e);
                         }}
                         required
                       />
-                      <p style={{ color: "red" }}>{form.numberError}</p>
+                      <p style={{ color: "red" }}>{form.cardholdername}</p>
                       <label htmlFor="cardNo">Card Number</label>
                     </div>
                   </div>
@@ -158,14 +177,14 @@ function PaymentDetails() {
                         id="cvv"
                         placeholder="CVV"
                         required
-                        name="cdnumber"
-                        // value={form.cdnumber}
+                        name="cvv"
+                        
                         onChange={(e) => {
                           handleInputChange(e);
                           changefn(e);
                         }}
                       />
-                      <p style={{ color: "red" }}>{form.cdnumberError}</p>
+                      <p style={{ color: "red" }}>{form.cardno}</p>
                       <label htmlFor="cvv">CVV</label>
                     </div>
                   </div>
@@ -240,7 +259,7 @@ function PaymentDetails() {
 
               <h1 className="mb-4">
                 Total Amount -{" "}
-                <span style={{ color: "#00b074" }}>₹{amount}</span>
+                <span style={{ color: "#00b074" }}>₹{amountdata?.payment}</span>
               </h1>
             </div>
           </div>

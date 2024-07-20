@@ -2,6 +2,7 @@ import React,{  useState,useEffect    } from 'react'
 import './PaymentReqAccJob.css'
 import {useNavigate, useParams} from 'react-router-dom'
 import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
 function PaymentReqAccJob({close,jobid}) {
     const navigate =useNavigate();
@@ -76,11 +77,16 @@ const handleSubmit = async (e) => {
           );
         }
         console.log("Response:", response); 
-        const amount=workstatusdata.payment
-        if(response.status==200){
-          alert(response.data.msg)
-          navigate(`/user-add-paymentdetails/${amount}`)
-          close()
+        
+        if(response.data.status==200){
+            toast.success(response.data.msg)
+            const id=response.data.data._id
+            console.log(id,'idd');
+            navigate(`/user-add-paymentdetails/${id}`)
+            close()
+        }
+        else{
+            toast.error(response.data.msg)
         }
         
       } catch (error) {

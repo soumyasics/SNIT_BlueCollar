@@ -87,7 +87,8 @@ console.log("data",data);
       
       return  res.json({
           status: 200,
-          msg: "OTP and Payment is Verified"
+          msg: "OTP and Payment is Verified",
+          data:data
           
         });
       
@@ -115,7 +116,84 @@ console.log("data",data);
   })
 
 }
+
+
+
+const updatePaymentStatus= async (req, res) => {
+  workstatusschema.findByIdAndUpdate({ _id:req.params.id},{
+    paymentStatus:true,status:'Paid'
+  })
+  .then(data=>{
+
+console.log("data",data);
+     return  res.json({
+         status: 200,
+         msg: "Updated Successfully"
+         
+       });
+     
+   
+ })
+ .catch((err) => {
+   console.log(err);
+   res.json({
+     status: 500,
+       msg: "Internal Error !!"
+   })
+ })
+
+}
+
+
+const viewCompletedWorksByWorkerId= async (req, res) => {
+  workstatusschema.find({workerId:req.params.id})
+  .populate('jobid')
+  .populate('customerId')
+  .then(data=>{
+     return  res.json({
+         status: 200,
+         msg: "Retrieved Successfully",
+         data:data
+         
+       });
+     
+   
+ })
+ .catch((err) => {
+   console.log(err);
+   res.json({
+     status: 500,
+       msg: "Internal Error !!"
+   })
+ })
+
+}
+
+const viewWorksamountById= async (req, res) => {
+  workstatusschema.findById(req.params.id)
+  .then(data=>{
+     return  res.json({
+         status: 200,
+         msg: "Retrieved Successfully",
+         data:data
+         
+       });
+     
+   
+ })
+ .catch((err) => {
+   console.log(err);
+   res.json({
+     status: 500,
+       msg: "Internal Error !!"
+   })
+ })
+
+}
 module.exports = {
   addworkstatus,
-  OTPVerification
+  OTPVerification,
+  updatePaymentStatus,
+  viewCompletedWorksByWorkerId,
+  viewWorksamountById,
 }

@@ -75,15 +75,15 @@ function App() {
 
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
-        <Route path='/customer-home' element={[<CustomerHomenav/>,<CustomerNav2/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
+        <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
         <Route path='/user-postjob' element={<PostJobList />} />
-        <Route path='/user-view-postjob' element={[<CustomerHomenav/>,<CustomerNav2/>,<ViewPostJobsList />]} />
-        <Route path='/user-viewjobstatus/:jobid' element={[<CustomerHomenav/>,<CustomerNav2/>,<Viewjobstatus />,<Footer/>]} />
-        <Route path='/user-view-acceptedjobstatus' element={[<CustomerHomenav/>,<CustomerNav2/>,<ViewAcceptedPostJobs />,<Footer/>]} />
+        <Route path='/user-view-postjob' element={[<CustomerHomenav/>,<ViewPostJobsList />]} />
+        <Route path='/user-viewjobstatus/:jobid' element={[<CustomerHomenav/>,<Viewjobstatus />,<Footer/>]} />
+        <Route path='/user-view-acceptedjobstatus' element={[<CustomerHomenav/>,<ViewAcceptedPostJobs />,<Footer/>]} />
         <Route path='/user-view-workstatus' element={<ViewWorkStatus />} />
         <Route path='/user-edit-workstatus' element={<EditWorkStatus />} />
         <Route path='/user-add-reviews' element={<AddReviews />} />
-        <Route path='/user-add-paymentdetails/:amount' element={<PaymentDetails />} />
+        <Route path='/user-add-paymentdetails/:id' element={<PaymentDetails />} />
 
 
 

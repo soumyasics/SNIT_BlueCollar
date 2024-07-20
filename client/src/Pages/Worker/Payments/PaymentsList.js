@@ -8,6 +8,8 @@ function PaymentsList() {
   console.log(workerid);
 
   const [user, setUser] = useState("");
+  const [paymentstatus, setPaymentStatus] = useState("");
+  
 
   useEffect(() => {
     axiosInstance.post(`viewworkerbyid/${workerid}`)
@@ -19,8 +21,32 @@ function PaymentsList() {
             console.log(err);
         });
 }, [workerid]);
+const category=user.workertype
 
-  const category=user.workertype
+useEffect(() => {
+  axiosInstance.post(`viewCompletedWorksByWorkerId/${workerid}`)
+      .then((result) => {
+          console.log(result,'paymentstatus');
+          setPaymentStatus(result.data.data);
+          
+        })
+      .catch((err) => {
+          console.log(err);
+      });
+}, [workerid]);
+
+const getStatusColor = (status) => {
+  if (status === 'Paid') {
+    return 'green';
+  } else if (status === 'completed') {
+    return 'red';
+  } else {
+    return 'black'; // default color for any other status
+  }
+};
+
+
+  
 
   console.log(category,'category');
   const [job, setJob] = useState(['']);
@@ -35,27 +61,27 @@ function PaymentsList() {
     setShow(true);
   };
 
-  const fetchEmployerRequests = () => {
-    axiosInstance
-      .post(`/viewjobreqs/${category}`)
-      .then((result) => {
-        console.log(result);
-        setJob(result.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const fetchEmployerRequests = () => {
+  //   axiosInstance
+  //     .post(`/viewjobreqs/${category}`)
+  //     .then((result) => {
+  //       console.log(result);
+  //       setJob(result.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
-  useEffect(() => {
-    fetchEmployerRequests();
-  }, [category]);
+  // useEffect(() => {
+  //   fetchEmployerRequests();
+  // }, [category]);
 
 
-  const handleRefresh = () => {
-    fetchEmployerRequests();
-    setShow(false); // Close the modal after refreshing
-  };
+  // const handleRefresh = () => {
+  //   fetchEmployerRequests();
+  //   setShow(false); // Close the modal after refreshing
+  // };
 
 
   return (
@@ -67,8 +93,8 @@ function PaymentsList() {
         <div className="row d-flex" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 
-          {job && job.length ? (
-            job.map((a) => {
+          {paymentstatus && paymentstatus.length ? (
+            paymentstatus.map((a) => {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
@@ -80,7 +106,7 @@ function PaymentsList() {
                       </div>
                       <div className='col-5'>
                         <p>
-                        <i>{a?.custid?.name}</i>
+                        <i>{a?.customerId?.name}</i>
                         </p>
                       </div>
                      </div> 
@@ -92,7 +118,7 @@ function PaymentsList() {
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.custid?.email}</i>
+                        <i>{a?.customerId?.email}</i>
                         </p>
                       </div>
                      </div> 
@@ -104,19 +130,19 @@ function PaymentsList() {
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.jobname}</i>
+                        <i>{a?.jobid?.jobname}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Posted On:</b>
+                        <b>Payment Amount:</b>
                         </p>
                       </div>
-                      <div className='col'>
+                      <div className='col-5'>
                         <p>
-                        <i>{new Date(a.date).toLocaleDateString()}</i>
+                        <i>{a?.payment}</i>
                         </p>
                       </div>
                      </div> 
@@ -127,8 +153,8 @@ function PaymentsList() {
                         </p>
                       </div>
                       <div className='col-5'>
-                        <p style={{color:'green'}}>
-                        <b>Completed</b>
+                        <p style={{ color: getStatusColor(a.status) }}>
+                        <b>{a?.status}</b>
                         </p>
                       </div>
                       </div>
@@ -146,12 +172,12 @@ function PaymentsList() {
                     </div> */}
                   </div>
 
-                  <div className="jobreq-viewmore-dashbox">
+                  {/* <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="viewmoreadmin-accept" 
                       onClick={() => handleShow(a._id)}                    >
                       View More
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               );
             })
@@ -162,9 +188,9 @@ function PaymentsList() {
       </div>
 
     </div>
-    <Modal show={show} onHide={handleClose} centered>
+    {/* <Modal show={show} onHide={handleClose} centered>
                     <Jobreqsingle close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
-            </Modal>
+            </Modal> */}
 
   </div>
     </>
