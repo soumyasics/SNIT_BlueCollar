@@ -64,7 +64,7 @@ function CustomerHomenav() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav1">
                     <ul className="navbar-nav ms-auto me-5 navbar-links">
-                    <li className="nav-item m-1">
+                    <li className="nav-item  me-3 pe-3 m-1">
                             <Link className="nav-link text-light-custom" to="/customer-home">Home</Link>
                         </li>
                         
@@ -80,7 +80,26 @@ function CustomerHomenav() {
                         {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
                         </li> */}
-                        
+                        <li className="nav-item me-3 pe-3 m-1">
+                            <Link className="nav-link text-light-custom" onClick={() => handleShow('PostJob')} >
+                                Post Jobs
+                            </Link>
+                        </li>
+                        <li className="nav-item me-3 pe-3 m-1">
+                            <Link className="nav-link text-light-custom" to='/user-view-postjob'>
+                                View Jobs
+                            </Link>
+                        </li>
+                        <li className="nav-item me-3 pe-3 m-1">
+                            <Link className="nav-link text-light-custom" to='/user-view-acceptedjobstatus'>
+                                Accepted Status
+                            </Link>
+                        </li>
+                        <li className="nav-item me-3 pe-3 m-1">
+                            <Link className="nav-link text-light-custom" to='/user-view-acceptedjobstatus'>
+                                Complaint
+                            </Link>
+                        </li>
                         <li className='nav-item dropdown m-1'>
                             <Dropdown align="end">
                                 <Dropdown.Toggle variant="link" id="dropdown-basic">

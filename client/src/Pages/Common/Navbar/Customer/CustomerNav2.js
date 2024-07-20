@@ -37,9 +37,10 @@ function CustomerNav2() {
             <button
             className='workernav_2_searchbtn'
             >
-<svg width="20px" height="20px" viewBox="0 0 15 15" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-<path d="M14.5 14.5L10.5 10.5M6.5 12.5C3.18629 12.5 0.5 9.81371 0.5 6.5C0.5 3.18629 3.18629 0.5 6.5 0.5C9.81371 0.5 12.5 3.18629 12.5 6.5C12.5 9.81371 9.81371 12.5 6.5 12.5Z" stroke="#000000"/>
-</svg>            </button>
+            <svg width="20px" height="20px" viewBox="0 0 15 15" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.5 14.5L10.5 10.5M6.5 12.5C3.18629 12.5 0.5 9.81371 0.5 6.5C0.5 3.18629 3.18629 0.5 6.5 0.5C9.81371 0.5 12.5 3.18629 12.5 6.5C12.5 9.81371 9.81371 12.5 6.5 12.5Z" stroke="#000000"/>
+            </svg>            
+            </button>
                 
                 <div className="collapse navbar-collapse" id="navbarNav1">
                     <ul className="navbar-nav ms-auto me-3 pe-5 navbar-links">
@@ -68,9 +69,9 @@ function CustomerNav2() {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li> */}
-                        <li className="nav-item m-1 me-3 pe-3 ">
+                        {/* <li className="nav-item m-1 me-3 pe-3 ">
                             <Link className="nav-link text-light-custom" to="#">Payments</Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item m-1 me-3 pe-3 ">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">

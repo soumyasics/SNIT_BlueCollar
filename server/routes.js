@@ -103,6 +103,7 @@ router.post("/viewApprovedReqsbycustomerId/:id",workeracceptreq.viewApprovedReqs
 router.post("/addworkstatus/:id",workstatus.addworkstatus)
 router.post("/OTPVerification",workstatus.OTPVerification)
 router.post("/updatePaymentStatus/:id",workstatus.updatePaymentStatus)
+router.post("/viewWorksamountById/:id",workstatus.viewWorksamountById)
 router.post("/viewCompletedWorksByWorkerId/:id",workstatus.viewCompletedWorksByWorkerId)
 
 

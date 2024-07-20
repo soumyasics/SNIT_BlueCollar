@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Constants/Baseurl';
 import './ViewAcceptedPostJobs.css'
+import { Modal } from 'react-bootstrap';
+import PaymentReqAccJob from '../GotoPayments/PaymentReqAccJob';
+
 
 function ViewAcceptedPostJobs() {
     const custid = localStorage.getItem("custid");
@@ -25,12 +28,26 @@ function ViewAcceptedPostJobs() {
     navigate(`/user-viewjobstatus/${id}`)
   }
 
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  const [selectedJobId, setSelectedJobid] = useState(null);//for passing _id as prop
+
+  const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setSelectedJobid(id);
+    setShow(true);
+  };
+
+  const handleRefresh = () => {
+    setShow(false); // Close the modal after refreshing
+  };
+
   return (
     <div>
         <div className="workerview-jonreqmaincontainer" style={{minHeight:'80vh'}}>
       <div className="workerjobreq-mainbox mb-5">
         <div className="workjob-viewalert col-12">
-          <div className="admindash-shrink">Job Requests</div>
+          <div className="admindash-shrink">Accepted Job Requests</div>
           <div className="row d-flex" style={{ marginTop: "10px" }}>
             {data && data.length ? (
               data.map((a) => (
@@ -46,9 +63,9 @@ function ViewAcceptedPostJobs() {
                     <div className="col-7">: {a?.workerId?.contact}</div>
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
-                    {/* <div className=" viewworkreqacpt  mb-4">
-                        <button type="submit" onClick={()=>navigateToacceptjobreq(a._id)}>View Request</button>
-                    </div> */}
+                    <div className=" viewworkreqacpt  mb-4">
+                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id)}>Go to Payment</button>
+                    </div>
                            
                   </div>
                 </div>
@@ -60,6 +77,9 @@ function ViewAcceptedPostJobs() {
         </div>
       </div>
     </div>
+    <Modal show={show} onHide={handleClose} centered>
+                    <PaymentReqAccJob close={handleClose} jobid={selectedJobId} refreshJobList={handleRefresh}/>
+            </Modal>
     </div>
   )
 }
