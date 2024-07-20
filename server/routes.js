@@ -101,6 +101,7 @@ router.post("/viewApprovedReqsbycustomerId/:id",workeracceptreq.viewApprovedReqs
 
 // work status 
 router.post("/addworkstatus/:id",workstatus.addworkstatus)
+router.post("/OTPVerification",workstatus.OTPVerification)
 
 
 module.exports=router
