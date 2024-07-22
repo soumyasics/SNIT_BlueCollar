@@ -75,10 +75,6 @@ router.post("/viewEmpJobReqsbyJobid/:id",empjobreq.viewEmpJobReqsbyJobid)
 
 
 
-
-
-
-
 //Job Requests
 
 router.post("/registerjobreq",jobreq.registerjobreq)
