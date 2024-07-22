@@ -1,32 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import "./Jobreq.css"
-import axiosInstance from '../Constants/Baseurl';
+import React,{useState,useEffect} from 'react'
+import axiosInstance from '../../Constants/Baseurl';
+import './workerComplaints.css'
 import { Modal } from 'react-bootstrap';
-import Jobreqsingle from './Jobreqsingle';
-import WorkerNav2 from '../Common/Navbar/Worker/WorkerNav2';
 
-function Jobreq() {
-  const workerid=localStorage.getItem('workerid')
+function ViewUserComplaints() {
+    const workerid=localStorage.getItem('workerid')
   console.log(workerid);
 
-  const [user, setUser] = useState("");
+  const [data, setData] = useState("");
 
-  useEffect(() => {
-    axiosInstance.post(`viewworkerbyid/${workerid}`)
-        .then((result) => {
-            console.log(result);
-            setUser(result.data.data);
-          })
-        .catch((err) => {
-            console.log(err);
-        });
-}, [workerid]);
-
-  const category=user.workertype
-
-  console.log(category,'category');
-  const [job, setJob] = useState(['']);
-  const url = axiosInstance.defaults.url;
   const [show, setShow] = useState(false);
   const [openRequests, setOpenRequests] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState(null);//for passing _id as prop
@@ -39,10 +21,10 @@ function Jobreq() {
 
   const fetchEmployerRequests = () => {
     axiosInstance
-      .post(`/viewjobreqs/${category}`)
+      .post(`/viewComplaintByWorkerId/${workerid}`)
       .then((result) => {
         console.log(result);
-        setJob(result.data.data);
+        setData(result.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -51,23 +33,19 @@ function Jobreq() {
 
   useEffect(() => {
     fetchEmployerRequests();
-  }, [category]);
-
+  }, [workerid]);
 
   const handleRefresh = () => {
     fetchEmployerRequests();
     setShow(false); // Close the modal after refreshing
   };
 
-
-
   return (
     <>
-    
-    <div className="workerview-jonreqmaincontainer">
+        <div className="workerview-jonreqmaincontainer">
     <div className="workerjobreq-mainbox">
       <div className="workjob-viewalert col-12">
-        <div className="admindash-shrink">Customer Job Requests</div>
+        <div className="admindash-shrink">Customer Complaints</div>
         <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
                 type='search'
                 placeholder="Search "
@@ -84,8 +62,8 @@ function Jobreq() {
         <div className="row d-flex" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 
-          {job && job.length ? (
-            job.map((a) => {
+          {data && data.length ? (
+            data.map((a) => {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
@@ -97,35 +75,23 @@ function Jobreq() {
                       </div>
                       <div className='col-5'>
                         <p>
-                        <i>{a?.custid?.name}</i>
+                        <i>{a?.customerId?.name}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Customer Mail:</b>
+                        <b>Subject:</b>
                         </p>
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.custid?.email}</i>
+                        <i>{a?.subject}</i>
                         </p>
                       </div>
                      </div> 
-                     <div className='row mt-3'>
-                      <div className='col'>
-                        <p>
-                        <b>JobTitle:</b>
-                        </p>
-                      </div>
-                      <div className='col'>
-                        <p>
-                        <i>{a?.jobname}</i>
-                        </p>
-                      </div>
-                     </div> 
-                     <div className='row mt-3'>
+                     {/* <div className='row mt-3'>
                       <div className='col'>
                         <p>
                         <b>Posted On:</b>
@@ -136,7 +102,7 @@ function Jobreq() {
                         <i>{new Date(a.date).toLocaleDateString()}</i>
                         </p>
                       </div>
-                     </div> 
+                     </div>  */}
                     {/* <div className="col-10 jobreq-para">
                       <p className='pt-3'>
                       <b>Customer Name:</b>&nbsp; <i>{a?.custid?.name}</i> <br/>
@@ -167,13 +133,13 @@ function Jobreq() {
       </div>
 
     </div>
-    <Modal show={show} onHide={handleClose} centered>
+    {/* <Modal show={show} onHide={handleClose} centered>
                     <Jobreqsingle close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
-            </Modal>
+            </Modal> */}
 
   </div>
-  </>
+    </>
   )
 }
 
-export default Jobreq
+export default ViewUserComplaints

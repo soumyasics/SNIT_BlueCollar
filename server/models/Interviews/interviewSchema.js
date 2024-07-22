@@ -8,10 +8,10 @@ const schema = mongoose.Schema({
     required: true,
   },
  
-  status: {
-    type: String,
-    required: true,
-  },
+  // status: {
+  //   type: String,
+    
+  // },
   jobRequestId:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "empjobrequest",
@@ -21,11 +21,11 @@ const schema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employers",
   },
-  date:{
+  interview_date:{
     type: Date,
     required: true,
   },
-  loc:{
+  interview_location:{
     type: String,
     required: true,
   },

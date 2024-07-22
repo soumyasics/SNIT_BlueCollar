@@ -6,7 +6,7 @@ import { FaBriefcase } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import ReactSearchBox from "react-search-box";
 import searchicon from '../../../../Assets/searchicon.png'
-import AddComplaints from '../../Complaints/AddComplaints';
+import AddComplaints from '../../Complaints/UserAddComplaints';
 import ViewWorkStatus from '../../../User/WorkStatus/ViewWorkStatus';
 import EditWorkStatus from '../../../User/WorkStatus/EditWorkStatus';
 import WorkerViewWorkStatus from '../../../Worker/WorkStatus/WorkerViewWorkStatus';

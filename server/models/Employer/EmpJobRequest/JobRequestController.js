@@ -79,9 +79,29 @@ const viewEmpJobReqsbyJobid=(req,res)=>{
   
 }
 
+const removeEmpJobReqById=((req,res)=>{
+    empjobreqschema.findByIdAndDelete({_id:req.params.id})
+    .exec()
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "Data Removed Successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+        res.json({
+            status:500,
+            err:err
+        })
+    });
+  
+  })
+
 
 module.exports={
     empjobrequest,
     viewReqsbyempid,
-    viewEmpJobReqsbyJobid
+    viewEmpJobReqsbyJobid,
+    removeEmpJobReqById
 }

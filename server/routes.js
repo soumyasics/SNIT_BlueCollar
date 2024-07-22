@@ -10,6 +10,7 @@ const workeracceptreq=require("./models/customer/Jobrequest/workerJobApprovalCon
 const workstatus=require("./models/Worker/WorkStatus/workStatusController")
 const empjobreq=require("./models/Employer/EmpJobRequest/JobRequestController")
 const interviews=require("./models/Interviews/interviewController")
+const customercomplaints=require("./models/customer/Complaints/AddComplaintController")
 
 // Customer
 
@@ -67,11 +68,14 @@ router.post("/viewEmpPostJobByEmpid/:id",emppostjob.viewEmpPostJobByEmpid)
 router.post("/viewEmpPostJobById/:id",emppostjob.viewEmpPostJobById)
 router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
 
+
 // EmpJob Req
 
 router.post("/empjobreq/:id",empjobreq.empjobrequest)
 router.post("/viewReqsbyempid/:id",empjobreq.viewReqsbyempid)
 router.post("/viewEmpJobReqsbyJobid/:id",empjobreq.viewEmpJobReqsbyJobid)
+router.post("/removeEmpJobReqById/:id",empjobreq.removeEmpJobReqById)
+
 
 
 
@@ -109,6 +113,16 @@ router.post("/createInterview/:id",interviews.createInterview)
 router.post("/viewInterviewsByWorkerId/:id",interviews.viewInterviewsByWorkerId)
 router.post("/viewInterviewsByEmpId/:id",interviews.viewInterviewsByEmpId)
 router.post("/viewInterviewByJobRequestId/:id",interviews.viewInterviewByJobRequestId)
+
+//customer Complaints
+
+router.post("/customerAddComplaints/:id",customercomplaints.customerAddComplaints)
+router.post("/workerAddComplaints/:id",customercomplaints.workerAddComplaints)
+router.post("/viewComplaintByWorkerId/:id",customercomplaints.viewComplaintByWorkerId)
+router.post("/viewallworkercomplaintsinadmin",customercomplaints.viewallworkercomplaintsinadmin)
+router.post("/viewallcustomercomplaintsinadmin",customercomplaints.viewallcustomercomplaintsinadmin)
+
+
 
 
 module.exports=router

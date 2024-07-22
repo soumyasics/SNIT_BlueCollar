@@ -3,10 +3,14 @@ import './ScheduleInt.css'
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
-function ScheduleInterview({close}) {
+function ScheduleInterview({jobreqid,workerId,close}) {
+
 
     const [data, setData]=useState({
+        workerId:workerId,
+        jobRequestId:jobreqid,
         interview_date:'',
         interview_location:'',
         city:'',
@@ -73,14 +77,17 @@ function ScheduleInterview({close}) {
             var response;
             if (data) {
               response = await axiosInstance.post(
-                '/registerjob',
+                `createInterview/${workerId}`,
                 data
               );
             }
             console.log("Response:", response);
             if (response.status == 200) {
-              alert(response.data.msg);
+              toast.success(response.data.msg);
             //   window.location.reload(false)
+            }
+            else if (response.status === 500){
+              toast.error(response.data.msg)
             }
           } catch (error) {
             console.error("Error:", error);
@@ -88,6 +95,7 @@ function ScheduleInterview({close}) {
             alert(msg,'msg');
           }
         } else {
+          toast.error('Something went Wrong')
           console.log("Form is not valid", formValid);
           console.log("Data entered", data);
         }

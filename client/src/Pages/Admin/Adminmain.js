@@ -7,6 +7,8 @@ import Admindashboard from './Dashboard/Admindashboard'
 import Viewallcust from './Users/Viewallcust'
 import Viewallemp from './Users/Viewallemp'
 import Viewallworker from './Users/Viewallworker'
+import ViewCustComplaintList from './Complaints/ViewCustComplaintList'
+import ViewWorkComplaintList from './Complaints/ViewWorkComplaintList'
 
 function Adminmain({data}) {
   return (
@@ -20,6 +22,9 @@ function Adminmain({data}) {
         data==="admin-viewallcust"?(<Viewallcust/>):
         data==="admin-viewallemp"?(<Viewallemp/>):
         data==="admin-viewallworker"?(<Viewallworker/>):
+        data==="admin-viewall-custcomplaints"?(<ViewCustComplaintList/>):
+        data==="admin-viewall-workercomplaints"?(<ViewWorkComplaintList/>):
+
         
 
         <Adminlogin/>

@@ -57,6 +57,9 @@ import EmpViewJobReq from './Pages/Worker/EmpJobReq/EmpViewJobReq';
 import WorkerReqJob from './Pages/Employer/RequesJob/WorkerReqJob';
 import Navbar from './Pages/Common/Navbar/Navbar';
 import PaymentDetails from './Pages/User/GotoPayments/PaymentDetails';
+import UserPostComplaints from './Pages/User/UserComplaints/UserPostComplaints';
+import ViewUserComplaints from './Pages/Worker/Complaints/ViewUserComplaints';
+import WorkerPostComplaint from './Pages/Worker/WorkerPostComplaint/WorkerPostComplaint';
 
 function App() {
   return (
@@ -84,29 +87,35 @@ function App() {
         <Route path='/user-edit-workstatus' element={<EditWorkStatus />} />
         <Route path='/user-add-reviews' element={<AddReviews />} />
         <Route path='/user-add-paymentdetails/:id' element={<PaymentDetails />} />
+        <Route path='/user-post-complaints' element={[<CustomerHomenav/>,<UserPostComplaints />,<Footer/>]} />
+
 
 
 
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
-        <Route path='/employer-home' element={[<Employernav/>,<EmployerNav2/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
-        <Route path='/employer-view-postjob' element={[<Employernav />,<EmployerNav2/>,<EmpViewJobList/>]}/>
-        <Route path='/employer-view-postjobreq/:jobid' element={[<Employernav />,<EmployerNav2/>,<WorkerReqJob/>]}/>
+        <Route path='/employer-view-postjob' element={[<Employernav />,<EmpViewJobList/>]}/>
+        <Route path='/employer-view-postjobreq/:jobid' element={[<Employernav />,<WorkerReqJob/>]}/>
 
 
 
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
-        <Route path='/worker-empjobreq' element={[<WorkerNav/>,<WorkerNav2/>,<EmpViewJobReq/>]}/>
-        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<WorkerNav2/>,<ViewRecentJobs/>]}/>
+        <Route path='/worker-empjobreq' element={[<WorkerNav/>,<EmpViewJobReq/>]}/>
+        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
         {/* <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} /> */}
-        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<WorkerNav2/>,<Workerviewjobstatus/>]}/>
-        <Route path='/worker-paymentstatus' element={[<WorkerNav/>,<WorkerNav2/>,<PaymentsList/>]}/>
+        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<Workerviewjobstatus/>]}/>
+        <Route path='/worker-paymentstatus' element={[<WorkerNav/>,<PaymentsList/>]}/>
+        <Route path='/worker-view-cust-complaintlist' element={[<WorkerNav/>,<ViewUserComplaints/>]}/>
+        <Route path='/worker-post-complaint' element={[<WorkerNav/>,<WorkerPostComplaint/>]}/>
+
+
 
 
 
@@ -121,6 +130,9 @@ function App() {
         <Route path='/admin-viewcust/:custid' element={[<Adminloginnav/>,<ViewSingleCust/>]}/>
         <Route path='/admin-viewemp/:empid' element={[<Adminloginnav/>,<ViewSingleEmp/>]}/>
         <Route path='/admin-viewworker/:workerid' element={[<Adminloginnav/>,<ViewSingleWork/>]}/>
+        <Route path='/admin-viewall-custcomplaints' element={[<Adminloginnav/>,<Adminmain data="admin-viewall-custcomplaints"/>]}/>
+        <Route path='/admin-viewall-workercomplaints' element={[<Adminloginnav/>,<Adminmain data="admin-viewall-workercomplaints"/>]}/>
+
 
 
 

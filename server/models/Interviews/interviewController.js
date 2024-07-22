@@ -1,10 +1,10 @@
-const Interview = require('./path/to/interviewSchema.js'); // Update the path to your Interview schema
-const JobRequest = require('./path/to/jobRequestSchema.js'); // Update the path to your JobRequest schema
+const Interview = require('./interviewSchema.js'); // Update the path to your Interview schema
+const JobRequest = require('../Employer/EmpJobRequest/JobRequestSchema'); // Update the path to your JobRequest schema
 
 // Create an Interview
 const createInterview = async (req, res) => {
     try {
-        const { status, jobRequestId, date, loc, city, state } = req.body;
+        const {  jobRequestId, interview_date, interview_location, city, state } = req.body;
 
         // Check if the Job Request exists
         const jobRequest = await JobRequest.findById(jobRequestId);
@@ -12,11 +12,10 @@ const createInterview = async (req, res) => {
 
         const interview = new Interview({
             workerId:req.params.id,
-            status,
             jobRequestId,
             empId:jobRequest.empId,
-            date,
-            loc,
+            interview_date,
+            interview_location,
             city,
             state
         });
@@ -28,8 +27,10 @@ const createInterview = async (req, res) => {
             data: data,
         });
     } catch (err) {
+        console.log(err);
         res.json({
             status: 500,
+            msg:'Data not Inserted',
             err: err
         });
     }

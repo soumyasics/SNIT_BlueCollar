@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import axiosInstance from '../../Constants/Baseurl';
 import { Modal } from 'react-bootstrap';
-import './Workerviewjobstatus.css';
-import WorkerViewWorkStatus from '../WorkStatus/WorkerViewWorkStatus';
+import './WorkerPostComplaint.css'
+import WorkerAddComplaints from '../../Common/Complaints/WorkerAddComplaints';
 
-function Workerviewjobstatus() {
-  const [job, setJob] = useState([]);
+function WorkerPostComplaint() {
+    const [job, setJob] = useState([]);
   const workerid = localStorage.getItem('workerid');
-  const [show, setShow] = useState(false);
-  const [openRequests, setOpenRequests] = useState(false);
-  const [selectedJob, setSelectedJob] = useState({ jobId: null, custId: null }); // State for storing selected job and customer IDs
+  const [selectedCustid, setSelectedCustid] = useState({ jobId: null, custId: null }); // State for storing selected job and customer IDs
 
   const [showjobstatus, setShowWorkStatus] = useState(false);
   const handleCloseWorkStatus = () => setShowWorkStatus(false);
@@ -31,18 +29,15 @@ function Workerviewjobstatus() {
     fetchEmployerRequests();
   }, []);
 
-  const handleRefresh = () => {
-    fetchEmployerRequests();
-    setShow(false); // Close the modal after refreshing
-  };
+  
 
-  const handleStatusClick = (jobId, custId) => {
-    setSelectedJob({ jobId, custId });
+  const handleShow = (custId) => {
+    setSelectedCustid(custId );
     handleShowWorkStatus();
   };
-
   return (
-    <div className="workerview-jonreqmaincontainer">
+    <>
+        <div className="workerview-jonreqmaincontainer">
       <div className="workerjobreq-mainbox">
         <div className="workjob-viewalert col-12">
           <div className="admindash-shrink">Job Requests</div>
@@ -63,7 +58,7 @@ function Workerviewjobstatus() {
             {job && job.length ? (
               job.map((a) => {
                 const jobid = a?.jobid?._id;
-                const custId = a?.customerId?._id;
+                
                 return (
                   <div key={jobid} className="col-3 worker-job-boxinside pt-3">
                     <div className="counsellor-dashpic row">
@@ -83,10 +78,10 @@ function Workerviewjobstatus() {
                     <div className="mb-4 mt-3" style={{ textAlign: 'center' }}>
                       <button
                         type="submit"
-                        className="viewmoreadmin-accept"
-                        onClick={() => handleStatusClick(jobid, custId)}
+                        className="workerreg-complaintbtn"
+                        onClick={() => handleShow(a?.customerId?._id)}
                       >
-                        Complete
+                        Register Complaint
                       </button>
                     </div>
                   </div>
@@ -100,11 +95,12 @@ function Workerviewjobstatus() {
       </div>
       <Modal show={showjobstatus} onHide={handleCloseWorkStatus}>
         <div>
-          <WorkerViewWorkStatus close={handleCloseWorkStatus} jobId={selectedJob.jobId} custId={selectedJob.custId} />
+          <WorkerAddComplaints close={handleCloseWorkStatus}  custId={selectedCustid} />
         </div>
       </Modal>
     </div>
-  );
+    </>
+  )
 }
 
-export default Workerviewjobstatus;
+export default WorkerPostComplaint

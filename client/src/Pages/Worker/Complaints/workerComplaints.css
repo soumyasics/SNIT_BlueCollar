@@ -1,9 +1,9 @@
-.empview-postjobmaincontainer{
+.workerview-jonreqmaincontainer{
     display: flex;
     justify-content: center;
     /* align-items: center; */
 }
-.empviewpostjob-mainbox{
+.workerjobreq-mainbox{
     width: 1233px;
 /* min-height: 890px; */
 max-height: max-content;
@@ -17,39 +17,38 @@ border-left: 4px solid #4DA9EC;
 }
 
 
-.empviewpostjob-viewalert{
+.workjob-viewalert{
    flex-shrink: 0;
    background: #FFF;
    /* box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25); */
 /* margin-top: 40px; */
   }
 .adminmaindash-container{
-    display: flex; 
+    display: flex;
   justify-content: center;
   align-items: center;
   
 }
 
-.empviewpostjob-shrink{
-    width: 240px;
+.admindash-shrink{
+    width: 260px;
     height: 39px;
     flex-shrink: 0;
     border-radius: 2px 50px 0px 0px;
     background: #4DA9EC;
     color: #FFF;
-    font-family: Poppins;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 150%; /* 30px */
-    letter-spacing: 0.5px;
-    text-transform: capitalize;
-    margin-left: -13px;
-    padding-left: 20px;
+font-family: Poppins;
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 150%; /* 30px */
+letter-spacing: 0.5px;
+text-transform: capitalize;
+padding-left: 20px;
 }
-.empviewpostjob-boxinside {
-    min-width: 324px;
-    /* height: 123px; */
+.worker-job-boxinside {
+    width: 324px;
+    /* max-height: 123px; */
     flex-shrink: 0;
     border-radius: 5px 5px 0px 0px;
     background: #FFF;
@@ -57,11 +56,11 @@ border-left: 4px solid #4DA9EC;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 50px; 
+    margin: 40px; 
     margin-top: 30px;
 }
 
-/* .viewmore-dashbox {
+.viewmore-dashbox {
     width: 265px; 
     height: 33px;
     flex-shrink: 0;
@@ -86,21 +85,22 @@ font-weight: 400;
 line-height: 150%; 
 letter-spacing: -0.5px;
 text-transform: capitalize;
-} */
-.empviewpostjob-dashpic{
+}
+.counsellor-dashpic{
     display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
-/* .counsellor-dashpic img{
+.counsellor-dashpic img{
     width: 48px;
 height: 48px;
 flex-shrink: 0;
 border-radius: 48px;
-} */
-
-.empviewpostjob-accept{
-    width: 150px;
+}
+.jobreq-para p{
+}
+.viewmoreadmin-accept{
+    width: 100px;
     height: 30px;
     background-color: green;
     border-radius: 15px;
@@ -108,7 +108,7 @@ border-radius: 48px;
     color: white;
 
 }
-.empviewpostjob-reject{
+.viewmoreadmin-reject{
     width: 100px;
     height: 30px;
     background-color: red;
@@ -116,20 +116,18 @@ border-radius: 48px;
     border: none;
     color: white;
 
-} 
-/* .viewcounsellor-lottiereqq{
+}
+.viewcounsellor-lottiereqq{
     padding: 20px;
     color: red;
     font-weight: 600;
     font-size: 20px;
-}*/
-
+}
 .jobreq-viewmore-dashbox{
     min-width: 200px;
     background-color: #4DA9EC;
     margin: 0;
     display: flex;
-    gap:30px
-    /* justify-content: center; */
-    /* align-items: center; */
-} 
+    justify-content: center;
+    align-items: center;
+}

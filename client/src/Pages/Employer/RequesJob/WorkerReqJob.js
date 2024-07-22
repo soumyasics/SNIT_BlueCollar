@@ -4,6 +4,7 @@ import './RequestJob.css'
 import { Modal } from 'react-bootstrap';
 import axiosInstance from '../../Constants/Baseurl';
 import ScheduleInterview from '../ScheduleInterview/ScheduleInterview';
+import { toast } from 'react-toastify';
 
 
 
@@ -20,12 +21,18 @@ function WorkerReqJob() {
 
   const [postjobdata, setPostJobData] = useState([]);
   const [show, setShow] = useState(false);
-  const [openRequests, setOpenRequests] = useState(false);
   const [selectedWorkerId, setSelectedWorkerid] = useState(null);//for passing _id as prop
+  const [selectedJobreqId, setSelectedJobreqid] = useState(null);//for passing _id as prop
+
+
+  const {jobid}=useParams();
+  console.log(jobid,'jobid');
+  // setSelectedWorkerid(jobid);
 
   const handleClose = () => setShow(false);
-  const handleShow = (id) => {
-    setSelectedWorkerid(id);
+  const handleShow = (workerid,jobreqid) => {
+    setSelectedWorkerid(workerid);
+    setSelectedJobreqid(jobreqid);
     setShow(true);
   };
 
@@ -34,8 +41,7 @@ function WorkerReqJob() {
     setShow(false); // Close the modal after refreshing
   };
 
-  const {jobid}=useParams();
-  console.log(jobid,'jobid');
+  
 
   const fetchEmployerRequests = () => {
     axiosInstance
@@ -55,6 +61,19 @@ function WorkerReqJob() {
 
   const navigateToWorkReqJob=()=>{
     
+  }
+
+  const removeEmpJobReq=(id)=>{
+    axiosInstance.post(`removeEmpJobReqById/${id}`)
+    .then((data)=>{
+      if(data.status==200)
+      console.log(data);
+      toast.success('Request Rejected Successfully')
+      window.location.reload(false)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
   return (
     <>
@@ -125,8 +144,12 @@ function WorkerReqJob() {
 
                   <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="empviewpostjob-accept" 
- onClick={() => handleShow(a?.workerId?._id)}                    >
+                        onClick={() => handleShow(a?.workerId?._id,a?._id)}>
                       Schedule Interview
+                    </button>
+                    <button type="submit" className="empviewpostjob-reject" 
+                        onClick={() => removeEmpJobReq(a?._id)}                    >
+                      Remove
                     </button>
                   </div>
                 </div>
@@ -139,7 +162,7 @@ function WorkerReqJob() {
       </div>
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <ScheduleInterview close={handleClose} workerId={selectedWorkerId} refreshJobList={handleRefresh}/>
+                    <ScheduleInterview close={handleClose} workerId={selectedWorkerId} jobreqid={selectedJobreqId} refreshJobList={handleRefresh}/>
             </Modal>
 
   </div>
