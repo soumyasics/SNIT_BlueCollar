@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Dropdown, Modal, NavDropdown,Button } from 'react-bootstrap';
 import "../Customer/Customerhomenav.css";
 import { Link } from 'react-router-dom';
-import AddComplaints from '../../Complaints/AddComplaints';
+import AddComplaints from '../../Complaints/UserAddComplaints';
 import ViewWorkStatus from '../../../User/WorkStatus/ViewWorkStatus';
 import PostJob from '../../../User/PostJob';
 import AddReviews from '../../../User/Reviews/AddReviews';

@@ -58,6 +58,7 @@ import WorkerReqJob from './Pages/Employer/RequesJob/WorkerReqJob';
 import Navbar from './Pages/Common/Navbar/Navbar';
 import PaymentDetails from './Pages/User/GotoPayments/PaymentDetails';
 import UserPostComplaints from './Pages/User/UserComplaints/UserPostComplaints';
+import ViewUserComplaints from './Pages/Worker/Complaints/ViewUserComplaints';
 
 function App() {
   return (
@@ -102,14 +103,16 @@ function App() {
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<WorkerNav2/>,<Customerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<Customerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
-        <Route path='/worker-empjobreq' element={[<WorkerNav/>,<WorkerNav2/>,<EmpViewJobReq/>]}/>
-        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<WorkerNav2/>,<ViewRecentJobs/>]}/>
+        <Route path='/worker-empjobreq' element={[<WorkerNav/>,<EmpViewJobReq/>]}/>
+        <Route path='/worker-viewrecentjob' element={[<WorkerNav/>,<ViewRecentJobs/>]}/>
         {/* <Route path='/worker-edit-workstatus' element={<WorkerEditWorkStatus/>} /> */}
-        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<WorkerNav2/>,<Workerviewjobstatus/>]}/>
-        <Route path='/worker-paymentstatus' element={[<WorkerNav/>,<WorkerNav2/>,<PaymentsList/>]}/>
+        <Route path='/worker-jobstatus' element={[<WorkerNav/>,<Workerviewjobstatus/>]}/>
+        <Route path='/worker-paymentstatus' element={[<WorkerNav/>,<PaymentsList/>]}/>
+        <Route path='/worker-view-cust-complaintlist' element={[<WorkerNav/>,<ViewUserComplaints/>]}/>
+
 
 
 

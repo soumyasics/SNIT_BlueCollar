@@ -9,6 +9,7 @@ const emppostjob=require('./models/Employer/EmpPostJob/EmpPostJobController')
 const workeracceptreq=require("./models/customer/Jobrequest/workerJobApprovalControler")
 const workstatus=require("./models/Worker/WorkStatus/workStatusController")
 const empjobreq=require("./models/Employer/EmpJobRequest/JobRequestController")
+const customercomplaints=require("./models/customer/Complaints/CustomerAddComplaintController")
 
 // Customer
 
@@ -105,6 +106,14 @@ router.post("/OTPVerification",workstatus.OTPVerification)
 router.post("/updatePaymentStatus/:id",workstatus.updatePaymentStatus)
 router.post("/viewWorksamountById/:id",workstatus.viewWorksamountById)
 router.post("/viewCompletedWorksByWorkerId/:id",workstatus.viewCompletedWorksByWorkerId)
+
+//customer Complaints
+
+router.post("/customerAddComplaints/:id",customercomplaints.customerAddComplaints)
+router.post("/viewComplaintByWorkerId/:id",customercomplaints.viewComplaintByWorkerId)
+router.post("/viewallcomplaintstoadmin",customercomplaints.viewallcomplaintstoadmin)
+
+
 
 
 module.exports=router

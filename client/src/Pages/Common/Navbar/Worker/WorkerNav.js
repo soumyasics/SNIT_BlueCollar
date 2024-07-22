@@ -6,7 +6,7 @@ import { FaBriefcase } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import axiosInstance from '../../../Constants/Baseurl';
 import Workerviewprofile from '../../../Worker/Profile/Workerviewprofile';
-import AddComplaints from '../../Complaints/AddComplaints';
+import AddComplaints from '../../Complaints/UserAddComplaints';
 
 function WorkerNav() {
     const [show, setShow] = useState(false);
@@ -49,10 +49,10 @@ function WorkerNav() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav1">
                     <ul className="navbar-nav ms-auto me-5 navbar-links">
-                    <li className="nav-item m-1">
+                    <li className="nav-item me-3 m-1">
                             <Link className="nav-link text-light-custom" to="/worker-home">Home</Link>
                         </li>
-                        <li className="nav-item m-1 me-5 pe-3 ">
+                        <li className="nav-item m-1 me-3">
                             <Dropdown>
                                 <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
                                     Requests
@@ -64,10 +64,10 @@ function WorkerNav() {
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>
-                        <li className="nav-item m-1 me-5  ">
+                        <li className="nav-item m-1 me-3  ">
                             <Link className="nav-link text-light-custom" to="/worker-jobstatus" >Accepted status</Link>
                         </li>
-                        <li className="nav-item m-1 me-5  ">
+                        <li className="nav-item m-1 me-3  ">
                             <Link className="nav-link text-light-custom" to="/worker-paymentstatus">Payment status</Link>
                         </li>
                         {/* <li className="nav-item m-1">
@@ -79,9 +79,18 @@ function WorkerNav() {
                         <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="/worker-viewrecentjob">Jobs</Link>
                         </li>
-                        {/* <li className="nav-item m-1">
-                            <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
-                        </li> */}
+                        <li className="nav-item m-1 me-3">
+                            <Dropdown>
+                                <Dropdown.Toggle variant="link" className="nav-link text-light-custom" id="dropdown-requests">
+                                    View Complaints
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item as={Link} to="/worker-view-cust-complaintlist">Customer Complaints</Dropdown.Item>
+                                    <Dropdown.Item as={Link} to="/worker-empjobreq">Employer Complaints</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </li>
                         
                         <li className='nav-item dropdown m-1'>
                             <Dropdown align="end">

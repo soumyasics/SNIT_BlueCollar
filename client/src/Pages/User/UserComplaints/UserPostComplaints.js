@@ -3,7 +3,7 @@ import './UserPostComplaints.css'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Constants/Baseurl';
 import { Modal } from 'react-bootstrap';
-import AddComplaints from '../../Common/Complaints/AddComplaints';
+import UserAddComplaints from '../../Common/Complaints/UserAddComplaints';
 
 function UserPostComplaints() {
     const custid = localStorage.getItem("custid");
@@ -29,11 +29,11 @@ function UserPostComplaints() {
 
   const [show, setShow] = useState(false);
   const [openRequests, setOpenRequests] = useState(false);
-  const [selectedJobId, setSelectedJobid] = useState(null);//for passing _id as prop
+  const [selectedWorkerId, setSelectedWorkerId] = useState(null);//for passing _id as prop
 
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
-    setSelectedJobid(id);
+    setSelectedWorkerId(id);
     setShow(true);
   };
 
@@ -76,7 +76,7 @@ function UserPostComplaints() {
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
                     <div className="user-regcomplaint-btn  mb-4">
-                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id)}>Register Complaint</button>
+                        <button type="submit" onClick={()=>handleShow(a?.workerId?._id)}>Register Complaint</button>
                     </div>
                            
                   </div>
@@ -90,7 +90,7 @@ function UserPostComplaints() {
       </div>
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <AddComplaints close={handleClose} jobid={selectedJobId} refreshJobList={handleRefresh}/>
+                    <UserAddComplaints close={handleClose} workerId={selectedWorkerId} refreshJobList={handleRefresh}/>
             </Modal>
     </div>
     </div>

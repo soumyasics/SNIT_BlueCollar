@@ -16,6 +16,8 @@ import { Link, useNavigate } from "react-router-dom";
 function AdminSidebar() {
   const [openRequests, setOpenRequests] = useState(false);
   const [openUsers,setOpenusers]=useState(false)
+  const [openComplaints,setOpenComplaints]=useState(false)
+
   const navigate=useNavigate()
 
   const handleRequestsClick = () => {
@@ -24,6 +26,10 @@ function AdminSidebar() {
   const handleusersClick = () => {
     setOpenusers(!openUsers);
   };
+
+  const handleComplaintsClick =()=>{
+    setOpenComplaints(!openComplaints);
+  }
 
   const confirmLogout = () => {
     localStorage.removeItem("adminid");
@@ -84,11 +90,22 @@ function AdminSidebar() {
             <span>Manage Payments</span>
           </div>
           <br />
-          <div>
-            <img src={complaints} alt="Management Complaints" />
-            <span>Management Complaints</span>
+          <div onClick={handleComplaintsClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
+            <img src={complaints} alt="Manage Complaints" />
+            <span>Manage Complaints</span>
+            {openComplaints ? <ArrowDropUpIcon style={{color:"white"}}/> : <ArrowDropDownIcon style={{color:"white"}}/>}
           </div>
+          <Collapse in={openComplaints}>
+            <div className="dropdown-content">
+             <Link to="/admin-workerreq" style={{textDecoration:"none"}}>    <div className="dropdown-item ri-checkbox-blank-line"> Worker Complaints</div></Link>
+             <Link to="/admin-employerreq" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> Employer Complaints</div></Link>
+             <Link to="/admin-employerreq" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> Customer Complaints</div></Link>
+            
+              {/* <div className="dropdown-item">Request 3</div> */}
+            </div>
+          </Collapse>
           <br />
+          
           <div>
             <img src={logout} alt="Logout" />
             <span ><button type="submit" onClick={confirmLogout} className="btn btn-primary">Logout</button></span>

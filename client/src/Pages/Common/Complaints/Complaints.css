@@ -10,7 +10,7 @@ a {
 }
 
 .addcomplait-modal-container {
-  height: 450px;
+  height: 470px;
   width: 500px;
   margin-right: auto;
   background-color: #fff;
@@ -85,6 +85,7 @@ a {
   font-weight: 600;
   cursor: pointer;
   transition: 0.15s ease;
+  margin-left: 200px;
 }
 
 .addcomplait-button.is-ghost:hover, .addcomplait-button.is-ghost:focus {
