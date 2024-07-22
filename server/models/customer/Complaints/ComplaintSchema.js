@@ -11,14 +11,14 @@ const schema=new mongoose.Schema({
         ref:"customers",
         required:true
     },
-    suspectName:{
+    subject:{
         type:String,
         required:true
     },
-    subject:{
+    against:{
         type:String,
         required:true
     }
 })
 
-module.exports=mongoose.model("customerComplaints",schema)
+module.exports=mongoose.model("Complaints",schema)

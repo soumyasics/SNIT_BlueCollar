@@ -9,7 +9,8 @@ const emppostjob=require('./models/Employer/EmpPostJob/EmpPostJobController')
 const workeracceptreq=require("./models/customer/Jobrequest/workerJobApprovalControler")
 const workstatus=require("./models/Worker/WorkStatus/workStatusController")
 const empjobreq=require("./models/Employer/EmpJobRequest/JobRequestController")
-const customercomplaints=require("./models/customer/Complaints/CustomerAddComplaintController")
+const interviews=require("./models/Interviews/interviewController")
+const customercomplaints=require("./models/customer/Complaints/AddComplaintController")
 
 // Customer
 
@@ -67,14 +68,13 @@ router.post("/viewEmpPostJobByEmpid/:id",emppostjob.viewEmpPostJobByEmpid)
 router.post("/viewEmpPostJobById/:id",emppostjob.viewEmpPostJobById)
 router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
 
+
 // EmpJob Req
 
 router.post("/empjobreq/:id",empjobreq.empjobrequest)
 router.post("/viewReqsbyempid/:id",empjobreq.viewReqsbyempid)
 router.post("/viewEmpJobReqsbyJobid/:id",empjobreq.viewEmpJobReqsbyJobid)
-
-
-
+router.post("/removeEmpJobReqById/:id",empjobreq.removeEmpJobReqById)
 
 
 
@@ -107,11 +107,20 @@ router.post("/updatePaymentStatus/:id",workstatus.updatePaymentStatus)
 router.post("/viewWorksamountById/:id",workstatus.viewWorksamountById)
 router.post("/viewCompletedWorksByWorkerId/:id",workstatus.viewCompletedWorksByWorkerId)
 
+//interviews
+
+router.post("/createInterview/:id",interviews.createInterview)
+router.post("/viewInterviewsByWorkerId/:id",interviews.viewInterviewsByWorkerId)
+router.post("/viewInterviewsByEmpId/:id",interviews.viewInterviewsByEmpId)
+router.post("/viewInterviewByJobRequestId/:id",interviews.viewInterviewByJobRequestId)
+
 //customer Complaints
 
 router.post("/customerAddComplaints/:id",customercomplaints.customerAddComplaints)
+router.post("/workerAddComplaints/:id",customercomplaints.workerAddComplaints)
 router.post("/viewComplaintByWorkerId/:id",customercomplaints.viewComplaintByWorkerId)
-router.post("/viewallcomplaintstoadmin",customercomplaints.viewallcomplaintstoadmin)
+router.post("/viewallworkercomplaintsinadmin",customercomplaints.viewallworkercomplaintsinadmin)
+router.post("/viewallcustomercomplaintsinadmin",customercomplaints.viewallcustomercomplaintsinadmin)
 
 
 

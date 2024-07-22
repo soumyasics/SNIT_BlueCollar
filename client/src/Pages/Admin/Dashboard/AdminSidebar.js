@@ -97,9 +97,8 @@ function AdminSidebar() {
           </div>
           <Collapse in={openComplaints}>
             <div className="dropdown-content">
-             <Link to="/admin-workerreq" style={{textDecoration:"none"}}>    <div className="dropdown-item ri-checkbox-blank-line"> Worker Complaints</div></Link>
-             <Link to="/admin-employerreq" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> Employer Complaints</div></Link>
-             <Link to="/admin-employerreq" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> Customer Complaints</div></Link>
+             <Link to="/admin-viewall-workercomplaints" style={{textDecoration:"none"}}>    <div className="dropdown-item ri-checkbox-blank-line"> Worker Complaints</div></Link>
+             <Link to="/admin-viewall-custcomplaints" style={{textDecoration:"none"}}>  <div className="dropdown-item ri-checkbox-blank-line"> Customer Complaints</div></Link>
             
               {/* <div className="dropdown-item">Request 3</div> */}
             </div>

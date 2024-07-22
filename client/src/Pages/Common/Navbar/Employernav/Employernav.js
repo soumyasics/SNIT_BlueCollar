@@ -62,22 +62,28 @@ function Employernav() {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav1">
         <ul className="navbar-nav ms-auto me-5 navbar-links">
-          <li className="nav-item m-1">
+          <li className="nav-item me-3 m-1">
             <Link className="nav-link text-light-custom" to="/employer-home">Home</Link>
           </li>
-          <li className="nav-item m-1">
+          <li className="nav-item me-3 pe-3 m-1">
+            <Link className="nav-link text-light-custom" to="#" onClick={()=>handleShow('EmpPostJob')}>Post Jobs</Link>
+          </li>
+          <li className="nav-item me-3 pe-3 m-1">
+            <Link className="nav-link text-light-custom" to='/employer-view-postjob'>View Jobs</Link>
+          </li>
+          {/* <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">About Us</Link>
           </li>
           
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">Gallery</Link>
-          </li>
+          </li> */}
           <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="">Jobs</Link>
           </li>
-          <li className="nav-item m-1">
+          {/* <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
-          </li>
+          </li> */}
           <li className='nav-item dropdown m-1'>
           <Dropdown align="end">
                                 <Dropdown.Toggle variant="link" id="dropdown-basic">

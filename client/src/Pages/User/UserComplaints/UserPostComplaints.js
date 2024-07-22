@@ -23,12 +23,9 @@ function UserPostComplaints() {
 
   const navigate=useNavigate();
 
-  const navigateToacceptjobreq=(id)=>{
-    navigate(`/user-viewjobstatus/${id}`)
-  }
+  
 
   const [show, setShow] = useState(false);
-  const [openRequests, setOpenRequests] = useState(false);
   const [selectedWorkerId, setSelectedWorkerId] = useState(null);//for passing _id as prop
 
   const handleClose = () => setShow(false);

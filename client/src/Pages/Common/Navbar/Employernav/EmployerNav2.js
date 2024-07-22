@@ -42,9 +42,9 @@ function EmployerNav2() {
                 <div className="collapse navbar-collapse" id="navbarNav1">
                     <ul className="navbar-nav ms-auto me-3 pe-5 navbar-links">
                         <li className="nav-item me-3 pe-3 m-1">
-                        <li className="nav-item m-1">
+                        
                             <Link className="nav-link text-light-custom" to="#" onClick={()=>handleShow('EmpPostJob')}>Post Jobs</Link>
-                        </li>
+                        
                         </li>
                         <li className="nav-item me-3 pe-3 m-1">
                             <Link className="nav-link text-light-custom" to='/employer-view-postjob'>

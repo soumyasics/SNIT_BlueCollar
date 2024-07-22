@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import { toast } from 'react-toastify'
-import axiosInstance from '../../Constants/Baseurl'
+import React,{useState} from 'react'
 import './Complaints.css'
+import axiosInstance from '../../Constants/Baseurl';
+import { toast } from 'react-toastify';
 
-function AddComplaints({workerId,close}) {
-  const customerId = localStorage.getItem("custid");
+function WorkerAddComplaints({custId,close}) {
+    const workerId = localStorage.getItem("workerid");
   console.log(workerId,"workerId");
+  const customerId=custId
+  console.log(customerId,'custId');
 
   const [complaintdata,setComplaintData]=useState({
     workerId:workerId,
     customerId:customerId,
     subject:'',
+    
   })
   const [errors,setErrors]=useState({
     subject:''
@@ -27,6 +30,7 @@ function AddComplaints({workerId,close}) {
       [name]:"",
     }));
   }
+  
 
   console.log(complaintdata,'complaintdata');
 
@@ -44,6 +48,7 @@ function AddComplaints({workerId,close}) {
     setErrors(errors);
 
     if(
+      
       complaintdata.subject
     ){
       formValid=true;
@@ -53,7 +58,7 @@ function AddComplaints({workerId,close}) {
         var res;
         if(complaintdata){
           res=await axiosInstance.post(
-            `customerAddComplaints/${workerId}`,complaintdata
+            `workerAddComplaints/${customerId}`,complaintdata
           );
         }
         console.log("response:",res);
@@ -73,7 +78,6 @@ function AddComplaints({workerId,close}) {
   }
   return (
     <>
-        
         <div class="addcomplait-modal-container">
         <form onSubmit={(e)=>{handleSubmit(e);}}>
 	<article class="">
@@ -114,4 +118,4 @@ function AddComplaints({workerId,close}) {
   )
 }
 
-export default AddComplaints
+export default WorkerAddComplaints

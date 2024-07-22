@@ -69,6 +69,8 @@ const viewEmpPostJobById=((req,res)=>{
 })
 
 
+
+
 const viewAllEmpPostJob=((req,res)=>{
   emppostjobschema.find()
   .populate('empId')
@@ -94,5 +96,6 @@ module.exports={
   registerjob,
   viewEmpPostJobByEmpid,
   viewEmpPostJobById,
-  viewAllEmpPostJob
+  viewAllEmpPostJob,
+  
 }

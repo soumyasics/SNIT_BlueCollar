@@ -1,51 +1,30 @@
 import React,{useState,useEffect} from 'react'
-import axiosInstance from '../../Constants/Baseurl';
-import './workerComplaints.css'
 import { Modal } from 'react-bootstrap';
+import axiosInstance from '../../Constants/Baseurl';
 
-function ViewUserComplaints() {
+
+function ViewEmpInterviewsList() {
     const workerid=localStorage.getItem('workerid')
-  console.log(workerid);
+    console.log(workerid);
+    const [interviewdata,setInterviewData]=useState('');
 
-  const [data, setData] = useState("");
-
-  const [show, setShow] = useState(false);
-  const [openRequests, setOpenRequests] = useState(false);
-  const [selectedJobId, setSelectedJobId] = useState(null);//for passing _id as prop
-
-  const handleClose = () => setShow(false);
-  const handleShow = (id) => {
-    setSelectedJobId(id);
-    setShow(true);
-  };
-
-  const fetchEmployerRequests = () => {
-    axiosInstance
-      .post(`/viewComplaintByWorkerId/${workerid}`)
-      .then((result) => {
-        console.log(result);
-        setData(result.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    fetchEmployerRequests();
-  }, [workerid]);
-
-  const handleRefresh = () => {
-    fetchEmployerRequests();
-    setShow(false); // Close the modal after refreshing
-  };
+    useEffect(() => {
+        axiosInstance.post(`viewInterviewsByWorkerId/${workerid}`)
+            .then((result) => {
+                console.log(result);
+                setUser(result.data.data);
+              })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [workerid]);
 
   return (
     <>
         <div className="workerview-jonreqmaincontainer">
     <div className="workerjobreq-mainbox">
       <div className="workjob-viewalert col-12">
-        <div className="admindash-shrink">Customer Complaints</div>
+        <div className="admindash-shrink">Job Requests</div>
         <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
                 type='search'
                 placeholder="Search "
@@ -62,8 +41,8 @@ function ViewUserComplaints() {
         <div className="row d-flex" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 
-          {data && data.length ? (
-            data.map((a) => {
+          {paymentstatus && paymentstatus.length ? (
+            paymentstatus.map((a) => {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
@@ -82,27 +61,51 @@ function ViewUserComplaints() {
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Subject:</b>
+                        <b>Customer Mail:</b>
                         </p>
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.subject}</i>
+                        <i>{a?.customerId?.email}</i>
                         </p>
                       </div>
                      </div> 
-                     {/* <div className='row mt-3'>
+                     <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Posted On:</b>
+                        <b>JobTitle:</b>
                         </p>
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{new Date(a.date).toLocaleDateString()}</i>
+                        <i>{a?.jobid?.jobname}</i>
                         </p>
                       </div>
-                     </div>  */}
+                     </div> 
+                     <div className='row mt-3'>
+                      <div className='col'>
+                        <p>
+                        <b>Payment Amount:</b>
+                        </p>
+                      </div>
+                      <div className='col-5'>
+                        <p>
+                        <i>{a?.payment}</i>
+                        </p>
+                      </div>
+                     </div> 
+                     <div className='row mt-3'>
+                      <div className='col'>
+                        <p>
+                        <b>Payment Status:</b>
+                        </p>
+                      </div>
+                      <div className='col-5'>
+                        <p style={{ color: getStatusColor(a.status) }}>
+                        <b>{a?.status}</b>
+                        </p>
+                      </div>
+                      </div>
                     {/* <div className="col-10 jobreq-para">
                       <p className='pt-3'>
                       <b>Customer Name:</b>&nbsp; <i>{a?.custid?.name}</i> <br/>
@@ -117,12 +120,12 @@ function ViewUserComplaints() {
                     </div> */}
                   </div>
 
-                  <div className="jobreq-viewmore-dashbox">
+                  {/* <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="viewmoreadmin-accept" 
                       onClick={() => handleShow(a._id)}                    >
                       View More
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               );
             })
@@ -142,4 +145,4 @@ function ViewUserComplaints() {
   )
 }
 
-export default ViewUserComplaints
+export default ViewEmpInterviewsList

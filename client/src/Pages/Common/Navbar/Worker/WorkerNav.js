@@ -76,8 +76,11 @@ function WorkerNav() {
                         {/* <li className="nav-item m-1">
                             <Link className="nav-link text-light-custom" to="#">Gallery</Link>
                         </li> */}
-                        <li className="nav-item m-1">
+                        <li className="nav-item m-1 me-3">
                             <Link className="nav-link text-light-custom" to="/worker-viewrecentjob">Jobs</Link>
+                        </li>
+                        <li className="nav-item m-1 me-3">
+                            <Link className="nav-link text-light-custom" to="/worker-post-complaint">Complaint</Link>
                         </li>
                         <li className="nav-item m-1 me-3">
                             <Dropdown>
@@ -86,7 +89,7 @@ function WorkerNav() {
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                     <Dropdown.Item as={Link} to="/worker-view-cust-complaintlist">Customer Complaints</Dropdown.Item>
-                                    <Dropdown.Item as={Link} to="/worker-empjobreq">Employer Complaints</Dropdown.Item>
+                                    {/* <Dropdown.Item as={Link} to="/worker-empjobreq">Employer Complaints</Dropdown.Item> */}
 
                                 </Dropdown.Menu>
                             </Dropdown>
