@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Constants/Baseurl';
 import './ViewPostJobs.css'
+import { Modal } from 'react-bootstrap';
+import ViewSIngleUserPostJobs from './ViewSIngleUserPostJobs';
 
 function ViewPostJobsList() {
     const custid = localStorage.getItem("custid");
@@ -24,6 +26,25 @@ function ViewPostJobsList() {
   const navigateToacceptjobreq=(id)=>{
     navigate(`/user-viewjobstatus/${id}`)
   }
+
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  const [selectedJob, setSelectedJob] = useState({ jobId: null, custId: null }); // State for storing selected job and customer IDs
+
+  
+  
+
+    const handleRefresh = () => {
+      
+      setShow(false); // Close the modal after refreshing
+    };
+  
+    const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setSelectedJob(id);
+    setShow(true);
+  };
+
 
   return (
     <div>
@@ -61,6 +82,10 @@ function ViewPostJobsList() {
                     <div className=" viewworkreqacpt">
                         <button type="submit" onClick={()=>navigateToacceptjobreq(a._id)}>View Request</button>
                     </div>
+                    <div className=" viewworkreqrjt">
+                    <button type="submit" onClick={()=>handleShow(a._id)}>View More</button>
+
+                      </div>
                            
                   </div>
                 </div>
@@ -72,7 +97,11 @@ function ViewPostJobsList() {
         </div>
       </div>
     </div>
+    <Modal show={show} onHide={handleClose} centered>
+                    <ViewSIngleUserPostJobs close={handleClose} postjob_id={selectedJob} refreshJobList={handleRefresh}/>
+            </Modal>
     </div>
+    
   )
 }
 

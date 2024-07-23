@@ -89,6 +89,9 @@ function ScheduleInterview({jobreqid,workerId,close}) {
             else if (response.status === 500){
               toast.error(response.data.msg)
             }
+            else if (response.data.status === 400){
+              toast.info(response.data.msg)
+            }
           } catch (error) {
             console.error("Error:", error);
             let msg = error?.response?.data?.msg || "Error occurred";

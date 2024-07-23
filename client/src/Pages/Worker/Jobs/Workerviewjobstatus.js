@@ -45,7 +45,7 @@ function Workerviewjobstatus() {
     <div className="workerview-jonreqmaincontainer">
       <div className="workerjobreq-mainbox">
         <div className="workjob-viewalert col-12">
-          <div className="admindash-shrink">Job Requests</div>
+          <div className="admindash-shrink">Work Requests</div>
           <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
                 type='search'
                 placeholder="Search "
@@ -59,7 +59,7 @@ function Workerviewjobstatus() {
             </svg>            
             </button>
             </div>
-          <div className="row d-flex" style={{ marginTop: '30px' }}>
+          <div className="row d-flex " style={{ marginTop: '30px' }}>
             {job && job.length ? (
               job.map((a) => {
                 const jobid = a?.jobid?._id;
