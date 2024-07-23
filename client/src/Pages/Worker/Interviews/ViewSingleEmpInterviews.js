@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import axiosInstance from '../../Constants/Baseurl';
-import { useNavigate,useParams } from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+import './ViewEmpInterviewsList.css'
 
-function EmpViewPostJob({close,jobId}) {
-    
-    const [postjobdata, setPostJobData] = useState([]);
-    console.log(jobId,'new');
-    
-
+function ViewSingleEmpInterviews({close, interview_id, refreshJobList}) {
+    const workerid = localStorage.getItem("workerid");
+    const [data, setData] = useState({});
     const fetchEmployerRequests = () => {
         axiosInstance
-          .post(`viewEmpPostJobById/${jobId}`)
+          .post(`viewInterviewById/${interview_id}`)
           .then((result) => {
             console.log(result);
-            setPostJobData(result.data.data);
+            setData(result.data.data);
+            // setWorker((prevWorker) => ({
+            //   ...prevWorker,
+            //   customerId: result.data.data.custid._id
+            // }));
           })
           .catch((err) => {
             console.log(err);
@@ -25,87 +26,109 @@ function EmpViewPostJob({close,jobId}) {
       useEffect(() => {
         fetchEmployerRequests();
       }, []);
-
-  return (
+    
+      
+    
+     
+    
+      
+    return (
     <>
-        <div className="empview-postjob-singlemain">
-      <div className="empview-postjob-singlebox">
+        <div className="jobreq-singlemain">
+      <div className="worker-interview-singlebox">
         <Container className="user-info-container">
-          <div className=" ri-arrow-go-back-line" onClick={close} />
+          <div className="ri-arrow-go-back-line" onClick={close} />
           <div className="user-profileviewimage">
             {/* <img src={`${url}/${data.custid?.image?.filename}`} width="100px" height="100px" alt="User" /> */}
           </div>
           <Form >
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Name
+                Employer Name
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobName}
+                {data?.empId?.name}
               </Col>
             </Row>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Type
+                Job
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobType}
+                {data?.workerId?.workertype}
               </Col>
             </Row>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Details
+                Date
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobDetails}
+                {data?.interview_date?.slice(0,10)}
+              </Col>
+            </Row>
+            {/* <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Time
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.interview_date?.slice(0,10)}
+              </Col>
+            </Row> */}
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Location
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.interview_location},{data?.city},
+                {data?.state}
               </Col>
             </Row>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Salary
+                Contact
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobSalary}
-              </Col>
-            </Row>
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-              Job Salary Type
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-                {postjobdata?.jobSalaryType}
-              </Col>
-            </Row>
-
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-                Posted Date
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-              {new Date(postjobdata?.date).toLocaleDateString()}
+                {data?.empId?.contact}
               </Col>
             </Row>
             
-
             
+            
+            
+            
+
+            {/* <Row className="user-profilebottm-button">
+              <Col>
+                <Button type="submit" className="user-profilebottm-end">
+                  Apply
+                </Button>
+                <Button
+                  type="button"
+                  className="user-profilebottm-end"
+                  onClick={close}
+                >
+                  Cancel
+                </Button>
+              </Col>
+            </Row> */}
           </Form>
         </Container>
       </div>
@@ -114,4 +137,4 @@ function EmpViewPostJob({close,jobId}) {
   )
 }
 
-export default EmpViewPostJob
+export default ViewSingleEmpInterviews

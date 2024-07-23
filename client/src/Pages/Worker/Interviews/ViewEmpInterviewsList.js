@@ -1,30 +1,52 @@
 import React,{useState,useEffect} from 'react'
 import { Modal } from 'react-bootstrap';
 import axiosInstance from '../../Constants/Baseurl';
+import ViewSingleEmpInterviews from './ViewSingleEmpInterviews';
 
 
 function ViewEmpInterviewsList() {
     const workerid=localStorage.getItem('workerid')
     console.log(workerid);
-    const [interviewdata,setInterviewData]=useState('');
+
+    const [data,setData]=useState();
 
     useEffect(() => {
         axiosInstance.post(`viewInterviewsByWorkerId/${workerid}`)
             .then((result) => {
-                console.log(result);
-                setUser(result.data.data);
+                console.log(result,'data');
+                setData(result.data.data);
               })
             .catch((err) => {
                 console.log(err);
             });
     }, [workerid]);
 
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  const [selectedInterview, setSelectedInterview] = useState({ jobId: null, custId: null }); // State for storing selected job and customer IDs
+
+  const [showinterview, setShowInterview] = useState(false);
+  const handleCloseInterview = () => setShowInterview(false);
+  const handleShowInterview = () => setShowInterview(true);
+
+    const handleRefresh = () => {
+      
+      setShow(false); // Close the modal after refreshing
+    };
+  
+    const handleClose = () => setShow(false);
+  const handleShow = (id) => {
+    setSelectedInterview(id);
+    setShow(true);
+  };
+
+
   return (
     <>
         <div className="workerview-jonreqmaincontainer">
     <div className="workerjobreq-mainbox">
       <div className="workjob-viewalert col-12">
-        <div className="admindash-shrink">Job Requests</div>
+        <div className="admindash-shrink">Interviews</div>
         <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
                 type='search'
                 placeholder="Search "
@@ -41,91 +63,50 @@ function ViewEmpInterviewsList() {
         <div className="row d-flex" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 
-          {paymentstatus && paymentstatus.length ? (
-            paymentstatus.map((a) => {
+          {data && data.length ? (
+            data.map((a) => {
+              
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
-                    <div className='row mt-3'>
+                    <div style={{display:'flex',alignItems:'end',justifyContent:'end',marginTop:'10px'}}><i><b>On : </b>{a?.interview_date.slice(0,10)}</i></div>
+                    <div className='row mt-3' >
                       <div className='col'>
                         <p>
-                        <b>Customer Name:</b>
+                        <b>Employer Name :</b>
                         </p>
                       </div>
                       <div className='col-5'>
                         <p>
-                        <i>{a?.customerId?.name}</i>
+                        {a?.empId?.name}
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Customer Mail:</b>
+                        <b>Job :</b>
                         </p>
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.customerId?.email}</i>
+                        {a?.workerId?.workertype}
                         </p>
                       </div>
                      </div> 
-                     <div className='row mt-3'>
-                      <div className='col'>
-                        <p>
-                        <b>JobTitle:</b>
-                        </p>
-                      </div>
-                      <div className='col'>
-                        <p>
-                        <i>{a?.jobid?.jobname}</i>
-                        </p>
-                      </div>
-                     </div> 
-                     <div className='row mt-3'>
-                      <div className='col'>
-                        <p>
-                        <b>Payment Amount:</b>
-                        </p>
-                      </div>
-                      <div className='col-5'>
-                        <p>
-                        <i>{a?.payment}</i>
-                        </p>
-                      </div>
-                     </div> 
-                     <div className='row mt-3'>
-                      <div className='col'>
-                        <p>
-                        <b>Payment Status:</b>
-                        </p>
-                      </div>
-                      <div className='col-5'>
-                        <p style={{ color: getStatusColor(a.status) }}>
-                        <b>{a?.status}</b>
-                        </p>
-                      </div>
-                      </div>
-                    {/* <div className="col-10 jobreq-para">
-                      <p className='pt-3'>
-                      <b>Customer Name:</b>&nbsp; <i>{a?.custid?.name}</i> <br/>
-                      <b>Customer Mail:</b>&nbsp;<i>{a?.custid?.email}</i> <br/>
-                      <b>JobTitle:</b> 
-                        <br />
-                      <b></b><span > </span>
-                      <br />
+                     
                       
 
-                      </p>
-                    </div> */}
+                      
                   </div>
 
-                  {/* <div className="jobreq-viewmore-dashbox">
+                  <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="viewmoreadmin-accept" 
-                      onClick={() => handleShow(a._id)}                    >
+                      onClick={() => handleShow(a._id)}                    
+                      >
                       View More
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               );
             })
@@ -136,9 +117,9 @@ function ViewEmpInterviewsList() {
       </div>
 
     </div>
-    {/* <Modal show={show} onHide={handleClose} centered>
-                    <Jobreqsingle close={handleClose} jobId={selectedJobId} refreshJobList={handleRefresh}/>
-            </Modal> */}
+    <Modal show={show} onHide={handleClose} centered>
+                    <ViewSingleEmpInterviews close={handleClose} interview_id={selectedInterview} refreshJobList={handleRefresh}/>
+            </Modal>
 
   </div>
     </>

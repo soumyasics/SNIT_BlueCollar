@@ -7,19 +7,19 @@ const schema = mongoose.Schema({
     ref: "workers",
     required: true,
   },
- 
-  // status: {
-  //   type: String,
-    
-  // },
   jobRequestId:{
     type: mongoose.Schema.Types.ObjectId,
     ref: "empjobrequest",
     required: true,
   },
+  jobid:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "empjobpost",
+    required: true,
+  },
   empId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "employers",
+    ref: "employer",
   },
   interview_date:{
     type: Date,
@@ -36,6 +36,10 @@ const schema = mongoose.Schema({
   state:{
     type: String,
     required: true,
+  },
+  status:{
+    type:String,
+    default:'pending'
   }
 
 });

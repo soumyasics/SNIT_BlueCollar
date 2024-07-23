@@ -14,12 +14,20 @@ const createInterview = async (req, res) => {
             workerId:req.params.id,
             jobRequestId,
             empId:jobRequest.empId,
+            jobid:jobRequest.jobid,
             interview_date,
             interview_location,
             city,
             state
         });
+        const exInterview = await Interview.findOne({jobRequestId:jobRequestId,workerId:req.params.id});
 
+if(exInterview){
+    return res.json({
+         status: 400,
+         msg: 'Interview Already  Scheduled',
+     });
+ }
         const data = await interview.save();
         res.json({
             status: 200,
@@ -42,6 +50,7 @@ const viewInterviewsByWorkerId = (req, res) => {
         .populate("workerId")
         .populate("jobRequestId")
         .populate("empId")
+        .populate("jobid")
         .exec()
         .then((data) => {
             res.json({
@@ -51,6 +60,7 @@ const viewInterviewsByWorkerId = (req, res) => {
             });
         })
         .catch((err) => {
+            console.log(err);
             res.json({
                 status: 500,
                 err: err
@@ -64,9 +74,10 @@ const viewInterviewsByEmpId = (req, res) => {
         .populate("workerId")
         .populate("jobRequestId")
         .populate("empId")
+        .populate("jobid")
         .exec()
         .then((data) => {
-            res.json({
+           res.json({
                 status: 200,
                 msg: "Interviews Obtained Successfully",
                 data: data,
@@ -81,7 +92,7 @@ const viewInterviewsByEmpId = (req, res) => {
 };
 
 // View Interview by Job Request ID
-const viewInterviewByJobRequestId = (req, res) => {
+const viewInterviewByJobRequestId = async(req, res) => {
     Interview.find({ jobRequestId: req.params.id })
         .populate("workerId")
         .populate("jobRequestId")
@@ -102,9 +113,84 @@ const viewInterviewByJobRequestId = (req, res) => {
         });
 };
 
+// View Interview by Job Request ID
+const viewInterviewById = (req, res) => {
+    Interview.findById({_id:req.params.id})
+        .populate("workerId")
+        .populate("jobRequestId")
+        .populate("empId")
+        .populate("jobid")
+        .exec()
+        .then((data) => {
+            res.json({
+                status: 200,
+                msg: "Interview Obtained Successfully",
+                data: data,
+            });
+        })
+        .catch((err) => {
+            res.json({
+                status: 500,
+                err: err
+            });
+        });
+};
+
+// update interview status 
+
+const updateinterviewStatusSelected= async (req, res) => {
+    Interview.findByIdAndUpdate({ _id:req.params.id},{
+      status:'Selected'
+    })
+    .then(data=>{
+  
+  console.log("data",data);
+       return  res.json({
+           status: 200,
+           msg: "Updated Successfully"
+           
+         });
+    })
+   .catch((err) => {
+     console.log(err);
+     res.json({
+       status: 500,
+         msg: "Internal Error !!"
+     })
+   })
+  
+  }
+
+  // update interview status 
+
+const deleteinterviewStatusRejected= async (req, res) => {
+    Interview.findByIdAndDelete({ _id:req.params.id})
+    .then(data=>{
+  
+  console.log("data",data);
+       return  res.json({
+           status: 200,
+           msg: "Rejected Successfully"
+           
+         });
+    })
+   .catch((err) => {
+     console.log(err);
+     res.json({
+       status: 500,
+         msg: "Internal Error !!"
+     })
+   })
+  
+  }
+
+
 module.exports = {
     createInterview,
     viewInterviewsByWorkerId,
     viewInterviewsByEmpId,
-    viewInterviewByJobRequestId
+    viewInterviewByJobRequestId,
+    viewInterviewById,
+    updateinterviewStatusSelected,
+    deleteinterviewStatusRejected,
 };

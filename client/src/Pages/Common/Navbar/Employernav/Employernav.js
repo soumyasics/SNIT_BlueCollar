@@ -71,6 +71,9 @@ function Employernav() {
           <li className="nav-item me-3 pe-3 m-1">
             <Link className="nav-link text-light-custom" to='/employer-view-postjob'>View Jobs</Link>
           </li>
+          <li className="nav-item me-3 pe-3 m-1">
+            <Link className="nav-link text-light-custom" to='/employer-view-scheduledinterview'>Scheduled Interview</Link>
+          </li>
           {/* <li className="nav-item m-1">
             <Link className="nav-link text-light-custom" to="#">About Us</Link>
           </li>

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React,{useState,useEffect} from 'react'
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import axiosInstance from '../../Constants/Baseurl';
-import { useNavigate,useParams } from 'react-router-dom'
-import { toast } from 'react-toastify';
 
-function EmpViewPostJob({close,jobId}) {
-    
-    const [postjobdata, setPostJobData] = useState([]);
-    console.log(jobId,'new');
-    
+function ViewSIngleUserPostJobs({close, postjob_id}) {
+    const custid = localStorage.getItem("custid");
 
+    const [data, setData] = useState({});
     const fetchEmployerRequests = () => {
         axiosInstance
-          .post(`viewEmpPostJobById/${jobId}`)
+          .post(`viewjobreqsbyid/${postjob_id}`)
           .then((result) => {
             console.log(result);
-            setPostJobData(result.data.data);
+            setData(result.data.data);
+            // setWorker((prevWorker) => ({
+            //   ...prevWorker,
+            //   customerId: result.data.data.custid._id
+            // }));
           })
           .catch((err) => {
             console.log(err);
@@ -25,87 +25,82 @@ function EmpViewPostJob({close,jobId}) {
       useEffect(() => {
         fetchEmployerRequests();
       }, []);
-
+    
+      
   return (
     <>
-        <div className="empview-postjob-singlemain">
-      <div className="empview-postjob-singlebox">
+        <div className="jobreq-singlemain">
+      <div className="worker-interview-singlebox">
         <Container className="user-info-container">
-          <div className=" ri-arrow-go-back-line" onClick={close} />
+          <div className="ri-arrow-go-back-line" onClick={close} />
           <div className="user-profileviewimage">
             {/* <img src={`${url}/${data.custid?.image?.filename}`} width="100px" height="100px" alt="User" /> */}
           </div>
           <Form >
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Name
+                Job Name
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobName}
+                {data?.jobname}
               </Col>
             </Row>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Type
+                Job Category
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobType}
+                {data?.category}
               </Col>
             </Row>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Details
+                Posted On
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobDetails}
+                {data?.date?.slice(0,10)}
               </Col>
             </Row>
             <Row className="user-info-row">
               <Col className="user-info-label" md={4}>
-              Job Salary
+                Work Details
               </Col>
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-                {postjobdata?.jobSalary}
-              </Col>
-            </Row>
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-              Job Salary Type
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-                {postjobdata?.jobSalaryType}
-              </Col>
-            </Row>
-
-            <Row className="user-info-row">
-              <Col className="user-info-label" md={4}>
-                Posted Date
-              </Col>
-              <Col className="user-info-coln" md={1}>
-                :
-              </Col>
-              <Col className="user-info-value" md={7}>
-              {new Date(postjobdata?.date).toLocaleDateString()}
+                {data?.workdetails}
               </Col>
             </Row>
             
-
             
+            
+            
+            
+
+            {/* <Row className="user-profilebottm-button">
+              <Col>
+                <Button type="submit" className="user-profilebottm-end">
+                  Apply
+                </Button>
+                <Button
+                  type="button"
+                  className="user-profilebottm-end"
+                  onClick={close}
+                >
+                  Cancel
+                </Button>
+              </Col>
+            </Row> */}
           </Form>
         </Container>
       </div>
@@ -114,4 +109,4 @@ function EmpViewPostJob({close,jobId}) {
   )
 }
 
-export default EmpViewPostJob
+export default ViewSIngleUserPostJobs

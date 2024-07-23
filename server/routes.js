@@ -113,6 +113,12 @@ router.post("/createInterview/:id",interviews.createInterview)
 router.post("/viewInterviewsByWorkerId/:id",interviews.viewInterviewsByWorkerId)
 router.post("/viewInterviewsByEmpId/:id",interviews.viewInterviewsByEmpId)
 router.post("/viewInterviewByJobRequestId/:id",interviews.viewInterviewByJobRequestId)
+router.post("/viewInterviewById/:id",interviews.viewInterviewById)
+router.post("/updateinterviewStatusSelected/:id",interviews.updateinterviewStatusSelected)
+router.post("/deleteinterviewStatusRejected/:id",interviews.deleteinterviewStatusRejected)
+
+
+
 
 //customer Complaints
 
