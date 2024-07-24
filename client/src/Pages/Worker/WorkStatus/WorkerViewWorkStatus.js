@@ -92,7 +92,6 @@ console.log(workstatusdata,'workstatusdata');
 
     if (Object.keys(errors).length === 0 && formValid) {
       try {
-        
         var response;
         if (workstatusdata) {
           response = await axiosInstance.post(
@@ -105,8 +104,7 @@ console.log(workstatusdata,'workstatusdata');
           alert(response.data.msg)
           close()
         }
-        
-      } catch (error) {
+      }catch (error) {
         console.error("Error:", error);
         let msg = error?.response?.data?.msg || "Error occurred";
         alert(msg);
