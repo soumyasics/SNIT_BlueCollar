@@ -151,3 +151,15 @@ line-height: normal;
     font-weight: 600;
     margin-top: 10px;
 }
+
+.viewjoblistworker_searchbtn{
+    background-color: #3D9AE0;
+    border: 1px solid #fff;
+    color: #FFF;
+    border-left: none;
+    width: 250px;
+    height: 5vh;
+    border-radius: 20px ;
+
+}
+

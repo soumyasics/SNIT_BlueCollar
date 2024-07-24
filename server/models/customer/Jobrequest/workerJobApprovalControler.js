@@ -61,6 +61,7 @@ const viewReqsbyUserid=(req,res)=>{
 const viewReqsbyJobid=(req,res)=>{
     workerapproveschema.find({jobid:req.params.id})
     .populate("workerId")
+    .populate("jobid")
     .exec()
     .then((data) => {
         res.json({

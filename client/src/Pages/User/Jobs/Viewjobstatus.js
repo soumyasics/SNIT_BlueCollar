@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosInstance from "../../Constants/Baseurl";
 import "./Viewjobstatus.css";
 
 function Viewjobstatus() {
+  const navigate=useNavigate();
   const custid = localStorage.getItem("custid");
   const [data, setData] = useState([]);
 
@@ -22,6 +23,8 @@ function Viewjobstatus() {
       });
   }, [jobid]);
 
+  console.log(data,'new');
+
   const acceptworker=(id)=>{
     axiosInstance.post(`acceptReqsById/${id}`)
     .then((res)=>{
@@ -35,14 +38,30 @@ function Viewjobstatus() {
     })
   }
 
+  const navigatetoworkerspg=(category)=>{
+    navigate(`user-view-workerbytype/${category}`)
+  }
+
   return (
     <div className="workerview-jonreqmaincontainer" style={{minHeight:'80vh'}}>
       <div className="workerjobreq-mainbox mb-5">
         <div className="workjob-viewalert col-12">
           <div className="admindash-shrink">Job Requests</div>
+          <div style={{display:'flex',marginTop:'-30px',marginLeft:'960px'}}>
+            {/* <button
+            onClick={()=>navigatetoworkerspg()}
+            className='viewjoblistworker_searchbtn'
+            >
+            View More Workers           
+            </button> */}
+            </div>
           <div className="row d-flex" style={{ marginTop: "30px" }}>
             {data && data.length ? (
-              data.map((a) => (
+            
+              data.map((a) => {
+                  const category=a?.jobid?.category
+                return(
+                
                 <div className="col-3 userview-job-boxinside pt-4" key={a._id}>
                   <div className="row">
                     <div className="col-5 userview-head">Worker Name</div>
@@ -86,7 +105,8 @@ function Viewjobstatus() {
                     )} */}
                   </div>
                 </div>
-              ))
+              )
+                  })
             ) : (
               <div className="viewcounsellor-lottiereqq">No request found</div>
             )}

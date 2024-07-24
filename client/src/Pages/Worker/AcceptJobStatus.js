@@ -8,10 +8,10 @@ function AcceptJobStatus() {
     const [view, setView] = useState('user');
   return (
     <>
-        <div className="workerview-jonreqmaincontainer">
+        <div className="">
     
       <div className="">
-        <div className='' style={{display:'flex',marginTop:'15px',}}>
+        <div className='' style={{display:'flex',marginTop:'15px',marginLeft:'90px'}}>
         <button className='workeracceptjobstatus_empbtn ' onClick={() => setView('user')}>User Status</button>
         <button className='workeracceptjobstatus_empbtn mx-3' onClick={() => setView('employer')}>Interviews Status</button>
       </div>
