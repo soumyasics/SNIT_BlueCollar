@@ -115,7 +115,10 @@ router.post("/viewInterviewsByEmpId/:id",interviews.viewInterviewsByEmpId)
 router.post("/viewInterviewByJobRequestId/:id",interviews.viewInterviewByJobRequestId)
 router.post("/viewInterviewById/:id",interviews.viewInterviewById)
 router.post("/updateinterviewStatusSelected/:id",interviews.updateinterviewStatusSelected)
-router.post("/deleteinterviewStatusRejected/:id",interviews.deleteinterviewStatusRejected)
+router.post("/updateinterviewStatusRejected/:id",interviews.updateinterviewStatusRejected)
+router.post("/viewSelectedCandByEmpId/:id",interviews.viewSelectedCandByEmpId)
+router.post("/viewRejectedCandByEmpId/:id",interviews.viewRejectedCandByEmpId)
+
 
 
 

@@ -24,33 +24,9 @@ function InterviewUpdateStatus({close,jobId}) {
     
       useEffect(() => {
         fetchEmployerRequests();
-      }, []);
+      }, [jobId]);
 
-      const selectcandidate=(id)=>{
-        axiosInstance.post(`updateinterviewStatusSelected/${id}`)
-        .then((data)=>{
-          if(data.status==200){
-            console.log(data,'data');
-            toast.success(data.data.msg)
-          }
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
-      }
-
-      const rejectcandidate=(id)=>{
-        axiosInstance.post(`deleteinterviewStatusRejected/${id}`)
-        .then((data)=>{
-          if(data.status==200){
-            toast.info(data.data.msg)
-            console.log(data,'data');
-          }
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
-      }
+      
 
   return (
     <>
@@ -186,12 +162,12 @@ function InterviewUpdateStatus({close,jobId}) {
             </Row>
             
             <div className='mt-3' style={{display:'flex',justifyContent:'center',gap:'90px'}}>
-            <button style={{background:'Green',color:'#fff',border:'none',borderRadius:'20px', width:'100px'}}
+            {/* <button style={{background:'Green',color:'#fff',border:'none',borderRadius:'20px', width:'100px'}}
             onClick={()=>selectcandidate(postjobdata?._id)}
             >Select</button>
             <button style={{background:'Red',color:'#fff',border:'none',borderRadius:'20px',width:'100px'}}
             onClick={()=>rejectcandidate(postjobdata?._id)}
-            >Reject</button>
+            >Reject</button> */}
             </div>
           </Form>
         </Container>

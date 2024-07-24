@@ -142,29 +142,31 @@ const updateinterviewStatusSelected= async (req, res) => {
     Interview.findByIdAndUpdate({ _id:req.params.id},{
       status:'Selected'
     })
+    .exec()
     .then(data=>{
-  
-  console.log("data",data);
-       return  res.json({
-           status: 200,
-           msg: "Updated Successfully"
+        console.log("data",data);
+        res.json({
+        status: 200,
+        msg: "Updated Successfully"
            
          });
     })
    .catch((err) => {
      console.log(err);
-     res.json({
-       status: 500,
+        res.json({
+        status: 500,
          msg: "Internal Error !!"
      })
    })
   
   }
 
-  // update interview status 
+  // delete interview status 
 
-const deleteinterviewStatusRejected= async (req, res) => {
-    Interview.findByIdAndDelete({ _id:req.params.id})
+const updateinterviewStatusRejected= async (req, res) => {
+    Interview.findByIdAndUpdate({ _id:req.params.id},{
+        status:'Rejected'
+    })
     .then(data=>{
   
   console.log("data",data);
@@ -184,6 +186,53 @@ const deleteinterviewStatusRejected= async (req, res) => {
   
   }
 
+  // View Selected Cand by Employer ID
+const viewSelectedCandByEmpId = (req, res) => {
+    Interview.find({ empId: req.params.id ,status:'Selected'})
+        .populate("workerId")
+        .populate("jobRequestId")
+        .populate("empId")
+        .populate("jobid")
+        .exec()
+        .then((data) => {
+           res.json({
+                status: 200,
+                msg: "Interviews Obtained Successfully",
+                data: data,
+            });
+        })
+        .catch((err) => {
+            res.json({
+                status: 500,
+                err: err
+            });
+        });
+};
+
+// View Rejected Cand by Employer ID
+
+const viewRejectedCandByEmpId = (req, res) => {
+    Interview.find({ empId: req.params.id , status:'Rejected'})
+        .populate("workerId")
+        .populate("jobRequestId")
+        .populate("empId")
+        .populate("jobid")
+        .exec()
+        .then((data) => {
+           res.json({
+                status: 200,
+                msg: "Interviews Obtained Successfully",
+                data: data,
+            });
+        })
+        .catch((err) => {
+            res.json({
+                status: 500,
+                err: err
+            });
+        });
+};
+
 
 module.exports = {
     createInterview,
@@ -192,5 +241,8 @@ module.exports = {
     viewInterviewByJobRequestId,
     viewInterviewById,
     updateinterviewStatusSelected,
-    deleteinterviewStatusRejected,
+    updateinterviewStatusRejected,
+    viewSelectedCandByEmpId,
+    viewRejectedCandByEmpId,
+
 };

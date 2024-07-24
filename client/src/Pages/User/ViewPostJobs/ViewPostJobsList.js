@@ -9,6 +9,8 @@ function ViewPostJobsList() {
     const custid = localStorage.getItem("custid");
   const [data, setData] = useState([]);
 
+  const [category,setCategory]=useState('');
+
   useEffect(() => {
     axiosInstance
       .post(`viewalljobreqs/${custid}`)
@@ -20,6 +22,8 @@ function ViewPostJobsList() {
         console.log(err);
       });
   }, [custid]);
+
+  
 
   const navigate=useNavigate();
 
@@ -53,7 +57,8 @@ function ViewPostJobsList() {
         <div className="workjob-viewalert col-12">
           
           <div className="admindash-shrink">Job Requests</div>
-          <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
+          <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}>
+            <input
                 type='search'
                 placeholder="Search "
                 className='workernav_2_searchbar'
