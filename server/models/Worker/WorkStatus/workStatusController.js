@@ -208,7 +208,7 @@ const viewCompletedWorksByWorkerId= async (req, res) => {
  })
 
 }
-
+z
 const viewWorksamountById= async (req, res) => {
   workstatusschema.findById(req.params.id)
   .then(data=>{
