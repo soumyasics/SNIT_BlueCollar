@@ -64,6 +64,7 @@ import AcceptJobStatus from './Pages/Worker/AcceptJobStatus';
 import ViewScheduledInterview from './Pages/Employer/ScheduleInterview/ViewScheduledInterview';
 import InterviewStatus from './Pages/Employer/ScheduleInterview/InterviewStatus';
 import ViewWorkersByType from './Pages/User/ViewAllWorkers/ViewWorkersByType';
+import Emphome1 from './Pages/Employer/Home/Emphome1';
 
 function App() {
   return (
@@ -99,7 +100,7 @@ function App() {
 
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
-        <Route path='/employer-home' element={[<Employernav/>,<Hero/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/employer-home' element={[<Employernav/>,<Emphome1/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
         <Route path='/employer-view-postjob' element={[<Employernav />,<EmpViewJobList/>]}/>
         <Route path='/employer-view-postjobreq/:jobid' element={[<Employernav />,<WorkerReqJob/>]}/>

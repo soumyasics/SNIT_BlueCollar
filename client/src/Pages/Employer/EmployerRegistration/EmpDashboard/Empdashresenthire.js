@@ -16,7 +16,7 @@ function Empdashresenthire() {
   return (
     <div className="container">
       <div className="container-head">
-        <p>Recent Hirings</p>
+        <p>Our Best Candidates</p>
       </div>
       <div className="row ">
         <div className="col-6 viewhiring-main">
