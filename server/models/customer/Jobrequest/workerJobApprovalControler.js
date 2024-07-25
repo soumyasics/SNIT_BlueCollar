@@ -187,6 +187,25 @@ const viewApprovedReqsbycustomerId=(req,res)=>{
     });
   }
 
+  const viewAprovdReqsbycustIdRegComplaint=(req,res)=>{
+    workerapproveschema.find({customerId:req.params.id})
+    .populate("workerId jobid")
+    .exec()
+    .then((data) => {
+        res.json({
+          status: 200,
+          msg: "Obtained Successfully",
+          data: data,
+        });
+      })
+      .catch((err) => {
+          res.json({
+              status:500,
+              err:err
+          })
+      });
+    }
+
   const updateapprovalstatustopaid=async(req,res)=>{
     await workerapproveschema.findByIdAndUpdate({_id:req.params.id},{approvalstatus:'paid'})
     .exec()
@@ -214,5 +233,6 @@ module.exports={
     viewApprovedReqsbyJobId,
     viewApprovedReqsbyWorkerid,
     viewApprovedReqsbycustomerId,
-    updateapprovalstatustopaid
+    updateapprovalstatustopaid,
+    viewAprovdReqsbycustIdRegComplaint
 }

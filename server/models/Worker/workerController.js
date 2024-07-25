@@ -373,24 +373,26 @@ const deleteworkerById =async (req, res) => {
   };
 
 const topratedWorkers = (req, res) => {
-Worker.find({isactive:true,adminapprove:true})
+workerschema.find({isactive:true,adminapprove:true})
   .sort({ rating: -1 }) 
   .limit(4) 
-  .exec((err, topWorkers) => {
-    if (err) {
-      res.json({
-        status: 500,
-        msg: "Data not Inserted",
-        Error: err,
-      });
-    } else {
+  .exec()
+   .then(data=>{
       res.json({
         status: 200,
         msg: "Data obtained",
-        data: topWorkers
+        data: data
       });
-    }
-  });
+    }).catch(err=>{
+      
+        res.json({
+          status: 500,
+          msg: "Data not Inserted",
+          Error: err,
+        });
+      
+    })
+  
 }
 module.exports={
     registerworker,upload,
