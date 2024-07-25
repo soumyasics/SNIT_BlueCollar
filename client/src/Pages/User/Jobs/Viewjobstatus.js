@@ -38,9 +38,9 @@ function Viewjobstatus() {
     })
   }
 
-  const navigatetoworkerspg=(category)=>{
-    navigate(`user-view-workerbytype/${category}`)
-  }
+  // const navigatetoworkerspg=(category)=>{
+  //   navigate(`user-view-workerbytype/${category}`)
+  // }
 
   return (
     <div className="workerview-jonreqmaincontainer" style={{minHeight:'80vh'}}>
@@ -48,12 +48,12 @@ function Viewjobstatus() {
         <div className="workjob-viewalert col-12">
           <div className="admindash-shrink">Job Requests</div>
           <div style={{display:'flex',marginTop:'-30px',marginLeft:'960px'}}>
-            {/* <button
-            onClick={()=>navigatetoworkerspg()}
+            <button
+            // onClick={navigatetoworkerspg()}
             className='viewjoblistworker_searchbtn'
             >
             View More Workers           
-            </button> */}
+            </button>
             </div>
           <div className="row d-flex pt-3" style={{ marginTop: "30px" }}>
             {data && data.length ? (

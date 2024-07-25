@@ -65,6 +65,7 @@ import ViewScheduledInterview from './Pages/Employer/ScheduleInterview/ViewSched
 import InterviewStatus from './Pages/Employer/ScheduleInterview/InterviewStatus';
 import ViewWorkersByType from './Pages/User/ViewAllWorkers/ViewWorkersByType';
 import Emphome1 from './Pages/Employer/Home/Emphome1';
+import BestCandWorkerCount from './Pages/Common/Home/BestCandWorkerCount';
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword/>} />
         <Route path='/reset-password/:id' element={<ResetPassword/>} />
         <Route path='/alljobs' element={[<Navbar/>,<RecentJobOpen/>]} />
+
 
 
         {/* User Routes */}

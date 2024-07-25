@@ -372,7 +372,28 @@ const deleteworkerById =async (req, res) => {
       });
   };
 
-
+const topratedWorkers = (req, res) => {
+workerschema.find({isactive:true,adminapprove:true})
+  .sort({ rating: -1 }) 
+  .limit(4) 
+  .exec()
+   .then(data=>{
+      res.json({
+        status: 200,
+        msg: "Data obtained",
+        data: data
+      });
+    }).catch(err=>{
+      
+        res.json({
+          status: 500,
+          msg: "Data not Inserted",
+          Error: err,
+        });
+      
+    })
+  
+}
 module.exports={
     registerworker,upload,
     workerLogin,verifyToken,
@@ -386,6 +407,7 @@ module.exports={
     rejectworkerbyid,
     viewworkerpendingreq,
     removebyadminbyworkerid,
-    addRating
+    addRating,
+    topratedWorkers
 
 }

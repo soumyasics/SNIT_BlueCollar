@@ -46,6 +46,8 @@ router.post("/removebyadminbyworkerid/:id",Worker.removebyadminbyworkerid)
 // worker Ratings 
 
 router.post("/addRating/:id",Worker.addRating)
+router.post("/topratedWorkers",Worker.topratedWorkers)
+
 
 
 

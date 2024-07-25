@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import "./BestCandidate.css";
 import img from "../../../Assets/profilecircle.png";
 import { Button } from "react-bootstrap";
+import axiosInstance from "../../Constants/Baseurl";
+import BestCandWorkerCount from "./BestCandWorkerCount";
+import StarRating from "../StarRating/StarRating";
 
 
 function BestCandidate() {
+  const [data,setData]=useState('');
+  const url = axiosInstance.defaults.url;
+
+
+  const fetchEmployerRequests = () => {
+    axiosInstance
+      .post('topratedWorkers')
+      .then((result) => {
+        console.log(result,'data');
+        setData(result.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchEmployerRequests();
+  }, ['']);
+
+  
+
+
   return (
     <div className="container">
       <div className="bestcandidate-main row">
@@ -14,138 +40,50 @@ function BestCandidate() {
         </div>
         <div className="col-12 pb-6 ">
           <div className="row">
+          {
+        (data.length)>0? ((data).slice(0,4)
+            .map((a) => {
+              // Count(a?._id)
+              return (
             <div className="col-4">
               <div className="bestcandidate-userbox">
                 <div className="bestcandidate-userboximage d-flex">
-                    <img src={img} alt="image"/>
-                    <p>Antony</p>
+                    <img src={`${url}/${a?.image?.filename}`} alt="image"/>
+                    <p>{a?.name}</p>
+                    
                     <div className="bestcandidate-userboxhead6">
-                    {/* <h6>rorvnuvf</h6> */}
+                    <StarRating key={a?._id} rating={a?.rating} />
+                    
                     </div>
-
+                  
                 </div>
-                <div className="bestcandidate-userboxcontent row">
+                
+                <div className="bestcandidate-userboxcontent row mt-3">
                     <div className="col-8 bestcandidate-userboxh5">
-                    <h5>Plumber</h5>
-                    <p>oienbdh djvb vvj jb f  bvvj wrvkjb fvyugfv tgyuvbrw y8giyvb hugf yvufhj gyfv hsivyvhj xc bnxc vhj </p>
+                    <h5>{a?.workertype}</h5>
+                    <BestCandWorkerCount key={a?._id} workerid={a?._id} />
                     </div>
-                    <div className="col-4 bestcandidate-userbutton">
+                    {/* <div className="col-4 bestcandidate-userbutton ">
                         <button type="submit">Request Now</button>
-                    </div>
+                    </div> */}
                 </div>
               </div>
             </div>
-            <div className="col-4">
-              <div className="bestcandidate-userbox">
-                <div className="bestcandidate-userboximage d-flex">
-                    <img src={img} alt="image"/>
-                    <p>Antony</p>
-                    <div className="bestcandidate-userboxhead6">
-                    {/* <h6>rorvnuvf</h6> */}
-                    </div>
-
-                </div>
-                <div className="bestcandidate-userboxcontent row">
-                    <div className="col-8 bestcandidate-userboxh5">
-                    <h5>Plumber</h5>
-                    <p>oienbdh djvb vvj jb f  bvvj wrvkjb fvyugfv tgyuvbrw y8giyvb hugf yvufhj gyfv hsivyvhj xc bnxc vhj </p>
-                    </div>
-                    <div className="col-4 bestcandidate-userbutton">
-                        <button type="submit">Request Now</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="bestcandidate-userbox">
-                <div className="bestcandidate-userboximage d-flex">
-                    <img src={img} alt="image"/>
-                    <p>Antony</p>
-                    <div className="bestcandidate-userboxhead6">
-                    {/* <h6>rorvnuvf</h6> */}
-                    </div>
-
-                </div>
-                <div className="bestcandidate-userboxcontent row">
-                    <div className="col-8 bestcandidate-userboxh5">
-                    <h5>Plumber</h5>
-                    <p>oienbdh djvb vvj jb f  bvvj wrvkjb fvyugfv tgyuvbrw y8giyvb hugf yvufhj gyfv hsivyvhj xc bnxc vhj </p>
-                    </div>
-                    <div className="col-4 bestcandidate-userbutton">
-                        <button type="submit">Request Now</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="bestcandidate-userbox">
-                <div className="bestcandidate-userboximage d-flex">
-                    <img src={img} alt="image"/>
-                    <p>Antony</p>
-                    <div className="bestcandidate-userboxhead6">
-                    {/* <h6>rorvnuvf</h6> */}
-                    </div>
-
-                </div>
-                <div className="bestcandidate-userboxcontent row">
-                    <div className="col-8 bestcandidate-userboxh5">
-                    <h5>Plumber</h5>
-                    <p>oienbdh djvb vvj jb f  bvvj wrvkjb fvyugfv tgyuvbrw y8giyvb hugf yvufhj gyfv hsivyvhj xc bnxc vhj </p>
-                    </div>
-                    <div className="col-4 bestcandidate-userbutton">
-                        <button type="submit">Request Now</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="bestcandidate-userbox">
-                <div className="bestcandidate-userboximage d-flex">
-                    <img src={img} alt="image"/>
-                    <p>Antony</p>
-                    <div className="bestcandidate-userboxhead6">
-                    {/* <h6>rorvnuvf</h6> */}
-                    </div>
-
-                </div>
-                <div className="bestcandidate-userboxcontent row">
-                    <div className="col-8 bestcandidate-userboxh5">
-                    <h5>Plumber</h5>
-                    <p>oienbdh djvb vvj jb f  bvvj wrvkjb fvyugfv tgyuvbrw y8giyvb hugf yvufhj gyfv hsivyvhj xc bnxc vhj </p>
-                    </div>
-                    <div className="col-4 bestcandidate-userbutton">
-                        <button type="submit">Request Now</button>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-4">
-              <div className="bestcandidate-userbox">
-                <div className="bestcandidate-userboximage d-flex">
-                    <img src={img} alt="image"/>
-                    <p>Antony</p>
-                    <div className="bestcandidate-userboxhead6">
-                    {/* <h6>rorvnuvf</h6> */}
-                    </div>
-
-                </div>
-                <div className="bestcandidate-userboxcontent row">
-                    <div className="col-8 bestcandidate-userboxh5">
-                    <h5>Plumber</h5>
-                    <p>oienbdh djvb vvj jb f  bvvj wrvkjb fvyugfv tgyuvbrw y8giyvb hugf yvufhj gyfv hsivyvhj xc bnxc vhj </p>
-                    </div>
-                    <div className="col-4 bestcandidate-userbutton">
-                        <button type="submit">Request Now</button>
-                    </div>
-                </div>
-              </div>
-            </div>
+            );
+          })
+        ) : (
+          <div className="viewcounsellor-lottiereqq">No request found</div>
+        )} 
+            
+           
+            
+            
 
           </div>
         </div>
-        <div className="bestcandidate-userboxbutton">
+        {/* <div className="bestcandidate-userboxbutton">
             <button type="submit" className="mb-5">ViewMore</button>
-        </div>
+        </div> */}
       </div>
       {/* <div className="">
         <div className="bestcandidate-userbottommain">
