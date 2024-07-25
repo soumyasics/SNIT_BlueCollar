@@ -7,8 +7,10 @@ import PaymentReqAccJob from '../GotoPayments/PaymentReqAccJob';
 
 
 function ViewAcceptedPostJobs() {
-    const custid = localStorage.getItem("custid");
+  const custid = localStorage.getItem("custid");
   const [data, setData] = useState([]);
+
+  
 
   useEffect(() => {
     axiosInstance
@@ -22,6 +24,8 @@ function ViewAcceptedPostJobs() {
       });
   }, [custid]);
 
+  
+
   const navigate=useNavigate();
 
   const navigateToacceptjobreq=(id)=>{
@@ -29,12 +33,13 @@ function ViewAcceptedPostJobs() {
   }
 
   const [show, setShow] = useState(false);
-  const [openRequests, setOpenRequests] = useState(false);
+  const [approvalid, setApprovalId] = useState(false);
   const [selectedJobId, setSelectedJobid] = useState(null);//for passing _id as prop
 
   const handleClose = () => setShow(false);
-  const handleShow = (id) => {
+  const handleShow = (id,app_id) => {
     setSelectedJobid(id);
+    setApprovalId(app_id)
     setShow(true);
   };
 
@@ -77,7 +82,7 @@ function ViewAcceptedPostJobs() {
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
                     <div className=" viewworkreqacpt  mb-4">
-                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id)}>Go to Payment</button>
+                        <button type="submit" onClick={()=>handleShow(a?.jobid?._id,a?._id)}>Go to Payment</button>
                     </div>
                            
                   </div>
@@ -91,7 +96,7 @@ function ViewAcceptedPostJobs() {
       </div>
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <PaymentReqAccJob close={handleClose} jobid={selectedJobId} refreshJobList={handleRefresh}/>
+                    <PaymentReqAccJob close={handleClose} jobid={selectedJobId} approvalid={approvalid} refreshJobList={handleRefresh}/>
             </Modal>
     </div>
   )

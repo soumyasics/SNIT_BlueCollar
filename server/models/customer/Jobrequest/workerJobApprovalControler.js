@@ -185,8 +185,26 @@ const viewApprovedReqsbycustomerId=(req,res)=>{
             err:err
         })
     });
+  }
 
-}
+  const updateapprovalstatustopaid=async(req,res)=>{
+    await workerapproveschema.findByIdAndUpdate({_id:req.params.id},{approvalstatus:'paid'})
+    .exec()
+    .then((data) => {
+        res.json({
+          status: 200,
+          msg: "Updated",
+          data: data,
+        });
+      })
+      .catch((err) => {
+          res.json({
+              status:500,
+              err:err
+          })
+      });
+  }
+
 module.exports={
     workertakejobreq,
     viewReqsbyJobid,
@@ -195,5 +213,6 @@ module.exports={
     acceptReqsById,
     viewApprovedReqsbyJobId,
     viewApprovedReqsbyWorkerid,
-viewApprovedReqsbycustomerId
+    viewApprovedReqsbycustomerId,
+    updateapprovalstatustopaid
 }

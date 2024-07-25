@@ -83,7 +83,7 @@ function App() {
 
         {/* User Routes */}
         <Route path='/user-register' element={<User_Register />} />
-        <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<Footer/>]}/>
+        <Route path='/customer-home' element={[<CustomerHomenav/>,<Customerhome/>,<BestCandidate/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/user-postjob' element={<PostJobList />} />
         <Route path='/user-view-postjob' element={[<CustomerHomenav/>,<ViewPostJobsList />]} />
         <Route path='/user-view-workerbytype' element={[<CustomerHomenav/>,<ViewWorkersByType />]} />
