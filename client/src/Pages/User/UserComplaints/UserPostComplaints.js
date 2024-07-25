@@ -11,7 +11,7 @@ function UserPostComplaints() {
 
   useEffect(() => {
     axiosInstance
-      .post(`viewApprovedReqsbycustomerId/${custid}`)
+      .post(`viewAprovdReqsbycustIdRegComplaint/${custid}`)
       .then((result) => {
         console.log(result);
         setData(result.data.data);

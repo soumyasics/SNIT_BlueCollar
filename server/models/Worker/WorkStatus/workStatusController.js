@@ -154,7 +154,7 @@ console.log("data",data);
 
 
 const viewCountCompletedWorksByWorkerId= async (req, res) => {
-  workstatusschema.countDocuments({})
+  workstatusschema.find({workerId:req.params.id})
   .populate('jobid')
   .populate('customerId')
   .then(data=>{

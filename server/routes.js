@@ -106,6 +106,8 @@ router.post("/viewApprovedReqsbyJobId/:id",workeracceptreq.viewApprovedReqsbyJob
 router.post("/viewApprovedReqsbyWorkerid/:id",workeracceptreq.viewApprovedReqsbyWorkerid)
 router.post("/viewApprovedReqsbycustomerId/:id",workeracceptreq.viewApprovedReqsbycustomerId)
 router.post("/updateapprovalstatustopaid/:id",workeracceptreq.updateapprovalstatustopaid)
+router.post("/viewAprovdReqsbycustIdRegComplaint/:id",workeracceptreq.viewAprovdReqsbycustIdRegComplaint)
+
 
 
 // work status 
