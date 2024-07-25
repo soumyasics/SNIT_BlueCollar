@@ -191,7 +191,7 @@ function PaymentDetails() {
                         }}
                         required
                       />
-                      {/* <p style={{ color: "red" }}>{form.cardholdername}</p> */}
+                      <p style={{ color: "red" }}>{form.numberError}</p>
                       <label htmlFor="cardNo">Card Number</label>
                     </div>
                   </div>
@@ -211,7 +211,7 @@ function PaymentDetails() {
                           changefn(e);
                         }}
                       />
-                      {/* <p style={{ color: "red" }}>{form.cardno}</p> */}
+                      <p style={{ color: "red" }}>{form.cdnumberError}</p>
                       <label htmlFor="cvv">CVV</label>
                     </div>
                   </div>
@@ -265,7 +265,7 @@ function PaymentDetails() {
 
                   <div className="col-12">
                     <button className="btn btn-success" type="submit">
-                      Book Now
+                      Pay Now
                     </button>
                   </div>
                 </div>
