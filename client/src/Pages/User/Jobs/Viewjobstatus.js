@@ -55,7 +55,7 @@ function Viewjobstatus() {
             View More Workers           
             </button> */}
             </div>
-          <div className="row d-flex" style={{ marginTop: "30px" }}>
+          <div className="row d-flex pt-3" style={{ marginTop: "30px" }}>
             {data && data.length ? (
             
               data.map((a) => {

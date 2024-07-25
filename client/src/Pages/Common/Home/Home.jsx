@@ -10,6 +10,7 @@ import Hero from '../Hero/Hero';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../Constants/Baseurl';
 import RecentJobOpen from './RecentJobOpen/RecentJobOpen';
+import ClientTestimonials from './ClientTestimonials/ClientTestimonials';
 const iconStyle = { color: 'black' };
 const iconColor = { color: 'gold' }
 const categories = [
@@ -206,7 +207,7 @@ const Home = () => (
           ))}
         </Row>
       </div>
-      <Container>
+      {/* <Container>
         <div className='m-5 text-center'>
           <p className=' home-para'>Client Testimonials</p>
           <h1 className='fw-bold'>What Our Customers Say About Us</h1>
@@ -329,7 +330,8 @@ const Home = () => (
 
           </Col>
         </Row>
-      </Container>
+      </Container> */}
+      <ClientTestimonials/>
     </div>
     <Footer />
   </>

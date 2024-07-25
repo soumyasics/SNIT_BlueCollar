@@ -153,6 +153,38 @@ console.log("data",data);
 }
 
 
+const viewCountCompletedWorksByWorkerId= async (req, res) => {
+  workstatusschema.countDocuments({})
+  .populate('jobid')
+  .populate('customerId')
+  .then(data=>{
+    if(data.length>0){
+     return  res.json({
+         status: 200,
+         msg: "Retrieved Successfully",
+         data:data.length
+         
+       });
+      }
+      else{
+        return  res.json({
+          status: 200,
+          msg: "Retrieved Successfully",
+          data:0
+          
+        });
+      }
+     })
+ .catch((err) => {
+   console.log(err);
+   res.json({
+     status: 500,
+       msg: "Internal Error !!"
+   })
+ })
+
+}
+
 const viewCompletedWorksByWorkerId= async (req, res) => {
   workstatusschema.find({workerId:req.params.id})
   .populate('jobid')
@@ -204,4 +236,5 @@ module.exports = {
   updatePaymentStatus,
   viewCompletedWorksByWorkerId,
   viewWorksamountById,
+  viewCountCompletedWorksByWorkerId
 }

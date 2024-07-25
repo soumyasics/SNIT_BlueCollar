@@ -54,7 +54,16 @@ const workerschema = mongoose.Schema({
 isactive:{
   type:Boolean,
   default:true
-}
+},
+rating:{
+  type:Number,
+  default:0
+},
+// new:{
+//   type:Boolean,
+//   default:false
+// }
+
 
 });
 module.exports = mongoose.model("workers", workerschema);

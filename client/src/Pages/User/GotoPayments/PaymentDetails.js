@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import icon from '../../../Assets/payment.jpg'
 import { toast } from 'react-toastify';
+import AddReviews from '../Reviews/AddReviews';
+import { Modal } from 'react-bootstrap';
 
 
 function PaymentDetails() {
@@ -15,6 +17,10 @@ function PaymentDetails() {
       
     })
 
+    const [selectedWorkerId, setSelectedWorkerId] = useState({ jobId: null, custId: null }); // State for storing selected job and customer IDs
+  
+ 
+
     useEffect(()=>{
       
         axiosInstance.post(`viewWorksamountById/${id}`)
@@ -22,6 +28,7 @@ function PaymentDetails() {
           if(res.status==200){
             console.log(res,'data');
             setAmountdata(res.data.data)
+            setSelectedWorkerId(res.data.data.workerId)
           }
           })
         .catch((err)=>{
@@ -32,6 +39,9 @@ function PaymentDetails() {
     },[id])
 
     console.log(amountdata,'amountdata');
+
+    console.log(selectedWorkerId,'selectworkid')
+
 
     
 
@@ -72,7 +82,22 @@ function PaymentDetails() {
           [e.target.name]: e.target.value,
         });
       };
-    
+
+      const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const handlePopupClose = () => {
+        setIsPopupOpen(false);
+        
+    };
+  
+  const [show, setShow] = useState(false);
+  const [openRequests, setOpenRequests] = useState(false);
+  
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => {
+    setShow(true);
+  };
       const submitfn = (a) => {
         a.preventDefault();
         if (form.cardno.length !== 16) {
@@ -90,7 +115,9 @@ function PaymentDetails() {
             console.log(res);
             if (res.data.status === 200) {
               toast.success("Payment successfully processed");
-              navigate('/customer-home')
+              setTimeout(() => {
+                handleShow();
+            }, 3000);
             } else {
               alert("Error in booking");
             }
@@ -164,7 +191,7 @@ function PaymentDetails() {
                         }}
                         required
                       />
-                      <p style={{ color: "red" }}>{form.cardholdername}</p>
+                      {/* <p style={{ color: "red" }}>{form.cardholdername}</p> */}
                       <label htmlFor="cardNo">Card Number</label>
                     </div>
                   </div>
@@ -184,7 +211,7 @@ function PaymentDetails() {
                           changefn(e);
                         }}
                       />
-                      <p style={{ color: "red" }}>{form.cardno}</p>
+                      {/* <p style={{ color: "red" }}>{form.cardno}</p> */}
                       <label htmlFor="cvv">CVV</label>
                     </div>
                   </div>
@@ -244,6 +271,12 @@ function PaymentDetails() {
                 </div>
               </form>
             </div>
+
+             
+            <Modal show={show} onHide={handleClose}  centered>
+            <AddReviews onClose={handlePopupClose} workerId={selectedWorkerId}  />
+            </Modal>
+            
 
             <div className="col-lg-6" style={{ marginTop: "5rem" }}>
               <div className="d-flex justify-content-center">

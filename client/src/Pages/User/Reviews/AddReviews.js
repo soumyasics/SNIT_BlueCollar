@@ -7,34 +7,32 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import profileimg from '../../../Assets/add-reviewprofile.png'
 
 
-function AddReviews({close}) {
-    const custid = localStorage.getItem("custid");
+function AddReviews({onClose,workerId}) {
+    const customerId = localStorage.getItem("custid");
+    const url = axiosInstance.defaults.url;
 
     
     const[reviewdata,setReviewData]=useState({
-        custid:custid,
-        jobname:'',
-        workdetails:'',
-        rating:'',
-        profile:''
-        
+        customerId:customerId,
+        workerId:workerId,
+        reviews:'',
     })
     console.log(reviewdata,'reviewdata');
 
+    const [workerdata,setWorkerData]=useState();
 
-
-    // useEffect(() => {
-    //     if (custid) {
-    //       axiosInstance .post(`viewcustbyid/${custid}`)
-    //         .then((res) => {
-    //           console.log(res);
-    //           setCust(res.data.data);
-    //         })
-    //         .catch((err) => {
-    //           console.log(err);
-    //         });
-    //     }
-    //   }, [custid]);
+    useEffect(() => {
+        
+          axiosInstance .post(`viewworkerbyid/${workerId}`)
+            .then((res) => {
+              console.log(res);
+              setWorkerData(res.data.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        
+      }, [workerId]);
   
       const changefn=((e)=>{
         setReviewData({
@@ -43,23 +41,7 @@ function AddReviews({close}) {
       })
       console.log(reviewdata);
 
-      const submitfn=((a)=>{
-        a.preventDefault()
-        axiosInstance.post(`registerjobreq`,reviewdata)
-        .then((res)=>{
-            console.log(res);
-            if(res.data.status==200){
-                toast.success("Request Submitted")
-                close()
-            }
-            else{
-                toast.warn("Something Went Wrong")
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-      })
+      
 
     //   profile image 
 
@@ -84,12 +66,59 @@ function AddReviews({close}) {
       const [hover, setHover] = useState(0);
 
       const handleClick = (index) => {
-        setReviewData((prevState) => ({
-            ...prevState,
-            rating: index,
-          }));
-        setRating(index);
+        const rate=parseInt(index)
+        // setReviewData((prevState) => ({
+        //     ...prevState,
+        //     rating: index,
+        //   }));
+        setRating(rate);
       };
+
+      function addRating (){
+        console.log(workerId,rating);
+        axiosInstance.post(`addRating/${workerId}`,{rating:rating})
+        .then((res)=>{
+            console.log(res);
+            if(res.data.status==200){
+                toast.success(res.data.msg)
+                onClose()
+                
+            }
+            else{
+                toast.warn("Something Went Wrong")
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+      }
+
+      function addReviews (){
+        axiosInstance.post(`addReviews`,reviewdata)
+        .then((res)=>{
+            console.log(res);
+            if(res.data.status==200){
+                toast.success(res.data.msg)
+                onClose()
+            }
+            else{
+                toast.warn("Something Went Wrong")
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+      }
+
+
+
+      // form submit
+
+      const submitfn=((a)=>{
+        a.preventDefault()
+        addRating()
+        addReviews()
+      })
 
   return (
     <>
@@ -102,7 +131,7 @@ function AddReviews({close}) {
                 <div className='container'>
                 <div className='row addreview-maininputs'>
                     <form onSubmit={submitfn}>
-                    <div className='addreview-starrate mb-3'>
+                    <div className='addreview-starrate '>
                         <div className="star-rating">
                             {[...Array(5)].map((star, index) => {
                             index += 1;
@@ -126,12 +155,13 @@ function AddReviews({close}) {
                     <div className="profile-pic-container">
                         <div className="profile-pic-wrapper">
                             <img
-                            src={reviewdata.profile || profileimg}
+                            // src={reviewdata.profile || profileimg}
+                            src={`${url}/${workerdata?.image?.filename}`}
                             alt="Profile"
                             className="profile-pic"
                             />
                             <label htmlFor="profile-pic-upload" className="profile-pic-edit">
-                            <FontAwesomeIcon icon={faEdit} />
+                            {/* <FontAwesomeIcon icon={faEdit} /> */}
                             </label>
                             <input
                             id="profile-pic-upload"
@@ -147,18 +177,19 @@ function AddReviews({close}) {
                     <div className='col-12 '>
                         <p>Worker Name</p>
                     </div>
-                    <div className='col-12 postjob-maininputsi'>
-                        <input type='text' placeholder='Enter Job Name' name='jobname'  onChange={changefn} required/>
+                    <div className='col-12 mx-4 px-2'>
+                        {/* <input type='text' placeholder='Enter Job Name' name='jobname'  onChange={changefn} required/> */}
+                        <h3><b>{workerdata?.name}</b></h3>
                     </div>
                     <div className='col-12 mt-3'>
                         <p>Review</p>
                     </div>
                     <div className='col-12 addreview-maininputsi'>
-                        <textarea type='text' placeholder='Enter Work Details' name='workdetails'  onChange={changefn} required/>
+                        <textarea type='text' placeholder='Enter Work Details' name='reviews'  onChange={changefn} required/>
                     </div>
                     <div className='addreview-maininputsbutton'>
 
-                        <button type='submit' >Add</button>
+                        <button type='submit' >Submit</button>
                     </div>
                     </form>
                     </div>

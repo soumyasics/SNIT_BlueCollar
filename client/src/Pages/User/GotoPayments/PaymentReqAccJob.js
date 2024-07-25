@@ -4,7 +4,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 import axiosInstance from '../../Constants/Baseurl';
 import { toast } from 'react-toastify';
 
-function PaymentReqAccJob({close,jobid}) {
+function PaymentReqAccJob({close,jobid,approvalid}) {
     const navigate =useNavigate();
     const customerId = localStorage.getItem("custid");
     // console.log(id+"idprops");
@@ -37,6 +37,19 @@ function PaymentReqAccJob({close,jobid}) {
         };
 
 console.log(workstatusdata,'workstatusdata');
+
+console.log(approvalid,'approvalid');
+
+function updateapprovalstatustopaid(){
+  axiosInstance.post(`updateapprovalstatustopaid/${approvalid}`)
+  .then((data)=>{
+    alert(data.data.msg)
+    console.log(data);
+  })
+  .catch((err)=>{
+    console.log(err);
+  })
+}
 
 const handleSubmit = async (e) => {
     e.preventDefault();
@@ -82,6 +95,7 @@ const handleSubmit = async (e) => {
             toast.success(response.data.msg)
             const id=response.data.data._id
             console.log(id,'idd');
+            updateapprovalstatustopaid()
             navigate(`/user-add-paymentdetails/${id}`)
             close()
         }

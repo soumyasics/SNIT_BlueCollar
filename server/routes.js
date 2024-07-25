@@ -11,6 +11,7 @@ const workstatus=require("./models/Worker/WorkStatus/workStatusController")
 const empjobreq=require("./models/Employer/EmpJobRequest/JobRequestController")
 const interviews=require("./models/Interviews/interviewController")
 const customercomplaints=require("./models/customer/Complaints/AddComplaintController")
+const customerreviews=require("./models/customer/Reviews/ReviewsController")
 
 // Customer
 
@@ -41,6 +42,11 @@ router.post("/viewworkerreq",Worker.viewworkerreq)
 router.post("/approveworkerid/:id",Worker.approveworkerid)
 router.post("/rejectworkerbyid/:id",Worker.rejectworkerbyid)
 router.post("/removebyadminbyworkerid/:id",Worker.removebyadminbyworkerid)
+
+// worker Ratings 
+
+router.post("/addRating/:id",Worker.addRating)
+
 
 
 
@@ -99,6 +105,8 @@ router.post("/acceptReqsById/:id",workeracceptreq.acceptReqsById)
 router.post("/viewApprovedReqsbyJobId/:id",workeracceptreq.viewApprovedReqsbyJobId)
 router.post("/viewApprovedReqsbyWorkerid/:id",workeracceptreq.viewApprovedReqsbyWorkerid)
 router.post("/viewApprovedReqsbycustomerId/:id",workeracceptreq.viewApprovedReqsbycustomerId)
+router.post("/updateapprovalstatustopaid/:id",workeracceptreq.updateapprovalstatustopaid)
+
 
 // work status 
 router.post("/addworkstatus/:id",workstatus.addworkstatus)
@@ -106,6 +114,8 @@ router.post("/OTPVerification",workstatus.OTPVerification)
 router.post("/updatePaymentStatus/:id",workstatus.updatePaymentStatus)
 router.post("/viewWorksamountById/:id",workstatus.viewWorksamountById)
 router.post("/viewCompletedWorksByWorkerId/:id",workstatus.viewCompletedWorksByWorkerId)
+router.post("/viewCountCompletedWorksByWorkerId/:id",workstatus.viewCountCompletedWorksByWorkerId)
+
 
 //interviews
 
@@ -130,6 +140,15 @@ router.post("/workerAddComplaints/:id",customercomplaints.workerAddComplaints)
 router.post("/viewComplaintByWorkerId/:id",customercomplaints.viewComplaintByWorkerId)
 router.post("/viewallworkercomplaintsinadmin",customercomplaints.viewallworkercomplaintsinadmin)
 router.post("/viewallcustomercomplaintsinadmin",customercomplaints.viewallcustomercomplaintsinadmin)
+
+// customer Reviews
+
+router.post("/addReviews",customerreviews.addReviews)
+router.post("/viewallreviews",customerreviews.viewallreviews)
+router.post("/viewsortreviews",customerreviews.viewsortreviews)
+
+
+
 
 
 

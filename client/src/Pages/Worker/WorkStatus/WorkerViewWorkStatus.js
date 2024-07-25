@@ -4,6 +4,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 import viewstatusprofile from '../../../Assets/viewstatusprofile.png'
 import axiosInstance from '../../Constants/Baseurl'
 import { Toast } from 'react-bootstrap'
+import { toast } from 'react-toastify'
 
 
 function WorkerViewWorkStatus({jobId,custId,close}) {
@@ -101,13 +102,13 @@ console.log(workstatusdata,'workstatusdata');
         }
         console.log("Response:", response); 
         if(response.status==200){
-          alert(response.data.msg)
+          toast.success(response.data.msg)
           close()
         }
       }catch (error) {
         console.error("Error:", error);
         let msg = error?.response?.data?.msg || "Error occurred";
-        alert(msg);
+        toast.error(msg);
       }
     } else {
       console.log("Form is not valid", formValid);
