@@ -47,14 +47,6 @@ function Viewjobstatus() {
       <div className="workerjobreq-mainbox mb-5">
         <div className="workjob-viewalert col-12">
           <div className="admindash-shrink">Job Requests</div>
-          <div style={{display:'flex',marginTop:'-30px',marginLeft:'960px'}}>
-            <button
-            // onClick={navigatetoworkerspg()}
-            className='viewjoblistworker_searchbtn'
-            >
-            View More Workers           
-            </button>
-            </div>
           <div className="row d-flex pt-3" style={{ marginTop: "30px" }}>
             {data && data.length ? (
             

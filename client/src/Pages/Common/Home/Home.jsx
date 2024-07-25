@@ -109,11 +109,11 @@ const Home = () => (
         </Row>
         <RecentJobOpen/>
       </Container>
-      <div className='m-5 text-center'>
+      {/* <div className='m-5 text-center'>
         <p className=' home-subheading'>Best Candidate</p>
         <p className='home-para'>Our Best Candidates  For You!!</p>
-      </div>
-      <div className='container-fluid m-auto'>
+      </div> */}
+      {/* <div className='container-fluid m-auto'>
         <Row className="m-auto">
           {[...Array(4)].map((_, index) => (
             <Col key={index} xs={12} md={6} lg={3} className="mb-4">
@@ -206,7 +206,7 @@ const Home = () => (
             </Col>
           ))}
         </Row>
-      </div>
+      </div> */}
       {/* <Container>
         <div className='m-5 text-center'>
           <p className=' home-para'>Client Testimonials</p>

@@ -82,9 +82,9 @@ function Navbar() {
             <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="/alljobs">Jobs</Link>
             </li>
-            <li className="nav-item m-1">
+            {/* <li className="nav-item m-1">
               <Link className="nav-link text-light-custom" to="#">Contact Us</Link>
-            </li>
+            </li> */}
             <li className='nav-item dropdown m-1'>
               {/* <Link className="nav-link dropdown-toggle text-light-custom d-flex align-items-center" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src={custid && cust.image && cust.image.filename ? `${url}/${cust.image.filename}` : logo} alt='user' className="me-2 navbar-imgicon" width="70px" height="70px" />              </Link>
