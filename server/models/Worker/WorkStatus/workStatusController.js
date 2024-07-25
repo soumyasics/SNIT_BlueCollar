@@ -56,6 +56,14 @@ const addworkstatus = async (req, res) => {
     otp: req.body.otp,
 
   });
+  let otp1= await workstatusschema.findOne({customerId:custData._id,jobid:req.params.id})
+  console.log(otp1);
+  if(otp1){
+    return res.json({
+      status:400,
+      msg:'Payment Already Send'
+    })
+  }
   await workstatus
     .save()
     .then((data) => {
