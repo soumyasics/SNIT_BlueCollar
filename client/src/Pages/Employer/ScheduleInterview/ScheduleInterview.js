@@ -84,6 +84,7 @@ function ScheduleInterview({jobreqid,workerId,close}) {
             console.log("Response:", response);
             if (response.status == 200) {
               toast.success(response.data.msg);
+              close()
             //   window.location.reload(false)
             }
             else if (response.status === 500){
@@ -168,7 +169,7 @@ function ScheduleInterview({jobreqid,workerId,close}) {
                     </Col>
                 </Row>
                 <div className='empviewpostjob-schedule-div'>
-                    <button className='empviewpostjob-schedule'>Schedule</button>
+                    <button className='empviewpostjob-schedule' onClick={close}>Schedule</button>
                 </div>
                 </div>
                 </form>

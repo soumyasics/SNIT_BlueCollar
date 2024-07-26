@@ -70,7 +70,7 @@ const viewInterviewsByWorkerId = (req, res) => {
 
 // View Interviews by Employer ID
 const viewInterviewsByEmpId = (req, res) => {
-    Interview.find({ empId: req.params.id })
+    Interview.find({ empId: req.params.id,status:'pending' })
         .populate("workerId")
         .populate("jobRequestId")
         .populate("empId")

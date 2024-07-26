@@ -1,4 +1,5 @@
 const workerapproveschema = require("./workerJobApprovalSchema.js");
+const PostjobSchema=require("../PostJob/PostjobSchema.js")
 
 
 const workertakejobreq =async (req, res) => {
@@ -59,7 +60,7 @@ const viewReqsbyUserid=(req,res)=>{
 
 
 const viewReqsbyJobid=(req,res)=>{
-    workerapproveschema.find({jobid:req.params.id})
+    workerapproveschema.find({jobid:req.params.id,approvalstatus:'pending'})
     .populate("workerId")
     .populate("jobid")
     .exec()
@@ -104,6 +105,8 @@ const acceptReqsById=async(req,res)=>{
   let datas= await workerapproveschema.findById({_id:req.params.id})
 
   await workerapproveschema.findByIdAndUpdate({_id:req.params.id},{approvalstatus:'accepted'})
+  
+
   
   
   .exec()

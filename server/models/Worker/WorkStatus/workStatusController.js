@@ -51,7 +51,7 @@ const addworkstatus = async (req, res) => {
     jobid: req.params.id,
     workerId: req.body.workerId,
     customerId: req.body.customerId,
-    status: 'completed',
+    status: 'pending',
     payment: req.body.payment,
     otp: req.body.otp,
 
@@ -71,7 +71,7 @@ const addworkstatus = async (req, res) => {
 
       res.json({
         status: 200,
-        msg: "Inserted Successfully",
+        msg: "Payment Requested",
         data: data,
       });
     })

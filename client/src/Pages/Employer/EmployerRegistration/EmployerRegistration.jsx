@@ -389,7 +389,7 @@ console.log(formData);
                       className="password-toggle-icon"
                       onClick={togglePasswordVisibility}
                     >
-                      {showPassword ? <FiEyeOff /> : <FiEye />}
+                      {errors.password ? '': showPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
                     <Form.Control.Feedback
                       type="invalid"
@@ -424,7 +424,7 @@ console.log(formData);
                       className="password-toggle-icon"
                       onClick={toggleConfirmPasswordVisibility}
                     >
-                      {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                      {errors.password ? '': showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
                     <Form.Control.Feedback
                       type="invalid"

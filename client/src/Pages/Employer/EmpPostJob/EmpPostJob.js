@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-toastify'
 import axiosInstance from '../../Constants/Baseurl'
 
 import './EmpPostJob.css'
@@ -107,8 +108,11 @@ function EmpPostJob() {
             }
             console.log("Response:", response);
             if (response.status == 200) {
-              alert(response.data.msg);
-              window.location.reload(false)
+              toast.success(response.data.msg);
+              setTimeout(()=>{
+                window.location.reload(false)
+              },3000)
+              
             }
           } catch (error) {
             console.error("Error:", error);

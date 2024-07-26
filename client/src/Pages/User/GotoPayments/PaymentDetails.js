@@ -86,7 +86,7 @@ function PaymentDetails() {
       const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const handlePopupClose = () => {
-        setIsPopupOpen(false);
+        setIsPopupOpen(true);
         
     };
   
@@ -274,7 +274,7 @@ function PaymentDetails() {
 
              
             <Modal show={show} onHide={handleClose}  centered>
-            <AddReviews onClose={handlePopupClose} workerId={selectedWorkerId}  />
+            <AddReviews onClose={handleClose} workerId={selectedWorkerId}  />
             </Modal>
             
 

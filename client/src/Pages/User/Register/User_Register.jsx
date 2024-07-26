@@ -81,7 +81,7 @@ function User_Register() {
     if (!formData.contactNumber) {
       formErrors.contactNumber = 'Contact Number is required';
   } else if (!/^[1-9]\d{9}$/.test(formData.contactNumber)) {
-      formErrors.contactNumber = 'Contact Number must be 10 digits and greater than zero';
+      formErrors.contactNumber = 'Contact Number must be 10 digits';
   }
   if (!formData.email) {
     formErrors.email = 'Email is required';
@@ -305,7 +305,7 @@ function User_Register() {
                       onChange={handleChange}
                       isInvalid={!!errors.email}
                       placeholder="Enter Email Address"
-                      required
+                      
                     />
                     <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.email}</Form.Control.Feedback>
                   </Form.Group>
@@ -325,7 +325,7 @@ function User_Register() {
                       placeholder="Enter Password"
                     />
                     <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
-                      {showPassword ? <FiEyeOff /> : <FiEye />}
+                      {errors.password ? '' : showPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
                     <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.password}</Form.Control.Feedback>
                   </Form.Group>
@@ -339,13 +339,13 @@ function User_Register() {
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      isInvalid={!!errors.confirmPassword}
+                      // isInvalid={!!errors.confirmPassword}
                       placeholder="Confirm Password"
                     />
                     <div className="password-toggle-icon" onClick={toggleConfirmPasswordVisibility}>
                       {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
-                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}x>{errors.confirmPassword}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.confirmPassword}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>

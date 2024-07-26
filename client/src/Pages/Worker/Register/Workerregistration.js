@@ -267,8 +267,8 @@ function Workerregistration() {
                       </option>
                       <option value="plumber">Plumber</option>
                       <option value="painter">Painter</option>
-                      <option value="graphic Designer">Graphic Designer</option>
-                      <option value="web Designer">Web Designer</option>
+                      {/* <option value="graphic Designer">Graphic Designer</option>
+                      <option value="web Designer">Web Designer</option> */}
                       <option value="garden Designer">Garden Designer</option>
                       <option value="masons">Masons</option>
                       <option value="electrician">Electrician</option>
@@ -453,7 +453,7 @@ function Workerregistration() {
                   </Form.Group>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="password" className="text-white">
@@ -469,12 +469,10 @@ function Workerregistration() {
                         isInvalid={!!errors.password}
                         placeholder="Enter Password"
                       />
-                      <span
-                        className="password-toggle-icon"
-                        onClick={togglePasswordVisibility}
-                      >
-                        {showPassword ? <FiEyeOff /> : <FiEye />}
-                      </span>
+                      
+                    </div>
+                    <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                      {showPassword ? <FiEyeOff /> : <FiEye />}
                     </div>
                     <Form.Control.Feedback
                       type="invalid"
@@ -520,6 +518,44 @@ function Workerregistration() {
                     >
                       {errors.confirmPassword}
                     </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+              </Row> */}
+              <Row>
+                <Col md={6}>
+                  <Form.Group className="mb-3 position-relative">
+                    <Form.Label htmlFor="password" className='text-white'>Password</Form.Label>
+                    <Form.Control
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      isInvalid={!!errors.password}
+                      placeholder="Enter Password"
+                    />
+                    <div className="password-toggle-icon" onClick={togglePasswordVisibility}>
+                      {errors.password ? '': showPassword ? <FiEyeOff /> : <FiEye />}
+                    </div>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}>{errors.password}</Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group className="mb-3 position-relative">
+                    <Form.Label htmlFor="confirmPassword" className='text-white'>Confirm Password</Form.Label>
+                    <Form.Control
+                      type={showConfirmPassword ? "text" : "password"}
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      isInvalid={!!errors.confirmPassword}
+                      placeholder="Confirm Password"
+                    />
+                    <div className="password-toggle-icon" onClick={toggleConfirmPasswordVisibility}>
+                      {errors.password ? '': showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                    </div>
+                    <Form.Control.Feedback type="invalid" style={{fontWeight:"bold",fontSize:"15px"}}x>{errors.confirmPassword}</Form.Control.Feedback>
                   </Form.Group>
                 </Col>
               </Row>

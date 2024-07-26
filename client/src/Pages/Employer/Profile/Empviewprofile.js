@@ -62,7 +62,7 @@ function Empviewprofile({close}) {
         if (!formData.empid) {
             newErrors.empid = "Employee id is required";
         } else if (formData.empid.length < 8) {
-            newErrors.empid = "Employee id must have a minimum of 8 characters";
+            newErrors.empid = "Employer ID is required";
         } else if (!/^\d+$/.test(formData.empid)) {
             newErrors.empid = "Employee id must be a positive number";
         }        // if (!formData.city) newErrors.city = "City is required";
