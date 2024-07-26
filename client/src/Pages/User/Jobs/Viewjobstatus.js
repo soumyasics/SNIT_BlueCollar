@@ -25,12 +25,27 @@ function Viewjobstatus() {
 
   console.log(data,'new');
 
+  function acceptjobreg(){
+    axiosInstance.post(`acceptJobReqsById/${custid}`)
+    .then((data)=>{
+      console.log(data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+
   const acceptworker=(id)=>{
     axiosInstance.post(`acceptReqsById/${id}`)
     .then((res)=>{
       console.log(res);
       if(res.status===200){
+        acceptjobreg()
         toast.success(res.data.msg)
+        setTimeout(()=>{
+          window.location.reload(false)
+        },3000)
+        
       }
     })
     .catch((err)=>{
@@ -58,6 +73,8 @@ function Viewjobstatus() {
                   <div className="row">
                     <div className="col-5 userview-head">Worker Name</div>
                     <div className="col-7">: {a?.workerId?.name}</div>
+                    <div className="col-5 userview-head">Worker Type</div>
+                    <div className="col-7">: {a?.workerId?.workertype}</div>
                     <div className="col-5 userview-head">Location</div>
                     <div className="col-7">: {a?.workerId?.location}</div>
                     <div className="col-5 userview-head">Work Date</div>

@@ -63,7 +63,7 @@ function EmpViewJobList() {
         <div className="empview-postjobmaincontainer">
     <div className="container empviewpostjob-mainbox">
       <div className="empviewpostjob-viewalert ">
-        <div className="empviewpostjob-shrink">Job Requests</div>
+        <div className="empviewpostjob-shrink">View Job Requests</div>
         <div className="row  row-cols-1 row-cols-md-4 g-4" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 
@@ -115,7 +115,7 @@ function EmpViewJobList() {
                   <div className="jobreq-viewmore-dashbox">
                     <button type="submit" className="empviewpostjob-accept" 
  onClick={()=>navigateToWorkReqJob(a?.jobid?._id)}                    >
-                      View Request
+                      View Job Request
                     </button>
                     <button type="submit" className="empviewpostjob-reject" 
  onClick={()=>handleShow(a?.jobid?._id)}                    

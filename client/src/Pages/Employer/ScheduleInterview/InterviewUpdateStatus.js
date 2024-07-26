@@ -157,7 +157,7 @@ function InterviewUpdateStatus({close,jobId}) {
                 :
               </Col>
               <Col className="user-info-value" md={7}>
-              {postjobdata?.interview_location},{postjobdata?.city},{postjobdata?.state}.
+              <p>{postjobdata?.interview_location},{postjobdata?.city},{postjobdata?.state}.</p>
               </Col>
             </Row>
             

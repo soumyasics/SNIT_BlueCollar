@@ -43,7 +43,7 @@ function UserPostComplaints() {
         <div className="workerview-jonreqmaincontainer" style={{minHeight:'80vh'}}>
       <div className="workerjobreq-mainbox mb-5">
         <div className="workjob-viewalert col-12">
-          <div className="admindash-shrink">Accepted Job Requests</div>
+          <div className="admindash-shrink">Worker Complaints</div>
           {/* <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
                 type='search'
                 placeholder="Search "

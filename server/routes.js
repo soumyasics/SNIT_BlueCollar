@@ -96,6 +96,8 @@ router.post("/viewjobreqsbyid/:id",jobreq.viewjobreqsbyid)
 // router.post("/workeracceptjob/:id",jobreq.workeracceptjob)
 router.post("/viewjobreqsbyuserid/:id",jobreq.viewjobreqsbyuserid)
 router.post("/viewalljobpost",jobreq.viewalljobpost)
+router.post("/acceptJobReqsById/:id",jobreq.acceptJobReqsById)
+
 
 
 //worker accept job requests
@@ -142,6 +144,7 @@ router.post("/viewRejectedCandByEmpId/:id",interviews.viewRejectedCandByEmpId)
 router.post("/customerAddComplaints/:id",customercomplaints.customerAddComplaints)
 router.post("/workerAddComplaints/:id",customercomplaints.workerAddComplaints)
 router.post("/viewComplaintByWorkerId/:id",customercomplaints.viewComplaintByWorkerId)
+router.post("/viewcomplaintById/:id",customercomplaints.viewcomplaintById)
 router.post("/viewallworkercomplaintsinadmin",customercomplaints.viewallworkercomplaintsinadmin)
 router.post("/viewallcustomercomplaintsinadmin",customercomplaints.viewallcustomercomplaintsinadmin)
 

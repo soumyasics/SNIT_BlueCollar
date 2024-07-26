@@ -102,7 +102,7 @@ function App() {
 
         {/* Employer */}
         <Route path='/employer-register' element={<EmployerRegistration />}/>
-        <Route path='/employer-home' element={[<Employernav/>,<Emphome1/>,<Empdashresenthire/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/employer-home' element={[<Employernav/>,<Emphome1/>,<BestCandidate/>,<WhatWeDo/>,<Emp_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/employer-nav' element={<Employernav />}/>
         <Route path='/employer-view-postjob' element={[<Employernav />,<EmpViewJobList/>]}/>
         <Route path='/employer-view-postjobreq/:jobid' element={[<Employernav />,<WorkerReqJob/>]}/>

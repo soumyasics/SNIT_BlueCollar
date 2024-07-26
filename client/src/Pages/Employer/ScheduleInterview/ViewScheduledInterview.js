@@ -53,6 +53,11 @@ function ViewScheduledInterview() {
       if(data.status === 200){
         console.log(data,'data');
         toast.success(data.data.msg)
+        setTimeout(()=>{
+          window.location.reload(false)
+        },3000)
+        
+
       }
     })
     .catch((err)=>{
@@ -66,6 +71,9 @@ function ViewScheduledInterview() {
       if(data.status==200){
         toast.info(data.data.msg)
         console.log(data,'data');
+        setTimeout(()=>{
+          window.location.reload(false)
+        },3000)
       }
     })
     .catch((err)=>{
@@ -78,7 +86,7 @@ function ViewScheduledInterview() {
          <div className="empview-postjobmaincontainer">
     <div className="container empviewpostjob-mainbox">
       <div className="empviewpostjob-viewalert ">
-        <div className="empviewpostjob-shrink">Interview Schedules</div>
+        <div className="empviewpostjob-shrink">Interview Status</div>
         <div className="row  row-cols-1 row-cols-md-4 g-4" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 

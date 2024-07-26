@@ -150,17 +150,16 @@ function Workerviewprofile({close}) {
                     <Col className="user-info-label" md={4}>Worker Type</Col>
                     <Col className='user-info-coln' md={1}>:</Col>
                     <Col className="user-info-value" md={7}>
-                        {editMode ? (
+                         
                             <Form.Control
                                 type="text"
                                 name="workertype"
                                 value={formData.workertype}
                                 onChange={handleInputChange}
                                 isInvalid={!!errors.workertype}
+                                disabled
                             />
-                        ) : (
-                            user?.workertype
-                        )}
+                        
                         <Form.Control.Feedback type="invalid">{errors.workertype}</Form.Control.Feedback>
                     </Col>
                 </Row>

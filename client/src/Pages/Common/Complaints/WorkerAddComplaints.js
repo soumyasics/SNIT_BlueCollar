@@ -64,6 +64,7 @@ function WorkerAddComplaints({custId,close}) {
         console.log("response:",res);
         if(res.status == 200){
           toast.success(res.data.msg);
+          close()
         }
         
       } catch (error){

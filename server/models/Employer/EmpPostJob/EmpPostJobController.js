@@ -16,7 +16,7 @@ const registerjob = (req, res) => {
     .then((data) => {
       res.json({
         status: 200,
-        msg: "Inserted Successfully",
+        msg: "Job Added Successfully",
         data: data,
       });
     })

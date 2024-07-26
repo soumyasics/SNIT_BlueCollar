@@ -75,6 +75,27 @@ const viewComplaintByWorkerId=((req,res)=>{
     });
 });
 
+// view   Complaint By Id
+
+const viewcomplaintById=((req,res)=>{
+    complaintschema.findById({_id:req.params.id})
+    .populate("customerId")
+    .exec()
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "Data get Successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+        res.json({
+            status:500,
+            err:err
+        })
+    });
+});
+
 // view all worker complaints to admin
 
 const viewallworkercomplaintsinadmin=((req,res)=>{
@@ -126,5 +147,6 @@ module.exports={
     workerAddComplaints,
     viewComplaintByWorkerId,
     viewallworkercomplaintsinadmin,
-    viewallcustomercomplaintsinadmin
+    viewallcustomercomplaintsinadmin,
+    viewcomplaintById
 }

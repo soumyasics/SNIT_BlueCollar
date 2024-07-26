@@ -121,8 +121,8 @@ const handleSubmit = async (e) => {
     <form onSubmit={(e)=>{handleSubmit(e);}}>
 	<article class="">
 		<header class="worker-viewworkstatus-modal-container-header">
-			<span class="worker-viewworkstatus-modal-container-title">
-				Work Status
+			<span class="worker-viewworkstatus-modal-container-title ">
+				Pay Now
 			</span>
 			<button class="worker-viewworkstatus-icon-button" onClick={close}>
             <svg fill="#fff" width="24px" height="24px" 

@@ -68,7 +68,7 @@ function Jobreq() {
     <div className="workerjobreq-mainbox">
       <div className="workjob-viewalert col-12">
         <div className="admindash-shrink">Customer Job Requests</div>
-        <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
+        {/* <div style={{display:'flex',marginTop:'-30px',marginLeft:'860px'}}><input
                 type='search'
                 placeholder="Search "
                 className='workernav_2_searchbar'
@@ -80,7 +80,7 @@ function Jobreq() {
             <path d="M14.5 14.5L10.5 10.5M6.5 12.5C3.18629 12.5 0.5 9.81371 0.5 6.5C0.5 3.18629 3.18629 0.5 6.5 0.5C9.81371 0.5 12.5 3.18629 12.5 6.5C12.5 9.81371 9.81371 12.5 6.5 12.5Z" stroke="#000000"/>
             </svg>            
             </button>
-            </div>
+            </div> */}
         <div className="row d-flex" style={{ marginTop: "30px" }}>
           {/* <div className="col-12 "> */}
 

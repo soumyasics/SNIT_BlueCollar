@@ -28,9 +28,9 @@
     fill: #3D9AE0;
     
 }
-.userview-joblist-boxinside {
+.userview-joblist-boxinside1 {
     width: 320px;
-    height: 263px;
+    height: 223px;
     /* max-height: fit-content; */
     flex-shrink: 0;
     border-radius: 5px 5px 0px 0px;

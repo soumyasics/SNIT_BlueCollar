@@ -107,6 +107,28 @@ const viewalljobpost=((req,res)=>{
 
 })
 
+const acceptJobReqsById=async(req,res)=>{
+  
+
+  await jobreqschema.findOneAndUpdate({custid:req.params.id},{jobacceptstatus:'accepted'})
+  .exec()
+  .then((data) => {
+      res.json({
+        status: 200,
+        msg: "Work Accepted",
+        data: data,
+      });
+    })
+    .catch((err) => {
+        res.json({
+            status:500,
+            err:err
+        })
+    });
+
+}
+
+
 // const workeracceptjob=((req,res)=>{
 //   jobreqschema.findByIdAndUpdate({_id:req.params.id},{
 //     workerid:req.body.workerid,
@@ -201,5 +223,6 @@ module.exports={
     viewjobreqsbyid,
     viewjobreqsbyuserid,
     viewalljobreqs,
-    viewalljobpost
+    viewalljobpost,
+    acceptJobReqsById
 }

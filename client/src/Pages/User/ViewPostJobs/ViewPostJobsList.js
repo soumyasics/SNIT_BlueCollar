@@ -83,10 +83,10 @@ function ViewPostJobsList() {
           <div className="row d-flex" style={{ marginTop: "30px" }}>
             {data && data.length ? (
               data.map((a) => (
-                <div className="col-3 userview-joblist-boxinside" key={a._id}>
+                <div className="col-3 userview-joblist-boxinside1" key={a._id}>
                   <div className="row mt-3">
                     <div className="col-5 userview-head">Job Name</div>
-                    <div className="col-7">: {a?.jobname}</div>
+                    <div className="col-7"><p>: {a?.jobname}</p></div>
                     <div className="col-5 userview-head">Job Details</div>
                     <div className="col-7">: {a?.workdetails.slice(0,10)}...</div>
                     <div className="col-5 userview-head">Job Category</div>
@@ -94,7 +94,8 @@ function ViewPostJobsList() {
                     <div className="col-5 userview-head">Posted On</div>
                     <div className="col-7">: {a?.date.slice(0,10)}</div>
                     <div className=" viewworkreqacpt">
-                        <button type="submit" onClick={()=>navigateToacceptjobreq(a._id)}>View Request</button>
+                    {a?.jobacceptstatus === 'pending' && <button onClick={()=>navigateToacceptjobreq(a._id)}>View Request</button>}
+                        
                     </div>
                     <div className=" viewworkreqrjt">
                     <button type="submit" onClick={()=>handleShow(a._id)}>View More</button>
