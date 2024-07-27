@@ -82,13 +82,13 @@ function WorkRecentJobOpen() {
             <div className="col mb-5 ">
               <div className="row recentjob-userbox ">
                 <div className="col-7 ">
-                    {/* <div >
-                        <img src={`${url}/${data.empId.image?.filename}`}  className='recentjob-userboximage ' alt="image"/>
-                    </div> */}
-                    <div className="bestcandidate-userboxhead6 mt-4">
+                    <div >
+                        <img src={`${url}/${data?.custid?.image?.filename}`}  className='recentjob-userboximage ' alt="image"/>
+                    </div>
+                    <div className=" mt-4">
                         <span><h4>{data.jobname}</h4></span>
                     </div>
-                    <div className="bestcandidate-userboxhead6">
+                    <div className="">
                         <p>{data.workdetails.slice(0,175)}...</p>
                     </div>
                 </div>
