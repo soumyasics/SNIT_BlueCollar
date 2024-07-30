@@ -26,7 +26,7 @@ function Viewjobstatus() {
   console.log(data,'new');
 
   function acceptjobreg(){
-    axiosInstance.post(`acceptJobReqsById/${custid}`)
+    axiosInstance.post(`acceptJobReqsById/${jobid}`)
     .then((data)=>{
       console.log(data);
     })

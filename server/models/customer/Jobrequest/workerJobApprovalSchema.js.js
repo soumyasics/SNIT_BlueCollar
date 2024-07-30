@@ -24,5 +24,9 @@ const schema = mongoose.Schema({
     type: String,
     default: "pending",
   },
+  complaintstatus:{
+    type:Boolean,
+    default:false
+  }
 });
 module.exports = mongoose.model("workerjobapprovals", schema);

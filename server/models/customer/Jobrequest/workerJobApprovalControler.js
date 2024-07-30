@@ -191,7 +191,7 @@ const viewApprovedReqsbycustomerId=(req,res)=>{
   }
 
   const viewAprovdReqsbycustIdRegComplaint=(req,res)=>{
-    workerapproveschema.find({customerId:req.params.id})
+    workerapproveschema.find({customerId:req.params.id,complaintstatus:false})
     .populate("workerId jobid")
     .exec()
     .then((data) => {

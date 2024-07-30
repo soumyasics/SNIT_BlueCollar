@@ -135,6 +135,7 @@ function PaymentDetails() {
         style={{textDecoration:"none"}}>  <div className="ri-arrow-left-line payment-backbtn"/></Link>
           <div className="row g-5 ">
             <div className="col-lg-6" style={{ marginTop: "7rem" }}>
+            <h3 className='pb-4'>Card Details :</h3>
               <form
                 className="mt-4"
                 onSubmit={submitfn}
@@ -158,7 +159,7 @@ function PaymentDetails() {
                     />
                   </div>
                 </div> */}
-
+                
                 <div className="row g-3">
                   <div className="col-md-6">
                     <div className="form-floating">

@@ -3,11 +3,12 @@ import { toast } from 'react-toastify'
 import axiosInstance from '../../Constants/Baseurl'
 import './Complaints.css'
 
-function AddComplaints({workerId,close}) {
+function AddComplaints({jobappid,workerId,close}) {
   const customerId = localStorage.getItem("custid");
   console.log(workerId,"workerId");
 
   const [complaintdata,setComplaintData]=useState({
+    jobappid:jobappid,
     workerId:workerId,
     customerId:customerId,
     subject:'',
@@ -59,6 +60,9 @@ function AddComplaints({workerId,close}) {
         console.log("response:",res);
         if(res.status == 200){
           toast.success(res.data.msg);
+          setTimeout(() => {
+            window.location.reload(false)
+          }, 3000);
         }
         
       } catch (error){
