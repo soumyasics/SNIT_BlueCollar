@@ -38,7 +38,7 @@ const testMail = (data) => {
     from: 'supprot.web.application@gmail.com',
     to: email,
     subject: 'Reset Password From Blue_Collar',
-    text: `Dear ${data.name},${'\n'}please check this link : ${Configue.serverUrl}${data._id} to reset your password`
+    text: `Dear ${data.name},${'\n'}please check this link : ${Configue.localUrl}${data._id} to reset your password`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
