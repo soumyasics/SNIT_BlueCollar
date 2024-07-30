@@ -124,6 +124,10 @@ console.log(formData);
           setErrors({});
           navigate("/login");
         }
+        else{
+          toast.error(res.data.msg)
+        }
+
       } catch (error) {
         toast.warn(error.response.data.msg);
         console.error("Error submitting form data:", error);
@@ -174,9 +178,9 @@ console.log(formData);
                 Employer Registration
               </h3>
             </div>
-            {submitted && (
+            {/* {submitted && (
               <Alert variant="success">Form submitted successfully!</Alert>
-            )}
+            )} */}
             <Form onSubmit={handleSubmit}>
               <div className="user-register-icon justify-content-left">
                 <div className="icon-bg border border-light">

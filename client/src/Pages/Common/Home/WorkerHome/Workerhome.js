@@ -9,6 +9,9 @@ import workerhomeimg3 from '../../../../Assets/workerhomeimg3.jpg'
 function Workerhome() {
     const[data,setData]=useState([])
     const [emp,setEmp]=useState([])
+    const [jobs,setJobs]=useState([])
+
+    const workerId=localStorage.getItem("workerid")
     useEffect(()=>{
       axiosInstance.post('viewalljobpost')
       .then((res)=>{
@@ -16,7 +19,7 @@ function Workerhome() {
             setData(res.data.data)
         })
         .catch((err)=>{
-          alert("Failed to fetch user details")
+          // alert("Failed to fetch user details")
       });
       axiosInstance.post('viewallemployer')
       .then((res)=>{
@@ -24,9 +27,18 @@ function Workerhome() {
             setEmp(res.data.data)
         })
         .catch((err)=>{
+          // alert("Failed to fetch user details")
+      });
+
+        axiosInstance.post(`viewReqsbyWorkerid/${workerId}`)
+      .then((res)=>{
+          console.log(res,"res");
+            setJobs(res.data.data)
+        })
+        .catch((err)=>{
           alert("Failed to fetch user details")
       });
-  
+
   },[])
   return (
     <>
@@ -55,7 +67,7 @@ function Workerhome() {
                   Jobs posted
                 </div>
                 <div className="workerhomeimdside-box2">
-                  <span>9</span>
+                  <span>{jobs?.length}</span>
                   <br />
                   Job Fulfiled
                 </div>

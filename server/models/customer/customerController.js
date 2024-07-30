@@ -130,8 +130,9 @@ const testMail = (data) => {
     try {
       const { email, password } = req.body;
       const user = await custschema.findOne({ email: email });
-      if(user.isactive==true){
       if (user) {
+      if(user.isactive==true){
+    
        if (user.password === password) {
           const token = jwt.sign(
             { email: user.email, password: user.password },
@@ -149,8 +150,9 @@ const testMail = (data) => {
       } else {
         return res.json({status:404, message: "User does not exist" });
       }
-    }else{
-      return res.json({status:404, message: "User is not active. Please contact administrator." });
+    }
+    else{
+      return res.json({status:405, message: "User does not exist" });
     }
     } catch (error) {
       res.status(500).json({ error: error.message });

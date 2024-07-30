@@ -2,7 +2,8 @@ const employerschema=require("./employerSchema")
 const multer=require ("multer")
 const jwt = require("jsonwebtoken");
 const secret="secret_key"
-
+const workers=require("../Worker/workerSchema")
+const customer=require("../customer/customerSchema")
 
 
 const storage = multer.diskStorage({
@@ -16,7 +17,7 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage }).single("image");
 
-  const registeremp = (req, res) => {
+  const registeremp =async (req, res) => {
     const employer = new employerschema({
       name: req.body.name,
       empid:req.body.employerId,
@@ -29,6 +30,18 @@ const storage = multer.diskStorage({
       password: req.body.password,
       image: req.file,
     });
+    let existingCustomer1 = await employerschema.findOne({email:req.body.email});
+    let existingCustomer2 = await workers.findOne({email:req.body.email});
+    let existingCustomer3 = await customer.findOne({email:req.body.email})
+
+    if(existingCustomer1||existingCustomer2 || existingCustomer3){
+        return res.json ({
+            status : 409,
+            msg : "Email Already Registered With Us !!",
+            data : null
+        })
+    }
+
     employer
       .save()
       .then((data) => {

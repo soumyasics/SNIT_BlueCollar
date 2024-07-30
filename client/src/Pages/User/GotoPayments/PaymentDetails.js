@@ -221,7 +221,7 @@ function PaymentDetails() {
                       <div className="form-group">
                         <div className="row">
                           <div className="col-4">
-                            <label htmlFor="expiry">Expiry</label>
+                            <label htmlFor="expiry">Expiry Date</label>
                           </div>
                           <div className="col-4">
                             <label htmlFor="month">Month</label>

@@ -46,15 +46,15 @@ function AdminSidebar() {
           <span>Dashboard</span>
         </div></Link>
         <div className="admindash-icons">
-          <div>
+        <Link to="/admin-dashboard" style={{textDecoration:"none"}}>
+        <div>
             <img src={homelogo} alt="Home" />
             <span>Home</span>
-          </div>
-          <br />
-          <div>
+          </div></Link>
+          {/* <div>
             <img src={notification} alt="Notification" />
             <span>Notification</span>
-          </div>
+          </div> */}
           <br />
           <div onClick={handleusersClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }} >
             <img src={user} alt="Manage Users" />
@@ -85,11 +85,11 @@ function AdminSidebar() {
             </div>
           </Collapse>
           <br />
-          <div>
+          {/* <div>
             <img src={payment} alt="Manage Payments" />
             <span>Manage Payments</span>
           </div>
-          <br />
+          <br /> */}
           <div onClick={handleComplaintsClick} style={{ cursor: "pointer", display: "flex", alignItems: "center" }}>
             <img src={complaints} alt="Manage Complaints" />
             <span>Manage Complaints</span>
