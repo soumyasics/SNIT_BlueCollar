@@ -27,10 +27,12 @@ function UserPostComplaints() {
 
   const [show, setShow] = useState(false);
   const [selectedWorkerId, setSelectedWorkerId] = useState(null);//for passing _id as prop
+  const [selectedId, setSelectedId] = useState(null);//for passing _id as prop
 
   const handleClose = () => setShow(false);
-  const handleShow = (id) => {
-    setSelectedWorkerId(id);
+  const handleShow = (id,workerid) => {
+    setSelectedId(id)
+    setSelectedWorkerId(workerid);
     setShow(true);
   };
 
@@ -73,7 +75,7 @@ function UserPostComplaints() {
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
                     <div className="user-regcomplaint-btn  mb-4">
-                        <button type="submit" onClick={()=>handleShow(a?.workerId?._id)}>Register Complaint</button>
+                        <button type="submit" onClick={()=>handleShow(a?._id,a?.workerId?._id)}>Register Complaint</button>
                     </div>
                            
                   </div>
@@ -87,7 +89,7 @@ function UserPostComplaints() {
       </div>
     </div>
     <Modal show={show} onHide={handleClose} centered>
-                    <UserAddComplaints close={handleClose} workerId={selectedWorkerId} refreshJobList={handleRefresh}/>
+                    <UserAddComplaints close={handleClose} workerId={selectedWorkerId} jobappid={selectedId} refreshJobList={handleRefresh}/>
             </Modal>
     </div>
     </div>

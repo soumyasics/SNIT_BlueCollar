@@ -43,7 +43,7 @@ console.log(approvalid,'approvalid');
 function updateapprovalstatustopaid(){
   axiosInstance.post(`updateapprovalstatustopaid/${approvalid}`)
   .then((data)=>{
-    alert(data.data.msg)
+    // alert(data.data.msg)
     console.log(data);
   })
   .catch((err)=>{

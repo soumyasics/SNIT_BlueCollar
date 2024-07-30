@@ -1,11 +1,44 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import img from "../../../Assets/profilecircle.png";
 import img2 from "../../../Assets/circleimage.jpg";
 import img3 from "../../../Assets/circleimg2.png";
 import img4 from "../../../Assets/circleimg4.png";
+import axiosInstance from '../../Constants/Baseurl';
 
 
 function Emphome1() {
+  const empId=localStorage.getItem("employer")
+  const[data,setData]=useState([])
+  const [emp,setEmp]=useState([])
+  const[jobs,setJobs]=useState([])
+  
+  useEffect(()=>{
+    axiosInstance.post('viewAllEmpPostJob')
+    .then((res)=>{
+        console.log(res,"res");
+          setData(res.data.data)
+      })
+      .catch((err)=>{
+        alert("Failed to fetch user details")
+    });
+    axiosInstance.post('viewallemployer')
+    .then((res)=>{
+        console.log(res,"res");
+          setEmp(res.data.data)
+      })
+      .catch((err)=>{
+        alert("Failed to fetch user details")
+    });
+    axiosInstance.post(`viewSelectedCandByEmpId/${empId}`)
+    .then((res)=>{
+        console.log(res,"res");
+          setJobs(res.data.data)
+      })
+      .catch((err)=>{
+        alert("Failed to fetch user details")
+    });
+
+},[])
   return (
     <>
     <div className="container" style={{marginTop:"30px"}}>
@@ -28,19 +61,19 @@ function Emphome1() {
               </div>
               <div>
                 <div className="customerimdside-box1">
-                  <span>3069</span>
+                  <span>{data?.length}</span>
                   <br />
                   Jobs posted
                 </div>
                 <div className="customerimdside-box2">
-                  <span>969</span>
+                  <span>{emp?.length}</span>
                   <br />
                   Job Fulfiled
                 </div>
                 <div className="customerimdside-box3">
-                  <span>1008</span>
+                  <span>{jobs?.length}</span>
                   <br />
-                  Job Seelers
+                  Candidate Selected
                 </div>
               </div>
             </div>

@@ -1,14 +1,22 @@
 const complaintschema=require('./ComplaintSchema')
+const workerJobApprovalSchema =require ('../Jobrequest/workerJobApprovalSchema.js')
 
 // customer Add Complaints
 
-const customerAddComplaints=((req,res)=>{
+const customerAddComplaints = async (req,res)=>{
+    
     const complaints= new complaintschema({
         workerId:req.params.id,
         customerId:req.body.customerId,
         subject:req.body.subject,
         against:'worker'
     })
+    await workerJobApprovalSchema.findByIdAndUpdate(
+        {
+            _id:req.body.jobappid
+        },
+        {complaintstatus:true}
+    )
     complaints.save()
     .then((data)=>{
         res.json({
@@ -25,7 +33,7 @@ const customerAddComplaints=((req,res)=>{
         })
     });
 
-});
+};
 
 // Worker Add Complaints
 

@@ -110,7 +110,7 @@ const viewalljobpost=((req,res)=>{
 const acceptJobReqsById=async(req,res)=>{
   
 
-  await jobreqschema.findOneAndUpdate({custid:req.params.id},{jobacceptstatus:'accepted'})
+  await jobreqschema.findByIdAndUpdate({_id:req.params.id},{jobacceptstatus:'accepted'})
   .exec()
   .then((data) => {
       res.json({

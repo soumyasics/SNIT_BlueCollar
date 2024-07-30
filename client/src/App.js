@@ -67,6 +67,7 @@ import ViewWorkersByType from './Pages/User/ViewAllWorkers/ViewWorkersByType';
 import Emphome1 from './Pages/Employer/Home/Emphome1';
 import BestCandWorkerCount from './Pages/Common/Home/BestCandWorkerCount';
 import Workerhome from './Pages/Common/Home/WorkerHome/Workerhome';
+import ViewRecentEmpJobs from './Pages/Worker/Home/ViewRecentEmpJobs';
 
 function App() {
   return (
@@ -116,7 +117,7 @@ function App() {
 
         {/* Worker */}
         <Route path='/worker-register' element={<Workerregistration/>}/>
-        <Route path='/worker-home' element={[<WorkerNav/>,<Workerhome/>,<WorkRecentJobOpen/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
+        <Route path='/worker-home' element={[<WorkerNav/>,<Workerhome/>,<WorkRecentJobOpen/>,<ViewRecentEmpJobs/>,<WhatWeDo/>,<Cos_Terms/>,<ClientTestimonials/>,<Footer/>]}/>
         <Route path='/worker-home?' element={<EditWorkStatus/>}/>
         <Route path='/worker-jobreq' element={[<WorkerNav/>,<Jobreq/>]}/>
         <Route path='/worker-acceptjobstatus' element={[<WorkerNav/>,<AcceptJobStatus/>]}/>

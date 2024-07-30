@@ -9,7 +9,7 @@ import Jobreqsingle from '../Jobreqsingle';
 import axiosInstance from '../../Constants/Baseurl';
 
 function WorkRecentJobOpen() {
-    const workerid=localStorage.getItem('workerid')
+  const workerid=localStorage.getItem('workerid')
   console.log(workerid);
 
   const [user, setUser] = useState("");
@@ -49,7 +49,7 @@ function WorkRecentJobOpen() {
     },[category])
 
     const navigateToViewRecentJobs=()=>{
-      navigate('/worker-viewrecentjob')
+      navigate('/worker-jobreq')
     }
 
     const [job, setJob] = useState(['']);
@@ -72,7 +72,7 @@ function WorkRecentJobOpen() {
         <div className="container">
       <div className="bestcandidate-main row">
         <div className="recentjob-head">
-          <p>Recent Job Openings</p>
+          <p>Customer Job Openings</p>
         </div>
         
         <div class="row row-cols-1 mx-3 row-cols-md-2 g-4 p-3">
