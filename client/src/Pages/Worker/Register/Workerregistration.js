@@ -126,6 +126,9 @@ function Workerregistration() {
             toast.success("Registered Successfully");
             navigate("/login");
           }
+          else{
+            toast.error(res.data.msg)
+          }
           setSubmitted(true);
           setErrors({});
         })
@@ -181,9 +184,9 @@ function Workerregistration() {
                 Worker Registration
               </h3>
             </div>
-            {submitted && (
+            {/* {submitted && (
               <Alert variant="success">Form submitted successfully!</Alert>
-            )}
+            )} */}
             <Form onSubmit={handleSubmit}>
               <div className="user-register-icon justify-content-left">
                 <div className="icon-bg border border-light">

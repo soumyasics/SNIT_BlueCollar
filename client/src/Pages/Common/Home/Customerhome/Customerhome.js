@@ -9,6 +9,8 @@ import axiosInstance from "../../../Constants/Baseurl";
 function Customerhome() {
   const[data,setData]=useState([])
   const [emp,setEmp]=useState([])
+  const[jobs,setJobs]=useState([])
+  const custid=localStorage.getItem("custid")
   useEffect(()=>{
     axiosInstance.post('viewalljobpost')
     .then((res)=>{
@@ -22,6 +24,14 @@ function Customerhome() {
     .then((res)=>{
         console.log(res,"res");
           setEmp(res.data.data)
+      })
+      .catch((err)=>{
+        alert("Failed to fetch user details")
+    });
+    axiosInstance.post(`viewApprovedReqsbycustomerId/${custid}`)
+    .then((res)=>{
+        console.log(res,"res");
+          setJobs(res.data.data)
       })
       .catch((err)=>{
         alert("Failed to fetch user details")
@@ -56,7 +66,7 @@ function Customerhome() {
                   Jobs posted
                 </div>
                 <div className="customerimdside-box2">
-                  <span>9</span>
+                  <span>{jobs?.length}</span>
                   <br />
                   Job Fulfiled
                 </div>

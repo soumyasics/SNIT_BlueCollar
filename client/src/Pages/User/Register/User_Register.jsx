@@ -339,7 +339,7 @@ function User_Register() {
                       name="confirmPassword"
                       value={formData.confirmPassword}
                       onChange={handleChange}
-                      // isInvalid={!!errors.confirmPassword}
+                      isInvalid={!!errors.confirmPassword}
                       placeholder="Confirm Password"
                     />
                     <div className="password-toggle-icon" onClick={toggleConfirmPasswordVisibility}>
