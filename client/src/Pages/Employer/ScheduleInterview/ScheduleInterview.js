@@ -4,8 +4,13 @@ import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import axiosInstance from '../../Constants/Baseurl';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function ScheduleInterview({jobreqid,workerId,close}) {
+
+  const navigate=useNavigate();
+
+  
 
 
     const [data, setData]=useState({
@@ -85,6 +90,9 @@ function ScheduleInterview({jobreqid,workerId,close}) {
             if (response.status == 200) {
               toast.success(response.data.msg);
               close()
+              setTimeout(() => {
+                navigate('/employer-view-postjob')
+              }, 3000);
             //   window.location.reload(false)
             }
             else if (response.status === 500){

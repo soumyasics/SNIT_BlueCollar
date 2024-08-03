@@ -9,7 +9,7 @@ import EmpViewPostJob from './EmpViewPostJob';
 function EmpViewJobList() {
   const navigate =useNavigate();
 
-  const [employerid, setId]= useState(localStorage.getItem("employer"));
+  const employerid= localStorage.getItem("employer");
 
   useEffect(()=>{
     if(localStorage.getItem("token")== null && localStorage.getItem("employer") == null ){
@@ -22,7 +22,7 @@ function EmpViewJobList() {
 
   const fetchEmployerRequests = () => {
     axiosInstance
-      .post(`viewReqsbyempid/${employerid}`)
+      .post(`viewEmpPostJobByEmpid/${employerid}`)
       .then((result) => {
         console.log(result,'empjobreqdata');
         setPostJobData(result.data.data);
@@ -81,7 +81,7 @@ function EmpViewJobList() {
                       </div>
                       <div className='col-5'>
                         <p>
-                        <i>{a?.jobid?.jobName}</i>
+                        <i>{a?.jobName}</i>
                         </p>
                       </div>
                      </div> 
@@ -93,7 +93,7 @@ function EmpViewJobList() {
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{a?.jobid?.jobSalary}</i>/{a?.jobid?.jobSalaryType}
+                        <i>{a?.jobSalary}</i>/{a?.jobSalaryType}
                         </p>
                       </div>
                      </div> 
@@ -106,19 +106,19 @@ function EmpViewJobList() {
                       </div>
                       <div className='col'>
                         <p>
-                        <i>{new Date(a.jobid?.date).toLocaleDateString()}</i>
+                        <i>{new Date(a?.date).toLocaleDateString()}</i>
                         </p>
                       </div>
                      </div> 
                   </div>
 
                   <div className="jobreq-viewmore-dashbox">
-                    <button type="submit" className="empviewpostjob-accept" 
- onClick={()=>navigateToWorkReqJob(a?.jobid?._id)}                    >
+                    {a?.approveStatus === 'pending' && <button type="submit" className="empviewpostjob-accept" 
+ onClick={()=>navigateToWorkReqJob(a?._id)}>
                       View Job Request
-                    </button>
+                    </button>}
                     <button type="submit" className="empviewpostjob-reject" 
- onClick={()=>handleShow(a?.jobid?._id)}                    
+ onClick={()=>handleShow(a?._id)}                    
  >
                       View More
                     </button>

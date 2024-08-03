@@ -75,6 +75,7 @@ router.post("/registerjob",emppostjob.registerjob)
 router.post("/viewEmpPostJobByEmpid/:id",emppostjob.viewEmpPostJobByEmpid)
 router.post("/viewEmpPostJobById/:id",emppostjob.viewEmpPostJobById)
 router.post("/viewAllEmpPostJob",emppostjob.viewAllEmpPostJob)
+router.post("/acceptJobReqsById/:id",emppostjob.acceptJobReqsById)
 
 
 

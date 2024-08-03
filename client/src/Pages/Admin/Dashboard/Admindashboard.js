@@ -20,6 +20,8 @@ function Admindashboard() {
   const [employer, setEmployer] = useState([]);
   const [emppendingreq, setEmppendingreq] = useState([]);
   const [workerpendingreq, setWorkerpendingreq] = useState([]);
+  const [custjob,setCustJob]=useState([]);
+  const [empjob,setEmpJob]=useState([]);
 
   useEffect(() => {
     axiosInstance.post(`viewallcust`)
@@ -62,11 +64,31 @@ function Admindashboard() {
       .catch((err) => {
         console.log(err);
       });
+      axiosInstance.post(`viewAllEmpPostJob`)
+      .then((result) => {
+        console.log(result);
+        setEmpJob(result.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axiosInstance.post(`viewalljobpost`)
+      .then((result) => {
+        console.log(result);
+        setCustJob(result.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
 
   const userCount = cust.length;
   const jobSeekerCount = worker.length;
   const employerCount = employer.length;
+  const empjobcount = empjob.length;
+  const custjobcount = custjob.length;
+
 
   //  percentages for illustration
   const userPercentage = (userCount / 2000) * 100; // Adjust the denominator to reflect total possible users
@@ -107,38 +129,44 @@ function Admindashboard() {
             />
           </div>
         </div>
-        <div className='row ' style={{width:"900px"}}>
+        <div className='row mx-4 ' style={{width:"900px"}}>
           <div className='col-3 admin-dash-functionbox'>
             <div className='admin-dash-functioncount1 d-flex'>
               <div className='col-3 admin-dash-function1image'>
                 <img src={applic} alt="Application" />
               </div>
-              <div className='col-6 admin-dash-function1content'>
-                <p>68 Application</p>
+              <div className='col-6 admin-dash-function1content'
+              style={{textAlign:'center'}}
+              >
+                <p>{custjobcount} <br/> Customer Job Posts</p>
               </div>
             </div>
           </div>
-          <div className='col-3 admin-dash-functionbox'>
+          <div className='col-3 admin-dash-functionbox mx-4'>
             <div className='admin-dash-functioncount2 d-flex'>
               <div className='col-3 admin-dash-function1image'>
                 <img src={jobs} alt="Jobs" />
               </div>
-              <div className='col-6 admin-dash-function1content'>
-                <p>68 <br/>New Jobs</p>
+              <div className='col-6 admin-dash-function1content'
+              style={{textAlign:'center'}}
+              >
+                <p>{empjobcount} <br/>Employer Post Jobs</p>
               </div>
             </div>
           </div>
-          <div className='col-3 admin-dash-functionbox4'>
+          {/* <div className='col-3 admin-dash-functionbox4'>
             <div className='admin-dash-functioncount3 d-flex'>
               <div className='col-3 admin-dash-function1image'>
                 <img src={growth} alt="Growth" />
               </div>
-              <div className='col-6 admin-dash-function1content'>
-                <p>68 <br/>Growth</p>
+              <div className='col-6 admin-dash-function1content'
+              style={{textAlign:'center'}}
+              >
+                <p>68 <br/>Jobs Full Filled</p>
               </div>
             </div>
-          </div>
-          <div className='col-3 admin-dash-functionbox'>
+          </div> */}
+          {/* <div className='col-3 admin-dash-functionbox'>
             <div className='admin-dash-functioncount4 d-flex'>
               <div className='col-3 admin-dash-function1image'>
                 <img src={info} alt="Info" />
@@ -147,25 +175,29 @@ function Admindashboard() {
                 <p>68 <br/>Recruitments</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className='row admindash-seconfboxuserrow'>
+        <div className='row admindash-seconfboxuserrow mt-5'>
           <div className='col-4 '>
-            <div className='admindash-seconfboxuser'>
-              <img src={usr1} alt='Customer' />
-              Customer
+            <div className='admindash-seconfboxuser pt-2 ' style={{textAlign:'center'}}>
+              
+              {/* <img src={usr1} alt='Customer' /> */}
+              <h3 >{userCount}</h3>
+              <p>Customers</p> 
             </div>
           </div>
           <div className='col-4 '>
-            <div className='admindash-seconfboxuser'>
-              <img src={usr2} alt='Employer' />
-              Employer
+            <div className='admindash-seconfboxuser'  style={{textAlign:'center'}}>
+              {/* <img src={usr2} alt='Employer' /> */}
+              <h3 >{employerCount}</h3>
+              <p>Employer</p>
             </div>
           </div>
           <div className='col-4 '>
-            <div className='admindash-seconfboxuser'>
-              <img src={usr3} alt='Worker' />
-              Worker
+            <div className='admindash-seconfboxuser'  style={{textAlign:'center'}}>
+              {/* <img src={usr3} alt='Worker' /> */}
+              <h3>{jobSeekerCount}</h3>
+              <p>Worker</p>
             </div>
           </div>
         </div>
