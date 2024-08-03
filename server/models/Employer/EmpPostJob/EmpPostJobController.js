@@ -92,10 +92,29 @@ const viewAllEmpPostJob=((req,res)=>{
 
 })
 
+const acceptJobReqsById=async(req,res)=>{
+  await emppostjobschema.findByIdAndUpdate({_id:req.params.id},{approveStatus:'accepted'})
+  .exec()
+  .then((data) => {
+      res.json({
+        status: 200,
+        msg: "Job Accepted",
+        data: data,
+      });
+    })
+    .catch((err) => {
+        res.json({
+            status:500,
+            err:err
+        })
+    });
+
+}
+
 module.exports={
   registerjob,
   viewEmpPostJobByEmpid,
   viewEmpPostJobById,
   viewAllEmpPostJob,
-  
+  acceptJobReqsById
 }

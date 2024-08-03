@@ -1,6 +1,6 @@
 const Interview = require('./interviewSchema.js'); // Update the path to your Interview schema
 const JobRequest = require('../Employer/EmpJobRequest/JobRequestSchema'); // Update the path to your JobRequest schema
-
+const emppostjob=require('../Employer/EmpPostJob/EmpPostJobSchema.js')
 // Create an Interview
 const createInterview = async (req, res) => {
     try {
@@ -27,7 +27,8 @@ if(exInterview){
          status: 400,
          msg: 'Interview Already  Scheduled',
      });
- }
+ }      await JobRequest.findByIdAndUpdate({_id:jobRequest._id},{approvalstatus:'accepted'})
+        await emppostjob.findByIdAndUpdate({_id:jobRequest.jobid},{approveStatus:'accepted'})
         const data = await interview.save();
         res.json({
             status: 200,
