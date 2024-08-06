@@ -26,7 +26,69 @@ function ViewUserComplaintSingle({compId,close}) {
         fetchEmployerRequests();
       }, []);
   return (
-    <div>
+    <>
+    {
+      data?.against==="customer"?(
+        <div>
+        <div className="jobreq-singlemain">
+      <div className="worker-interview-singlebox">
+        <Container className="user-info-container">
+          <div className="ri-arrow-go-back-line" onClick={close} />
+          <div className="user-profileviewimage">
+            {/* <img src={`${url}/${data.custid?.image?.filename}`} width="100px" height="100px" alt="User" /> */}
+          </div>
+          <Form >
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Worker Name
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.workerId?.name}
+              </Col>
+            </Row>
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+              Customer Email
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.workerId?.email}
+              </Col>
+            </Row>
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+             Contact
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.workerId?.phone}
+              </Col>
+            </Row>
+            <Row className="user-info-row">
+              <Col className="user-info-label" md={4}>
+                Subject
+              </Col>
+              <Col className="user-info-coln" md={1}>
+                :
+              </Col>
+              <Col className="user-info-value" md={7}>
+                {data?.subject}
+              </Col>
+            </Row>
+          </Form>
+        </Container>
+      </div>
+    </div>
+    </div>
+      ):(
+        <div>
         <div className="jobreq-singlemain">
       <div className="worker-interview-singlebox">
         <Container className="user-info-container">
@@ -79,31 +141,15 @@ function ViewUserComplaintSingle({compId,close}) {
                 {data?.subject}
               </Col>
             </Row>
-            
-            
-            
-            
-            
-
-            {/* <Row className="user-profilebottm-button">
-              <Col>
-                <Button type="submit" className="user-profilebottm-end">
-                  Apply
-                </Button>
-                <Button
-                  type="button"
-                  className="user-profilebottm-end"
-                  onClick={close}
-                >
-                  Cancel
-                </Button>
-              </Col>
-            </Row> */}
           </Form>
         </Container>
       </div>
     </div>
     </div>
+      )
+    }
+   
+    </>
   )
 }
 

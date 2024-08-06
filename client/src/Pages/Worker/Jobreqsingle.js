@@ -22,7 +22,7 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
         setData(result.data.data);
         setWorker((prevWorker) => ({
           ...prevWorker,
-          customerId: result.data.data.custid._id
+          customerId: result?.data?.data?.custid?._id
         }));
       })
       .catch((err) => {

@@ -48,7 +48,7 @@ function ViewCustComplaintList() {
          {cust && cust.length ? (
             cust.map((a) => {
               return ( 
-                <div className="col admin-alert-boxinside">
+                <div className="col admin-alert-boxinside col-5">
                   <div className="admin-viewcustcomplaint row ">
                   {/* <h6 className='mt-2'><span style={{display:'grid',alignItems:'end'}} class="badge bg-secondary">{a?.jobid?.jobType}</span></h6> */}
                     <div className='row mt-3'>
@@ -102,16 +102,7 @@ function ViewCustComplaintList() {
                      </div> 
                   </div>
 
-                  <div className="admin-complait-foot">
-                    {/* <button type="submit" className="viewuseradmin-view" onClick={() => navigateToViewCust(a?._id)}>
-                      View
-                    </button> */}
-                    {/* <button type="submit" className="viewmoreadmin-reject" 
-                    onClick={() => rejectfn(a?._id)}
-                    >
-                      Remove
-                    </button> */}
-                  </div>
+                
                 </div>
               );
             })

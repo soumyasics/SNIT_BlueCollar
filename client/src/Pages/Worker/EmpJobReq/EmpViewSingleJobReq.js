@@ -60,7 +60,7 @@ function EmpViewSingleJobReq({ close, jobId, refreshJobList }) {
       })
       .catch((err) => {
         console.log(err);
-        toast.warn("Something Went Wrong");
+        // toast.warn("Something Went Wrong");
       });
   };
 
