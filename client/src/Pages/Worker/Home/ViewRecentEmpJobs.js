@@ -68,7 +68,7 @@ const navigateToViewEmpRecentJobs=()=>{
                         <span><h4>{a?.jobName}</h4></span>
                     </div>
                     <div className="">
-                        <p>{a.jobDetails.slice(0,175)}...</p>
+                        <p>{a.jobDetails.slice(0,100)}...</p>
                     </div>
                 </div>
                 

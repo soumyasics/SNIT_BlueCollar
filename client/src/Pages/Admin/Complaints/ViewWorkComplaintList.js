@@ -47,28 +47,28 @@ function ViewWorkComplaintList() {
          {work && work.length ? (
             work.map((a) => {
               return ( 
-                <div className="col admin-alert-boxinside">
+                <div className="col admin-alert-boxinside col-5">
                   <div className="admin-viewcustcomplaint row ">
                   {/* <h6 className='mt-2'><span style={{display:'grid',alignItems:'end'}} class="badge bg-secondary">{a?.jobid?.jobType}</span></h6> */}
                     <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-5'>
                         <p>
                         <b>Complainer name:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-7'>
                         <p>
                         <i>{a?.workerId?.name}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
-                      <div className='col-7'>
+                      <div className='col-5'>
                         <p>
-                        <b>complaint against User Type :</b>
+                        <b>Complaint By :</b>
                         </p>
                       </div>
-                      <div className='col-3'>
+                      <div className='col-7'>
                         <p>
                         <i>{a?.against}</i>
                         </p>
@@ -76,24 +76,24 @@ function ViewWorkComplaintList() {
                      </div> 
                      
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-5'>
                         <p>
                         <b>complaint against :</b>
                         </p>
                       </div>
-                      <div className='col'>
+                      <div className='col-7'>
                         <p>
                         <i>{a?.customerId?.name}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-5'>
                         <p>
-                        <b>complaint Desription  :</b>
+                        <b> Desription  :</b>
                         </p>
                       </div>
-                      <div className='col'>
+                      <div className='col-7'>
                         <p>
                         <i>{a?.subject}</i>
                         </p>
@@ -101,22 +101,14 @@ function ViewWorkComplaintList() {
                      </div> 
                   </div>
 
-                  <div className="admin-complait-foot">
-                    {/* <button type="submit" className="viewuseradmin-view" onClick={() => navigateToViewCust(a?._id)}>
-                      View
-                    </button> */}
-                    {/* <button type="submit" className="viewmoreadmin-reject" 
-                    onClick={() => rejectfn(a?._id)}
-                    >
-                      Remove
-                    </button> */}
-                  </div>
+                  
                 </div>
               );
             })
           ) : (
-            <div className="viewcounsellor-lottiereqq">No request found</div>
+            <div className="viewcounsellor-lottiereqq">No Complaints found</div>
           )}
+          
         </div>
       </div>
     </div>

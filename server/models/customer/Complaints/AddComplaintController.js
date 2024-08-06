@@ -65,8 +65,26 @@ const workerAddComplaints=((req,res)=>{
 // view Worker By  Complaint Id
 
 const viewComplaintByWorkerId=((req,res)=>{
-    complaintschema.find({workerId:req.params.id})
+    complaintschema.find({workerId:req.params.id,against:'worker'})
     .populate("customerId")
+    .exec()
+    .then((data) => {
+      res.json({
+        status: 200,
+        msg: "Data get Successfully",
+        data: data,
+      });
+    })
+    .catch((err) => {
+        res.json({
+            status:500,
+            err:err
+        })
+    });
+});
+const viewComplaintByCustId=((req,res)=>{
+    complaintschema.find({customerId:req.params.id,against:'customer'})
+    .populate("workerId")
     .exec()
     .then((data) => {
       res.json({
@@ -87,7 +105,7 @@ const viewComplaintByWorkerId=((req,res)=>{
 
 const viewcomplaintById=((req,res)=>{
     complaintschema.findById({_id:req.params.id})
-    .populate("customerId")
+    .populate("customerId workerId")
     .exec()
     .then((data) => {
       res.json({
@@ -156,5 +174,6 @@ module.exports={
     viewComplaintByWorkerId,
     viewallworkercomplaintsinadmin,
     viewallcustomercomplaintsinadmin,
-    viewcomplaintById
+    viewcomplaintById,
+    viewComplaintByCustId
 }

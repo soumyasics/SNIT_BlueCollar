@@ -68,6 +68,7 @@ import Emphome1 from './Pages/Employer/Home/Emphome1';
 import BestCandWorkerCount from './Pages/Common/Home/BestCandWorkerCount';
 import Workerhome from './Pages/Common/Home/WorkerHome/Workerhome';
 import ViewRecentEmpJobs from './Pages/Worker/Home/ViewRecentEmpJobs';
+import Userviewcomplaints from './Pages/User/UserComplaints/Userviewcomplaints';
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
         <Route path='/user-add-reviews' element={<AddReviews />} />
         <Route path='/user-add-paymentdetails/:id' element={[<CustomerHomenav/>,<PaymentDetails />]} />
         <Route path='/user-post-complaints' element={[<CustomerHomenav/>,<UserPostComplaints />,<Footer/>]} />
+        <Route path='/user-view-complaints' element={[<CustomerHomenav/>,<Userviewcomplaints />,<Footer/>]} />
 
 
 

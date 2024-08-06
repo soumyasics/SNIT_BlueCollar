@@ -135,10 +135,11 @@ function WorkerReqJob() {
                         </p>
                       </div>
                       <div className='col-5'>
-                        <p style={{textAlign:'justify'}}>
+                        <p style={{ textAlign: 'justify', wordWrap: 'break-word' }}>
                         <i>{a?.workerId?.address},{a?.workerId?.location},{a?.workerId?.state}</i>
                         </p>
                       </div>
+                      
                      </div> 
                   </div>
 
