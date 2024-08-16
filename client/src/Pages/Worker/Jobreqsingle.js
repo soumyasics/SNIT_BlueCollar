@@ -135,7 +135,7 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
-              <Col className="user-info-value" md={7}>
+              <Col className="user-info-value" md={7}  style={{ whiteSpace: 'pre-wrap',wordBreak:"break-word" }}>
                 {data?.jobname}
               </Col>
             </Row>
@@ -147,7 +147,7 @@ function Jobreqsingle({ close, jobId, refreshJobList }) {
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
-              <Col className="user-info-value" md={7}>
+              <Col className="user-info-value" md={7}  style={{ whiteSpace: 'pre-wrap',wordBreak:"break-word" }}>
                 {data?.workdetails}
               </Col>
             </Row>
