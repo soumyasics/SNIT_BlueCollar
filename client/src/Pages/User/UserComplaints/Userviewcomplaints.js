@@ -5,8 +5,8 @@ import { Modal } from 'react-bootstrap';
 import ViewUserComplaintSingle from '../../Worker/Complaints/ViewUserComplaintSingle';
 
 function Userviewcomplaints() {
-    const custid=localStorage.getItem('custid')
-    console.log(custid);
+    const id=localStorage.getItem('custid')
+    console.log(id);
   
     const [data, setData] = useState("");
   
@@ -22,7 +22,7 @@ function Userviewcomplaints() {
   
     const fetchEmployerRequests = () => {
       axiosInstance
-        .post(`/viewComplaintByCustId/${custid}`)
+        .post(`/viewComplaintByCustId/${id}`)
         .then((result) => {
           console.log(result);
           setData(result.data.data);
@@ -34,7 +34,7 @@ function Userviewcomplaints() {
   
     useEffect(() => {
       fetchEmployerRequests();
-    }, [custid]);
+    }, [id]);
   
     const handleRefresh = () => {
       fetchEmployerRequests();
