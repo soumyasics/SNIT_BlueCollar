@@ -80,7 +80,7 @@ function Viewjobstatus() {
                     <div className="col-5 userview-head">Work Date</div>
                     <div className="col-7">: {a?.workDate}</div>
                     <div className="col-5 userview-head">Email</div>
-                    <div className="col-7">: {a?.workerId?.email}</div>
+                    <div className="col-7" style={{wordWrap: "break-word"}}>: {a?.workerId?.email}</div>
                     <div className="col-5 userview-head">Phone No</div>
                     <div className="col-7">: {a?.workerId?.contact}</div>
                     <div className=" viewworkreqacpt mb-4 mt-3">
