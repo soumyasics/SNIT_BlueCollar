@@ -71,7 +71,7 @@ function Viewallcust() {
                       <p>
                       {a?.name}
                       <br />
-                    <span style={{wordWrap: "break-word"}}> {a?.email}iiiiiiiiiiiiiiiiiii</span>
+                    <span style={{wordWrap: "break-word"}}> {a?.email}</span>
                         <br />
                         {a?.phone}
 

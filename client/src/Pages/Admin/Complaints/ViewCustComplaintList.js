@@ -66,7 +66,7 @@ function ViewCustComplaintList() {
                      <div className='row mt-3'>
                       <div className='col-7'>
                         <p>
-                        <b>complaint against User Type :</b>
+                        <b>complaint against:</b>
                         </p>
                       </div>
                       <div className='col-3'>
