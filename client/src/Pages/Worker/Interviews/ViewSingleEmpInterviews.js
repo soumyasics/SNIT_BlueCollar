@@ -93,7 +93,10 @@ function ViewSingleEmpInterviews({close, interview_id, refreshJobList}) {
               <Col className="user-info-coln" md={1}>
                 :
               </Col>
-              <Col className="user-info-value" md={7}>
+              <Col className="user-info-value" md={7}  style={{
+    whiteSpace: "pre-wrap",
+    wordWrap: "break-word",
+  }}>
                 {data?.interview_location},{data?.city},
                 {data?.state}
               </Col>
