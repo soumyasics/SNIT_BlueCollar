@@ -90,10 +90,10 @@ function ScheduleInterview({jobreqid,workerId,close}) {
             if (response.status == 200) {
               toast.success(response.data.msg);
               close()
-              setTimeout(() => {
-                navigate('/employer-view-postjob')
-              }, 3000);
-            //   window.location.reload(false)
+              // setTimeout(() => {
+              //   navigate('/employer-view-postjob')
+              // }, 3000);
+              window.location.reload(false)
             }
             else if (response.status === 500){
               toast.error(response.data.msg)

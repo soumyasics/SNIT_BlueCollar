@@ -144,20 +144,23 @@ function WorkerReqJob() {
                   </div>
 
                   <div className="jobreq-viewmore-dashbox">
+                  {a?.approvalstatus === 'pending' && 
                     <button type="submit" className="empviewpostjob-accept" 
                         onClick={() => handleShow(a?.workerId?._id,a?._id)}>
                       Schedule Interview
-                    </button>
+                    </button>}
+                    {a?.approvalstatus === 'pending' && 
+ 
                     <button type="submit" className="empviewpostjob-reject" 
                         onClick={() => removeEmpJobReq(a?._id)}                    >
                       Remove
-                    </button>
+                    </button>}
                   </div>
                 </div>
               );
             })
           ) : (
-            <div className="viewcounsellor-lottiereqq">Nothing found</div>
+            <div className="viewcounsellor-lottiereqq">No Applications found</div>
           )} 
         </div>
       </div>
