@@ -113,10 +113,12 @@ function EmpViewJobList() {
                   </div>
 
                   <div className="jobreq-viewmore-dashbox">
-                    {a?.approveStatus === 'pending' && <button type="submit" className="empviewpostjob-accept" 
+                    {/* {a?.approveStatus === 'pending' && */}
+                     <button type="submit" className="empviewpostjob-accept" 
  onClick={()=>navigateToWorkReqJob(a?._id)}>
                       View Job Request
-                    </button>}
+                    </button>
+                     {/* } */}
                     <button type="submit" className="empviewpostjob-reject" 
  onClick={()=>handleShow(a?._id)}                    
  >

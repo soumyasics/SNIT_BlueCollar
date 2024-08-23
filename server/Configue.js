@@ -1,7 +1,7 @@
 
 const config = {
     development: {
-        localUrl: 'http://localhost:3001/blue_collar/reset-password/',
+        localUrl: 'http://localhost:3000/blue_collar/reset-password/',
         serverUrl: 'http://hybrid.srishticampus.in/blue_collar/reset-password/',
     },
     // production: {
