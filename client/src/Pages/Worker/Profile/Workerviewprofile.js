@@ -65,7 +65,8 @@ function Workerviewprofile({close}) {
         if (!formData.location) newErrors.location = "Location is required";
         if (!formData.state) newErrors.state = "state is required";
 
-        const phonePattern = /^\d{10,}$/;
+        // const phonePattern = /^\d{10,}$/;
+        const phonePattern = /^\d{10}$/;
         if (!formData.contact) {
             newErrors.contact = "Phone number is required";
         } else if (!phonePattern.test(formData.contact)) {

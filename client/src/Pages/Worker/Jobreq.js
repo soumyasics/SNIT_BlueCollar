@@ -85,7 +85,10 @@ function Jobreq() {
           {/* <div className="col-12 "> */}
 
           {job && job.length ? (
-            job.map((a) => {
+            job
+            .slice()
+            .reverse()
+            .map((a) => {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">

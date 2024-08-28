@@ -28,15 +28,12 @@ function ScheduleInterview({ jobreqid, workerId, close }) {
   const [minDate, setMinDate] = useState('');
 
   useEffect(() => {
-    // Set the minimum date as tomorrow's date
+    // Set the minimum date as today's date
     const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1); // Move to the next day
-
-    const formattedTomorrow = tomorrow.toISOString().split('T')[0]; // Get the date in YYYY-MM-DD format
-    setMinDate(formattedTomorrow);
+    const formattedToday = today.toISOString().split('T')[0]; // Get the date in YYYY-MM-DD format
+    setMinDate(formattedToday);
   }, []);
-
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({
@@ -58,10 +55,11 @@ function ScheduleInterview({ jobreqid, workerId, close }) {
     if (!data.interview_date.trim()) {
       formValid = false;
       errors.interview_date = "Interview Date is required";
-    } else if (new Date(data.interview_date) <= new Date()) {
-      formValid = false;
-      errors.interview_date = "Please select a date starting from tomorrow";
-    }
+    } 
+    // else if (new Date(data.interview_date) <= new Date()) {
+    //   formValid = false;
+    //   errors.interview_date = "Please select a date starting from tomorrow";
+    // }
 
     if (!data.interview_location) {
       formValid = false;

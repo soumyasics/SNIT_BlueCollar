@@ -56,7 +56,8 @@ function UserViewprofile({ close }) {
         if (!formData.housename) newErrors.housename = "House name is required";
         if (!formData.city) newErrors.city = "City is required";
 
-        const phonePattern = /^\d{10,}$/;
+        // const phonePattern = /^\d{10,}$/;
+        const phonePattern = /^\d{10}$/;
         if (!formData.phone) {
             newErrors.phone = "Phone number is required";
         } else if (!phonePattern.test(formData.phone)) {
