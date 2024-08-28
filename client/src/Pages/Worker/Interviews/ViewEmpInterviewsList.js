@@ -64,7 +64,7 @@ function ViewEmpInterviewsList() {
           {/* <div className="col-12 "> */}
 
           {data && data.length ? (
-            data.map((a) => {
+            data.slice().reverse().map((a) => {
               
               return (
                 <div className="col-3 worker-job-boxinside">

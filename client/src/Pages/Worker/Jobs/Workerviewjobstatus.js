@@ -61,7 +61,9 @@ function Workerviewjobstatus() {
             </div> */}
           <div className="row d-flex " style={{ marginTop: '30px' }}>
             {job && job.length ? (
-              job.map((a) => {
+              job            .slice()
+              .reverse()
+  .map((a) => {
                 const jobid = a?.jobid?._id;
                 const custId = a?.customerId?._id;
                 return (
