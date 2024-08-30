@@ -104,7 +104,13 @@ function AdminSidebar() {
             </div>
           </Collapse>
           <br />
-          
+          <Link to="/admin-viewworkstatus" style={{textDecoration:"none"}}>
+        <div>
+            <span className="ri-file-cloud-line" alt="Home" style={{marginLeft:"-10px"}}/>
+            {/* <span className="ri-file-cloud-line"/> */}
+            <span>Work Status</span>
+          </div></Link>
+          <br/>
           <div>
             <img src={logout} alt="Logout" />
             <span ><button type="submit" onClick={confirmLogout} className="btn btn-primary">Logout</button></span>
