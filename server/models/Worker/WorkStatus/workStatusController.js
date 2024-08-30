@@ -54,6 +54,8 @@ const addworkstatus = async (req, res) => {
     status: 'pending',
     payment: req.body.payment,
     otp: req.body.otp,
+    date:new Date()
+
 
   });
   let otp1= await workstatusschema.findOne({customerId:custData._id,jobid:req.params.id})
@@ -230,11 +232,40 @@ const viewWorksamountById= async (req, res) => {
  })
 
 }
+
+
+const viewAllWorkStatus= async (req, res) => {
+  workstatusschema.find()
+  .populate('jobid')
+  .populate('customerId')
+  .populate('workerId')
+  .then(data=>{
+     return  res.json({
+         status: 200,
+         msg: "Retrieved Successfully",
+         data:data
+         
+       });
+     
+   
+ })
+ .catch((err) => {
+   console.log(err);
+   res.json({
+     status: 500,
+       msg: "Internal Error !!"
+   })
+ })
+
+}
+
+
 module.exports = {
   addworkstatus,
   OTPVerification,
   updatePaymentStatus,
   viewCompletedWorksByWorkerId,
   viewWorksamountById,
-  viewCountCompletedWorksByWorkerId
+  viewCountCompletedWorksByWorkerId,
+  viewAllWorkStatus
 }

@@ -123,6 +123,7 @@ router.post("/updatePaymentStatus/:id",workstatus.updatePaymentStatus)
 router.post("/viewWorksamountById/:id",workstatus.viewWorksamountById)
 router.post("/viewCompletedWorksByWorkerId/:id",workstatus.viewCompletedWorksByWorkerId)
 router.post("/viewCountCompletedWorksByWorkerId/:id",workstatus.viewCountCompletedWorksByWorkerId)
+router.post("/viewAllWorkStatus",workstatus.viewAllWorkStatus)
 
 
 //interviews

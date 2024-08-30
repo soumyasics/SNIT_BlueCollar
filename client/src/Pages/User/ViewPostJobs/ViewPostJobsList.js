@@ -82,7 +82,7 @@ function ViewPostJobsList() {
             </div> */}
           <div className="row d-flex" style={{ marginTop: "30px" }}>
             {data && data.length ? (
-              data.map((a) => (
+              data.slice().reverse().map((a) => (
                 <div className="col-3 userview-joblist-boxinside1" key={a._id}>
                   <div className="row mt-3">
                     <div className="col-5 userview-head">Job Name</div>

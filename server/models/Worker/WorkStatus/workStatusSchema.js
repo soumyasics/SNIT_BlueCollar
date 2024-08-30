@@ -32,5 +32,9 @@ const schema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  date:{
+    type: Date,
+    // required: true,
+  },
 });
 module.exports = mongoose.model("workstatus", schema);

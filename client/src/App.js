@@ -148,6 +148,7 @@ function App() {
         <Route path='/admin-viewworker/:workerid' element={[<Adminloginnav/>,<ViewSingleWork/>]}/>
         <Route path='/admin-viewall-custcomplaints' element={[<Adminloginnav/>,<Adminmain data="admin-viewall-custcomplaints"/>]}/>
         <Route path='/admin-viewall-workercomplaints' element={[<Adminloginnav/>,<Adminmain data="admin-viewall-workercomplaints"/>]}/>
+        <Route path='/admin-viewworkstatus' element={[<Adminloginnav/>,<Adminmain data="admin-viewworkstatus"/>]}/>
 
 
 
