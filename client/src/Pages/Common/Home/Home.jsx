@@ -44,7 +44,7 @@ const Home = () => (
       <Hero />
       <div className='m-5 text-center'>
         <p className='border-info border-3 border-bottom border-dotted home-subheading'>Popular Category</p>
-        <p className='home-para'>Many desktop publishing packages and web page editors</p>
+        <p className='home-para'>'Blue Collar: Bridging the Gap Between Talent and Opportinity!'</p>
       </div>
       <Container className="mx-auto text-center">
         <Row>

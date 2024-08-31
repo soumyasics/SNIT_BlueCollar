@@ -108,7 +108,7 @@ function AdminSidebar() {
         <div>
             <span className="ri-file-cloud-line" alt="Home" style={{marginLeft:"-10px"}}/>
             {/* <span className="ri-file-cloud-line"/> */}
-            <span>Work Status</span>
+            <span>Payment Status</span>
           </div></Link>
           <br/>
           <div>

@@ -78,8 +78,8 @@ function PostJob({close}) {
                             </option>
                             <option value="plumber">Plumber</option>
                             <option value="painter">Painter</option>
-                            <option value="graphic Designer">Graphic Designer</option>
-                            <option value="web Designer">Web Designer</option>
+                            <option value="graphic designer">Graphic Designer</option>
+                            <option value="web designer">Web Designer</option>
                             <option value="garden Designer">Garden Designer</option>
                             <option value="masons">Masons</option>
                             <option value="electrician">Electrician</option>

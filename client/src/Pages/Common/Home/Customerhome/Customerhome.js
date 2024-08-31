@@ -73,7 +73,7 @@ function Customerhome() {
                 <div className="customerimdside-box3">
                   <span>{emp?.length}</span>
                   <br />
-                  Job Seelers
+                  Job Seekers
                 </div>
               </div>
             </div>
