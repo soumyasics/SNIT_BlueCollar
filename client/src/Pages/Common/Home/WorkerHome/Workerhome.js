@@ -74,7 +74,7 @@ function Workerhome() {
                 <div className="workerhomeimdside-box3">
                   <span>{emp?.length}</span>
                   <br />
-                  Job Seelers
+                  Job Sellers
                 </div>
               </div>
             </div>

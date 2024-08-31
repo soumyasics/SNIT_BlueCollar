@@ -55,36 +55,36 @@ function SelectedCandidateList() {
                       alt="User"/>
                       </div>
                     <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
-                        <b>Candidate Name:</b>
+                        <b> Name:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-6'>
                         <p>
                         <i>{a?.workerId?.name}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
-                        <b>Candidate Email:</b>
+                        <b> Email:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-6' style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.workerId?.email}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
-                        <b>Candidate Location:</b>
+                        <b> Location:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-6'style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.workerId?.city}</i>
                         </p>
@@ -93,40 +93,41 @@ function SelectedCandidateList() {
                   <h6 className='mt-2'><span style={{display:'grid',alignItems:'end'}} class="badge bg-secondary">Job Details</span></h6>
 
                     <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
                         <b>Job Name:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-6' style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.jobid?.jobName}</i>
                         </p>
                       </div>
                      </div> 
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
                         <b>Job Salary:</b>
                         </p>
                       </div>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
                         <b>{a?.jobid?.jobSalary}</b>/{a?.jobid?.jobSalaryType}
                         </p>
                       </div>
                      </div>
                      <div className='row mt-3'>
-                      <div className='col'>
+                      <div className='col-6'>
                         <p>
                         <b>Location:</b>
                         </p>
                       </div>
-                      <div className='col'>
+                      <div className='col-6' style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.interview_location}</i>/{a?.state}
                         </p>
                       </div>
+                      
                      </div>  
                      
                      <div style={{display:'flex',justifyContent:'center'}}>

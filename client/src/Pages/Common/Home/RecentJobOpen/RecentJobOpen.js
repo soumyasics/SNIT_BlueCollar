@@ -40,9 +40,9 @@ function RecentJobOpen() {
        <div className="container">
       <div className="bestcandidate-main row">
         
-        <div class="row row-cols-1 mx-3 row-cols-md-2 g-4 ">
+        <div class="row row-cols-1 mx-3 row-cols-md-2 g-4 " style={{marginTop:"90px"}}>
         {
-        (recentjobdata.length)>0?((recentjobdata).slice(0,4).map((data) => {
+        (recentjobdata.length)>0?((recentjobdata).slice(0,4).reverse().map((data) => {
           return(
             <div className="col mb-5 ">
               <div className="row recentjob-userbox1 ">

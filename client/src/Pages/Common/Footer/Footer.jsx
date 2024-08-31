@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaBriefcase } from 'react-icons/fa';
 import './Footer.css';
 function Footer() {
+    const userId=localStorage.getItem("custid")
+
   return (
     <footer className='footer'>
     <div className='container-fluid p-0 bg-primary-custom text-white'>
@@ -19,21 +21,46 @@ function Footer() {
             <div className='col-md-3 text-white m-5'>
                 <h5 className='fs-3'>Blue Collar</h5>
                 <ul className='list-group list-group-flush text-white'>
-                    <li className='list-group-item footer-b '>
-                        <Link className='text-white footer-links text-decoration-none' to={'/'}>Home</Link>
-                    </li>
-                    <li className='list-group-item footer-b'>
-                        <Link className='text-white footer-links text-decoration-none' to={''}>Jobs</Link>
-                    </li>
-                    <li className='list-group-item footer-b'>
+                    {
+                        userId===null?(
+                            <li className='list-group-item footer-b '>
+                            <Link className='text-white footer-links text-decoration-none' to={'/'}>Home</Link>
+                        </li>
+    
+                        ):(
+                            <li className='list-group-item footer-b '>
+                            <Link className='text-white footer-links text-decoration-none' to={'/customer-home'}>Home</Link>
+                        </li>
+    
+                        )
+                    }
+                    {
+                        userId===null?(
+                            <li className='list-group-item footer-b'>
+                            <Link className='text-white footer-links text-decoration-none' to={'/alljobs'}>Jobs</Link>
+                        </li>
+    
+                        ):(
+                            <li className='list-group-item footer-b'>
+                            <Link className='text-white footer-links text-decoration-none' to={'/user-view-postjob'}>Jobs</Link>
+                        </li>
+    
+                        )
+                    }
+                    {/* <li className='list-group-item footer-b'>
                         <Link className='text-white footer-links text-decoration-none' to={''}>Gallery</Link>
-                    </li>
-                    <li className='list-group-item footer-b'>
-                        <Link className='text-white footer-links text-decoration-none' to={''}>About Us</Link>
-                    </li>
-                    <li className='list-group-item footer-b'>
+                    </li> */}
+                    {
+                        userId===null?(
+                            <li className='list-group-item footer-b'>
+                            <Link className='text-white footer-links text-decoration-none' to={'/aboutus'}>About Us</Link>
+                        </li>
+    
+                        ):(<></>)
+                    }
+                    {/* <li className='list-group-item footer-b'>
                         <Link className='text-white footer-links text-decoration-none' to={''}>Contact Us</Link>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
             <div className='col-md-3 text-white m-5'>

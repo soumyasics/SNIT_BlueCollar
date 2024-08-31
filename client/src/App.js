@@ -82,7 +82,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/forgot-password' element={<ForgotPassword/>} />
         <Route path='/reset-password/:id' element={<ResetPassword/>} />
-        <Route path='/alljobs' element={[<Navbar/>,<RecentJobOpen/>]} />
+        <Route path='/alljobs' element={[<Navbar/>,<RecentJobOpen/>,<Footer/>]} />
 
 
 

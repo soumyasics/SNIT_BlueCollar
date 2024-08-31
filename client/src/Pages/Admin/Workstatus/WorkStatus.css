@@ -24,7 +24,7 @@
 }
   
   .table_main th {
-    background-color: #4CAF50;
+    background-color: #2e95df;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -53,7 +53,7 @@
     width: 100px;
     border-radius: 20px;
     border: none;
-    background-color: #4CAF50;
+    background-color: #2e95df;
     color: white;
     font-weight: 700;
   }
