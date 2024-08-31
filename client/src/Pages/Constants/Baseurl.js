@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 
     // baseURL: '', 
   
-  //local api
+  //local apis
   
     baseURL: 'http://localhost:4026/blue_collar_api', 
   
