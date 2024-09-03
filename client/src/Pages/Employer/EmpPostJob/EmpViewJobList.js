@@ -68,7 +68,7 @@ function EmpViewJobList() {
           {/* <div className="col-12 "> */}
 
           {postjobdata && postjobdata.length ? (
-            postjobdata.map((a) => {
+            postjobdata.slice().reverse().map((a) => {
               return (
                 <div className="col-3 empviewpostjob-boxinside">
                   <div className="empviewpostjob-dashpic row ">
