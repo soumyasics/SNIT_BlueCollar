@@ -79,7 +79,7 @@ function ViewCustComplaintList() {
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>complaint against :</b>
+                        <b>Worker Name :</b>
                         </p>
                       </div>
                       <div className='col'>

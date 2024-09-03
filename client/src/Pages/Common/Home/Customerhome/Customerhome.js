@@ -12,7 +12,7 @@ function Customerhome() {
   const[jobs,setJobs]=useState([])
   const custid=localStorage.getItem("custid")
   useEffect(()=>{
-    axiosInstance.post('viewalljobpost')
+    axiosInstance.post(`viewalljobreqs/${custid}`)
     .then((res)=>{
         console.log(res,"res");
           setData(res.data.data)
@@ -22,7 +22,7 @@ function Customerhome() {
     });
     axiosInstance.post('viewallemployer')
     .then((res)=>{
-        console.log(res,"res");
+        // console.log(res,"res");
           setEmp(res.data.data)
       })
       .catch((err)=>{
@@ -30,7 +30,7 @@ function Customerhome() {
     });
     axiosInstance.post(`viewApprovedReqsbycustomerId/${custid}`)
     .then((res)=>{
-        console.log(res,"res");
+        // console.log(res,"res");
           setJobs(res.data.data)
       })
       .catch((err)=>{

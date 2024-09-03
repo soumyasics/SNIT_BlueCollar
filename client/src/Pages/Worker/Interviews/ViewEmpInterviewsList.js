@@ -69,8 +69,18 @@ function ViewEmpInterviewsList() {
               return (
                 <div className="col-3 worker-job-boxinside">
                   <div className="counsellor-dashpic row d-flex">
-                    <div style={{display:'flex',alignItems:'end',justifyContent:'end',marginTop:'10px'}}><i><b>On : </b>{a?.interview_date.slice(0,10)}</i></div>
+                    {/* <div style={{display:'flex',alignItems:'end',justifyContent:'end',marginTop:'10px'}}><i><b>On : </b>{a?.interview_date.slice(0,10)}</i></div> */}
                     <div className='row mt-3' >
+                    <div className='col'>
+                        <p>
+                        <b>Interview Date :</b>
+                        </p>
+                      </div>
+                      <div className='col-5'>
+                        <p>
+                        {a?.interview_date.slice(0,10)}
+                        </p>
+                      </div>
                       <div className='col'>
                         <p>
                         <b>Employer Name :</b>

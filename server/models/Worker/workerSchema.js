@@ -28,10 +28,10 @@ const workerschema = mongoose.Schema({
     type: String,
     required: true,
   },
-  state: {
-    type: String,
-    required: true,
-  },
+  // state: {
+  //   type: String,
+  //   required: true,
+  // },
   email: {
     type: String,
     unique: true,
