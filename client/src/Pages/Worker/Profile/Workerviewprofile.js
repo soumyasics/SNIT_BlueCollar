@@ -15,7 +15,7 @@ function Workerviewprofile({close}) {
         address:'',
         location:'',
         city: '',
-        state:'',
+        // state:'',
         contact: '',
         email: ''
     });
@@ -33,7 +33,7 @@ function Workerviewprofile({close}) {
                     address:result.data.data.address,
                     location:result.data.data.location,
                     city: result.data.data.city,
-                    state:result.data.data.state,
+                    // state:result.data.data.state,
                     contact: result.data.data.contact,
                     email: result.data.data.email
                 });
@@ -63,7 +63,7 @@ function Workerviewprofile({close}) {
         if (!formData.city) newErrors.city = "City is required";
         if (!formData.address) newErrors.address = "Address is required";
         if (!formData.location) newErrors.location = "Location is required";
-        if (!formData.state) newErrors.state = "state is required";
+        // if (!formData.state) newErrors.state = "state is required";
 
         // const phonePattern = /^\d{10,}$/;
         const phonePattern = /^\d{10}$/;
@@ -95,7 +95,7 @@ function Workerviewprofile({close}) {
         updatedData.append('address', formData.address);
         updatedData.append('location', formData.location);
         updatedData.append('city', formData.city);
-        updatedData.append('state', formData.state);
+        // updatedData.append('state', formData.state);
         updatedData.append('contact', formData.contact);
         updatedData.append('email', formData.email);
         if (image) {
@@ -220,7 +220,7 @@ function Workerviewprofile({close}) {
                         <Form.Control.Feedback type="invalid">{errors.city}</Form.Control.Feedback>
                     </Col>
                 </Row>
-                <Row className="user-info-row">
+                {/* <Row className="user-info-row">
                     <Col className="user-info-label" md={4}>State</Col>
                     <Col className='user-info-coln' md={1}>:</Col>
                     <Col className="user-info-value" md={7}>
@@ -237,7 +237,7 @@ function Workerviewprofile({close}) {
                         )}
                         <Form.Control.Feedback type="invalid">{errors.state}</Form.Control.Feedback>
                     </Col>
-                </Row>
+                </Row> */}
 
                 <Row className="user-info-row">
                     <Col className="user-info-label" md={4}>Contact Number</Col>

@@ -33,7 +33,7 @@ function WorkStatus() {
         </thead>
         <tbody>
           {data && data.length ? (
-            data.map((a, index) => {
+            data.slice().reverse().map((a, index) => {
                 const formattedDate = new Date(a?.date).toLocaleDateString('en-GB', {
                     day: '2-digit',
                     month: '2-digit',

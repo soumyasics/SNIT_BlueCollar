@@ -55,10 +55,10 @@ function RejectedCandidateList() {
                     <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Candidate Name:</b>
+                        <b> Name:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-5'style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.workerId?.name}</i>
                         </p>
@@ -67,10 +67,10 @@ function RejectedCandidateList() {
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Candidate Email:</b>
+                        <b> Email:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-5' style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.workerId?.email}</i>
                         </p>
@@ -79,10 +79,10 @@ function RejectedCandidateList() {
                      <div className='row mt-3'>
                       <div className='col'>
                         <p>
-                        <b>Candidate Location:</b>
+                        <b> Location:</b>
                         </p>
                       </div>
-                      <div className='col-5'>
+                      <div className='col-5'style={{ wordBreak: 'break-word' }}>
                         <p>
                         <i>{a?.workerId?.city}</i>
                         </p>

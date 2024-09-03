@@ -97,8 +97,8 @@ function ViewSingleEmpInterviews({close, interview_id, refreshJobList}) {
     whiteSpace: "pre-wrap",
     wordWrap: "break-word",
   }}>
-                {data?.interview_location},{data?.city},
-                {data?.state}
+                {data?.interview_location},{data?.city}
+              
               </Col>
             </Row>
             <Row className="user-info-row">

@@ -23,7 +23,7 @@ function Workerregistration() {
     address: "",
     location: "",
     city: "",
-    state: "",
+    // state: "",
     contact: "",
     email: "",
     password: "",
@@ -74,11 +74,11 @@ function Workerregistration() {
     } else if (!/^[a-zA-Z\s]+$/.test(formData.city)) {
       formErrors.city = "City must contain only letters and spaces";
     }
-    if (!formData.state) {
-      formErrors.state = "State is required";
-    } else if (!/^[a-zA-Z\s]+$/.test(formData.state)) {
-      formErrors.city = "State must contain only letters and spaces";
-    }
+    // if (!formData.state) {
+    //   formErrors.state = "State is required";
+    // } else if (!/^[a-zA-Z\s]+$/.test(formData.state)) {
+    //   formErrors.city = "State must contain only letters and spaces";
+    // }
 
     if (!formData.contact) {
       formErrors.contact = "Contact Number is required";
@@ -377,7 +377,7 @@ function Workerregistration() {
                 </Col>
               </Row>
               <Row>
-                <Col md={6}>
+                {/* <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="state" className="text-white">
                       State
@@ -402,7 +402,7 @@ function Workerregistration() {
                       {errors.state}
                     </Form.Control.Feedback>
                   </Form.Group>
-                </Col>
+                </Col> */}
                 <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="contact" className="text-white">
@@ -429,9 +429,9 @@ function Workerregistration() {
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Col>
-              </Row>
-              <Row>
-                <Col md={12}>
+              {/* </Row>
+              <Row> */}
+                <Col md={6}>
                   <Form.Group className="mb-3">
                     <Form.Label htmlFor="email" className="text-white">
                       Email

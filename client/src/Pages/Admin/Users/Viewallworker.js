@@ -72,7 +72,7 @@ function Viewallworker() {
                       <p>
                       {a?.name}
                       <br />
-                     {a?.email}
+                     {a?.email?.slice(0, 23)}
                         <br />
                         {a?.workertype}
                         <br />

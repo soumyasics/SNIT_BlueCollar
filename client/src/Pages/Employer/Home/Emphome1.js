@@ -13,7 +13,7 @@ function Emphome1() {
   const[jobs,setJobs]=useState([])
   
   useEffect(()=>{
-    axiosInstance.post('viewAllEmpPostJob')
+    axiosInstance.post(`viewEmpPostJobByEmpid/${empId}`)
     .then((res)=>{
         console.log(res,"res");
           setData(res.data.data)
@@ -21,7 +21,7 @@ function Emphome1() {
       .catch((err)=>{
         alert("Failed to fetch user details")
     });
-    axiosInstance.post('viewallemployer')
+    axiosInstance.post('viewAllEmpPostJob')
     .then((res)=>{
         console.log(res,"res");
           setEmp(res.data.data)
@@ -68,7 +68,7 @@ function Emphome1() {
                 <div className="customerimdside-box2">
                   <span>{emp?.length}</span>
                   <br />
-                  Job Fulfiled
+                  Total Jobs
                 </div>
                 <div className="customerimdside-box3">
                   <span>{jobs?.length}</span>
